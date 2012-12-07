@@ -1,8 +1,10 @@
 let mapleader = ","
 let g:mapleader = ","
 
-" [f]ormat [e]ntire [f]ile
-nmap <leader>fef ggVG=
+" format entire fire
+nmap <leader>fef :call Preserve("normal gg=G")<CR>
+" strip trailing spaces
+nmap <leader>f$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 " disable arrow keys
 nnoremap <up> <nop>

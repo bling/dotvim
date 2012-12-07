@@ -1,0 +1,12 @@
+function! Preserve(command)
+  " save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+
+  execute a:command
+
+  " replace search, cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction

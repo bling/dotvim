@@ -12,7 +12,7 @@ if has('gui_running')
         set transparency=2
     endif
 
-    colorscheme kolor
+    colorscheme molokai
 else
     colorscheme default
 endif

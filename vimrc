@@ -31,7 +31,7 @@ endif
 
 " bundles: color schemes
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'zeis/kolor'
+Bundle 'vim-scripts/Colour-Sampler-Pack'
 
 " bundles: languages
 Bundle 'pangloss/vim-javascript'
