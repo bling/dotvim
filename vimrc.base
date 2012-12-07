@@ -2,6 +2,7 @@ filetype on
 filetype plugin on
 filetype indent on
 syntax enable
+
 set mouse=a                                                   "enable mouse
 set mousehide                                                 "hide when characters are typed
 set history=1000
@@ -10,6 +11,7 @@ set ttyfast                                                   "assume fast termi
 set viewoptions=folds,options,cursor,unix,slash
 set encoding=utf-8                                            "set encoding for text
 set clipboard=unnamed                                         "sync with OS clipboard
+set hidden                                                    "allow buffer switching without saving
 
 " whitespace
 set backspace=indent,eol,start                                "allow backspacing everything in insert mode
@@ -19,6 +21,8 @@ set expandtab                                                 "spaces instead of
 set tabstop=4                                                 "number of spaces per tab for display
 set softtabstop=4                                             "number of spaces per tab in insert mode
 set shiftwidth=4                                              "number of spaces when indenting
+set list                                                      "highlight whitespace
+set listchars=tab:,.,trail:.,extends:#,nbsp:.                 "highlight problematic whitespace
 
 " disable sounds
 set noerrorbells

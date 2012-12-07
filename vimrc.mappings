@@ -25,6 +25,20 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" tab shortcuts
+map <leader>tn :tabnew<CR>
+map <leader>tc :tabclose<CR>
+map <leader>t0 0gt
+map <leader>t1 1gt
+map <leader>t2 2gt
+map <leader>t3 3gt
+map <leader>t4 4gt
+map <leader>t5 5gt
+map <leader>t6 6gt
+map <leader>t7 7gt
+map <leader>t8 8gt
+map <leader>t9 9gt
+
 " nerdtree
 map <leader>n :NERDTreeToggle<CR>
 

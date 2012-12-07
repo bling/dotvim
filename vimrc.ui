@@ -11,7 +11,10 @@ if has('gui_running')
     if has('gui_macvim')
         set transparency=2
     endif
+
+    colorscheme kolor
+else
+    colorscheme default
 endif
 
 set gfn=Consolas:h13
-colorscheme kolor
