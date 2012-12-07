@@ -1,0 +1,19 @@
+" nerdtree
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeIgnore=['\.git','\.hg']
+
+" ctrlp
+let g:ctrlp_working_path_mode=2
+let g:ctrlp_custom_ignore = {
+    \ 'dir' : '\.git$\|\.hg$\|\.svn$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$' }
+
+" indent guides
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+
+" powerline settings
+set laststatus=2
+set t_Co=256

@@ -1,0 +1,17 @@
+set background=dark                                           "assume dark background
+set cursorline                                                "highlight the current line
+set showmatch                                                 "automatically highlight matching braces/brackets/etc.
+set foldenable
+
+if has('gui_running')
+    " maximize
+    set lines=999
+    set columns=999
+
+    if has('gui_macvim')
+        set transparency=2
+    endif
+endif
+
+set gfn=Consolas:h13
+colorscheme kolor

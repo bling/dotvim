@@ -1,0 +1,37 @@
+filetype on
+filetype plugin on
+filetype indent on
+syntax enable
+set mouse=a                                                   "enable mouse
+set mousehide                                                 "hide when characters are typed
+set history=1000
+set relativenumber                                            "show line numbers relative to current line
+set ttyfast                                                   "assume fast terminal connection
+set viewoptions=folds,options,cursor,unix,slash
+set encoding=utf-8                                            "set encoding for text
+set clipboard=unnamed                                         "sync with OS clipboard
+
+" whitespace
+set backspace=indent,eol,start                                "allow backspacing everything in insert mode
+set autoindent                                                "automatically indent to match adjacent lines
+set smartindent                                               "smart indenting for additional languages
+set expandtab                                                 "spaces instead of tabs
+set tabstop=4                                                 "number of spaces per tab for display
+set softtabstop=4                                             "number of spaces per tab in insert mode
+set shiftwidth=4                                              "number of spaces when indenting
+
+" disable sounds
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" searching
+set hlsearch                                                  "highlight searches
+set incsearch                                                 "incremental searching
+set ignorecase                                                "ignore case for searching
+set smartcase                                                 "do case-sensitive if there's a capital letter
+
+" backups
+set backupdir^=~/.vim/_backup//
+set directory^=~/.vim/_swap//

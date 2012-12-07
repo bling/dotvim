@@ -1,0 +1,40 @@
+let mapleader = ","
+let g:mapleader = ","
+
+" [f]ormat [e]ntire [f]ile
+nmap <leader>fef ggVG=
+
+" disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" screen line scroll
+nnoremap j gj
+nnoremap k gk
+
+" shortcuts for split screen
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" nerdtree
+map <leader>n :NERDTreeToggle<CR>
+
+" fugitive
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+
+" tagbar
+nnoremap <silent> <F9> :TagbarToggle<CR>
