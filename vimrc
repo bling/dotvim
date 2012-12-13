@@ -95,8 +95,9 @@
     set smartcase                                                 "do case-sensitive if there's a capital letter
 
     " backups
-    set backupdir^=~/.vim/_backup//
-    set directory^=~/.vim/_swap//
+    set backup
+    set backupdir=~/.vim/backup
+    set directory=~/.vim/swap
 " ]]
 
 " ui configuration [[
@@ -164,6 +165,18 @@
     function! StripTrailingWhitespace()
         call Preserve("%s/\\s\\+$//e")
     endfunction
+
+    function! InitFolders()
+        let folder = $HOME . '/.vim/backup'
+        if !isdirectory(folder)
+            call mkdir(folder)
+        endif
+        let folder = $HOME . '/.vim/swap'
+        if !isdirectory(folder)
+            call mkdir(folder)
+        endif
+    endfunction
+    call InitFolders()
 " ]]
 
 " autocmd [[
