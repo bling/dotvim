@@ -68,6 +68,8 @@
     set clipboard=unnamed                                         "sync with OS clipboard
     set hidden                                                    "allow buffer switching without saving
     set spell                                                     "i can haz spelling?
+    set wildmenu                                                  "show list for autocomplete
+    set wildmode=list:longest:full                                "priority for tab completion
 
     " whitespace
     set backspace=indent,eol,start                                "allow backspacing everything in insert mode
@@ -146,14 +148,36 @@
     " ]]
 " ]]
 
+" functions [[
+    function! Preserve(command)
+        " preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " do the business:
+        execute a:command
+        " clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endfunction
+
+    function! StripTrailingWhitespace()
+        call Preserve("%s/\\s\\+$//e")
+    endfunction
+" ]]
+
+" autocmd [[
+    autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+" ]]
+
 " mappings [[
     let mapleader = ","
     let g:mapleader = ","
 
-    " format entire fire
+    " format entire file
     nmap <leader>fef :call Preserve("normal gg=G")<CR>
     " strip trailing spaces
-    nmap <leader>f$ :call Preserve("%s/\\s\\+$//e")<CR>
+    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
 
     " disable arrow keys
     nnoremap <up> <nop>
@@ -204,19 +228,5 @@
     " tagbar
     nnoremap <silent> <F9> :TagbarToggle<CR>
 
-" ]]
-
-" functions [[
-    function! Preserve(command)
-        " preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        execute a:command
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endfunction
 " ]]
 
