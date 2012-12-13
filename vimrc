@@ -115,6 +115,8 @@
         if has('gui_macvim')
             set transparency=4
         endif
+    else
+        set t_Co=256
     endif
 
     colorscheme molokai
