@@ -11,10 +11,7 @@ if has('gui_running')
     if has('gui_macvim')
         set transparency=2
     endif
-
-    colorscheme molokai
-else
-    colorscheme default
 endif
 
+colorscheme molokai
 set gfn=Consolas:h13

@@ -6,11 +6,6 @@ nmap <leader>fef :call Preserve("normal gg=G")<CR>
 " strip trailing spaces
 nmap <leader>f$ :call Preserve("%s/\\s\\+$//e")<CR>
 
-" show history of commands and searches
-nnoremap : q:i
-nnoremap / q/i
-nnoremap ? q?i
-
 " disable arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>

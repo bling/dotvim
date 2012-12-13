@@ -1,12 +1,11 @@
-function! Preserve(command)
-  " save last search, and cursor position.
+﻿function! Preserve(command)
+  " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")
   let c = col(".")
-
+  " Do the business:
   execute a:command
-
-  " replace search, cursor position
+  " Clean up: restore previous search history, and cursor position
   let @/=_s
   call cursor(l, c)
 endfunction

@@ -8,7 +8,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-" }
 
 " bundles: plugins
 Bundle 'kien/ctrlp.vim'
@@ -46,4 +45,5 @@ source ~/.vim/vimrc.base
 source ~/.vim/vimrc.ui
 source ~/.vim/vimrc.plugins
 source ~/.vim/vimrc.mappings
+source ~/.vim/vimrc.functions
 

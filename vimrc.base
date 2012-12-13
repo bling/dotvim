@@ -12,6 +12,7 @@ set viewoptions=folds,options,cursor,unix,slash
 set encoding=utf-8                                            "set encoding for text
 set clipboard=unnamed                                         "sync with OS clipboard
 set hidden                                                    "allow buffer switching without saving
+set spell                                                     "i can haz spelling?
 
 " whitespace
 set backspace=indent,eol,start                                "allow backspacing everything in insert mode
@@ -22,7 +23,7 @@ set tabstop=4                                                 "number of spaces 
 set softtabstop=4                                             "number of spaces per tab in insert mode
 set shiftwidth=4                                              "number of spaces when indenting
 set list                                                      "highlight whitespace
-set listchars=tab:,.,trail:.,extends:#,nbsp:.                 "highlight problematic whitespace
+set listchars=tab:>-,trail:.,extends:#,nbsp:.                 "highlight problematic whitespace
 
 " disable sounds
 set noerrorbells
