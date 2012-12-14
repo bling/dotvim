@@ -209,10 +209,6 @@
     nnoremap j gj
     nnoremap k gk
 
-    " swap ; and :
-    nnoremap ; :
-    nnoremap : ;
-
     " shortcuts for split screen
     nnoremap <leader>w <C-w>v<C-w>l
     nnoremap <C-h> <C-w>h
