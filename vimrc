@@ -81,7 +81,7 @@
     set softtabstop=4                                   "number of spaces per tab in insert mode
     set shiftwidth=4                                    "number of spaces when indenting
     set list                                            "highlight whitespace
-    set listchars=tab:,.,trail:.,extends:#,nbsp:.       "highlight problematic whitespace
+    set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.       "highlight problematic whitespace
 
     " disable sounds
     set noerrorbells
@@ -215,6 +215,8 @@
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
+
+    nmap <leader>l :set list!<CR>
 
     " tab shortcuts
     map <leader>tn :tabnew<CR>
