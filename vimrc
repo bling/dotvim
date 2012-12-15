@@ -102,6 +102,10 @@
 " ]]
 
 " ui configuration [[
+    let g:solarized_contrast="high"
+    let g:solarized_termcolors=256
+    colorscheme solarized
+
     set background=dark                                           "assume dark background
     set cursorline                                                "highlight the current line
     set showmatch                                                 "automatically highlight matching braces/brackets/etc.
@@ -113,16 +117,12 @@
         set columns=999
 
         if has('gui_macvim')
-            set transparency=4
+            set transparency=2
         endif
     else
         set t_Co=256
     endif
 
-    let g:solarized_contrast="high"
-    let g:solarized_termcolors=256
-
-    colorscheme solarized
     set gfn=Monaco:h13
 " ]]
 
