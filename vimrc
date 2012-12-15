@@ -119,7 +119,10 @@
         set t_Co=256
     endif
 
-    colorscheme molokai
+    let g:solarized_contrast="high"
+    let g:solarized_termcolors=256
+
+    colorscheme solarized
     set gfn=Monaco:h13
 " ]]
 
