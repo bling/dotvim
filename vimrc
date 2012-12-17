@@ -20,7 +20,7 @@
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
         Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-        Bundle 'nathanaelkane/vim-indent-guides'
+        "Bundle 'nathanaelkane/vim-indent-guides'
         Bundle 'tpope/vim-fugitive'
         Bundle 'tpope/vim-surround'
         Bundle 'scrooloose/syntastic'
@@ -81,7 +81,7 @@
     set softtabstop=4                                   "number of spaces per tab in insert mode
     set shiftwidth=4                                    "number of spaces when indenting
     set list                                            "highlight whitespace
-    set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.       "highlight problematic whitespace
+    set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.      "highlight problematic whitespace
 
     " disable sounds
     set noerrorbells
@@ -104,6 +104,7 @@
 " ui configuration [[
     let g:solarized_contrast="high"
     let g:solarized_termcolors=256
+    let g:solarized_visibility="low"
     colorscheme solarized
 
     set background=dark                                           "assume dark background
@@ -130,7 +131,7 @@
 
     " nerdtree [[
         let NERDTreeShowHidden=1
-        let NERDTreeQuitOnOpen=1
+        let NERDTreeQuitOnOpen=0
         let NERDTreeIgnore=['\.git','\.hg']
     " ]]
 
@@ -250,4 +251,8 @@
     nnoremap <silent> <F9> :TagbarToggle<CR>
 
 " ]]
+
+if filereadable(expand("~/.vim/vimrc.local"))
+    source ~/.vim/vimrc.local
+endif
 
