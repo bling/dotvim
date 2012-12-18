@@ -102,16 +102,6 @@
 " ]]
 
 " ui configuration [[
-    let g:solarized_contrast="high"
-    let g:solarized_termcolors=256
-    let g:solarized_visibility="low"
-    colorscheme solarized
-
-    set background=dark                                           "assume dark background
-    set cursorline                                                "highlight the current line
-    set showmatch                                                 "automatically highlight matching braces/brackets/etc.
-    set foldenable
-
     if has('gui_running')
         " maximize
         set lines=999
@@ -125,6 +115,16 @@
     endif
 
     set gfn=Monaco:h13
+
+    let g:solarized_contrast="high"
+    let g:solarized_termcolors=256
+    let g:solarized_visibility="low"
+    colorscheme solarized
+
+    set background=dark                                           "assume dark background
+    set cursorline                                                "highlight the current line
+    set showmatch                                                 "automatically highlight matching braces/brackets/etc.
+    set foldenable
 " ]]
 
 " plugin configuration [[
