@@ -132,6 +132,7 @@
     " nerdtree [[
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=0
+        let NERDTreeChDirMode=2
         let NERDTreeIgnore=['\.git','\.hg']
     " ]]
 
@@ -252,7 +253,7 @@
 
 " ]]
 
-if filereadable(expand("~/.vim/vimrc.local"))
-    source ~/.vim/vimrc.local
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
 endif
 
