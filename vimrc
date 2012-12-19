@@ -26,9 +26,9 @@
         Bundle 'scrooloose/syntastic'
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
-        Bundle 'ervandew/supertab'
         Bundle 'honza/snipmate-snippets'
         Bundle 'garbas/vim-snipmate'
+        Bundle 'ervandew/supertab'
         Bundle 'ap/vim-css-color'
         Bundle 'myusuf3/numbers.vim'
         if executable('ctags')
@@ -140,9 +140,10 @@
         let g:ctrlp_by_filename=1
         let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_show_hidden=1
+        let g:ctrlp_lazy_update=1
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
         let g:ctrlp_custom_ignore = {
-            \ 'dir' : '\.git$\|\.hg$\|\.svn$',
+            \ 'dir' : '\.git$\|\.hg$\|\.svn$\|\.idea$',
             \ 'file': '\.exe$\|\.so$\|\.dll$' }
     " ]]
 
@@ -238,7 +239,8 @@
     map <leader>t9 9gt
 
     " nerdtree
-    map <leader>e :NERDTreeToggle<CR>
+    map <leader>ee :NERDTreeToggle<CR>
+    map <leader>ef :NERDTreeFind<CR>
 
     " fugitive
     nnoremap <silent> <leader>gs :Gstatus<CR>
