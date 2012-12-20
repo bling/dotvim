@@ -71,6 +71,7 @@
     set spell                                           "i can haz spelling?
     set wildmenu                                        "show list for autocomplete
     set wildmode=list:longest:full                      "priority for tab completion
+    set autoread                                        "auto reload if file saved externally
 
     " whitespace
     set backspace=indent,eol,start                      "allow backspacing everything in insert mode
@@ -112,6 +113,10 @@
         endif
     else
         set t_Co=256
+
+        " difference cursors for insert vs normal mode
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
 
     set gfn=Monaco:h13
@@ -140,7 +145,7 @@
         let g:ctrlp_by_filename=1
         let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_show_hidden=1
-        let g:ctrlp_lazy_update=1
+        let g:ctrlp_lazy_update=100
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
         let g:ctrlp_custom_ignore = {
             \ 'dir' : '\.git$\|\.hg$\|\.svn$\|\.idea$',
@@ -258,4 +263,3 @@
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
-
