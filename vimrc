@@ -32,6 +32,7 @@
         Bundle 'ap/vim-css-color'
         Bundle 'myusuf3/numbers.vim'
         Bundle 'mileszs/ack.vim'
+        Bundle 'sjl/gundo.vim'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
@@ -259,6 +260,8 @@
     " tagbar
     nnoremap <silent> <F9> :TagbarToggle<CR>
 
+    " gundo
+    nnoremap <F5> :GundoToggle<CR>
 " ]]
 
 if filereadable(expand("~/.vimrc.local"))
