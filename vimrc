@@ -31,6 +31,7 @@
         Bundle 'ervandew/supertab'
         Bundle 'ap/vim-css-color'
         Bundle 'myusuf3/numbers.vim'
+        Bundle 'mileszs/ack.vim'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
