@@ -33,6 +33,7 @@
         Bundle 'myusuf3/numbers.vim'
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
+        Bundle 'jeetsukumaran/vim-buffergator'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
@@ -51,6 +52,7 @@
         Bundle 'tpope/vim-markdown'
         Bundle 'cakebaker/scss-syntax.vim'
         Bundle 'hail2u/vim-css3-syntax'
+        Bundle 'maksimr/vim-jsbeautify'
     " ]]
 
 " ]]
@@ -203,10 +205,10 @@
     let mapleader = ","
     let g:mapleader = ","
 
-    " format entire file
-    nmap <leader>fef :call Preserve("normal gg=G")<CR>
-    " strip trailing spaces
-    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+    " formatting shortcuts
+    nmap <leader>fef :call Preserve("normal gg=G")<CR>      " format entire file
+    nmap <leader>f$ :call StripTrailingWhitespace()<CR>     " strip trailing spaces
+    nmap <leader>fjs :call JsBeautify()<CR>                 " beautify js
 
     " disable arrow keys
     nnoremap <up> <nop>
