@@ -102,9 +102,6 @@
 
     " windows
     set winwidth=100                                    "suggested window width
-    set winheight=5                                     "dummy so next setting doesn't error
-    set winminheight=5                                  "minimum window height
-    set winheight=999                                   "suggested window height
 
     " backups
     set backup
@@ -217,7 +214,7 @@
     nmap <leader>f$ :call StripTrailingWhitespace()<CR>     " strip trailing spaces
     nmap <leader>fjs :call JsBeautify()<CR>                 " beautify js
 
-    " disable arrow keys
+    " disable arrow keys [[
     nnoremap <up> <nop>
     nnoremap <down> <nop>
     nnoremap <left> <nop>
@@ -226,6 +223,7 @@
     inoremap <down> <nop>
     inoremap <left> <nop>
     inoremap <right> <nop>
+    " ]]
 
     " screen line scroll
     nnoremap j gj
@@ -240,7 +238,7 @@
 
     nmap <leader>l :set list!<CR>
 
-    " tab shortcuts
+    " tab shortcuts [[
     map <leader>tn :tabnew<CR>
     map <leader>tc :tabclose<CR>
     map <leader>t0 0gt
@@ -253,6 +251,7 @@
     map <leader>t7 7gt
     map <leader>t8 8gt
     map <leader>t9 9gt
+    " ]]
 
     " nerdtree
     map <leader>ee :NERDTreeToggle<CR>
