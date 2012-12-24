@@ -100,6 +100,12 @@
     set ignorecase                                      "ignore case for searching
     set smartcase                                       "do case-sensitive if there's a capital letter
 
+    " windows
+    set winwidth=100                                    "suggested window width
+    set winheight=5                                     "dummy so next setting doesn't error
+    set winminheight=5                                  "minimum window height
+    set winheight=999                                   "suggested window height
+
     " backups
     set backup
     set backupdir=~/.vim/backup
@@ -132,6 +138,7 @@
 
     set background=dark                                           "assume dark background
     set cursorline                                                "highlight the current line
+    set cursorcolumn                                              "highlight the current column
     set showmatch                                                 "automatically highlight matching braces/brackets/etc.
     set foldenable
 " ]]
@@ -264,6 +271,9 @@
 
     " gundo
     nnoremap <F5> :GundoToggle<CR>
+
+    " searching
+    map <leader>/ :Ack 
 " ]]
 
 if filereadable(expand("~/.vimrc.local"))
