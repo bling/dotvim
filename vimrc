@@ -34,6 +34,7 @@
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
         Bundle 'jeetsukumaran/vim-buffergator'
+        Bundle 'vim-scripts/vimwiki'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
@@ -102,6 +103,9 @@
 
     " windows
     set winwidth=100                                    "suggested window width
+    set winheight=10
+    set winminheight=10
+    set winheight=999
 
     " backups
     set backup
@@ -116,7 +120,11 @@
         set columns=999
 
         if has('gui_macvim')
-            set transparency=2
+            set gfn=Envy_Code_R_VS:h13
+        endif
+
+        if has('gui_win32')
+            set gfn=Envy_Code_R_VS:h10
         endif
     else
         set t_Co=256
@@ -126,11 +134,9 @@
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
 
-    set gfn=Monaco:h13
-
     let g:solarized_contrast="high"
     let g:solarized_termcolors=256
-    let g:solarized_visibility="low"
+    let g:solarized_visibility="high"
     colorscheme solarized
 
     set background=dark                                           "assume dark background
@@ -257,13 +263,14 @@
     map <leader>ee :NERDTreeToggle<CR>
     map <leader>ef :NERDTreeFind<CR>
 
-    " fugitive
+    " fugitive [[
     nnoremap <silent> <leader>gs :Gstatus<CR>
     nnoremap <silent> <leader>gd :Gdiff<CR>
     nnoremap <silent> <leader>gc :Gcommit<CR>
     nnoremap <silent> <leader>gb :Gblame<CR>
     nnoremap <silent> <leader>gl :Glog<CR>
     nnoremap <silent> <leader>gp :Git push<CR>
+    " ]]
 
     " tagbar
     nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -272,7 +279,7 @@
     nnoremap <F5> :GundoToggle<CR>
 
     " searching
-    map <leader>/ :Ack 
+    map <leader>/ :Ack --follow 
 " ]]
 
 if filereadable(expand("~/.vimrc.local"))
