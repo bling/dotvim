@@ -103,9 +103,9 @@
 
     " windows
     set winwidth=100                                    "suggested window width
-    set winheight=10
-    set winminheight=10
-    set winheight=999
+    set winheight=10                                    "dummy setting to match winminheight
+    set winminheight=10                                 "the minimum height for any window
+    set winheight=999                                   "the suggest height for any window
 
     " backups
     set backup
