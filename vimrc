@@ -20,14 +20,16 @@
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
         Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-        "Bundle 'nathanaelkane/vim-indent-guides'
+        Bundle 'nathanaelkane/vim-indent-guides'
         Bundle 'tpope/vim-fugitive'
         Bundle 'tpope/vim-surround'
         Bundle 'scrooloose/syntastic'
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
         Bundle 'honza/snipmate-snippets'
-        Bundle 'garbas/vim-snipmate'
+        "Bundle 'garbas/vim-snipmate'
+        Bundle 'Shougo/neocomplcache'
+        Bundle 'Shougo/neosnippet'
         Bundle 'ervandew/supertab'
         Bundle 'ap/vim-css-color'
         Bundle 'myusuf3/numbers.vim'
@@ -35,6 +37,8 @@
         Bundle 'sjl/gundo.vim'
         Bundle 'jeetsukumaran/vim-buffergator'
         Bundle 'vim-scripts/vimwiki'
+        Bundle 'mattn/webapi-vim'
+        Bundle 'mattn/gist-vim'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
