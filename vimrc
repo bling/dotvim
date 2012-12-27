@@ -116,6 +116,8 @@
     set winminheight=10                                 "the minimum height for any window
     set winheight=999                                   "the suggest height for any window
 
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
+
     " backups
     set backup
     set backupdir=~/.vim/backup
@@ -168,11 +170,9 @@
         let g:ctrlp_by_filename=1
         let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_show_hidden=1
-        let g:ctrlp_lazy_update=100
+        let g:ctrlp_follow_symlinks=1
+        let g:ctrlp_lazy_update=50
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
-        let g:ctrlp_custom_ignore = {
-            \ 'dir' : '\.git$\|\.hg$\|\.svn$\|\.idea$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$' }
     " ]]
 
     " indent guides [[
