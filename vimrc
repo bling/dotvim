@@ -27,18 +27,23 @@
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
         Bundle 'honza/snipmate-snippets'
+
         "Bundle 'garbas/vim-snipmate'
+        "Bundle 'ervandew/supertab'
+
         Bundle 'Shougo/neocomplcache'
         Bundle 'Shougo/neosnippet'
-        Bundle 'ervandew/supertab'
+
         Bundle 'ap/vim-css-color'
         Bundle 'myusuf3/numbers.vim'
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
         Bundle 'jeetsukumaran/vim-buffergator'
         Bundle 'vim-scripts/vimwiki'
+
         Bundle 'mattn/webapi-vim'
         Bundle 'mattn/gist-vim'
+
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
@@ -143,11 +148,11 @@
     let g:solarized_visibility="high"
     colorscheme solarized
 
-    set background=dark                                           "assume dark background
-    set cursorline                                                "highlight the current line
-    set cursorcolumn                                              "highlight the current column
-    set showmatch                                                 "automatically highlight matching braces/brackets/etc.
-    set foldenable
+    set background=dark                                 "assume dark background
+    set cursorline                                      "highlight the current line
+    set cursorcolumn                                    "highlight the current column
+    set showmatch                                       "automatically highlight matching braces/brackets/etc.
+    set foldenable                                      "enable folds by default
 " ]]
 
 " plugin configuration [[
@@ -171,9 +176,10 @@
     " ]]
 
     " indent guides [[
-        let g:indent_guides_auto_colors = 1
-        let g:indent_guides_guide_size = 1
+        let g:indent_guides_guide_size = 0
+        let g:indent_guides_space_guides = 1
         let g:indent_guides_enable_on_vim_startup = 1
+        let g:indent_guides_color_change_percent = 5
     " ]]
 
     " powerline settings [[
@@ -225,14 +231,14 @@
     nmap <leader>fjs :call JsBeautify()<CR>                 " beautify js
 
     " disable arrow keys [[
-    nnoremap <up> <nop>
-    nnoremap <down> <nop>
-    nnoremap <left> <nop>
-    nnoremap <right> <nop>
-    inoremap <up> <nop>
-    inoremap <down> <nop>
-    inoremap <left> <nop>
-    inoremap <right> <nop>
+        nnoremap <up> <nop>
+        nnoremap <down> <nop>
+        nnoremap <left> <nop>
+        nnoremap <right> <nop>
+        inoremap <up> <nop>
+        inoremap <down> <nop>
+        inoremap <left> <nop>
+        inoremap <right> <nop>
     " ]]
 
     " screen line scroll
@@ -249,17 +255,17 @@
     nmap <leader>l :set list!<CR>
 
     " tab shortcuts [[
-    map <leader>tn :tabnew<CR>
-    map <leader>tc :tabclose<CR>
-    map <leader>t0 0gt
-    map <leader>t1 1gt
-    map <leader>t2 2gt
-    map <leader>t3 3gt
-    map <leader>t4 4gt
-    map <leader>t5 5gt
-    map <leader>t6 6gt
-    map <leader>t7 7gt
-    map <leader>t8 8gt
+        map <leader>tn :tabnew<CR>
+        map <leader>tc :tabclose<CR>
+        map <leader>t0 0gt
+        map <leader>t1 1gt
+        map <leader>t2 2gt
+        map <leader>t3 3gt
+        map <leader>t4 4gt
+        map <leader>t5 5gt
+        map <leader>t6 6gt
+        map <leader>t7 7gt
+        map <leader>t8 8gt
     map <leader>t9 9gt
     " ]]
 
@@ -268,12 +274,12 @@
     map <leader>ef :NERDTreeFind<CR>
 
     " fugitive [[
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
     " ]]
 
     " tagbar
