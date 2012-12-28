@@ -23,6 +23,7 @@
         Bundle 'nathanaelkane/vim-indent-guides'
         Bundle 'tpope/vim-fugitive'
         Bundle 'tpope/vim-surround'
+        Bundle 'tpope/vim-repeat'
         Bundle 'scrooloose/syntastic'
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
