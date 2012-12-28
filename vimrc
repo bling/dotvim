@@ -149,6 +149,7 @@
     let g:solarized_termcolors=256
     let g:solarized_visibility="high"
     colorscheme solarized
+    colorscheme darkZ
 
     set background=dark                                 "assume dark background
     set cursorline                                      "highlight the current line
@@ -245,6 +246,10 @@
     nnoremap j gj
     nnoremap k gk
 
+    " reselect visual block after indent
+    vnoremap < <gv
+    vnoremap > >gv
+
     " shortcuts for split screen
     nnoremap <leader>w <C-w>v<C-w>l
     nnoremap <C-h> <C-w>h
@@ -266,7 +271,7 @@
         map <leader>t6 6gt
         map <leader>t7 7gt
         map <leader>t8 8gt
-    map <leader>t9 9gt
+        map <leader>t9 9gt
     " ]]
 
     " nerdtree
@@ -290,6 +295,8 @@
 
     " searching
     map <leader>/ :Ack --follow 
+
+    noremap <space> :set hlsearch! hlsearch?<cr>            " quick swap
 " ]]
 
 if filereadable(expand("~/.vimrc.local"))
