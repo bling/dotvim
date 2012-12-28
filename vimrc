@@ -118,6 +118,10 @@
 
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
 
+    " persistent undo
+    set undofile
+    set undodir=~/.vim/undo
+
     " backups
     set backup
     set backupdir=~/.vim/backup
@@ -211,6 +215,10 @@
             call mkdir(folder)
         endif
         let folder = $HOME . '/.vim/swap'
+        if !isdirectory(folder)
+            call mkdir(folder)
+        endif
+        let folder = $HOME . '/.vim/undo'
         if !isdirectory(folder)
             call mkdir(folder)
         endif
