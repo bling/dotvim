@@ -8,7 +8,6 @@
 " ]]
 
 " bundles [[
-
     " bundles: core [[
         Bundle 'gmarik/vundle'
         Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -65,7 +64,6 @@
         Bundle 'hail2u/vim-css3-syntax'
         Bundle 'maksimr/vim-jsbeautify'
     " ]]
-
 " ]]
 
 " base configuration [[
@@ -77,15 +75,12 @@
     set mouse=a                                         "enable mouse
     set mousehide                                       "hide when characters are typed
     set history=1000
-    set relativenumber                                  "show line numbers relative to current line
     set ttyfast                                         "assume fast terminal connection
     set viewoptions=folds,options,cursor,unix,slash
     set encoding=utf-8                                  "set encoding for text
     set clipboard=unnamed                               "sync with OS clipboard
     set hidden                                          "allow buffer switching without saving
     set spell                                           "i can haz spelling?
-    set wildmenu                                        "show list for autocomplete
-    set wildmode=list:longest:full                      "priority for tab completion
     set autoread                                        "auto reload if file saved externally
 
     " whitespace
@@ -103,7 +98,8 @@
     set noerrorbells
     set novisualbell
     set t_vb=
-    set tm=500
+
+    set timeoutlen=200                                  "time to wait between key presses
 
     " searching
     set hlsearch                                        "highlight searches
@@ -117,6 +113,8 @@
     set winminheight=10                                 "the minimum height for any window
     set winheight=999                                   "the suggest height for any window
 
+    set wildmenu                                        "show list for autocomplete
+    set wildmode=list:longest:full                      "priority for tab completion
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
 
     " persistent undo
@@ -130,6 +128,10 @@
 " ]]
 
 " ui configuration [[
+    let g:solarized_contrast="high"
+    let g:solarized_termcolors=256
+    let g:solarized_visibility="high"
+
     if has('gui_running')
         " maximize
         set lines=999
@@ -142,23 +144,18 @@
         if has('gui_win32')
             set gfn=Envy_Code_R_VS:h10
         endif
+
+        colorscheme darkZ
     else
         set t_Co=256
+        colorscheme solarized
 
         " difference cursors for insert vs normal mode
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
 
-    let g:solarized_contrast="high"
-    let g:solarized_termcolors=256
-    let g:solarized_visibility="high"
-    colorscheme solarized
-    colorscheme darkZ
-
     set background=dark                                 "assume dark background
-    set cursorline                                      "highlight the current line
-    set cursorcolumn                                    "highlight the current column
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set foldenable                                      "enable folds by default
 " ]]
@@ -190,6 +187,10 @@
 
     " powerline settings [[
         set laststatus=2
+    " ]]
+
+    " supertab [[
+        let g:SuperTabDefaultCompletionType = "context"
     " ]]
 " ]]
 
@@ -229,6 +230,9 @@
 
 " autocmd [[
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+
+    au WinLeave * set nocursorline nocursorcolumn
+    au WinEnter * set cursorline cursorcolumn
 " ]]
 
 " mappings [[
