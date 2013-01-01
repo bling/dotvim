@@ -28,11 +28,11 @@
         Bundle 'scrooloose/nerdtree'
         Bundle 'honza/snipmate-snippets'
 
-        "Bundle 'garbas/vim-snipmate'
-        "Bundle 'ervandew/supertab'
+        Bundle 'garbas/vim-snipmate'
+        Bundle 'ervandew/supertab'
 
-        Bundle 'Shougo/neocomplcache'
-        Bundle 'Shougo/neosnippet'
+        "Bundle 'Shougo/neocomplcache'
+        "Bundle 'Shougo/neosnippet'
 
         Bundle 'ap/vim-css-color'
         Bundle 'myusuf3/numbers.vim'
@@ -174,15 +174,17 @@
         let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
-        let g:ctrlp_lazy_update=50
+        let g:ctrlp_lazy_update=20
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
     " ]]
 
     " indent guides [[
         let g:indent_guides_guide_size = 0
         let g:indent_guides_space_guides = 1
-        let g:indent_guides_enable_on_vim_startup = 1
         let g:indent_guides_color_change_percent = 5
+        if has('gui_running')
+            let g:indent_guides_enable_on_vim_startup = 1
+        endif
     " ]]
 
     " powerline settings [[
@@ -191,6 +193,11 @@
 
     " supertab [[
         let g:SuperTabDefaultCompletionType = "context"
+    " ]]
+
+    " buffergator [[
+        let g:buffergator_suppress_keymaps=1
+        let g:buffergator_sort_regime="mru"
     " ]]
 " ]]
 
@@ -305,6 +312,10 @@
 
     " gundo
     nnoremap <F5> :GundoToggle<CR>
+
+    " buffergator
+    nnoremap <silent> <Leader>b :BuffergatorToggle<CR>
+    nnoremap <silent> <Leader>t :BuffergatorTabsToggle<CR>
 
     " searching
     map <leader>/ :Ack --follow 
