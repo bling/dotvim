@@ -18,7 +18,6 @@
         Bundle 'kien/ctrlp.vim'
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
-        Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
         Bundle 'nathanaelkane/vim-indent-guides'
         Bundle 'tpope/vim-fugitive'
         Bundle 'tpope/vim-surround'
@@ -41,6 +40,7 @@
         Bundle 'jeetsukumaran/vim-buffergator'
         Bundle 'vim-scripts/vimwiki'
 
+        Bundle 'mattn/zencoding-vim'
         Bundle 'mattn/webapi-vim'
         Bundle 'mattn/gist-vim'
 
