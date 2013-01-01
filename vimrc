@@ -251,11 +251,11 @@
     nmap <leader>f$ :call StripTrailingWhitespace()<CR>     " strip trailing spaces
     nmap <leader>fjs :call JsBeautify()<CR>                 " beautify js
 
-    " disable arrow keys [[
+    " remap arrow keys [[
         nnoremap <up> <nop>
         nnoremap <down> <nop>
-        nnoremap <left> <nop>
-        nnoremap <right> <nop>
+        nnoremap <left> :bprev<CR>
+        nnoremap <right> :bnext<CR>
         inoremap <up> <nop>
         inoremap <down> <nop>
         inoremap <left> <nop>
