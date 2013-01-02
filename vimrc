@@ -164,7 +164,8 @@
 
     " nerdtree [[
         let NERDTreeShowHidden=1
-        let NERDTreeQuitOnOpen=0
+        "let NERDTreeQuitOnOpen=0
+        let NERDTreeShowLineNumbers=1
         let NERDTreeChDirMode=2
         let NERDTreeIgnore=['\.git','\.hg']
     " ]]
@@ -175,6 +176,7 @@
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_lazy_update=20
+        let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
     " ]]
 
@@ -252,8 +254,8 @@
     nmap <leader>fjs :call JsBeautify()<CR>                 " beautify js
 
     " remap arrow keys [[
-        nnoremap <up> <nop>
-        nnoremap <down> <nop>
+        nnoremap <up> :tabnext<CR>
+        nnoremap <down> :tabprev<CR>
         nnoremap <left> :bprev<CR>
         nnoremap <right> :bnext<CR>
         inoremap <up> <nop>
