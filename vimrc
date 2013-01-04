@@ -39,6 +39,7 @@
         Bundle 'sjl/gundo.vim'
         Bundle 'jeetsukumaran/vim-buffergator'
         Bundle 'vim-scripts/vimwiki'
+        Bundle 'kshenoy/vim-signature'
 
         Bundle 'mattn/zencoding-vim'
         Bundle 'mattn/webapi-vim'
@@ -108,10 +109,11 @@
     set smartcase                                       "do case-sensitive if there's a capital letter
 
     " windows
-    set winwidth=100                                    "suggested window width
-    set winheight=10                                    "dummy setting to match winminheight
-    set winminheight=10                                 "the minimum height for any window
-    set winheight=999                                   "the suggest height for any window
+    "set winwidth=150                                    "suggested window width
+    "set winheight=10                                    "dummy setting to match winminheight
+    "set winminheight=10                                 "the minimum height for any window
+    "set winminwidth=10                                  "the minimum width for any window
+    "set winheight=999                                   "the suggest height for any window
 
     set wildmenu                                        "show list for autocomplete
     set wildmode=list:longest:full                      "priority for tab completion
@@ -144,15 +146,18 @@
         if has('gui_win32')
             set gfn=Envy_Code_R_VS:h10
         endif
+
+        colorscheme wombat
     else
         set t_Co=256
 
         " difference cursors for insert vs normal mode
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+        colorscheme wombat256
     endif
 
-    colorscheme solarized
     set background=dark                                 "assume dark background
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set foldenable                                      "enable folds by default
@@ -162,9 +167,10 @@
 
     " nerdtree [[
         let NERDTreeShowHidden=1
-        "let NERDTreeQuitOnOpen=0
+        let NERDTreeQuitOnOpen=1
         let NERDTreeShowLineNumbers=1
-        let NERDTreeChDirMode=2
+        let NERDTreeChDirMode=0
+        let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.git','\.hg']
     " ]]
 
@@ -174,7 +180,7 @@
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         "let g:ctrlp_lazy_update=20
-        "let g:ctrlp_working_path_mode=0
+        let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
     " ]]
 
