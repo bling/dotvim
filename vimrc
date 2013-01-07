@@ -34,7 +34,6 @@
         Bundle 'Shougo/neosnippet'
 
         Bundle 'ap/vim-css-color'
-        Bundle 'myusuf3/numbers.vim'
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
         Bundle 'jeetsukumaran/vim-buffergator'
@@ -47,6 +46,10 @@
 
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
+        endif
+
+        if has('gui_running')
+            Bundle 'myusuf3/numbers.vim'
         endif
     " ]]
 
@@ -150,6 +153,7 @@
         colorscheme wombat
     else
         set t_Co=256
+        set number
 
         " difference cursors for insert vs normal mode
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -410,5 +414,4 @@
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
-
 
