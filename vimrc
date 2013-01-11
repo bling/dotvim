@@ -328,6 +328,9 @@
 
     au WinEnter * set cursorline
     "au WinEnter * set cursorcolumn
+
+    "automatically close quick-fix on select
+    autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
 " ]]
 
 " mappings [[
@@ -406,7 +409,7 @@
     nnoremap <silent> <Leader>t :BuffergatorTabsToggle<CR>
 
     " searching
-    map <leader>/ :Ack --follow 
+    map <leader>a :Ack 
 
     noremap <space> :set hlsearch! hlsearch?<cr>            " quick swap
 " ]]
