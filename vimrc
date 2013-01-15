@@ -25,6 +25,7 @@
         Bundle 'scrooloose/syntastic'
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
+        Bundle 'paradigm/vim-multicursor'
         Bundle 'honza/snipmate-snippets'
 
         "Bundle 'garbas/vim-snipmate'
@@ -407,6 +408,11 @@
     " buffergator
     nnoremap <silent> <Leader>b :BuffergatorToggle<CR>
     nnoremap <silent> <Leader>t :BuffergatorTabsToggle<CR>
+
+    " multicursor
+    nnoremap _ :<c-u>call MultiCursorPlaceCursor()<cr>
+    nnoremap __ :<c-u>call MultiCursorManual()<cr>
+    let g:multicursor_quit = "<C-c>"
 
     " searching
     map <leader>a :Ack 
