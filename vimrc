@@ -222,16 +222,16 @@
 
         " SuperTab like snippets behavior.
         imap <silent><expr><TAB> neosnippet#expandable() ?
-                    \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-                    \ "\<C-e>" : "\<TAB>")
+            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
+            \ "\<C-e>" : "\<TAB>")
         smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
         " Define dictionary.
         let g:neocomplcache_dictionary_filetype_lists = {
-                    \ 'default' : '',
-                    \ 'vimshell' : $HOME.'/.vimshell_hist',
-                    \ 'scheme' : $HOME.'/.gosh_completions'
-                    \ }
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
 
         " Define keyword.
         if !exists('g:neocomplcache_keyword_patterns')
@@ -240,11 +240,11 @@
         let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
         " Plugin key-mappings.
-        imap <C-k> <Plug>(neosnippet_expand_or_jump)
-        smap <C-k> <Plug>(neosnippet_expand_or_jump)
-        inoremap <expr><C-g> neocomplcache#undo_completion()
-        inoremap <expr><C-l> neocomplcache#complete_common_string()
-        inoremap <expr><CR> neocomplcache#complete_common_string()
+        imap <TAB> <Plug>(neosnippet_expand_or_jump)
+        smap <TAB> <Plug>(neosnippet_expand_or_jump)
+        "inoremap <expr><C-g> neocomplcache#undo_completion()
+        "inoremap <expr><C-l> neocomplcache#complete_common_string()
+        "inoremap <expr><CR> neocomplcache#complete_common_string()
 
         " <TAB>: completion.
         "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -252,12 +252,12 @@
 
         " <CR>: close popup
         " <s-CR>: close popup and save indent.
-        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-        inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+        "inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+        "inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
         " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><C-y> neocomplcache#close_popup()
+        "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+        "inoremap <expr><C-y> neocomplcache#close_popup()
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
