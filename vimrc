@@ -79,11 +79,12 @@
     filetype indent on
     syntax enable
 
+    set timeoutlen=200                                  "time to wait between key presses
     set mouse=a                                         "enable mouse
     set mousehide                                       "hide when characters are typed
     set history=1000
     set ttyfast                                         "assume fast terminal connection
-    set viewoptions=folds,options,cursor,unix,slash
+    set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
     set encoding=utf-8                                  "set encoding for text
     set clipboard=unnamed                               "sync with OS clipboard
     set hidden                                          "allow buffer switching without saving
@@ -98,15 +99,18 @@
     set tabstop=4                                       "number of spaces per tab for display
     set softtabstop=4                                   "number of spaces per tab in insert mode
     set shiftwidth=4                                    "number of spaces when indenting
+    set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
     set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.      "highlight problematic whitespace
+
+    set showmatch                                       "automatically highlight matching braces/brackets/etc.
+    set foldenable                                      "enable folds by default
+    set scrolloff=20                                    "minimum number of lines to show
 
     " disable sounds
     set noerrorbells
     set novisualbell
     set t_vb=
-
-    set timeoutlen=200                                  "time to wait between key presses
 
     " searching
     set hlsearch                                        "highlight searches
@@ -166,8 +170,6 @@
     endif
 
     set background=dark                                 "assume dark background
-    set showmatch                                       "automatically highlight matching braces/brackets/etc.
-    set foldenable                                      "enable folds by default
 " ]]
 
 " plugin configuration [[
@@ -332,10 +334,10 @@
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
     au WinLeave * set nocursorline
-    "au WinLeave * set nocursorcolumn
+    au WinLeave * set nocursorcolumn
 
     au WinEnter * set cursorline
-    "au WinEnter * set cursorcolumn
+    au WinEnter * set cursorcolumn
 
     "automatically close quick-fix on select
     autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
