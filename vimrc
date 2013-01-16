@@ -88,7 +88,7 @@
     set encoding=utf-8                                  "set encoding for text
     set clipboard=unnamed                               "sync with OS clipboard
     set hidden                                          "allow buffer switching without saving
-    set spell                                           "i can haz spelling?
+    "set spell                                           "i can haz spelling?
     set autoread                                        "auto reload if file saved externally
 
     " whitespace
@@ -105,7 +105,8 @@
 
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set foldenable                                      "enable folds by default
-    set scrolloff=20                                    "minimum number of lines to show
+    set scrolloff=999                                   "always show content after scroll
+    set scrolljump=5                                    "minimum number of lines to scroll
 
     " disable sounds
     set noerrorbells
