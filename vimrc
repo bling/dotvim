@@ -39,7 +39,9 @@
         Bundle 'sjl/gundo.vim'
         Bundle 'jeetsukumaran/vim-buffergator'
         Bundle 'vim-scripts/vimwiki'
+        Bundle 'vim-scripts/bufkill.vim'
         Bundle 'kshenoy/vim-signature'
+        Bundle 'godlygeek/tabular'
 
         Bundle 'mattn/zencoding-vim'
         Bundle 'mattn/webapi-vim'
@@ -151,7 +153,7 @@
             set gfn=Envy_Code_R_VS:h10
         endif
 
-        colorscheme wombat
+        colorscheme molokai
     else
         set t_Co=256
         set number
@@ -160,7 +162,7 @@
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-        colorscheme wombat256
+        colorscheme molokai
     endif
 
     set background=dark                                 "assume dark background
@@ -221,9 +223,7 @@
         let g:neocomplcache_force_overwrite_completefunc = 1
 
         " SuperTab like snippets behavior.
-        imap <silent><expr><TAB> neosnippet#expandable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-            \ "\<C-e>" : "\<TAB>")
+        imap <silent><expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-e>" : "\<TAB>")
         smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
         " Define dictionary.
@@ -240,15 +240,15 @@
         let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
         " Plugin key-mappings.
-        imap <TAB> <Plug>(neosnippet_expand_or_jump)
-        smap <TAB> <Plug>(neosnippet_expand_or_jump)
+        imap <C-k> <Plug>(neosnippet_expand_or_jump)
+        smap <C-k> <Plug>(neosnippet_expand_or_jump)
         "inoremap <expr><C-g> neocomplcache#undo_completion()
         "inoremap <expr><C-l> neocomplcache#complete_common_string()
         "inoremap <expr><CR> neocomplcache#complete_common_string()
 
         " <TAB>: completion.
-        "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-        "inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+        inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+        inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
         " <CR>: close popup
         " <s-CR>: close popup and save indent.
@@ -282,7 +282,7 @@
 
         " For snippet_complete marker.
         if has('conceal')
-            set conceallevel=2 concealcursor=i
+            "set conceallevel=2 concealcursor=i
         endif
     " ]]
 " ]]
@@ -363,7 +363,8 @@
     vnoremap > >gv
 
     " shortcuts for split screen
-    nnoremap <leader>w <C-w>v<C-w>l
+    nnoremap <leader>v <C-w>v<C-w>l
+    nnoremap <leader>s <C-w>s
     nnoremap <C-h> <C-w>h
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
