@@ -34,7 +34,6 @@
         Bundle 'Shougo/neocomplcache'
         Bundle 'Shougo/neosnippet'
 
-        Bundle 'ap/vim-css-color'
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
         Bundle 'jeetsukumaran/vim-buffergator'
@@ -69,6 +68,7 @@
         Bundle 'tpope/vim-markdown'
         Bundle 'cakebaker/scss-syntax.vim'
         Bundle 'hail2u/vim-css3-syntax'
+        Bundle 'ap/vim-css-color'
         Bundle 'maksimr/vim-jsbeautify'
     " ]]
 " ]]
@@ -90,6 +90,7 @@
     set hidden                                          "allow buffer switching without saving
     "set spell                                           "i can haz spelling?
     set autoread                                        "auto reload if file saved externally
+    set shell=zsh
 
     " whitespace
     set backspace=indent,eol,start                      "allow backspacing everything in insert mode
@@ -189,7 +190,6 @@
         let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
-        "let g:ctrlp_lazy_update=20
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
     " ]]
@@ -380,8 +380,6 @@
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
 
-    nmap <leader>l :set list!<CR>
-
     " tab shortcuts [[
         map <leader>tn :tabnew<CR>
         map <leader>tc :tabclose<CR>
@@ -414,21 +412,24 @@
     nnoremap <silent> <F9> :TagbarToggle<CR>
 
     " gundo
-    nnoremap <F5> :GundoToggle<CR>
+    nnoremap <silent> <F5> :GundoToggle<CR>
 
     " buffergator
     nnoremap <silent> <Leader>b :BuffergatorToggle<CR>
     nnoremap <silent> <Leader>t :BuffergatorTabsToggle<CR>
+
+    " ctrlp
+    map <leader>p :CtrlPBufTag<cr>
 
     " multicursor
     nnoremap _ :<c-u>call MultiCursorPlaceCursor()<cr>
     nnoremap __ :<c-u>call MultiCursorManual()<cr>
     let g:multicursor_quit = "<C-c>"
 
-    " searching
+    " general
     map <leader>a :Ack 
-
-    noremap <space> :set hlsearch! hlsearch?<cr>            " quick swap
+    nmap <leader>l :set list!<CR>                           "quick swap of highlighting whitespace
+    noremap <space> :set hlsearch! hlsearch?<cr>            "quick swap of highlighted search terms
 " ]]
 
 if filereadable(expand("~/.vimrc.local"))
