@@ -1,4 +1,4 @@
-" vim: set foldmarker=[[,]] foldlevel=0 foldmethod=marker :
+" vim: set foldmarker=[[,]] foldlevel=0 foldmethod=marker:
 
 " setup & vundle [[
     set nocompatible
@@ -27,7 +27,7 @@
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
         Bundle 'paradigm/vim-multicursor'
-        Bundle 'techlivezheng/vim-plugin-minibufexpl'
+        "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
@@ -420,13 +420,10 @@
     " nerdcommenter
     map \\ <plug>NERDCommenterToggle
 
-    " minibufexplorer
-    map <Leader>b :MiniBufExplorer<cr>
-
     " general
     map <leader>a :Ack 
-    nmap <leader>l :set list!<CR>                           "quick swap of highlighting whitespace
-    noremap <space> :set hlsearch! hlsearch?<cr>            "quick swap of highlighted search terms
+    nmap <leader>l :set list!<cr>
+    noremap <space> :set hlsearch! hlsearch?<cr>
 " ]]
 
 if filereadable(expand("~/.vimrc.local"))
