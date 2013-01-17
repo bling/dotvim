@@ -27,12 +27,12 @@
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
         Bundle 'paradigm/vim-multicursor'
-        "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
         Bundle 'vim-scripts/vimwiki'
         Bundle 'vim-scripts/bufkill.vim'
+        Bundle 'vim-scripts/buftabs'
         Bundle 'kshenoy/vim-signature'
         Bundle 'godlygeek/tabular'
 
@@ -207,8 +207,8 @@
         set laststatus=2
     " ]]
 
-    " minibufexplorer [[
-        let g:miniBufExplShowBufNumbers = 0
+    " buftabs [[
+        let g:buftabs_only_basename=1
     " ]]
 
     " neocomplcache [[
