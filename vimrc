@@ -18,6 +18,7 @@
         Bundle 'kien/ctrlp.vim'
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
+        Bundle 'myusuf3/numbers.vim'
         Bundle 'nathanaelkane/vim-indent-guides'
         Bundle 'tpope/vim-fugitive'
         Bundle 'tpope/vim-surround'
@@ -26,17 +27,10 @@
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'scrooloose/nerdtree'
         Bundle 'paradigm/vim-multicursor'
-        Bundle 'honza/snipmate-snippets'
-
-        "Bundle 'garbas/vim-snipmate'
-        "Bundle 'ervandew/supertab'
-
-        Bundle 'Shougo/neocomplcache'
-        Bundle 'Shougo/neosnippet'
+        Bundle 'techlivezheng/vim-plugin-minibufexpl'
 
         Bundle 'mileszs/ack.vim'
         Bundle 'sjl/gundo.vim'
-        Bundle 'jeetsukumaran/vim-buffergator'
         Bundle 'vim-scripts/vimwiki'
         Bundle 'vim-scripts/bufkill.vim'
         Bundle 'kshenoy/vim-signature'
@@ -49,10 +43,16 @@
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
+    " ]]
 
-        if has('gui_running')
-            Bundle 'myusuf3/numbers.vim'
-        endif
+    " autocomplete [[
+        "Bundle 'garbas/vim-snipmate'
+        "Bundle 'ervandew/supertab'
+
+        Bundle 'Shougo/neocomplcache'
+        Bundle 'Shougo/neosnippet'
+
+        Bundle 'honza/snipmate-snippets'
     " ]]
 
     " bundles: color schemes [[
@@ -207,13 +207,8 @@
         set laststatus=2
     " ]]
 
-    " supertab [[
-        let g:SuperTabDefaultCompletionType = "context"
-    " ]]
-
-    " buffergator [[
-        let g:buffergator_suppress_keymaps=1
-        let g:buffergator_sort_regime="mru"
+    " minibufexplorer [[
+        let g:miniBufExplShowBufNumbers = 0
     " ]]
 
     " neocomplcache [[
@@ -349,9 +344,9 @@
     let g:mapleader = ","
 
     " formatting shortcuts
-    nmap <leader>fef :call Preserve("normal gg=G")<CR>      " format entire file
-    nmap <leader>f$ :call StripTrailingWhitespace()<CR>     " strip trailing spaces
-    nmap <leader>fjs :call JsBeautify()<CR>                 " beautify js
+    nmap <leader>fef :call Preserve("normal gg=G")<CR>
+    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+    nmap <leader>fjs :call JsBeautify()<CR>
 
     " remap arrow keys [[
         nnoremap <up> :tabnext<CR>
@@ -414,10 +409,6 @@
     " gundo
     nnoremap <silent> <F5> :GundoToggle<CR>
 
-    " buffergator
-    nnoremap <silent> <Leader>b :BuffergatorToggle<CR>
-    nnoremap <silent> <Leader>t :BuffergatorTabsToggle<CR>
-
     " ctrlp
     map <leader>p :CtrlPBufTag<cr>
 
@@ -425,6 +416,12 @@
     nnoremap _ :<c-u>call MultiCursorPlaceCursor()<cr>
     nnoremap __ :<c-u>call MultiCursorManual()<cr>
     let g:multicursor_quit = "<C-c>"
+
+    " nerdcommenter
+    map \\ <plug>NERDCommenterToggle
+
+    " minibufexplorer
+    map <Leader>b :MiniBufExplorer<cr>
 
     " general
     map <leader>a :Ack 
