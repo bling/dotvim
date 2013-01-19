@@ -18,7 +18,7 @@
         Bundle 'kien/ctrlp.vim'
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
-        Bundle 'myusuf3/numbers.vim'
+        "Bundle 'myusuf3/numbers.vim'
         Bundle 'tpope/vim-fugitive'
         Bundle 'tpope/vim-surround'
         Bundle 'tpope/vim-repeat'
@@ -192,8 +192,11 @@
     " ]]
 
     " ctrlp [[
+        let g:ctrlp_cmd = 'CtrlPMixed'
         let g:ctrlp_by_filename=1
         "let g:ctrlp_clear_cache_on_exit=0
+        let g:ctrlp_max_height=15
+        let g:ctrlp_max_files=2000
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
