@@ -19,7 +19,6 @@
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
         Bundle 'myusuf3/numbers.vim'
-        Bundle 'nathanaelkane/vim-indent-guides'
         Bundle 'tpope/vim-fugitive'
         Bundle 'tpope/vim-surround'
         Bundle 'tpope/vim-repeat'
@@ -201,15 +200,6 @@
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
     " ]]
 
-    " indent guides [[
-        let g:indent_guides_guide_size = 0
-        let g:indent_guides_space_guides = 1
-        let g:indent_guides_color_change_percent = 5
-        if has('gui_running')
-            let g:indent_guides_enable_on_vim_startup = 1
-        endif
-    " ]]
-
     " powerline settings [[
         set laststatus=2
     " ]]
@@ -343,7 +333,7 @@
     "au WinEnter * set cursorcolumn
 
     "automatically close quick-fix on select
-    autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
+    "autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
 " ]]
 
 " mappings [[
