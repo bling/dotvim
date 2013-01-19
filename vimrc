@@ -106,7 +106,7 @@
 
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set foldenable                                      "enable folds by default
-    set scrolloff=999                                   "always show content after scroll
+    set scrolloff=10                                    "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
 
     " disable sounds
@@ -185,9 +185,16 @@
         let NERDTreeIgnore=['\.git','\.hg']
     " ]]
 
+    " syntastic [[
+        let g:syntastic_error_symbol = '✗'
+        let g:syntastic_style_error_symbol = '✠'
+        let g:syntastic_warning_symbol = '∆'
+        let g:syntastic_style_warning_symbol = '≈'
+    " ]]
+
     " ctrlp [[
         let g:ctrlp_by_filename=1
-        let g:ctrlp_clear_cache_on_exit=0
+        "let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
@@ -287,8 +294,8 @@
             endif
         " ]]
 
-        let g:neocomplcache_max_menu_width = 200
-        let g:neocomplcache_auto_completion_start_length=1
+        let g:neocomplcache_max_menu_width = 999
+        "let g:neocomplcache_auto_completion_start_length=1
     " ]]
 " ]]
 
@@ -330,10 +337,10 @@
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
     au WinLeave * set nocursorline
-    au WinLeave * set nocursorcolumn
+    "au WinLeave * set nocursorcolumn
 
     au WinEnter * set cursorline
-    au WinEnter * set cursorcolumn
+    "au WinEnter * set cursorcolumn
 
     "automatically close quick-fix on select
     autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
