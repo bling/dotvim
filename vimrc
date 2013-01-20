@@ -39,6 +39,9 @@
         Bundle 'mattn/webapi-vim'
         Bundle 'mattn/gist-vim'
 
+        Bundle 'Shougo/vimproc'
+        Bundle 'Shougo/vimshell'
+
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
@@ -211,6 +214,10 @@
         let g:buftabs_only_basename=1
     " ]]
 
+    " vimshell [[
+        let g:vimshell_editor_command="/usr/local/bin/vim"
+    "]]
+
     " neocomplcache [[
         let g:neocomplcache_enable_at_startup = 1
         let g:neocomplcache_enable_camel_case_completion = 1
@@ -223,10 +230,12 @@
         "let g:neocomplcache_auto_completion_start_length=1
 
         " Proper tab completion
-        imap <silent><expr><TAB> neosnippet#expandable() <bar><bar> neosnippet#jumpable() ?
+        imap <silent><expr><TAB> neosnippet#expandable_or_jumpable() ?
             \ "\<Plug>(neosnippet_expand_or_jump)" :
             \ (pumvisible() ? "\<C-n>" : "\<TAB>")
-        smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+        smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+                    \ "\<Plug>(neosnippet_expand_or_jump)"
+                    \: "\<TAB>"
 
         " Define dictionary
         let g:neocomplcache_dictionary_filetype_lists = {
@@ -281,6 +290,7 @@
 
         " use honza's snippets
         let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+        let g:neosnippet#enable_snipmate_compatibility=1
 
         " For snippet_complete marker
         if has('conceal')
