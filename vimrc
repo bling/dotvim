@@ -16,7 +16,7 @@
 
     " bundles: plugins [[
         Bundle 'kien/ctrlp.vim'
-        Bundle 'Lokaltog/vim-powerline'
+        Bundle 'Lokaltog/powerline'
         Bundle 'Lokaltog/vim-easymotion'
         "Bundle 'myusuf3/numbers.vim'
         Bundle 'tpope/vim-fugitive'
@@ -144,6 +144,7 @@
 " ]]
 
 " ui configuration [[
+    set background=dark
     let g:solarized_contrast="high"
     let g:solarized_termcolors=256
     let g:solarized_visibility="high"
@@ -161,7 +162,7 @@
             set gfn=Envy_Code_R_VS:h10
         endif
 
-        colorscheme molokai
+        colorscheme solarized
     else
         set t_Co=256
         set number
@@ -170,10 +171,8 @@
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-        colorscheme molokai
+        colorscheme solarized
     endif
-
-    set background=dark                                 "assume dark background
 " ]]
 
 " plugin configuration [[
@@ -208,6 +207,7 @@
 
     " powerline settings [[
         set laststatus=2
+        source ~/.vim/bundle/powerline/powerline/ext/vim/source_plugin.vim
     " ]]
 
     " buftabs [[
@@ -231,8 +231,8 @@
 
         " Proper tab completion
         imap <silent><expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" :
-            \ (pumvisible() ? "\<C-n>" : "\<TAB>")
+                    \ "\<Plug>(neosnippet_expand_or_jump)" :
+                    \ (pumvisible() ? "\<C-n>" : "\<TAB>")
         smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
                     \ "\<Plug>(neosnippet_expand_or_jump)"
                     \: "\<TAB>"
