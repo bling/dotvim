@@ -228,27 +228,27 @@
             \ (pumvisible() ? "\<C-n>" : "\<TAB>")
         smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
-        " Define dictionary.
+        " Define dictionary
         let g:neocomplcache_dictionary_filetype_lists = {
             \ 'default' : '',
             \ 'vimshell' : $HOME.'/.vimshell_hist',
             \ 'scheme' : $HOME.'/.gosh_completions'
             \ }
 
-        " Define keyword.
+        " Define keyword
         if !exists('g:neocomplcache_keyword_patterns')
             let g:neocomplcache_keyword_patterns = {}
         endif
         let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
-        " Plugin key-mappings.
+        " Plugin key-mappings
         imap <C-k> <Plug>(neosnippet_expand_or_jump)
         smap <C-k> <Plug>(neosnippet_expand_or_jump)
         inoremap <expr><C-g> neocomplcache#undo_completion()
         inoremap <expr><C-l> neocomplcache#complete_common_string()
         inoremap <expr><CR> neocomplcache#complete_common_string()
 
-        " <TAB>: completion.
+        " <TAB>: completion
         "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
         "inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
@@ -261,7 +261,7 @@
         inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
         inoremap <expr><C-y> neocomplcache#close_popup()
 
-        " Enable omni completion.
+        " Enable omni completion
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
         autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -269,7 +269,7 @@
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
-        " Enable heavy omni completion.
+        " Enable heavy omni completion
         if !exists('g:neocomplcache_omni_patterns')
             let g:neocomplcache_omni_patterns = {}
         endif
@@ -282,7 +282,7 @@
         " use honza's snippets
         let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
 
-        " For snippet_complete marker.
+        " For snippet_complete marker
         if has('conceal')
             set conceallevel=2 concealcursor=i
         endif
