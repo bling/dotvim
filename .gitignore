@@ -1,6 +1,2 @@
 bundle
-backup
-swap
-cache
-undo
-
+.cache

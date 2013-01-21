@@ -108,7 +108,10 @@
     set hidden                                          "allow buffer switching without saving
     "set spell                                           "i can haz spelling?
     set autoread                                        "auto reload if file saved externally
-    set shell=zsh
+    set fileformats+=mac
+    if executable('zsh')
+        set shell=zsh
+    endif
 
     " whitespace
     set backspace=indent,eol,start                      "allow backspacing everything in insert mode
@@ -121,10 +124,11 @@
     set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
     set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.      "highlight problematic whitespace
+    set display+=lastline
 
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set foldenable                                      "enable folds by default
-    set scrolloff=10                                    "always show content after scroll
+    set scrolloff=5                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
 
     " disable sounds
@@ -157,19 +161,22 @@
     set wildmode=list:longest:full                      "priority for tab completion
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
 
-    " make sure these folders exist
-    silent !mkdir ~/.vim/undo > /dev/null 2>&1
-    silent !mkdir ~/.vim/backup > /dev/null 2>&1
-    silent !mkdir ~/.vim/swap > /dev/null 2>&1
+    " vim file/folder management {{{
+        " make sure these folders exist
+        silent !mkdir ~/.vim/.cache > /dev/null 2>&1
+        silent !mkdir ~/.vim/.cache/undo > /dev/null 2>&1
+        silent !mkdir ~/.vim/.cache/backup > /dev/null 2>&1
+        silent !mkdir ~/.vim/.cache/swap > /dev/null 2>&1
 
-    " persistent undo
-    set undofile
-    set undodir=~/.vim/undo
+        " persistent undo
+        set undofile
+        set undodir=~/.vim/.cache/undo
 
-    " backups
-    set backup
-    set backupdir=~/.vim/backup
-    set directory=~/.vim/swap
+        " backups
+        set backup
+        set backupdir=~/.vim/.cache/backup
+        set directory=~/.vim/.cache/swap
+    " }}}
 " }}}
 
 " ui configuration {{{
@@ -245,7 +252,7 @@
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
-        let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
+        let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
     " }}}
 
     " powerline settings {{{
@@ -453,6 +460,9 @@
 
     " nerdcommenter
     map \\ <plug>NERDCommenterToggle
+
+    " make Y consistent with C and D.  See :help Y.
+    map Y y$
 
     " general
     map <leader>a :Ack 
