@@ -1,23 +1,24 @@
-" vim: set foldmarker=[[,]] foldlevel=0 foldmethod=marker:
+" vim: fdm=marker
 
-" setup & neobundle [[
+" setup & neobundle {{{
     set nocompatible
     set rtp+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
-" ]]
+" }}}
 
-" bundles [[
-    " bundles: core [[
+" bundles {{{
+    " bundles: core {{{
         NeoBundle 'MarcWeber/vim-addon-mw-utils'
         NeoBundle 'tomtom/tlib_vim'
-    " ]]
+    " }}}
 
-    " bundles: plugins [[
+    " bundles: plugins {{{
         NeoBundle 'kien/ctrlp.vim'
         NeoBundle 'Lokaltog/vim-powerline', {
-                    \ 'rev': 'develop',
-                    \ 'type__shallow': 0 }
+            \ 'rev': 'develop',
+            \ 'type__shallow': 0
+        \ }
         NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
         NeoBundle 'tpope/vim-fugitive'
@@ -30,31 +31,37 @@
 
         NeoBundle 'mileszs/ack.vim'
         NeoBundle 'sjl/gundo.vim'
-        NeoBundle 'vim-scripts/vimwiki'
-        NeoBundle 'vim-scripts/bufkill.vim'
-        NeoBundle 'vim-scripts/buftabs'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'godlygeek/tabular'
+        NeoBundle 'PAntoine/TimeKeeper'
 
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'mattn/webapi-vim'
         NeoBundle 'mattn/gist-vim'
 
         NeoBundle 'Shougo/vimproc', {
-                    \ 'build': {
-                    \ 'mac': 'make -f make_mac.mak',
-                    \ 'windows': 'make -f make_mingw32.mak',
-                    \ 'unix': 'make -f make_unix.mak',
-                    \ },
-                    \ }
+            \ 'build': {
+                \ 'mac': 'make -f make_mac.mak',
+                \ 'windows': 'make -f make_mingw32.mak',
+                \ 'unix': 'make -f make_unix.mak',
+            \ },
+        \ }
         NeoBundle 'Shougo/vimshell'
+        NeoBundle 'Shougo/unite.vim'
 
         if executable('ctags')
             NeoBundle 'majutsushi/tagbar'
         endif
-    " ]]
+    " }}}
 
-    " autocomplete [[
+    " bundles: vim-scripts {{{
+        NeoBundle 'vimwiki'
+        NeoBundle 'bufkill.vim'
+        NeoBundle 'buftabs'
+        NeoBundle 'EasyGrep'
+    " }}}
+
+    " bundles: autocomplete {{{
         "NeoBundle 'garbas/vim-snipmate'
         "NeoBundle 'ervandew/supertab'
 
@@ -62,14 +69,14 @@
         NeoBundle 'Shougo/neosnippet'
 
         NeoBundle 'honza/snipmate-snippets'
-    " ]]
+    " }}}
 
-    " bundles: color schemes [[
+    " bundles: color schemes {{{
         NeoBundle 'altercation/vim-colors-solarized'
         NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-    " ]]
+    " }}}
 
-    " bundles: languages [[
+    " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'groenewege/vim-less'
         NeoBundle 'mmalecki/vim-node.js'
@@ -79,12 +86,12 @@
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'maksimr/vim-jsbeautify'
-    " ]]
+    " }}}
 
     NeoBundleCheck
-" ]]
+" }}}
 
-" base configuration [[
+" base configuration {{{
     filetype on
     filetype plugin on
     filetype indent on
@@ -142,6 +149,11 @@
     set wildmode=list:longest:full                      "priority for tab completion
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
 
+    " make sure these folders exist
+    silent !mkdir ~/.vim/undo > /dev/null 2>&1
+    silent !mkdir ~/.vim/backup > /dev/null 2>&1
+    silent !mkdir ~/.vim/swap > /dev/null 2>&1
+
     " persistent undo
     set undofile
     set undodir=~/.vim/undo
@@ -150,13 +162,13 @@
     set backup
     set backupdir=~/.vim/backup
     set directory=~/.vim/swap
-" ]]
+" }}}
 
-" ui configuration [[
-    set background=dark
-    colorscheme molokai
+" ui configuration {{{
+    set background=light
+    colorscheme solarized
     let g:solarized_contrast="high"
-    let g:solarized_termcolors=256
+    "let g:solarized_termcolors=256
     let g:solarized_visibility="high"
 
     if has('gui_running')
@@ -179,27 +191,33 @@
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
-" ]]
+" }}}
 
-" plugin configuration [[
+" plugin configuration {{{
 
-    " nerdtree [[
+    " timekeeper {{{
+        if filereadable(expand("~/.timekeeper.tmk"))
+            let g:TimeKeeperStartOnLoad=1
+        endif
+    " }}}
+
+    " nerdtree {{{
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
         let NERDTreeShowLineNumbers=1
         let NERDTreeChDirMode=0
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.git','\.hg']
-    " ]]
+    " }}}
 
-    " syntastic [[
+    " syntastic {{{
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_style_error_symbol = '✠'
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
-    " ]]
+    " }}}
 
-    " ctrlp [[
+    " ctrlp {{{
         let g:ctrlp_cmd = 'CtrlPMixed'
         let g:ctrlp_by_filename=1
         "let g:ctrlp_clear_cache_on_exit=0
@@ -209,22 +227,22 @@
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
-    " ]]
+    " }}}
 
-    " powerline settings [[
+    " powerline settings {{{
         set laststatus=2
         let g:Powerline_symbols = 'fancy'
-    " ]]
+    " }}}
 
-    " buftabs [[
+    " buftabs {{{
         let g:buftabs_only_basename=1
-    " ]]
+    " }}}
 
-    " vimshell [[
+    " vimshell {{{
         let g:vimshell_editor_command="/usr/local/bin/vim"
-    "]]
+    "}}}
 
-    " neocomplcache [[
+    " neocomplcache {{{
         let g:neocomplcache_enable_at_startup = 1
         let g:neocomplcache_enable_camel_case_completion = 1
         let g:neocomplcache_enable_smart_case = 1
@@ -302,10 +320,10 @@
         if has('conceal')
             set conceallevel=2 concealcursor=i
         endif
-    " ]]
-" ]]
+    " }}}
+" }}}
 
-" functions [[
+" functions {{{
     function! Preserve(command)
         " preparation: save last search, and cursor position.
         let _s=@/
@@ -321,25 +339,9 @@
     function! StripTrailingWhitespace()
         call Preserve("%s/\\s\\+$//e")
     endfunction
+" }}}
 
-    function! InitFolders()
-        let folder = $HOME . '/.vim/backup'
-        if !isdirectory(folder)
-            call mkdir(folder)
-        endif
-        let folder = $HOME . '/.vim/swap'
-        if !isdirectory(folder)
-            call mkdir(folder)
-        endif
-        let folder = $HOME . '/.vim/undo'
-        if !isdirectory(folder)
-            call mkdir(folder)
-        endif
-    endfunction
-    call InitFolders()
-" ]]
-
-" autocmd [[
+" autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
     au WinLeave * set nocursorline
@@ -350,9 +352,9 @@
 
     "automatically close quick-fix on select
     "autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
-" ]]
+" }}}
 
-" mappings [[
+" mappings {{{
     let mapleader = ","
     let g:mapleader = ","
 
@@ -361,7 +363,7 @@
     nmap <leader>f$ :call StripTrailingWhitespace()<CR>
     nmap <leader>fjs :call JsBeautify()<CR>
 
-    " remap arrow keys [[
+    " remap arrow keys {{{
         nnoremap <up> :tabnext<CR>
         nnoremap <down> :tabprev<CR>
         nnoremap <left> :bprev<CR>
@@ -370,7 +372,7 @@
         inoremap <down> <nop>
         inoremap <left> <nop>
         inoremap <right> <nop>
-    " ]]
+    " }}}
 
     " screen line scroll
     nnoremap j gj
@@ -388,7 +390,7 @@
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
 
-    " tab shortcuts [[
+    " tab shortcuts {{{
         map <leader>tn :tabnew<CR>
         map <leader>tc :tabclose<CR>
         map <leader>t0 0gt
@@ -401,20 +403,20 @@
         map <leader>t7 7gt
         map <leader>t8 8gt
         map <leader>t9 9gt
-    " ]]
+    " }}}
 
     " nerdtree
     map <leader>ee :NERDTreeToggle<CR>
     map <leader>ef :NERDTreeFind<CR>
 
-    " fugitive [[
+    " fugitive {{{
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
-    " ]]
+    " }}}
 
     " tagbar
     nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -437,7 +439,8 @@
     map <leader>a :Ack 
     nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
-" ]]
+    map <Leader>fr ^l"ayt/^v$h"byu:vsp<CR>:args `ack -l <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
+" }}}
 
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
