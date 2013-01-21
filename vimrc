@@ -1,78 +1,87 @@
 " vim: set foldmarker=[[,]] foldlevel=0 foldmethod=marker:
 
-" setup & vundle [[
+" setup & neobundle [[
     set nocompatible
-    filetype off
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/neobundle.vim/
+    call neobundle#rc(expand('~/.vim/bundle/'))
+    NeoBundleFetch 'Shougo/neobundle.vim'
 " ]]
 
 " bundles [[
     " bundles: core [[
-        Bundle 'gmarik/vundle'
-        Bundle 'MarcWeber/vim-addon-mw-utils'
-        Bundle 'tomtom/tlib_vim'
+        NeoBundle 'MarcWeber/vim-addon-mw-utils'
+        NeoBundle 'tomtom/tlib_vim'
     " ]]
 
     " bundles: plugins [[
-        Bundle 'kien/ctrlp.vim'
-        Bundle 'Lokaltog/powerline'
-        Bundle 'Lokaltog/vim-easymotion'
-        "Bundle 'myusuf3/numbers.vim'
-        Bundle 'tpope/vim-fugitive'
-        Bundle 'tpope/vim-surround'
-        Bundle 'tpope/vim-repeat'
-        Bundle 'scrooloose/syntastic'
-        Bundle 'scrooloose/nerdcommenter'
-        Bundle 'scrooloose/nerdtree'
-        Bundle 'paradigm/vim-multicursor'
+        NeoBundle 'kien/ctrlp.vim'
+        NeoBundle 'Lokaltog/vim-powerline', {
+                    \ 'rev': 'develop',
+                    \ 'type__shallow': 0 }
+        NeoBundle 'Lokaltog/vim-easymotion'
+        NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
+        NeoBundle 'tpope/vim-fugitive'
+        NeoBundle 'tpope/vim-surround'
+        NeoBundle 'tpope/vim-repeat'
+        NeoBundle 'scrooloose/syntastic'
+        NeoBundle 'scrooloose/nerdcommenter'
+        NeoBundle 'scrooloose/nerdtree'
+        NeoBundle 'paradigm/vim-multicursor'
 
-        Bundle 'mileszs/ack.vim'
-        Bundle 'sjl/gundo.vim'
-        Bundle 'vim-scripts/vimwiki'
-        Bundle 'vim-scripts/bufkill.vim'
-        Bundle 'vim-scripts/buftabs'
-        Bundle 'kshenoy/vim-signature'
-        Bundle 'godlygeek/tabular'
+        NeoBundle 'mileszs/ack.vim'
+        NeoBundle 'sjl/gundo.vim'
+        NeoBundle 'vim-scripts/vimwiki'
+        NeoBundle 'vim-scripts/bufkill.vim'
+        NeoBundle 'vim-scripts/buftabs'
+        NeoBundle 'kshenoy/vim-signature'
+        NeoBundle 'godlygeek/tabular'
 
-        Bundle 'mattn/zencoding-vim'
-        Bundle 'mattn/webapi-vim'
-        Bundle 'mattn/gist-vim'
+        NeoBundle 'mattn/zencoding-vim'
+        NeoBundle 'mattn/webapi-vim'
+        NeoBundle 'mattn/gist-vim'
 
-        Bundle 'Shougo/vimproc'
-        Bundle 'Shougo/vimshell'
+        NeoBundle 'Shougo/vimproc', {
+                    \ 'build': {
+                    \ 'mac': 'make -f make_mac.mak',
+                    \ 'windows': 'make -f make_mingw32.mak',
+                    \ 'unix': 'make -f make_unix.mak',
+                    \ },
+                    \ }
+        NeoBundle 'Shougo/vimshell'
 
         if executable('ctags')
-            Bundle 'majutsushi/tagbar'
+            NeoBundle 'majutsushi/tagbar'
         endif
     " ]]
 
     " autocomplete [[
-        "Bundle 'garbas/vim-snipmate'
-        "Bundle 'ervandew/supertab'
+        "NeoBundle 'garbas/vim-snipmate'
+        "NeoBundle 'ervandew/supertab'
 
-        Bundle 'Shougo/neocomplcache'
-        Bundle 'Shougo/neosnippet'
+        NeoBundle 'Shougo/neocomplcache'
+        NeoBundle 'Shougo/neosnippet'
 
-        Bundle 'honza/snipmate-snippets'
+        NeoBundle 'honza/snipmate-snippets'
     " ]]
 
     " bundles: color schemes [[
-        Bundle 'altercation/vim-colors-solarized'
-        Bundle 'vim-scripts/Colour-Sampler-Pack'
+        NeoBundle 'altercation/vim-colors-solarized'
+        NeoBundle 'vim-scripts/Colour-Sampler-Pack'
     " ]]
 
     " bundles: languages [[
-        Bundle 'pangloss/vim-javascript'
-        Bundle 'groenewege/vim-less'
-        Bundle 'mmalecki/vim-node.js'
-        Bundle 'leshill/vim-json'
-        Bundle 'tpope/vim-markdown'
-        Bundle 'cakebaker/scss-syntax.vim'
-        Bundle 'hail2u/vim-css3-syntax'
-        Bundle 'ap/vim-css-color'
-        Bundle 'maksimr/vim-jsbeautify'
+        NeoBundle 'pangloss/vim-javascript'
+        NeoBundle 'groenewege/vim-less'
+        NeoBundle 'mmalecki/vim-node.js'
+        NeoBundle 'leshill/vim-json'
+        NeoBundle 'tpope/vim-markdown'
+        NeoBundle 'cakebaker/scss-syntax.vim'
+        NeoBundle 'hail2u/vim-css3-syntax'
+        NeoBundle 'ap/vim-css-color'
+        NeoBundle 'maksimr/vim-jsbeautify'
     " ]]
+
+    NeoBundleCheck
 " ]]
 
 " base configuration [[
@@ -145,6 +154,7 @@
 
 " ui configuration [[
     set background=dark
+    colorscheme molokai
     let g:solarized_contrast="high"
     let g:solarized_termcolors=256
     let g:solarized_visibility="high"
@@ -155,14 +165,12 @@
         set columns=999
 
         if has('gui_macvim')
-            set gfn=Envy_Code_R_VS:h13
+            set gfn=Ubuntu_Mono_for_Powerline:h14
         endif
 
         if has('gui_win32')
             set gfn=Envy_Code_R_VS:h10
         endif
-
-        colorscheme solarized
     else
         set t_Co=256
         set number
@@ -170,8 +178,6 @@
         " difference cursors for insert vs normal mode
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-        colorscheme solarized
     endif
 " ]]
 
@@ -207,7 +213,7 @@
 
     " powerline settings [[
         set laststatus=2
-        source ~/.vim/bundle/powerline/powerline/ext/vim/source_plugin.vim
+        let g:Powerline_symbols = 'fancy'
     " ]]
 
     " buftabs [[
@@ -429,7 +435,7 @@
 
     " general
     map <leader>a :Ack 
-    nmap <leader>l :set list!<cr>
+    nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
 " ]]
 
