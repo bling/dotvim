@@ -137,6 +137,14 @@
     set incsearch                                       "incremental searching
     set ignorecase                                      "ignore case for searching
     set smartcase                                       "do case-sensitive if there's a capital letter
+    if executable('ack')
+        set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
+        set grepformat=%f:%l:%c:%m
+    endif
+    if executable('ag')
+        set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+        set grepformat=%f:%l:%c:%m
+    endif
 
     " windows
     "set winwidth=150                                    "suggested window width
@@ -168,7 +176,7 @@
     set background=light
     colorscheme solarized
     let g:solarized_contrast="high"
-    "let g:solarized_termcolors=256
+    let g:solarized_termcolors=256
     let g:solarized_visibility="high"
 
     if has('gui_running')
@@ -194,6 +202,17 @@
 " }}}
 
 " plugin configuration {{{
+    " ack {{{
+        if executable('ag')
+            let g:ackprg="ag --nogroup --column --smart-case --follow --nocolor"
+        endif
+    " }}}
+
+    " easygrep {{{
+        let g:EasyGrepRecursive=1
+        let g:EasyGrepAllOptionsInExplorer=1
+        let g:EasyGrepCommand=1
+    " }}}
 
     " timekeeper {{{
         if filereadable(expand("~/.timekeeper.tmk"))
