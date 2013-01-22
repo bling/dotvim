@@ -14,30 +14,37 @@
     " }}}
 
     " bundles: plugins {{{
-        NeoBundle 'kien/ctrlp.vim'
+        "NeoBundle 'Lokaltog/powerline, {
+            "\ 'autoload': {
+                "\ 'commands': 'source ~/.vim/bundle/powerline/powerline/bindings/vim/plugin/source_plugin.vim'
+            "\ }
+        "\ }
         NeoBundle 'Lokaltog/vim-powerline', {
             \ 'rev': 'develop',
             \ 'type__shallow': 0
         \ }
         NeoBundle 'Lokaltog/vim-easymotion'
-        NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
+
         NeoBundle 'tpope/vim-fugitive'
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
+
         NeoBundle 'scrooloose/syntastic'
         NeoBundle 'scrooloose/nerdcommenter'
         NeoBundle 'scrooloose/nerdtree'
-        NeoBundle 'paradigm/vim-multicursor'
 
+        NeoBundle 'mattn/zencoding-vim'
+        NeoBundle 'mattn/webapi-vim'
+        NeoBundle 'mattn/gist-vim'
+
+        NeoBundle 'kien/ctrlp.vim'
+        NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
+        NeoBundle 'paradigm/vim-multicursor'
         NeoBundle 'mileszs/ack.vim'
         NeoBundle 'sjl/gundo.vim'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'godlygeek/tabular'
         NeoBundle 'PAntoine/TimeKeeper'
-
-        NeoBundle 'mattn/zencoding-vim'
-        NeoBundle 'mattn/webapi-vim'
-        NeoBundle 'mattn/gist-vim'
 
         NeoBundle 'Shougo/vimproc', {
             \ 'build': {
@@ -59,6 +66,7 @@
         NeoBundle 'bufkill.vim'
         NeoBundle 'buftabs'
         NeoBundle 'EasyGrep'
+        NeoBundle 'matchit.zip'
     " }}}
 
     " bundles: autocomplete {{{
