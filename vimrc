@@ -25,6 +25,8 @@
         \ }
         NeoBundle 'Lokaltog/vim-easymotion'
 
+        NeoBundle 'tpope/vim-unimpaired'
+        NeoBundle 'tpope/vim-scriptease'
         NeoBundle 'tpope/vim-fugitive'
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
@@ -42,19 +44,22 @@
         NeoBundle 'paradigm/vim-multicursor'
         NeoBundle 'mileszs/ack.vim'
         NeoBundle 'sjl/gundo.vim'
-        NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'godlygeek/tabular'
+        NeoBundle 'jeetsukumaran/vim-buffergator'
+        NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'PAntoine/TimeKeeper'
 
-        NeoBundle 'Shougo/vimproc', {
-            \ 'build': {
-                \ 'mac': 'make -f make_mac.mak',
-                \ 'windows': 'make -f make_mingw32.mak',
-                \ 'unix': 'make -f make_unix.mak',
-            \ },
-        \ }
-        NeoBundle 'Shougo/vimshell'
-        NeoBundle 'Shougo/unite.vim'
+        if executable('make')
+            NeoBundle 'Shougo/vimproc', {
+                \ 'build': {
+                    \ 'mac': 'make -f make_mac.mak',
+                    \ 'windows': 'make -f make_mingw32.mak',
+                    \ 'unix': 'make -f make_unix.mak',
+                \ },
+            \ }
+            NeoBundle 'Shougo/vimshell'
+            NeoBundle 'Shougo/unite.vim'
+        endif
 
         if executable('ctags')
             NeoBundle 'majutsushi/tagbar'
@@ -117,6 +122,7 @@
     "set spell                                           "i can haz spelling?
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac
+    set tags=tags;/
     if executable('zsh')
         set shell=zsh
     endif
@@ -132,12 +138,11 @@
     set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
     set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.      "highlight problematic whitespace
-    set display+=lastline
 
-    set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set foldenable                                      "enable folds by default
     set scrolloff=5                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
+    set display+=lastline
 
     " disable sounds
     set noerrorbells
@@ -149,6 +154,7 @@
     set incsearch                                       "incremental searching
     set ignorecase                                      "ignore case for searching
     set smartcase                                       "do case-sensitive if there's a capital letter
+    set showmatch                                       "automatically highlight matching braces/brackets/etc.
     if executable('ack')
         set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
         set grepformat=%f:%l:%c:%m
@@ -227,6 +233,10 @@
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
         let g:EasyGrepCommand=1
+    " }}}
+
+    " buffergator {{{
+        let g:buffergator_suppress_keymaps=1
     " }}}
 
     " timekeeper {{{
@@ -461,6 +471,10 @@
     " ctrlp
     map <leader>p :CtrlPBufTag<cr>
 
+    " buffergator
+    nnoremap <leader>b :BuffergatorToggle<cr>
+    nnoremap <leader>t :BuffergatorTabsToggle<cr>
+
     " multicursor
     nnoremap _ :<c-u>call MultiCursorPlaceCursor()<cr>
     nnoremap __ :<c-u>call MultiCursorManual()<cr>
@@ -476,7 +490,6 @@
     map <leader>a :Ack 
     nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
-    map <Leader>fr ^l"ayt/^v$h"byu:vsp<CR>:args `ack -l <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
