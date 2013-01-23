@@ -2,10 +2,9 @@ vim configuration
 =================
 
 1.  installation is simple, just clone this repository into your `~/.vim` directory.
-2.  make sure to pull down vundle with `git submodule init && git submodule update`
+2.  make sure to pull down neobundle with `git submodule init && git submodule update`
 3.  create a symlink for `~/.vimrc` to `~/.vim/vimrc`
 4.  use vundle to install everything via `:BundleInstall`
-5.  consult the documentation for powerline at here [http://lokaltog.github.com/powerline/]
 5.  done!
 
 license

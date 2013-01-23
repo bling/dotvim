@@ -48,6 +48,7 @@
         NeoBundle 'jeetsukumaran/vim-buffergator'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'PAntoine/TimeKeeper'
+        NeoBundle 'roman/golden-ratio'
 
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
@@ -113,15 +114,16 @@
     set timeoutlen=200                                  "time to wait between key presses
     set mouse=a                                         "enable mouse
     set mousehide                                       "hide when characters are typed
-    set history=1000
+    set history=1000                                    "number of command lines to remember
     set ttyfast                                         "assume fast terminal connection
     set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
     set encoding=utf-8                                  "set encoding for text
     set clipboard=unnamed                               "sync with OS clipboard
     set hidden                                          "allow buffer switching without saving
-    "set spell                                           "i can haz spelling?
     set autoread                                        "auto reload if file saved externally
-    set fileformats+=mac
+    set fileformats+=mac                                "add mac to auto-detection of file format line endings
+    set showcmd                                         "show partial commands in last line of screen
+    set nrformats-=octal                                "always assume decimal numbers
     set tags=tags;/
     if executable('zsh')
         set shell=zsh
@@ -143,6 +145,9 @@
     set scrolloff=5                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
+    set wildmenu                                        "show list for autocomplete
+    set wildmode=list:longest:full                      "priority for tab completion
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
 
     " disable sounds
     set noerrorbells
@@ -163,17 +168,6 @@
         set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
         set grepformat=%f:%l:%c:%m
     endif
-
-    " windows
-    "set winwidth=150                                    "suggested window width
-    "set winheight=10                                    "dummy setting to match winminheight
-    "set winminheight=10                                 "the minimum height for any window
-    "set winminwidth=10                                  "the minimum width for any window
-    "set winheight=999                                   "the suggest height for any window
-
-    set wildmenu                                        "show list for autocomplete
-    set wildmode=list:longest:full                      "priority for tab completion
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
 
     " vim file/folder management {{{
         " make sure these folders exist
