@@ -12,7 +12,6 @@
         NeoBundle 'MarcWeber/vim-addon-mw-utils'
         NeoBundle 'tomtom/tlib_vim'
     " }}}
-
     " bundles: plugins {{{
         "NeoBundle 'Lokaltog/powerline, {
             "\ 'autoload': {
@@ -66,7 +65,6 @@
             NeoBundle 'majutsushi/tagbar'
         endif
     " }}}
-
     " bundles: vim-scripts {{{
         NeoBundle 'vimwiki'
         NeoBundle 'bufkill.vim'
@@ -74,7 +72,6 @@
         NeoBundle 'EasyGrep'
         NeoBundle 'matchit.zip'
     " }}}
-
     " bundles: autocomplete {{{
         "NeoBundle 'garbas/vim-snipmate'
         "NeoBundle 'ervandew/supertab'
@@ -84,12 +81,10 @@
 
         NeoBundle 'honza/snipmate-snippets'
     " }}}
-
     " bundles: color schemes {{{
         NeoBundle 'altercation/vim-colors-solarized'
         NeoBundle 'vim-scripts/Colour-Sampler-Pack'
     " }}}
-
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'groenewege/vim-less'
@@ -101,7 +96,6 @@
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'maksimr/vim-jsbeautify'
     " }}}
-
     NeoBundleCheck
 " }}}
 
@@ -222,23 +216,19 @@
             let g:ackprg="ag --nogroup --column --smart-case --follow --nocolor"
         endif
     " }}}
-
     " easygrep {{{
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
         let g:EasyGrepCommand=1
     " }}}
-
     " buffergator {{{
         let g:buffergator_suppress_keymaps=1
     " }}}
-
     " timekeeper {{{
         if filereadable(expand("~/.timekeeper.tmk"))
             let g:TimeKeeperStartOnLoad=1
         endif
     " }}}
-
     " nerdtree {{{
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
@@ -247,14 +237,12 @@
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.git','\.hg']
     " }}}
-
     " syntastic {{{
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_style_error_symbol = '✠'
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
     " }}}
-
     " ctrlp {{{
         let g:ctrlp_cmd = 'CtrlPMixed'
         let g:ctrlp_by_filename=1
@@ -266,30 +254,27 @@
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
     " }}}
-
     " powerline settings {{{
         set laststatus=2
         let g:Powerline_symbols = 'fancy'
     " }}}
-
     " buftabs {{{
         let g:buftabs_only_basename=1
     " }}}
-
     " vimshell {{{
         let g:vimshell_editor_command="/usr/local/bin/vim"
     "}}}
-
     " neocomplcache {{{
         let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_enable_camel_case_completion = 1
+        "let g:neocomplcache_enable_camel_case_completion = 1
         let g:neocomplcache_enable_smart_case = 1
-        let g:neocomplcache_enable_underbar_completion = 1
+        "let g:neocomplcache_enable_underbar_completion = 1
         let g:neocomplcache_enable_auto_delimiter = 1
         let g:neocomplcache_max_list = 15
         let g:neocomplcache_force_overwrite_completefunc = 1
         let g:neocomplcache_max_menu_width = 999
         "let g:neocomplcache_auto_completion_start_length=1
+        let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
 
         " Proper tab completion
         imap <silent><expr><TAB> neosnippet#expandable_or_jumpable() ?
