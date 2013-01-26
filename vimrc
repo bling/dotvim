@@ -46,7 +46,6 @@
         NeoBundle 'godlygeek/tabular'
         NeoBundle 'jeetsukumaran/vim-buffergator'
         NeoBundle 'kshenoy/vim-signature'
-        NeoBundle 'PAntoine/TimeKeeper'
         NeoBundle 'roman/golden-ratio'
 
         if executable('make')
@@ -76,14 +75,18 @@
         "NeoBundle 'garbas/vim-snipmate'
         "NeoBundle 'ervandew/supertab'
 
+        "NeoBundle 'SirVer/ultisnips'
+
         NeoBundle 'Shougo/neocomplcache'
         NeoBundle 'Shougo/neosnippet'
-
         NeoBundle 'honza/snipmate-snippets'
     " }}}
     " bundles: color schemes {{{
         NeoBundle 'altercation/vim-colors-solarized'
-        NeoBundle 'vim-scripts/Colour-Sampler-Pack'
+        NeoBundle 'nanotech/jellybeans.vim'
+        NeoBundle 'noahfrederick/Hemisu'
+        NeoBundle 'tomasr/molokai'
+        "NeoBundle 'vim-scripts/Colour-Sampler-Pack'
     " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
@@ -182,8 +185,8 @@
 " }}}
 
 " ui configuration {{{
-    set background=light
-    colorscheme solarized
+    set background=dark
+    colorscheme jellybeans
     let g:solarized_contrast="high"
     let g:solarized_termcolors=256
     let g:solarized_visibility="high"
@@ -224,11 +227,6 @@
     " buffergator {{{
         let g:buffergator_suppress_keymaps=1
     " }}}
-    " timekeeper {{{
-        if filereadable(expand("~/.timekeeper.tmk"))
-            let g:TimeKeeperStartOnLoad=1
-        endif
-    " }}}
     " nerdtree {{{
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
@@ -244,10 +242,10 @@
         let g:syntastic_style_warning_symbol = '≈'
     " }}}
     " ctrlp {{{
-        let g:ctrlp_cmd = 'CtrlPMixed'
-        let g:ctrlp_by_filename=1
+        "let g:ctrlp_cmd = 'CtrlPMixed'
+        "let g:ctrlp_by_filename=1
         "let g:ctrlp_clear_cache_on_exit=0
-        let g:ctrlp_max_height=15
+        "let g:ctrlp_max_height=15
         let g:ctrlp_max_files=2000
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
@@ -413,21 +411,19 @@
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
 
-    " tab shortcuts {{{
+    " tab shortcuts
         map <leader>tn :tabnew<CR>
         map <leader>tc :tabclose<CR>
-        map <leader>t0 0gt
-        map <leader>t1 1gt
-        map <leader>t2 2gt
-        map <leader>t3 3gt
-        map <leader>t4 4gt
-        map <leader>t5 5gt
-        map <leader>t6 6gt
-        map <leader>t7 7gt
-        map <leader>t8 8gt
-        map <leader>t9 9gt
-    " }}}
 
+    " make Y consistent with C and D.  See :help Y.
+    map Y y$
+
+    " general
+    map <leader>a :Ack 
+    nmap <leader>l :set list! list?<cr>
+    noremap <space> :set hlsearch! hlsearch?<cr>
+
+    " plugin mappings {{{
     " nerdtree
     map <leader>ee :NERDTreeToggle<CR>
     map <leader>ef :NERDTreeFind<CR>
@@ -454,21 +450,12 @@
     nnoremap <leader>b :BuffergatorToggle<cr>
     nnoremap <leader>t :BuffergatorTabsToggle<cr>
 
-    " multicursor
-    nnoremap _ :<c-u>call MultiCursorPlaceCursor()<cr>
-    nnoremap __ :<c-u>call MultiCursorManual()<cr>
-    let g:multicursor_quit = "<C-c>"
-
     " nerdcommenter
     map \\ <plug>NERDCommenterToggle
 
-    " make Y consistent with C and D.  See :help Y.
-    map Y y$
-
-    " general
-    map <leader>a :Ack 
-    nmap <leader>l :set list! list?<cr>
-    noremap <space> :set hlsearch! hlsearch?<cr>
+        " golden ratio
+        map <silent> <leader>gr <Plug>(golden_ratio_toggle)<cr>
+    " }}}
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
