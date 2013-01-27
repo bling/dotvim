@@ -18,10 +18,7 @@
                 "\ 'commands': 'source ~/.vim/bundle/powerline/powerline/bindings/vim/plugin/source_plugin.vim'
             "\ }
         "\ }
-        NeoBundle 'Lokaltog/vim-powerline', {
-            \ 'rev': 'develop',
-            \ 'type__shallow': 0
-        \ }
+        NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'Lokaltog/vim-easymotion'
 
         NeoBundle 'tpope/vim-unimpaired'
