@@ -88,7 +88,6 @@
         NeoBundle 'tomasr/molokai'
         NeoBundle 'chriskempson/vim-tomorrow-theme'
         NeoBundle 'w0ng/vim-hybrid'
-        "NeoBundle 'vim-scripts/Colour-Sampler-Pack'
     " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
@@ -215,19 +214,58 @@
     endif
 " }}}
 
-" plugin configuration {{{
+" functions {{{
+    function! Preserve(command)
+        " preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " do the business:
+        execute a:command
+        " clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endfunction
+
+    function! StripTrailingWhitespace()
+        call Preserve("%s/\\s\\+$//e")
+    endfunction
+" }}}
+
+" autocmd {{{
+    autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+
+    au WinLeave * set nocursorline
+    "au WinLeave * set nocursorcolumn
+
+    au WinEnter * set cursorline
+    "au WinEnter * set cursorcolumn
+" }}}
+
+" plugin/mapping configuration {{{
     " ack {{{
         if executable('ag')
             let g:ackprg="ag --nogroup --column --smart-case --follow --nocolor"
         endif
+        map <leader>a :Ack 
     " }}}
     " easygrep {{{
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
         let g:EasyGrepCommand=1
     " }}}
+    " fugitive {{{
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
+    " }}}
     " buffergator {{{
         let g:buffergator_suppress_keymaps=1
+        nnoremap <leader>b :BuffergatorToggle<cr>
+        nnoremap <leader>t :BuffergatorTabsToggle<cr>
     " }}}
     " nerdtree {{{
         let NERDTreeShowHidden=1
@@ -236,7 +274,12 @@
         let NERDTreeChDirMode=0
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.git','\.hg']
+        map <leader>ee :NERDTreeToggle<CR>
+        map <leader>ef :NERDTreeFind<CR>
     " }}}
+    " nerdcommenter {{{
+        map \\ <plug>NERDCommenterToggle
+    "}}}
     " syntastic {{{
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_style_error_symbol = '✠'
@@ -253,6 +296,7 @@
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
+        map <leader>p :CtrlPBufTag<cr>
     " }}}
     " powerline settings {{{
         set laststatus=2
@@ -264,6 +308,24 @@
     " vimshell {{{
         let g:vimshell_editor_command="/usr/local/bin/vim"
     "}}}
+    " tagbar {{{
+        nnoremap <silent> <F9> :TagbarToggle<CR>
+    " }}}
+    " gundo {{{
+        nnoremap <silent> <F5> :GundoToggle<CR>
+    " }}}
+    " unimpaired {{{
+        nmap <c-up> [e
+        nmap <c-down> ]e
+        vmap <c-up> [egv
+        vmap <c-down> ]egv
+    " }}}
+    " golden-ratio {{{
+        map <silent> <leader>gr <Plug>(golden_ratio_resize)<cr>
+    " }}}
+    " jsbeautify {{{
+        nmap <leader>fjs :call JsBeautify()<CR>
+    " }}}
     " neocomplcache {{{
         let g:neocomplcache_enable_at_startup = 1
         "let g:neocomplcache_enable_camel_case_completion = 1
@@ -346,37 +408,6 @@
     " }}}
 " }}}
 
-" functions {{{
-    function! Preserve(command)
-        " preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        execute a:command
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endfunction
-
-    function! StripTrailingWhitespace()
-        call Preserve("%s/\\s\\+$//e")
-    endfunction
-" }}}
-
-" autocmd {{{
-    autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-
-    au WinLeave * set nocursorline
-    "au WinLeave * set nocursorcolumn
-
-    au WinEnter * set cursorline
-    "au WinEnter * set cursorcolumn
-
-    "automatically close quick-fix on select
-    "autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
-" }}}
-
 " mappings {{{
     let mapleader = ","
     let g:mapleader = ","
@@ -384,18 +415,16 @@
     " formatting shortcuts
     nmap <leader>fef :call Preserve("normal gg=G")<CR>
     nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-    nmap <leader>fjs :call JsBeautify()<CR>
 
-    " remap arrow keys {{{
-        nnoremap <up> :tabnext<CR>
-        nnoremap <down> :tabprev<CR>
-        nnoremap <left> :bprev<CR>
-        nnoremap <right> :bnext<CR>
-        inoremap <up> <nop>
-        inoremap <down> <nop>
-        inoremap <left> <nop>
-        inoremap <right> <nop>
-    " }}}
+    " remap arrow keys
+    nnoremap <up> :tabnext<CR>
+    nnoremap <down> :tabprev<CR>
+    nnoremap <left> :bprev<CR>
+    nnoremap <right> :bnext<CR>
+    inoremap <up> <nop>
+    inoremap <down> <nop>
+    inoremap <left> <nop>
+    inoremap <right> <nop>
 
     " reselect visual block after indent
     vnoremap < <gv
@@ -410,56 +439,15 @@
     nnoremap <C-l> <C-w>l
 
     " tab shortcuts
-        map <leader>tn :tabnew<CR>
-        map <leader>tc :tabclose<CR>
+    map <leader>tn :tabnew<CR>
+    map <leader>tc :tabclose<CR>
 
     " make Y consistent with C and D.  See :help Y.
     map Y y$
 
     " general
-    map <leader>a :Ack 
     nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
-
-    " plugin mappings {{{
-    " nerdtree
-    map <leader>ee :NERDTreeToggle<CR>
-    map <leader>ef :NERDTreeFind<CR>
-
-    " fugitive {{{
-        nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
-        nnoremap <silent> <leader>gb :Gblame<CR>
-        nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
-    " }}}
-
-    " tagbar
-    nnoremap <silent> <F9> :TagbarToggle<CR>
-
-    " gundo
-    nnoremap <silent> <F5> :GundoToggle<CR>
-
-    " ctrlp
-    map <leader>p :CtrlPBufTag<cr>
-
-    " buffergator
-    nnoremap <leader>b :BuffergatorToggle<cr>
-    nnoremap <leader>t :BuffergatorTabsToggle<cr>
-
-    " nerdcommenter
-    map \\ <plug>NERDCommenterToggle
-
-        " golden ratio
-        map <silent> <leader>gr <Plug>(golden_ratio_toggle)<cr>
-
-        " unimpaired
-        nmap <c-up> [e
-        nmap <c-down> ]e
-        vmap <c-up> [egv
-        vmap <c-down> ]egv
-    " }}}
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
