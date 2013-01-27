@@ -242,6 +242,48 @@
     "au WinEnter * set cursorcolumn
 " }}}
 
+" mappings {{{
+    let mapleader = ","
+    let g:mapleader = ","
+
+    " formatting shortcuts
+    nmap <leader>fef :call Preserve("normal gg=G")<CR>
+    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+
+    " remap arrow keys
+    nnoremap <up> :tabnext<CR>
+    nnoremap <down> :tabprev<CR>
+    nnoremap <left> :bprev<CR>
+    nnoremap <right> :bnext<CR>
+    inoremap <up> <nop>
+    inoremap <down> <nop>
+    inoremap <left> <nop>
+    inoremap <right> <nop>
+
+    " reselect visual block after indent
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " shortcuts for split screen
+    nnoremap <leader>v <C-w>v<C-w>l
+    nnoremap <leader>s <C-w>s
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+
+    " tab shortcuts
+    map <leader>tn :tabnew<CR>
+    map <leader>tc :tabclose<CR>
+
+    " make Y consistent with C and D.  See :help Y.
+    map Y y$
+
+    " general
+    nmap <leader>l :set list! list?<cr>
+    noremap <space> :set hlsearch! hlsearch?<cr>
+" }}}
+
 " plugin/mapping configuration {{{
     " ack {{{
         if executable('ag')
@@ -406,48 +448,6 @@
             set conceallevel=2 concealcursor=i
         endif
     " }}}
-" }}}
-
-" mappings {{{
-    let mapleader = ","
-    let g:mapleader = ","
-
-    " formatting shortcuts
-    nmap <leader>fef :call Preserve("normal gg=G")<CR>
-    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-
-    " remap arrow keys
-    nnoremap <up> :tabnext<CR>
-    nnoremap <down> :tabprev<CR>
-    nnoremap <left> :bprev<CR>
-    nnoremap <right> :bnext<CR>
-    inoremap <up> <nop>
-    inoremap <down> <nop>
-    inoremap <left> <nop>
-    inoremap <right> <nop>
-
-    " reselect visual block after indent
-    vnoremap < <gv
-    vnoremap > >gv
-
-    " shortcuts for split screen
-    nnoremap <leader>v <C-w>v<C-w>l
-    nnoremap <leader>s <C-w>s
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
-
-    " tab shortcuts
-    map <leader>tn :tabnew<CR>
-    map <leader>tc :tabclose<CR>
-
-    " make Y consistent with C and D.  See :help Y.
-    map Y y$
-
-    " general
-    nmap <leader>l :set list! list?<cr>
-    noremap <space> :set hlsearch! hlsearch?<cr>
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
