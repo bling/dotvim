@@ -86,6 +86,8 @@
         NeoBundle 'nanotech/jellybeans.vim'
         NeoBundle 'noahfrederick/Hemisu'
         NeoBundle 'tomasr/molokai'
+        NeoBundle 'chriskempson/vim-tomorrow-theme'
+        NeoBundle 'w0ng/vim-hybrid'
         "NeoBundle 'vim-scripts/Colour-Sampler-Pack'
     " }}}
     " bundles: languages {{{
@@ -186,7 +188,7 @@
 
 " ui configuration {{{
     set background=dark
-    colorscheme jellybeans
+    colorscheme hybrid
     let g:solarized_contrast="high"
     let g:solarized_termcolors=256
     let g:solarized_visibility="high"
@@ -395,10 +397,6 @@
         inoremap <right> <nop>
     " }}}
 
-    " screen line scroll
-    nnoremap j gj
-    nnoremap k gk
-
     " reselect visual block after indent
     vnoremap < <gv
     vnoremap > >gv
@@ -455,6 +453,12 @@
 
         " golden ratio
         map <silent> <leader>gr <Plug>(golden_ratio_toggle)<cr>
+
+        " unimpaired
+        nmap <c-up> [e
+        nmap <c-down> ]e
+        vmap <c-up> [egv
+        vmap <c-down> ]egv
     " }}}
 " }}}
 
