@@ -114,7 +114,6 @@
     set hidden                                          "allow buffer switching without saving
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac                                "add mac to auto-detection of file format line endings
-    set showcmd                                         "show partial commands in last line of screen
     set nrformats-=octal                                "always assume decimal numbers
     set tags=tags;/
     if executable('zsh')
@@ -254,11 +253,15 @@
     inoremap <left> <nop>
     inoremap <right> <nop>
 
+    " screen line scroll
+    nnoremap <silent> j gj
+    nnoremap <silent> k gk
+
     " reselect visual block after indent
     vnoremap < <gv
     vnoremap > >gv
 
-    " shortcuts for split screen
+    " shortcuts for windows
     nnoremap <leader>v <C-w>v<C-w>l
     nnoremap <leader>s <C-w>s
     nnoremap <C-h> <C-w>h
@@ -297,6 +300,8 @@
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
+        nnoremap <silent> <leader>gr :Gremove<CR>
     " }}}
     " buffergator {{{
         let g:buffergator_suppress_keymaps=1
