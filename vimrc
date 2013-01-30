@@ -44,6 +44,7 @@
         NeoBundle 'jeetsukumaran/vim-buffergator'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'roman/golden-ratio'
+        NeoBundle 'nathanaelkane/vim-indent-guides', { 'gui': 1 }
 
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
@@ -69,11 +70,13 @@
         NeoBundle 'matchit.zip'
     " }}}
     " bundles: autocomplete {{{
+        NeoBundle 'honza/snipmate-snippets'
+
+        "NeoBundle 'ervandew/supertab'
         "NeoBundle 'SirVer/ultisnips'
 
         NeoBundle 'Shougo/neocomplcache'
         NeoBundle 'Shougo/neosnippet'
-        NeoBundle 'honza/snipmate-snippets'
     " }}}
     " bundles: color schemes {{{
         NeoBundle 'altercation/vim-colors-solarized'
@@ -93,6 +96,7 @@
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'maksimr/vim-jsbeautify'
+        NeoBundle 'othree/html5.vim'
     " }}}
     NeoBundleCheck
 " }}}
@@ -103,7 +107,8 @@
     filetype indent on
     syntax enable
 
-    set timeoutlen=200                                  "time to wait between key presses
+    set ttimeout
+    set ttimeoutlen=50                                   "time to wait between key presses
     set mouse=a                                         "enable mouse
     set mousehide                                       "hide when characters are typed
     set history=1000                                    "number of command lines to remember
@@ -186,9 +191,9 @@
     let g:solarized_visibility="high"
 
     if has('gui_running')
-        " maximize
         set lines=999
         set columns=999
+        set guioptions=egm
 
         if has('gui_macvim')
             set gfn=Ubuntu_Mono_for_Powerline:h14
@@ -233,6 +238,12 @@
 
     au WinEnter * set cursorline
     "au WinEnter * set cursorcolumn
+
+    " go back to previous position of cursor if any
+    autocmd BufReadPost *
+                \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
 " }}}
 
 " mappings {{{
@@ -264,6 +275,7 @@
     " shortcuts for windows
     nnoremap <leader>v <C-w>v<C-w>l
     nnoremap <leader>s <C-w>s
+    nnoremap <leader>vsa :vert sba<cr>
     nnoremap <C-h> <C-w>h
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
@@ -315,8 +327,8 @@
         let NERDTreeChDirMode=0
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.git','\.hg']
-        map <leader>ee :NERDTreeToggle<CR>
-        map <leader>ef :NERDTreeFind<CR>
+        map <F2> :NERDTreeToggle<CR>
+        map <F3> :NERDTreeFind<CR>
     " }}}
     " nerdcommenter {{{
         map \\ <plug>NERDCommenterToggle
@@ -331,13 +343,17 @@
         "let g:ctrlp_cmd = 'CtrlPMixed'
         "let g:ctrlp_by_filename=1
         "let g:ctrlp_clear_cache_on_exit=0
-        "let g:ctrlp_max_height=15
+        "let g:ctrlp_max_height=50
         let g:ctrlp_max_files=2000
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
+
         map <leader>p :CtrlPBufTag<cr>
+        map <leader>pt :CtrlPBufTagAll<cr>
+        map <leader>pl :CtrlPLine<cr>
+        map <leader>pb :CtrlPBuffer<cr>
     " }}}
     " powerline settings {{{
         set laststatus=2
@@ -348,6 +364,8 @@
     " }}}
     " vimshell {{{
         let g:vimshell_editor_command="/usr/local/bin/vim"
+
+        nnoremap <leader>c :VimShell -split<cr>
     "}}}
     " tagbar {{{
         nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -386,12 +404,8 @@
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
 
             " Proper tab completion
-            imap <silent><expr><TAB> neosnippet#expandable_or_jumpable() ?
-                        \ "\<Plug>(neosnippet_expand_or_jump)" :
-                        \ (pumvisible() ? "\<C-n>" : "\<TAB>")
-            smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                        \ "\<Plug>(neosnippet_expand_or_jump)"
-                        \: "\<TAB>"
+            imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+            smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
             " Define dictionary
             let g:neocomplcache_dictionary_filetype_lists = {
@@ -442,7 +456,7 @@
 
             " For snippet_complete marker
             if has('conceal')
-                set conceallevel=2 concealcursor=i
+                "set conceallevel=2 concealcursor=i
             endif
         endif
     " }}}
@@ -452,6 +466,11 @@
             let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
             let g:neosnippet#enable_snipmate_compatibility=1
         endif
+    " }}}
+    " indent guides {{{
+        let g:indent_guides_guide_size=1
+        let g:indent_guides_enable_on_vim_startup=1
+        let g:indent_guides_color_change_percent=5
     " }}}
 " }}}
 
