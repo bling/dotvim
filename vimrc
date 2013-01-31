@@ -43,7 +43,8 @@
         NeoBundle 'jeetsukumaran/vim-buffergator'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'roman/golden-ratio'
-        NeoBundle 'nathanaelkane/vim-indent-guides', { 'gui': 1 }
+        NeoBundle 'nathanaelkane/vim-indent-guides'
+        NeoBundle 'guns/xterm-color-table.vim'
 
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
@@ -470,6 +471,11 @@
         let g:indent_guides_guide_size=1
         let g:indent_guides_enable_on_vim_startup=1
         let g:indent_guides_color_change_percent=5
+        if has('gui_running')
+            let g:indent_guides_auto_colors=0
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+        endif
     " }}}
 " }}}
 
