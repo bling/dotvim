@@ -32,8 +32,7 @@
         NeoBundle 'scrooloose/nerdtree'
 
         NeoBundle 'mattn/zencoding-vim'
-        NeoBundle 'mattn/webapi-vim'
-        NeoBundle 'mattn/gist-vim'
+        NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
 
         NeoBundle 'kien/ctrlp.vim'
         NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
@@ -45,6 +44,11 @@
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'roman/golden-ratio'
         NeoBundle 'nathanaelkane/vim-indent-guides', { 'gui': 1 }
+        NeoBundle 'wincent/Command-T', {
+            \ 'build': {
+                \ 'mac': 'ruby ruby/command-t/extconf.rb && make ruby/command-t/Makefile'
+            \ }
+        \ }
 
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
@@ -344,6 +348,7 @@
         "let g:ctrlp_by_filename=1
         "let g:ctrlp_clear_cache_on_exit=0
         "let g:ctrlp_max_height=50
+        let g:ctrlp_map=''
         let g:ctrlp_max_files=2000
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
@@ -351,9 +356,15 @@
         let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
 
         map <leader>p :CtrlPBufTag<cr>
-        map <leader>pt :CtrlPBufTagAll<cr>
+        map <leader>pt :CtrlPTag<cr>
         map <leader>pl :CtrlPLine<cr>
         map <leader>pb :CtrlPBuffer<cr>
+    " }}}
+    " commandt {{{
+        nnoremap <C-P> :CommandT<cr>
+        let g:CommandTMatchWindowReverse=1
+        let g:CommandTMaxHeight=20
+        let g:CommandTCancelMap=['<ESC>','<C-c>']
     " }}}
     " powerline settings {{{
         set laststatus=2
