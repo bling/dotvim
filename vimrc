@@ -78,7 +78,6 @@
     " bundles: color schemes {{{
         NeoBundle 'altercation/vim-colors-solarized'
         NeoBundle 'nanotech/jellybeans.vim'
-        NeoBundle 'noahfrederick/Hemisu'
         NeoBundle 'tomasr/molokai'
         NeoBundle 'chriskempson/vim-tomorrow-theme'
         NeoBundle 'w0ng/vim-hybrid'
@@ -181,12 +180,6 @@
 " }}}
 
 " ui configuration {{{
-    set background=dark
-    colorscheme hybrid
-    let g:solarized_contrast="high"
-    let g:solarized_termcolors=256
-    let g:solarized_visibility="high"
-
     if has('gui_running')
         set lines=999
         set columns=999
@@ -207,6 +200,9 @@
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
+
+    set background=dark
+    colorscheme jellybeans
 " }}}
 
 " functions {{{
@@ -312,6 +308,11 @@
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>gr :Gremove<CR>
     " }}}
+    " solarized {{{
+        let g:solarized_contrast="high"
+        let g:solarized_termcolors=256
+        let g:solarized_visibility="high"
+    " }}}
     " buffergator {{{
         let g:buffergator_suppress_keymaps=1
         nnoremap <leader>b :BuffergatorToggle<cr>
@@ -361,6 +362,7 @@
     " }}}
     " vimshell {{{
         let g:vimshell_editor_command="/usr/local/bin/vim"
+        let g:vimshell_right_prompt='getcwd()'
 
         nnoremap <leader>c :VimShell -split<cr>
     "}}}
@@ -466,6 +468,7 @@
     " }}}
     " indent guides {{{
         let g:indent_guides_guide_size=1
+        let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=1
         let g:indent_guides_color_change_percent=5
         if !has('gui_running')
