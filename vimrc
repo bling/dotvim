@@ -46,6 +46,13 @@
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'guns/xterm-color-table.vim'
 
+        "NeoBundle 'SirVer/ultisnips'
+        NeoBundle 'honza/snipmate-snippets'
+
+        NeoBundle 'Shougo/unite.vim'
+        NeoBundle 'Shougo/neocomplcache'
+        NeoBundle 'Shougo/neosnippet'
+        NeoBundle 'Shougo/vimfiler'
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
                 \ 'build': {
@@ -55,7 +62,6 @@
                 \ },
             \ }
             NeoBundle 'Shougo/vimshell'
-            NeoBundle 'Shougo/unite.vim'
         endif
 
         if executable('ctags')
@@ -68,15 +74,6 @@
         NeoBundle 'buftabs'
         NeoBundle 'EasyGrep'
         NeoBundle 'matchit.zip'
-    " }}}
-    " bundles: autocomplete {{{
-        NeoBundle 'honza/snipmate-snippets'
-
-        "NeoBundle 'ervandew/supertab'
-        "NeoBundle 'SirVer/ultisnips'
-
-        NeoBundle 'Shougo/neocomplcache'
-        NeoBundle 'Shougo/neosnippet'
     " }}}
     " bundles: color schemes {{{
         NeoBundle 'altercation/vim-colors-solarized'
