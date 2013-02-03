@@ -45,6 +45,7 @@
         NeoBundle 'roman/golden-ratio'
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'guns/xterm-color-table.vim'
+        NeoBundle 'yesmeck/tips.vim'
 
         "NeoBundle 'SirVer/ultisnips'
         NeoBundle 'honza/snipmate-snippets'
@@ -81,6 +82,7 @@
         NeoBundle 'tomasr/molokai'
         NeoBundle 'chriskempson/vim-tomorrow-theme'
         NeoBundle 'w0ng/vim-hybrid'
+        NeoBundle 'sjl/badwolf'
     " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
@@ -132,6 +134,7 @@
     set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
     set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.      "highlight problematic whitespace
+    set shiftround
 
     set foldenable                                      "enable folds by default
     set scrolloff=5                                     "always show content after scroll
@@ -184,6 +187,8 @@
 " }}}
 
 " ui configuration {{{
+    set matchtime=3
+
     if has('gui_running')
         set lines=999
         set columns=999
@@ -194,7 +199,7 @@
         endif
 
         if has('gui_win32')
-            set gfn=Envy_Code_R_VS:h10
+            set gfn=DejaVu_Sans_Mono:h10
         endif
     else
         set t_Co=256
@@ -238,9 +243,9 @@
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
-                \ if line("'\"") > 1 && line("'\"") <= line("$") |
-                \   exe "normal! g`\"" |
-                \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe 'normal! g`"zvzz' |
+        \ endif
 " }}}
 
 " mappings {{{
