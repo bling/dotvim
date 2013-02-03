@@ -162,11 +162,15 @@
     endif
 
     " vim file/folder management {{{
-        " make sure these folders exist
-        silent !mkdir ~/.vim/.cache > /dev/null 2>&1
-        silent !mkdir ~/.vim/.cache/undo > /dev/null 2>&1
-        silent !mkdir ~/.vim/.cache/backup > /dev/null 2>&1
-        silent !mkdir ~/.vim/.cache/swap > /dev/null 2>&1
+        function! EnsureExists(path)
+            if !isdirectory(expand(a:path))
+                call mkdir(expand(a:path))
+            endif
+        endfunction
+        call EnsureExists('~/.vim/.cache')
+        call EnsureExists('~/.vim/.cache/undo')
+        call EnsureExists('~/.vim/.cache/backup')
+        call EnsureExists('~/.vim/.cache/swap')
 
         " persistent undo
         set undofile
