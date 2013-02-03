@@ -45,7 +45,6 @@
         NeoBundle 'roman/golden-ratio'
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'guns/xterm-color-table.vim'
-        NeoBundle 'yesmeck/tips.vim'
 
         "NeoBundle 'SirVer/ultisnips'
         NeoBundle 'honza/snipmate-snippets'
@@ -133,7 +132,7 @@
     set shiftwidth=4                                    "number of spaces when indenting
     set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
-    set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.      "highlight problematic whitespace
+    set listchars=tab:▸\ ,trail:⌴,extends:❯,precedes:❮
     set shiftround
 
     set foldenable                                      "enable folds by default
