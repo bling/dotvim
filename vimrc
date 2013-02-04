@@ -30,7 +30,6 @@
         NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
 
         NeoBundle 'kien/ctrlp.vim'
-        NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
         NeoBundle 'paradigm/vim-multicursor'
         NeoBundle 'mileszs/ack.vim'
         NeoBundle 'sjl/gundo.vim'
@@ -62,6 +61,11 @@
 
         if executable('ctags')
             NeoBundle 'majutsushi/tagbar'
+        endif
+
+        NeoBundle 'myusuf3/numbers.vim'
+        if !has('gui_running')
+            NeoBundleDisable numbers.vim
         endif
     " }}}
     " bundles: vim-scripts {{{
@@ -112,7 +116,9 @@
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac                                "add mac to auto-detection of file format line endings
     set nrformats-=octal                                "always assume decimal numbers
+    set showcmd
     set tags=tags;/
+    set showfulltag
     if executable('zsh')
         set shell=zsh
     endif
@@ -137,6 +143,9 @@
     set wildmenu                                        "show list for autocomplete
     set wildmode=list:longest:full                      "priority for tab completion
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
+
+    set splitbelow
+    set splitright
 
     " disable sounds
     set noerrorbells
@@ -348,7 +357,7 @@
         "let g:ctrlp_cmd = 'CtrlPMixed'
         "let g:ctrlp_by_filename=1
         "let g:ctrlp_clear_cache_on_exit=0
-        "let g:ctrlp_max_height=50
+        let g:ctrlp_max_height=40
         let g:ctrlp_max_files=2000
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
