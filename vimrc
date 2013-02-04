@@ -40,6 +40,7 @@
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'guns/xterm-color-table.vim'
         NeoBundle 'kana/vim-smartinput'
+        NeoBundle 'sjl/splice.vim'
 
         "NeoBundle 'SirVer/ultisnips'
         NeoBundle 'honza/snipmate-snippets'
