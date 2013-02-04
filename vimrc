@@ -103,8 +103,9 @@
     filetype indent on
     syntax enable
 
-    set ttimeout
-    set ttimeoutlen=50                                   "time to wait between key presses
+    set timeoutlen=300                                  "mapping timeout
+    set ttimeoutlen=50                                  "keycode timeout
+
     set mouse=a                                         "enable mouse
     set mousehide                                       "hide when characters are typed
     set history=1000                                    "number of command lines to remember
