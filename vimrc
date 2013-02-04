@@ -8,10 +8,6 @@
 " }}}
 
 " bundles {{{
-    " bundles: core {{{
-        NeoBundle 'MarcWeber/vim-addon-mw-utils'
-        NeoBundle 'tomtom/tlib_vim'
-    " }}}
     " bundles: plugins {{{
         "NeoBundle 'Lokaltog/powerline, {
             "\ 'autoload': {
@@ -22,7 +18,6 @@
         NeoBundle 'Lokaltog/vim-easymotion'
 
         NeoBundle 'tpope/vim-unimpaired'
-        NeoBundle 'tpope/vim-scriptease'
         NeoBundle 'tpope/vim-fugitive'
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
@@ -45,6 +40,7 @@
         NeoBundle 'roman/golden-ratio'
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'guns/xterm-color-table.vim'
+        NeoBundle 'kana/vim-smartinput'
 
         "NeoBundle 'SirVer/ultisnips'
         NeoBundle 'honza/snipmate-snippets'
@@ -81,7 +77,6 @@
         NeoBundle 'tomasr/molokai'
         NeoBundle 'chriskempson/vim-tomorrow-theme'
         NeoBundle 'w0ng/vim-hybrid'
-        NeoBundle 'sjl/badwolf'
     " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
@@ -132,7 +127,7 @@
     set shiftwidth=4                                    "number of spaces when indenting
     set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
-    set listchars=tab:▸\ ,trail:⌴,extends:❯,precedes:❮
+    set listchars=tab:▸\ ,trail:.,extends:❯,precedes:❮
     set shiftround
 
     set foldenable                                      "enable folds by default
@@ -210,7 +205,7 @@
     endif
 
     set background=dark
-    colorscheme jellybeans
+    colorscheme Tomorrow-Night
 " }}}
 
 " functions {{{
@@ -265,6 +260,10 @@
     inoremap <left> <nop>
     inoremap <right> <nop>
 
+    " sane regex
+    nnoremap / /\v
+    vnoremap / /\v
+
     " screen line scroll
     nnoremap <silent> j gj
     nnoremap <silent> k gk
@@ -299,7 +298,7 @@
         if executable('ag')
             let g:ackprg="ag --nogroup --column --smart-case --follow --nocolor"
         endif
-        map <leader>a :Ack 
+        map <leader>/ :Ack 
     " }}}
     " easygrep {{{
         let g:EasyGrepRecursive=1
@@ -376,6 +375,20 @@
     "}}}
     " tagbar {{{
         nnoremap <silent> <F9> :TagbarToggle<CR>
+    " }}}
+    " tabular {{{
+        nmap <Leader>a& :Tabularize /&<CR>
+        vmap <Leader>a& :Tabularize /&<CR>
+        nmap <Leader>a= :Tabularize /=<CR>
+        vmap <Leader>a= :Tabularize /=<CR>
+        nmap <Leader>a: :Tabularize /:<CR>
+        vmap <Leader>a: :Tabularize /:<CR>
+        nmap <Leader>a:: :Tabularize /:\zs<CR>
+        vmap <Leader>a:: :Tabularize /:\zs<CR>
+        nmap <Leader>a, :Tabularize /,<CR>
+        vmap <Leader>a, :Tabularize /,<CR>
+        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     " }}}
     " gundo {{{
         nnoremap <silent> <F5> :GundoToggle<CR>
