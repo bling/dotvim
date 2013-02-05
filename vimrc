@@ -129,6 +129,7 @@
     set autoindent                                      "automatically indent to match adjacent lines
     set smartindent                                     "smart indenting for additional languages
     set expandtab                                       "spaces instead of tabs
+    set smarttab                                        "use shiftwidth to enter tabs
     set tabstop=4                                       "number of spaces per tab for display
     set softtabstop=4                                   "number of spaces per tab in insert mode
     set shiftwidth=4                                    "number of spaces when indenting
