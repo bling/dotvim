@@ -39,7 +39,6 @@
         NeoBundle 'roman/golden-ratio'
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'guns/xterm-color-table.vim'
-        NeoBundle 'kana/vim-smartinput'
         NeoBundle 'sjl/splice.vim'
 
         "NeoBundle 'SirVer/ultisnips'
@@ -216,7 +215,7 @@
     endif
 
     set background=dark
-    colorscheme Tomorrow-Night
+    colorscheme hybrid
 " }}}
 
 " functions {{{
@@ -381,9 +380,16 @@
     " vimshell {{{
         let g:vimshell_editor_command="/usr/local/bin/vim"
         let g:vimshell_right_prompt='getcwd()'
+        let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
 
         nnoremap <leader>c :VimShell -split<cr>
     "}}}
+    " unite {{{
+        let g:unite_data_directory='~/.vim/.cache/unite'
+    " }}}
+    " vimfiler {{{
+        let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
+    " }}}
     " tagbar {{{
         nnoremap <silent> <F9> :TagbarToggle<CR>
     " }}}
