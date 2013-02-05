@@ -97,6 +97,30 @@
     NeoBundleCheck
 " }}}
 
+" functions {{{
+    function! Preserve(command)
+        " preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " do the business:
+        execute a:command
+        " clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endfunction
+
+    function! StripTrailingWhitespace()
+        call Preserve("%s/\\s\\+$//e")
+    endfunction
+
+    function! EnsureExists(path)
+        if !isdirectory(expand(a:path))
+            call mkdir(expand(a:path))
+        endif
+    endfunction
+" }}}
+
 " base configuration {{{
     filetype on
     filetype plugin on
@@ -170,16 +194,6 @@
     endif
 
     " vim file/folder management {{{
-        function! EnsureExists(path)
-            if !isdirectory(expand(a:path))
-                call mkdir(expand(a:path))
-            endif
-        endfunction
-        call EnsureExists('~/.vim/.cache')
-        call EnsureExists('~/.vim/.cache/undo')
-        call EnsureExists('~/.vim/.cache/backup')
-        call EnsureExists('~/.vim/.cache/swap')
-
         " persistent undo
         set undofile
         set undodir=~/.vim/.cache/undo
@@ -188,6 +202,11 @@
         set backup
         set backupdir=~/.vim/.cache/backup
         set directory=~/.vim/.cache/swap
+
+        call EnsureExists('~/.vim/.cache')
+        call EnsureExists(&undodir)
+        call EnsureExists(&backupdir)
+        call EnsureExists(&directory)
     " }}}
 " }}}
 
@@ -217,24 +236,6 @@
 
     set background=dark
     colorscheme hybrid
-" }}}
-
-" functions {{{
-    function! Preserve(command)
-        " preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        execute a:command
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endfunction
-
-    function! StripTrailingWhitespace()
-        call Preserve("%s/\\s\\+$//e")
-    endfunction
 " }}}
 
 " autocmd {{{
@@ -365,6 +366,7 @@
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
+        call EnsureExists(g:ctrlp_cache_dir)
 
         map <leader>p :CtrlPBufTag<cr>
         map <leader>pt :CtrlPTag<cr>
@@ -382,14 +384,17 @@
         let g:vimshell_editor_command="/usr/local/bin/vim"
         let g:vimshell_right_prompt='getcwd()'
         let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
+        call EnsureExists(g:vimshell_temporary_directory)
 
         nnoremap <leader>c :VimShell -split<cr>
     "}}}
     " unite {{{
         let g:unite_data_directory='~/.vim/.cache/unite'
+        call EnsureExists(g:unite_data_directory)
     " }}}
     " vimfiler {{{
         let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
+        call EnsureExists(g:vimfiler_data_directory)
     " }}}
     " tagbar {{{
         nnoremap <silent> <F9> :TagbarToggle<CR>
