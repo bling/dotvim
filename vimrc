@@ -9,7 +9,7 @@
 
 " bundles {{{
     " bundles: plugins {{{
-        "NeoBundle 'Lokaltog/powerline, {
+        "NeoBundle 'Lokaltog/powerline', {
             "\ 'autoload': {
                 "\ 'commands': 'source ~/.vim/bundle/powerline/powerline/bindings/vim/plugin/source_plugin.vim'
             "\ }
@@ -42,12 +42,11 @@
         NeoBundle 'sjl/splice.vim'
 
         "NeoBundle 'SirVer/ultisnips'
+        "NeoBundle 'ervandew/supertab'
         NeoBundle 'honza/snipmate-snippets'
 
-        NeoBundle 'Shougo/unite.vim'
-        NeoBundle 'Shougo/neocomplcache'
-        NeoBundle 'Shougo/neosnippet'
-        NeoBundle 'Shougo/vimfiler'
+        NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'Shougo/neosnippet', 'Shougo/unite.vim' ] }
+        NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
                 \ 'build': {
@@ -144,6 +143,7 @@
     set showcmd
     set tags=tags;/
     set showfulltag
+    set keywordprg=":help"                              "remap K to vim help
     if executable('zsh')
         set shell=zsh
     endif
@@ -168,7 +168,7 @@
     set display+=lastline
     set wildmenu                                        "show list for autocomplete
     set wildmode=list:longest:full                      "priority for tab completion
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
 
     set splitbelow
     set splitright
@@ -212,6 +212,8 @@
 
 " ui configuration {{{
     set matchtime=3
+    set laststatus=2
+    set number
 
     if has('gui_running')
         set lines=999
@@ -227,7 +229,6 @@
         endif
     else
         set t_Co=256
-        set number
 
         " difference cursors for insert vs normal mode
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -241,17 +242,25 @@
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
-    au WinLeave * set nocursorline
-    "au WinLeave * set nocursorcolumn
+    autocmd WinLeave * set nocursorline
+    "autocmd WinLeave * set nocursorcolumn
 
-    au WinEnter * set cursorline
-    "au WinEnter * set cursorcolumn
+    autocmd WinEnter * set cursorline
+    "autocmd WinEnter * set cursorcolumn
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \   exe 'normal! g`"zvzz' |
         \ endif
+
+    " enable omni completion
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 " }}}
 
 " mappings {{{
@@ -357,15 +366,13 @@
         let g:syntastic_style_warning_symbol = '≈'
     " }}}
     " ctrlp {{{
-        "let g:ctrlp_cmd = 'CtrlPMixed'
-        "let g:ctrlp_by_filename=1
         "let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_max_height=40
         let g:ctrlp_max_files=2000
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
-        let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
+        let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
         call EnsureExists(g:ctrlp_cache_dir)
 
         map <leader>p :CtrlPBufTag<cr>
@@ -374,20 +381,11 @@
         map <leader>pb :CtrlPBuffer<cr>
     " }}}
     " powerline settings {{{
-        set laststatus=2
         let g:Powerline_symbols = 'fancy'
     " }}}
     " buftabs {{{
         let g:buftabs_only_basename=1
     " }}}
-    " vimshell {{{
-        let g:vimshell_editor_command="/usr/local/bin/vim"
-        let g:vimshell_right_prompt='getcwd()'
-        let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
-        call EnsureExists(g:vimshell_temporary_directory)
-
-        nnoremap <leader>c :VimShell -split<cr>
-    "}}}
     " unite {{{
         let g:unite_data_directory='~/.vim/.cache/unite'
         call EnsureExists(g:unite_data_directory)
@@ -439,9 +437,9 @@
             "let g:neocomplcache_enable_camel_case_completion = 1
             let g:neocomplcache_enable_smart_case = 1
             "let g:neocomplcache_enable_underbar_completion = 1
-            let g:neocomplcache_enable_auto_delimiter = 1
+            "let g:neocomplcache_enable_auto_delimiter = 1
             let g:neocomplcache_max_list = 15
-            let g:neocomplcache_force_overwrite_completefunc = 1
+            "let g:neocomplcache_force_overwrite_completefunc = 1
             let g:neocomplcache_max_menu_width = 999
             let g:neocomplcache_auto_completion_start_length=2
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
@@ -479,14 +477,6 @@
             inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
             inoremap <expr><C-y> neocomplcache#close_popup()
 
-            " Enable omni completion
-            autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-            autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-            autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-            autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-            autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-            autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-
             " Enable heavy omni completion
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
@@ -510,6 +500,16 @@
             let g:neosnippet#enable_snipmate_compatibility=1
         endif
     " }}}
+    " vimshell {{{
+        if (neobundle#is_sourced('vimshell'))
+            let g:vimshell_editor_command="/usr/local/bin/vim"
+            let g:vimshell_right_prompt='getcwd()'
+            let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
+            call EnsureExists(g:vimshell_temporary_directory)
+
+            nnoremap <leader>c :VimShell -split<cr>
+        endif
+    "}}}
     " indent guides {{{
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
@@ -517,8 +517,13 @@
         let g:indent_guides_color_change_percent=5
         if !has('gui_running')
             let g:indent_guides_auto_colors=0
-            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+            if &background ==# 'dark'
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+            else
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=253
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=254
+            endif
         endif
     " }}}
 " }}}
