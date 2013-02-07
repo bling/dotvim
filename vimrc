@@ -29,6 +29,7 @@
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
 
+        NeoBundle 'wincent/Command-T'
         NeoBundle 'kien/ctrlp.vim'
         NeoBundle 'paradigm/vim-multicursor'
         NeoBundle 'mileszs/ack.vim'
@@ -43,9 +44,8 @@
 
         "NeoBundle 'SirVer/ultisnips'
         "NeoBundle 'ervandew/supertab'
-        NeoBundle 'honza/snipmate-snippets'
 
-        NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'Shougo/neosnippet', 'Shougo/unite.vim' ] }
+        NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'Shougo/neosnippet', 'Shougo/unite.vim', 'honza/snipmate-snippets' ] }
         NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
@@ -214,6 +214,7 @@
     set matchtime=3
     set laststatus=2
     set number
+    set cursorline
 
     if has('gui_running')
         set lines=999
@@ -272,6 +273,7 @@
     " formatting shortcuts
     nmap <leader>fef :call Preserve("normal gg=G")<CR>
     nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+    vmap <leader>s :sort<cr>
 
     " remap arrow keys
     nnoremap <up> :tabnext<CR>
@@ -367,7 +369,13 @@
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
     " }}}
+    " commandt {{{
+        let g:CommandTCancelMap=['<ESC>', '<C-c>']
+        let g:CommandTMatchWindowReverse=1
+        map <c-p> :CommandT<cr>
+    " }}}
     " ctrlp {{{
+        let g:ctrlp_map=''
         "let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_max_height=40
         let g:ctrlp_max_files=2000
@@ -437,11 +445,11 @@
         if (neobundle#is_sourced('neocomplcache'))
             let g:neocomplcache_enable_at_startup = 1
             "let g:neocomplcache_enable_camel_case_completion = 1
-            let g:neocomplcache_enable_smart_case = 1
             "let g:neocomplcache_enable_underbar_completion = 1
-            "let g:neocomplcache_enable_auto_delimiter = 1
+            let g:neocomplcache_enable_smart_case = 1
+            let g:neocomplcache_enable_auto_delimiter = 1
             let g:neocomplcache_max_list = 15
-            "let g:neocomplcache_force_overwrite_completefunc = 1
+            let g:neocomplcache_force_overwrite_completefunc = 1
             let g:neocomplcache_max_menu_width = 999
             let g:neocomplcache_auto_completion_start_length=2
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
