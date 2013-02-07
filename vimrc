@@ -227,16 +227,18 @@
         if has('gui_win32')
             set gfn=DejaVu_Sans_Mono:h10
         endif
+
+        set background=light
+        colorscheme Tomorrow
     else
         set t_Co=256
+        set background=dark
+        colorscheme hybrid
 
         " difference cursors for insert vs normal mode
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
-
-    set background=dark
-    colorscheme hybrid
 " }}}
 
 " autocmd {{{
@@ -517,13 +519,8 @@
         let g:indent_guides_color_change_percent=5
         if !has('gui_running')
             let g:indent_guides_auto_colors=0
-            if &background ==# 'dark'
-                autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-                autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
-            else
-                autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=253
-                autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=254
-            endif
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
         endif
     " }}}
 " }}}
