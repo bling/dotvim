@@ -29,7 +29,6 @@
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
 
-        NeoBundle 'wincent/Command-T'
         NeoBundle 'kien/ctrlp.vim'
         NeoBundle 'paradigm/vim-multicursor'
         NeoBundle 'mileszs/ack.vim'
@@ -46,7 +45,6 @@
         "NeoBundle 'ervandew/supertab'
 
         NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'Shougo/neosnippet', 'Shougo/unite.vim', 'honza/snipmate-snippets' ] }
-        NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
         if executable('make')
             NeoBundle 'Shougo/vimproc', {
                 \ 'build': {
@@ -222,7 +220,7 @@
         set guioptions=egm
 
         if has('gui_macvim')
-            set gfn=Ubuntu_Mono_for_Powerline:h14
+            set gfn=Ubuntu_Mono:h14
         endif
 
         if has('gui_win32')
@@ -369,13 +367,7 @@
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
     " }}}
-    " commandt {{{
-        let g:CommandTCancelMap=['<ESC>', '<C-c>']
-        let g:CommandTMatchWindowReverse=1
-        map <c-p> :CommandT<cr>
-    " }}}
     " ctrlp {{{
-        let g:ctrlp_map=''
         "let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_max_height=40
         let g:ctrlp_max_files=2000
