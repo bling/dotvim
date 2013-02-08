@@ -70,6 +70,7 @@
         NeoBundle 'bufkill.vim'
         NeoBundle 'buftabs'
         NeoBundle 'EasyGrep'
+        NeoBundle 'YankRing.vim'
         NeoBundle 'matchit.zip'
     " }}}
     " bundles: color schemes {{{
@@ -133,7 +134,7 @@
     set ttyfast                                         "assume fast terminal connection
     set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
     set encoding=utf-8                                  "set encoding for text
-    set clipboard=unnamed                               "sync with OS clipboard
+    "set clipboard=unnamed                               "sync with OS clipboard
     set hidden                                          "allow buffer switching without saving
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac                                "add mac to auto-detection of file format line endings
@@ -311,7 +312,7 @@
     map <leader>tc :tabclose<CR>
 
     " make Y consistent with C and D.  See :help Y.
-    map Y y$
+    nnoremap Y y$
 
     " general
     nmap <leader>l :set list! list?<cr>
@@ -383,6 +384,14 @@
         map <leader>pt :CtrlPTag<cr>
         map <leader>pl :CtrlPLine<cr>
         map <leader>pb :CtrlPBuffer<cr>
+    " }}}
+    " yankring {{{
+        let g:yankring_replace_n_pkey = '<c-m>'
+        let g:yankring_replace_n_nkey = '<c-n>'
+        let g:yankring_history_dir='~/.vim/.cache'
+        function! YRRunAfterMaps()
+            nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+        endfunction
     " }}}
     " powerline settings {{{
         let g:Powerline_symbols = 'fancy'
