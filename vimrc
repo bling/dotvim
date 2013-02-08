@@ -159,6 +159,8 @@
     set list                                            "highlight whitespace
     set listchars=tab:▸\ ,trail:.,extends:❯,precedes:❮
     set shiftround
+    set linebreak
+    set showbreak=…
 
     set foldenable                                      "enable folds by default
     set scrolloff=5                                     "always show content after scroll
