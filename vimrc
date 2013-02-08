@@ -391,6 +391,9 @@
         let g:yankring_history_dir='~/.vim/.cache'
         function! YRRunAfterMaps()
             nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+
+            "bad yankring!!
+            unmap <CR>
         endfunction
     " }}}
     " powerline settings {{{
