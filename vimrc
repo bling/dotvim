@@ -378,7 +378,6 @@
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
-        call EnsureExists(g:ctrlp_cache_dir)
 
         map <leader>p :CtrlPBufTag<cr>
         map <leader>pt :CtrlPTag<cr>
@@ -404,11 +403,6 @@
     " }}}
     " unite {{{
         let g:unite_data_directory='~/.vim/.cache/unite'
-        call EnsureExists(g:unite_data_directory)
-    " }}}
-    " vimfiler {{{
-        let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
-        call EnsureExists(g:vimfiler_data_directory)
     " }}}
     " tagbar {{{
         nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -521,7 +515,6 @@
             let g:vimshell_editor_command="/usr/local/bin/vim"
             let g:vimshell_right_prompt='getcwd()'
             let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
-            call EnsureExists(g:vimshell_temporary_directory)
 
             nnoremap <leader>c :VimShell -split<cr>
         endif
