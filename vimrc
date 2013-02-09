@@ -104,7 +104,6 @@
         NeoBundle 'guns/xterm-color-table.vim'
         NeoBundle 'sjl/splice.vim'
 
-        "NeoBundle 'SirVer/ultisnips'
         "NeoBundle 'ervandew/supertab'
 
         NeoBundle 'myusuf3/numbers.vim'
@@ -132,7 +131,6 @@
         NeoBundle 'cakebaker/scss-syntax.vim'
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'ap/vim-css-color'
-        NeoBundle 'maksimr/vim-jsbeautify'
         NeoBundle 'othree/html5.vim'
     " }}}
     " ack/ag {{{
@@ -240,6 +238,7 @@
     " }}}
     " gundo {{{
         NeoBundle 'sjl/gundo.vim'
+        let g:gundo_right=1
         nnoremap <silent> <F5> :GundoToggle<CR>
     " }}}
     " unimpaired {{{
@@ -254,12 +253,14 @@
         map <silent> <leader>gr <Plug>(golden_ratio_resize)<cr>
     " }}}
     " jsbeautify {{{
+        NeoBundle 'maksimr/vim-jsbeautify'
         nmap <leader>fjs :call JsBeautify()<CR>
     " }}}
     " ultisnips {{{
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<tab>"
-        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        "NeoBundle 'SirVer/ultisnips'
+        "let g:UltiSnipsExpandTrigger="<tab>"
+        "let g:UltiSnipsJumpForwardTrigger="<tab>"
+        "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     " }}}
     " indent guides {{{
         NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -278,12 +279,15 @@
             let g:unite_data_directory='~/.vim/.cache/unite'
         " }}}
         " neosnippet {{{
+            NeoBundle 'Shougo/neosnippet'
+            NeoBundle 'honza/snipmate-snippets'
+
             " use honza's snippets
             let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
             let g:neosnippet#enable_snipmate_compatibility=1
         " }}}
         " neocomplcache {{{
-            NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'Shougo/neosnippet', 'Shougo/unite.vim', 'honza/snipmate-snippets' ] }
+            NeoBundle 'Shougo/neocomplcache'
 
             let g:neocomplcache_enable_at_startup = 1
             "let g:neocomplcache_enable_camel_case_completion = 1
