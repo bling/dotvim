@@ -51,13 +51,7 @@
             NeoBundle 'Shougo/vimshell'
         endif
 
-        if executable('ctags')
-            NeoBundle 'majutsushi/tagbar'
-        endif
-
-        if executable('ag')
-            NeoBundle 'epmatsw/ag.vim'
-        elseif executable('ack')
+        if executable('ack') || executable('ag')
             NeoBundle 'mileszs/ack.vim'
         endif
 
@@ -207,7 +201,7 @@
 " }}}
 
 " ui configuration {{{
-    set matchtime=3
+    set matchtime=2                                     "tens of a second to show matching parentheses
     set laststatus=2
     set number
     set cursorline
@@ -215,6 +209,8 @@
     if has('gui_running')
         set lines=999
         set columns=999
+        set guioptions+=t                               "tear off menu items
+        set guioptions-=T                               "toolbar icons
 
         if has('gui_macvim')
             set gfn=Ubuntu_Mono_for_Powerline:h14
@@ -316,11 +312,10 @@
 
 " plugin/mapping configuration {{{
     " ack/ag {{{
-        if neobundle#is_sourced('ag.vim')
-            map <leader>/ :Ag 
-        elseif neobundle#is_sourced('ack.vim')
-        map <leader>/ :Ack 
+        if executable('ag')
+            let g:ackprg="ag --nogroup --column --smart-case --follow"
         endif
+        map <leader>/ :Ack 
     " }}}
     " easygrep {{{
         let g:EasyGrepRecursive=1
@@ -396,9 +391,6 @@
     " }}}
     " unite {{{
         let g:unite_data_directory='~/.vim/.cache/unite'
-    " }}}
-    " tagbar {{{
-        nnoremap <silent> <F9> :TagbarToggle<CR>
     " }}}
     " tabular {{{
         nmap <Leader>a& :Tabularize /&<CR>
