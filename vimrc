@@ -92,7 +92,6 @@
         NeoBundle 'maksimr/vim-jsbeautify'
         NeoBundle 'othree/html5.vim'
     " }}}
-    NeoBundleCheck
 " }}}
 
 " functions {{{
@@ -134,7 +133,7 @@
     set ttyfast                                         "assume fast terminal connection
     set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
     set encoding=utf-8                                  "set encoding for text
-    "set clipboard=unnamed                               "sync with OS clipboard
+    set clipboard=unnamed                               "sync with OS clipboard
     set hidden                                          "allow buffer switching without saving
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac                                "add mac to auto-detection of file format line endings
@@ -164,6 +163,8 @@
     set showbreak=…
 
     set foldenable                                      "enable folds by default
+    set foldmethod=syntax
+    set foldlevelstart=1
     set scrolloff=5                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
@@ -230,8 +231,8 @@
             set gfn=DejaVu_Sans_Mono:h10
         endif
 
-        set background=light
-        colorscheme Tomorrow
+        set background=dark
+        colorscheme Tomorrow-Night
     else
         set t_Co=256
         set background=dark
@@ -385,14 +386,11 @@
         map <leader>pb :CtrlPBuffer<cr>
     " }}}
     " yankring {{{
-        let g:yankring_replace_n_pkey = '<c-m>'
-        let g:yankring_replace_n_nkey = '<c-n>'
+        let g:yankring_replace_n_nkey = '<C-BS>'
+        let g:yankring_replace_n_pkey = '<BS>'
         let g:yankring_history_dir='~/.vim/.cache'
         function! YRRunAfterMaps()
             nnoremap Y :<C-U>YRYankCount 'y$'<CR>
-
-            "bad yankring!!
-            unmap <CR>
         endfunction
     " }}}
     " powerline settings {{{
@@ -536,3 +534,4 @@ if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
 
+NeoBundleCheck
