@@ -9,12 +9,8 @@
 
 " bundles {{{
     " bundles: plugins {{{
-        "NeoBundle 'Lokaltog/powerline', {
-            "\ 'autoload': {
-                "\ 'commands': 'source ~/.vim/bundle/powerline/powerline/bindings/vim/plugin/source_plugin.vim'
-            "\ }
-        "\ }
-        NeoBundle 'Lokaltog/vim-powerline'
+        NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+        "NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'Lokaltog/vim-easymotion'
 
         NeoBundle 'tpope/vim-unimpaired'
