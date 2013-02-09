@@ -412,6 +412,7 @@
     " }}}
     " shougo plugins {{{
         " unite {{{
+            NeoBundle 'Shougo/unite.vim'
             let g:unite_data_directory='~/.vim/.cache/unite'
         " }}}
         " neosnippet {{{
