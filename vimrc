@@ -280,24 +280,15 @@
         " }}}
         " neosnippet {{{
             NeoBundle 'Shougo/neosnippet'
-            NeoBundle 'honza/snipmate-snippets'
-
-            " use honza's snippets
-            let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+            let g:neosnippet#snippets_directory='~/.vim/snippets'
             let g:neosnippet#enable_snipmate_compatibility=1
         " }}}
         " neocomplcache {{{
             NeoBundle 'Shougo/neocomplcache'
 
             let g:neocomplcache_enable_at_startup = 1
-            "let g:neocomplcache_enable_camel_case_completion = 1
-            "let g:neocomplcache_enable_underbar_completion = 1
-            let g:neocomplcache_enable_smart_case = 1
             let g:neocomplcache_enable_auto_delimiter = 1
-            let g:neocomplcache_max_list = 15
             let g:neocomplcache_force_overwrite_completefunc = 1
-            let g:neocomplcache_max_menu_width = 999
-            let g:neocomplcache_auto_completion_start_length=2
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
 
             " Proper tab completion
