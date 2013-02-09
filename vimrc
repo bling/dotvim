@@ -7,6 +7,86 @@
     NeoBundleFetch 'Shougo/neobundle.vim'
 " }}}
 
+" functions {{{
+    function! Preserve(command)
+        " preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " do the business:
+        execute a:command
+        " clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endfunction
+
+    function! StripTrailingWhitespace()
+        call Preserve("%s/\\s\\+$//e")
+    endfunction
+
+    function! EnsureExists(path)
+        if !isdirectory(expand(a:path))
+            call mkdir(expand(a:path))
+        endif
+    endfunction
+" }}}
+
+" mappings {{{
+    let mapleader = ","
+    let g:mapleader = ","
+
+    " formatting shortcuts
+    nmap <leader>fef :call Preserve("normal gg=G")<CR>
+    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+    vmap <leader>s :sort<cr>
+
+    " remap arrow keys
+    nnoremap <up> :tabnext<CR>
+    nnoremap <down> :tabprev<CR>
+    nnoremap <left> :bprev<CR>
+    nnoremap <right> :bnext<CR>
+    inoremap <up> <nop>
+    inoremap <down> <nop>
+    inoremap <left> <nop>
+    inoremap <right> <nop>
+
+    " sane regex
+    nnoremap / /\v
+    vnoremap / /\v
+
+    " screen line scroll
+    nnoremap <silent> j gj
+    nnoremap <silent> k gk
+
+    " reselect visual block after indent
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " search current word into quickfix
+    command GrepWord :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
+    nnoremap <leader>fw :GrepWord<cr>
+
+    " shortcuts for windows
+    nnoremap <leader>v <C-w>v<C-w>l
+    nnoremap <leader>s <C-w>s
+    nnoremap <leader>vsa :vert sba<cr>
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+
+    " tab shortcuts
+    map <leader>tn :tabnew<CR>
+    map <leader>tc :tabclose<CR>
+
+    " make Y consistent with C and D.  See :help Y.
+    nnoremap Y y$
+
+    " general
+    nmap <leader>l :set list! list?<cr>
+    noremap <space> :set hlsearch! hlsearch?<cr>
+" }}}
+
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
         NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
@@ -286,30 +366,6 @@
     NeoBundleCheck
 " }}}
 
-" functions {{{
-    function! Preserve(command)
-        " preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        execute a:command
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endfunction
-
-    function! StripTrailingWhitespace()
-        call Preserve("%s/\\s\\+$//e")
-    endfunction
-
-    function! EnsureExists(path)
-        if !isdirectory(expand(a:path))
-            call mkdir(expand(a:path))
-        endif
-    endfunction
-" }}}
-
 " base configuration {{{
     filetype on
     filetype plugin on
@@ -448,62 +504,6 @@
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-" }}}
-
-" mappings {{{
-    let mapleader = ","
-    let g:mapleader = ","
-
-    " formatting shortcuts
-    nmap <leader>fef :call Preserve("normal gg=G")<CR>
-    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-    vmap <leader>s :sort<cr>
-
-    " remap arrow keys
-    nnoremap <up> :tabnext<CR>
-    nnoremap <down> :tabprev<CR>
-    nnoremap <left> :bprev<CR>
-    nnoremap <right> :bnext<CR>
-    inoremap <up> <nop>
-    inoremap <down> <nop>
-    inoremap <left> <nop>
-    inoremap <right> <nop>
-
-    " sane regex
-    nnoremap / /\v
-    vnoremap / /\v
-
-    " screen line scroll
-    nnoremap <silent> j gj
-    nnoremap <silent> k gk
-
-    " reselect visual block after indent
-    vnoremap < <gv
-    vnoremap > >gv
-
-    " search current word into quickfix
-    command GrepWord :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
-    nnoremap <leader>fw :GrepWord<cr>
-
-    " shortcuts for windows
-    nnoremap <leader>v <C-w>v<C-w>l
-    nnoremap <leader>s <C-w>s
-    nnoremap <leader>vsa :vert sba<cr>
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
-
-    " tab shortcuts
-    map <leader>tn :tabnew<CR>
-    map <leader>tc :tabclose<CR>
-
-    " make Y consistent with C and D.  See :help Y.
-    nnoremap Y y$
-
-    " general
-    nmap <leader>l :set list! list?<cr>
-    noremap <space> :set hlsearch! hlsearch?<cr>
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
