@@ -222,11 +222,11 @@
         set guioptions=egm
 
         if has('gui_macvim')
-            set gfn=Ubuntu_Mono:h14
+            set gfn=Ubuntu_Mono_for_Powerline:h14
         endif
 
         if has('gui_win32')
-            set gfn=DejaVu_Sans_Mono:h10
+            set gfn=Ubuntu_Mono_for_Powerline:h10
         endif
 
         set background=dark
