@@ -76,8 +76,6 @@
     set showbreak=…
 
     set foldenable                                      "enable folds by default
-    set foldmethod=syntax
-    "set foldlevelstart=1
     set scrolloff=5                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
@@ -164,6 +162,8 @@
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+    autocmd FileType javascript setlocal foldmethod=syntax foldlevelstart=1
 " }}}
 
 " mappings {{{
