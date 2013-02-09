@@ -215,7 +215,6 @@
     if has('gui_running')
         set lines=999
         set columns=999
-        set guioptions=egm
 
         if has('gui_macvim')
             set gfn=Ubuntu_Mono_for_Powerline:h14
