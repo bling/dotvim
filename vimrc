@@ -92,6 +92,7 @@
         NeoBundle 'maksimr/vim-jsbeautify'
         NeoBundle 'othree/html5.vim'
     " }}}
+    NeoBundleCheck
 " }}}
 
 " functions {{{
@@ -248,10 +249,7 @@
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
     autocmd WinLeave * set nocursorline
-    "autocmd WinLeave * set nocursorcolumn
-
     autocmd WinEnter * set cursorline
-    "autocmd WinEnter * set cursorcolumn
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
@@ -533,5 +531,3 @@
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
-
-NeoBundleCheck
