@@ -31,7 +31,6 @@
 
         NeoBundle 'kien/ctrlp.vim'
         NeoBundle 'paradigm/vim-multicursor'
-        NeoBundle 'mileszs/ack.vim'
         NeoBundle 'sjl/gundo.vim'
         NeoBundle 'godlygeek/tabular'
         NeoBundle 'jeetsukumaran/vim-buffergator'
@@ -58,6 +57,12 @@
 
         if executable('ctags')
             NeoBundle 'majutsushi/tagbar'
+        endif
+
+        if executable('ag')
+            NeoBundle 'epmatsw/ag.vim'
+        elseif executable('ack')
+            NeoBundle 'mileszs/ack.vim'
         endif
 
         NeoBundle 'myusuf3/numbers.vim'
@@ -187,14 +192,6 @@
     set ignorecase                                      "ignore case for searching
     set smartcase                                       "do case-sensitive if there's a capital letter
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
-    if executable('ack')
-        set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
-        set grepformat=%f:%l:%c:%m
-    endif
-    if executable('ag')
-        set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-        set grepformat=%f:%l:%c:%m
-    endif
 
     " vim file/folder management {{{
         " persistent undo
@@ -319,11 +316,12 @@
 " }}}
 
 " plugin/mapping configuration {{{
-    " ack {{{
-        if executable('ag')
-            let g:ackprg="ag --nogroup --column --smart-case --follow --nocolor"
-        endif
+    " ack/ag {{{
+        if neobundle#is_sourced('ag.vim')
+            map <leader>/ :Ag 
+        elseif neobundle#is_sourced('ack.vim')
         map <leader>/ :Ack 
+        endif
     " }}}
     " easygrep {{{
         let g:EasyGrepRecursive=1
