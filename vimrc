@@ -197,9 +197,10 @@
     vnoremap < <gv
     vnoremap > >gv
 
-    " search current word into quickfix
-    command GrepWord :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
-    nnoremap <leader>fw :GrepWord<cr>
+    " find current word in quickfix
+    nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
+    " find last search in quickfix
+    nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 
     " shortcuts for windows
     nnoremap <leader>v <C-w>v<C-w>l
