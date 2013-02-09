@@ -7,53 +7,25 @@
     NeoBundleFetch 'Shougo/neobundle.vim'
 " }}}
 
-" bundles {{{
+" plugin/mapping configuration {{{
     " bundles: plugins {{{
         NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         "NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'Lokaltog/vim-easymotion'
 
-        NeoBundle 'tpope/vim-unimpaired'
-        NeoBundle 'tpope/vim-fugitive'
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
-
-        NeoBundle 'scrooloose/syntastic'
-        NeoBundle 'scrooloose/nerdcommenter'
-        NeoBundle 'scrooloose/nerdtree'
 
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
 
-        NeoBundle 'kien/ctrlp.vim'
         NeoBundle 'paradigm/vim-multicursor'
-        NeoBundle 'sjl/gundo.vim'
-        NeoBundle 'godlygeek/tabular'
-        NeoBundle 'jeetsukumaran/vim-buffergator'
         NeoBundle 'kshenoy/vim-signature'
-        NeoBundle 'roman/golden-ratio'
-        NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'guns/xterm-color-table.vim'
         NeoBundle 'sjl/splice.vim'
 
         "NeoBundle 'SirVer/ultisnips'
         "NeoBundle 'ervandew/supertab'
-
-        NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'Shougo/neosnippet', 'Shougo/unite.vim', 'honza/snipmate-snippets' ] }
-        if executable('make')
-            NeoBundle 'Shougo/vimproc', {
-                \ 'build': {
-                    \ 'mac': 'make -f make_mac.mak',
-                    \ 'windows': 'make -f make_mingw32.mak',
-                    \ 'unix': 'make -f make_unix.mak',
-                \ },
-            \ }
-            NeoBundle 'Shougo/vimshell'
-        endif
-
-        if executable('ack') || executable('ag')
-            NeoBundle 'mileszs/ack.vim'
-        endif
 
         NeoBundle 'myusuf3/numbers.vim'
         if !has('gui_running')
@@ -63,13 +35,9 @@
     " bundles: vim-scripts {{{
         NeoBundle 'vimwiki'
         NeoBundle 'bufkill.vim'
-        NeoBundle 'buftabs'
-        NeoBundle 'EasyGrep'
-        NeoBundle 'YankRing.vim'
         NeoBundle 'matchit.zip'
     " }}}
     " bundles: color schemes {{{
-        NeoBundle 'altercation/vim-colors-solarized'
         NeoBundle 'nanotech/jellybeans.vim'
         NeoBundle 'tomasr/molokai'
         NeoBundle 'chriskempson/vim-tomorrow-theme'
@@ -86,6 +54,234 @@
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'maksimr/vim-jsbeautify'
         NeoBundle 'othree/html5.vim'
+    " }}}
+    " ack/ag {{{
+        if executable('ack') || executable('ag')
+            NeoBundle 'mileszs/ack.vim'
+            if executable('ag')
+                let g:ackprg="ag --nogroup --column --smart-case --follow"
+            endif
+            map <leader>/ :Ack 
+        endif
+    " }}}
+    " easygrep {{{
+        NeoBundle 'EasyGrep'
+        let g:EasyGrepRecursive=1
+        let g:EasyGrepAllOptionsInExplorer=1
+        let g:EasyGrepCommand=1
+    " }}}
+    " fugitive {{{
+        NeoBundle 'tpope/vim-fugitive'
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
+        nnoremap <silent> <leader>gr :Gremove<CR>
+    " }}}
+    " solarized {{{
+        NeoBundle 'altercation/vim-colors-solarized'
+        let g:solarized_contrast="high"
+        let g:solarized_termcolors=256
+        let g:solarized_visibility="high"
+    " }}}
+    " buffergator {{{
+        NeoBundle 'jeetsukumaran/vim-buffergator'
+        let g:buffergator_suppress_keymaps=1
+        nnoremap <leader>b :BuffergatorToggle<cr>
+        nnoremap <leader>t :BuffergatorTabsToggle<cr>
+    " }}}
+    " nerdtree {{{
+        NeoBundle 'scrooloose/nerdtree'
+        let NERDTreeShowHidden=1
+        let NERDTreeQuitOnOpen=1
+        let NERDTreeShowLineNumbers=1
+        let NERDTreeChDirMode=0
+        let NERDTreeShowBookmarks=1
+        let NERDTreeIgnore=['\.git','\.hg']
+        map <F2> :NERDTreeToggle<CR>
+        map <F3> :NERDTreeFind<CR>
+    " }}}
+    " nerdcommenter {{{
+        NeoBundle 'scrooloose/nerdcommenter'
+        map \\ <plug>NERDCommenterToggle
+    "}}}
+    " syntastic {{{
+        NeoBundle 'scrooloose/syntastic'
+        let g:syntastic_error_symbol = '✗'
+        let g:syntastic_style_error_symbol = '✠'
+        let g:syntastic_warning_symbol = '∆'
+        let g:syntastic_style_warning_symbol = '≈'
+    " }}}
+    " ctrlp {{{
+        NeoBundle 'kien/ctrlp.vim'
+        "let g:ctrlp_clear_cache_on_exit=0
+        let g:ctrlp_max_height=40
+        let g:ctrlp_max_files=2000
+        let g:ctrlp_show_hidden=1
+        let g:ctrlp_follow_symlinks=1
+        let g:ctrlp_working_path_mode=0
+        let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
+
+        map <leader>p :CtrlPBufTag<cr>
+        map <leader>pt :CtrlPTag<cr>
+        map <leader>pl :CtrlPLine<cr>
+        map <leader>pb :CtrlPBuffer<cr>
+    " }}}
+    " yankring {{{
+        NeoBundle 'YankRing.vim'
+        let g:yankring_replace_n_nkey = '<C-BS>'
+        let g:yankring_replace_n_pkey = '<BS>'
+        let g:yankring_history_dir='~/.vim/.cache'
+        function! YRRunAfterMaps()
+            nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+        endfunction
+    " }}}
+    " buftabs {{{
+        NeoBundle 'buftabs'
+        let g:buftabs_only_basename=1
+    " }}}
+    " tabular {{{
+        NeoBundle 'godlygeek/tabular'
+        nmap <Leader>a& :Tabularize /&<CR>
+        vmap <Leader>a& :Tabularize /&<CR>
+        nmap <Leader>a= :Tabularize /=<CR>
+        vmap <Leader>a= :Tabularize /=<CR>
+        nmap <Leader>a: :Tabularize /:<CR>
+        vmap <Leader>a: :Tabularize /:<CR>
+        nmap <Leader>a:: :Tabularize /:\zs<CR>
+        vmap <Leader>a:: :Tabularize /:\zs<CR>
+        nmap <Leader>a, :Tabularize /,<CR>
+        vmap <Leader>a, :Tabularize /,<CR>
+        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    " }}}
+    " gundo {{{
+        NeoBundle 'sjl/gundo.vim'
+        nnoremap <silent> <F5> :GundoToggle<CR>
+    " }}}
+    " unimpaired {{{
+        NeoBundle 'tpope/vim-unimpaired'
+        nmap <c-up> [e
+        nmap <c-down> ]e
+        vmap <c-up> [egv
+        vmap <c-down> ]egv
+    " }}}
+    " golden-ratio {{{
+        NeoBundle 'roman/golden-ratio'
+        map <silent> <leader>gr <Plug>(golden_ratio_resize)<cr>
+    " }}}
+    " jsbeautify {{{
+        nmap <leader>fjs :call JsBeautify()<CR>
+    " }}}
+    " ultisnips {{{
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    " }}}
+    " indent guides {{{
+        NeoBundle 'nathanaelkane/vim-indent-guides'
+        let g:indent_guides_guide_size=1
+        let g:indent_guides_start_level=1
+        let g:indent_guides_enable_on_vim_startup=1
+        let g:indent_guides_color_change_percent=5
+        if !has('gui_running')
+            let g:indent_guides_auto_colors=0
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+        endif
+    " }}}
+    " shougo plugins {{{
+        " unite {{{
+            let g:unite_data_directory='~/.vim/.cache/unite'
+        " }}}
+        " neosnippet {{{
+            " use honza's snippets
+            let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+            let g:neosnippet#enable_snipmate_compatibility=1
+        " }}}
+        " neocomplcache {{{
+            NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'Shougo/neosnippet', 'Shougo/unite.vim', 'honza/snipmate-snippets' ] }
+
+            let g:neocomplcache_enable_at_startup = 1
+            "let g:neocomplcache_enable_camel_case_completion = 1
+            "let g:neocomplcache_enable_underbar_completion = 1
+            let g:neocomplcache_enable_smart_case = 1
+            let g:neocomplcache_enable_auto_delimiter = 1
+            let g:neocomplcache_max_list = 15
+            let g:neocomplcache_force_overwrite_completefunc = 1
+            let g:neocomplcache_max_menu_width = 999
+            let g:neocomplcache_auto_completion_start_length=2
+            let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
+
+            " Proper tab completion
+            imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+            smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+            " Define dictionary
+            let g:neocomplcache_dictionary_filetype_lists = {
+                \ 'default' : '',
+                \ 'vimshell' : $HOME.'/.vimshell_hist',
+                \ 'scheme' : $HOME.'/.gosh_completions'
+                \ }
+
+            " Define keyword
+            if !exists('g:neocomplcache_keyword_patterns')
+                let g:neocomplcache_keyword_patterns = {}
+            endif
+            let g:neocomplcache_keyword_patterns._ = '\h\w*'
+
+            " Plugin key-mappings
+            imap <C-k> <Plug>(neosnippet_expand_or_jump)
+            smap <C-k> <Plug>(neosnippet_expand_or_jump)
+            inoremap <expr><C-g> neocomplcache#undo_completion()
+            inoremap <expr><C-l> neocomplcache#complete_common_string()
+            inoremap <expr><CR> neocomplcache#complete_common_string()
+
+            " <CR>: close popup
+            " <s-CR>: close popup and save indent.
+            inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+            inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+
+            " <C-h>, <BS>: close popup and delete backword char.
+            inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+            inoremap <expr><C-y> neocomplcache#close_popup()
+
+            " Enable heavy omni completion
+            if !exists('g:neocomplcache_omni_patterns')
+                let g:neocomplcache_omni_patterns = {}
+            endif
+            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+            let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+            " For snippet_complete marker
+            if has('conceal')
+                "set conceallevel=2 concealcursor=i
+            endif
+    " }}}
+        " vimshell {{{
+            if executable('make')
+                NeoBundle 'Shougo/vimproc', {
+                    \ 'build': {
+                        \ 'mac': 'make -f make_mac.mak',
+                        \ 'windows': 'make -f make_mingw32.mak',
+                        \ 'unix': 'make -f make_unix.mak',
+                    \ },
+                \ }
+                NeoBundle 'Shougo/vimshell'
+            endif
+
+            let g:vimshell_editor_command="/usr/local/bin/vim"
+            let g:vimshell_right_prompt='getcwd()'
+            let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
+
+            nnoremap <leader>c :VimShell -split<cr>
+        "}}}
     " }}}
     NeoBundleCheck
 " }}}
@@ -308,213 +504,6 @@
     " general
     nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
-" }}}
-
-" plugin/mapping configuration {{{
-    " ack/ag {{{
-        if executable('ag')
-            let g:ackprg="ag --nogroup --column --smart-case --follow"
-        endif
-        map <leader>/ :Ack 
-    " }}}
-    " easygrep {{{
-        let g:EasyGrepRecursive=1
-        let g:EasyGrepAllOptionsInExplorer=1
-        let g:EasyGrepCommand=1
-    " }}}
-    " fugitive {{{
-        nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
-        nnoremap <silent> <leader>gb :Gblame<CR>
-        nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
-        nnoremap <silent> <leader>gw :Gwrite<CR>
-        nnoremap <silent> <leader>gr :Gremove<CR>
-    " }}}
-    " solarized {{{
-        let g:solarized_contrast="high"
-        let g:solarized_termcolors=256
-        let g:solarized_visibility="high"
-    " }}}
-    " buffergator {{{
-        let g:buffergator_suppress_keymaps=1
-        nnoremap <leader>b :BuffergatorToggle<cr>
-        nnoremap <leader>t :BuffergatorTabsToggle<cr>
-    " }}}
-    " nerdtree {{{
-        let NERDTreeShowHidden=1
-        let NERDTreeQuitOnOpen=1
-        let NERDTreeShowLineNumbers=1
-        let NERDTreeChDirMode=0
-        let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.git','\.hg']
-        map <F2> :NERDTreeToggle<CR>
-        map <F3> :NERDTreeFind<CR>
-    " }}}
-    " nerdcommenter {{{
-        map \\ <plug>NERDCommenterToggle
-    "}}}
-    " syntastic {{{
-        let g:syntastic_error_symbol = '✗'
-        let g:syntastic_style_error_symbol = '✠'
-        let g:syntastic_warning_symbol = '∆'
-        let g:syntastic_style_warning_symbol = '≈'
-    " }}}
-    " ctrlp {{{
-        "let g:ctrlp_clear_cache_on_exit=0
-        let g:ctrlp_max_height=40
-        let g:ctrlp_max_files=2000
-        let g:ctrlp_show_hidden=1
-        let g:ctrlp_follow_symlinks=1
-        let g:ctrlp_working_path_mode=0
-        let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
-
-        map <leader>p :CtrlPBufTag<cr>
-        map <leader>pt :CtrlPTag<cr>
-        map <leader>pl :CtrlPLine<cr>
-        map <leader>pb :CtrlPBuffer<cr>
-    " }}}
-    " yankring {{{
-        let g:yankring_replace_n_nkey = '<C-BS>'
-        let g:yankring_replace_n_pkey = '<BS>'
-        let g:yankring_history_dir='~/.vim/.cache'
-        function! YRRunAfterMaps()
-            nnoremap Y :<C-U>YRYankCount 'y$'<CR>
-        endfunction
-    " }}}
-    " powerline settings {{{
-        let g:Powerline_symbols = 'fancy'
-    " }}}
-    " buftabs {{{
-        let g:buftabs_only_basename=1
-    " }}}
-    " unite {{{
-        let g:unite_data_directory='~/.vim/.cache/unite'
-    " }}}
-    " tabular {{{
-        nmap <Leader>a& :Tabularize /&<CR>
-        vmap <Leader>a& :Tabularize /&<CR>
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:<CR>
-        vmap <Leader>a: :Tabularize /:<CR>
-        nmap <Leader>a:: :Tabularize /:\zs<CR>
-        vmap <Leader>a:: :Tabularize /:\zs<CR>
-        nmap <Leader>a, :Tabularize /,<CR>
-        vmap <Leader>a, :Tabularize /,<CR>
-        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    " }}}
-    " gundo {{{
-        nnoremap <silent> <F5> :GundoToggle<CR>
-    " }}}
-    " unimpaired {{{
-        nmap <c-up> [e
-        nmap <c-down> ]e
-        vmap <c-up> [egv
-        vmap <c-down> ]egv
-    " }}}
-    " golden-ratio {{{
-        map <silent> <leader>gr <Plug>(golden_ratio_resize)<cr>
-    " }}}
-    " jsbeautify {{{
-        nmap <leader>fjs :call JsBeautify()<CR>
-    " }}}
-    " ultisnips {{{
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<tab>"
-        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-    " }}}
-    " neocomplcache {{{
-        if (neobundle#is_sourced('neocomplcache'))
-            let g:neocomplcache_enable_at_startup = 1
-            "let g:neocomplcache_enable_camel_case_completion = 1
-            "let g:neocomplcache_enable_underbar_completion = 1
-            let g:neocomplcache_enable_smart_case = 1
-            let g:neocomplcache_enable_auto_delimiter = 1
-            let g:neocomplcache_max_list = 15
-            let g:neocomplcache_force_overwrite_completefunc = 1
-            let g:neocomplcache_max_menu_width = 999
-            let g:neocomplcache_auto_completion_start_length=2
-            let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
-
-            " Proper tab completion
-            imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
-            smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-            " Define dictionary
-            let g:neocomplcache_dictionary_filetype_lists = {
-                \ 'default' : '',
-                \ 'vimshell' : $HOME.'/.vimshell_hist',
-                \ 'scheme' : $HOME.'/.gosh_completions'
-                \ }
-
-            " Define keyword
-            if !exists('g:neocomplcache_keyword_patterns')
-                let g:neocomplcache_keyword_patterns = {}
-            endif
-            let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
-            " Plugin key-mappings
-            imap <C-k> <Plug>(neosnippet_expand_or_jump)
-            smap <C-k> <Plug>(neosnippet_expand_or_jump)
-            inoremap <expr><C-g> neocomplcache#undo_completion()
-            inoremap <expr><C-l> neocomplcache#complete_common_string()
-            inoremap <expr><CR> neocomplcache#complete_common_string()
-
-            " <CR>: close popup
-            " <s-CR>: close popup and save indent.
-            inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-            inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-
-            " <C-h>, <BS>: close popup and delete backword char.
-            inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-            inoremap <expr><C-y> neocomplcache#close_popup()
-
-            " Enable heavy omni completion
-            if !exists('g:neocomplcache_omni_patterns')
-                let g:neocomplcache_omni_patterns = {}
-            endif
-            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-            let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
-            " For snippet_complete marker
-            if has('conceal')
-                "set conceallevel=2 concealcursor=i
-            endif
-        endif
-    " }}}
-    " neosnippet {{{
-        if (neobundle#is_sourced('neosnippet'))
-            " use honza's snippets
-            let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
-            let g:neosnippet#enable_snipmate_compatibility=1
-        endif
-    " }}}
-    " vimshell {{{
-        if (neobundle#is_sourced('vimshell'))
-            let g:vimshell_editor_command="/usr/local/bin/vim"
-            let g:vimshell_right_prompt='getcwd()'
-            let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
-
-            nnoremap <leader>c :VimShell -split<cr>
-        endif
-    "}}}
-    " indent guides {{{
-        let g:indent_guides_guide_size=1
-        let g:indent_guides_start_level=1
-        let g:indent_guides_enable_on_vim_startup=1
-        let g:indent_guides_color_change_percent=5
-        if !has('gui_running')
-            let g:indent_guides_auto_colors=0
-            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
-        endif
-    " }}}
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
