@@ -31,6 +31,141 @@
     endfunction
 " }}}
 
+" base configuration {{{
+    filetype on
+    filetype plugin on
+    filetype indent on
+    syntax enable
+
+    set timeoutlen=300                                  "mapping timeout
+    set ttimeoutlen=50                                  "keycode timeout
+
+    set mouse=a                                         "enable mouse
+    set mousehide                                       "hide when characters are typed
+    set history=1000                                    "number of command lines to remember
+    set ttyfast                                         "assume fast terminal connection
+    set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
+    set encoding=utf-8                                  "set encoding for text
+    set clipboard=unnamed                               "sync with OS clipboard
+    set hidden                                          "allow buffer switching without saving
+    set autoread                                        "auto reload if file saved externally
+    set fileformats+=mac                                "add mac to auto-detection of file format line endings
+    set nrformats-=octal                                "always assume decimal numbers
+    set showcmd
+    set tags=tags;/
+    set showfulltag
+    set keywordprg=":help"                              "remap K to vim help
+    if executable('zsh')
+        set shell=zsh
+    endif
+
+    " whitespace
+    set backspace=indent,eol,start                      "allow backspacing everything in insert mode
+    set autoindent                                      "automatically indent to match adjacent lines
+    set smartindent                                     "smart indenting for additional languages
+    set expandtab                                       "spaces instead of tabs
+    set smarttab                                        "use shiftwidth to enter tabs
+    set tabstop=4                                       "number of spaces per tab for display
+    set softtabstop=4                                   "number of spaces per tab in insert mode
+    set shiftwidth=4                                    "number of spaces when indenting
+    set virtualedit=onemore                             "allow cursor one beyond end of line
+    set list                                            "highlight whitespace
+    set listchars=tab:▸\ ,trail:.,extends:❯,precedes:❮
+    set shiftround
+    set linebreak
+    set showbreak=…
+
+    set foldenable                                      "enable folds by default
+    set foldmethod=syntax
+    "set foldlevelstart=1
+    set scrolloff=5                                     "always show content after scroll
+    set scrolljump=5                                    "minimum number of lines to scroll
+    set display+=lastline
+    set wildmenu                                        "show list for autocomplete
+    set wildmode=list:longest:full                      "priority for tab completion
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
+
+    set splitbelow
+    set splitright
+
+    " disable sounds
+    set noerrorbells
+    set novisualbell
+    set t_vb=
+
+    " searching
+    set hlsearch                                        "highlight searches
+    set incsearch                                       "incremental searching
+    set ignorecase                                      "ignore case for searching
+    set smartcase                                       "do case-sensitive if there's a capital letter
+    set showmatch                                       "automatically highlight matching braces/brackets/etc.
+
+    " vim file/folder management {{{
+        " persistent undo
+        set undofile
+        set undodir=~/.vim/.cache/undo
+
+        " backups
+        set backup
+        set backupdir=~/.vim/.cache/backup
+        set directory=~/.vim/.cache/swap
+
+        call EnsureExists('~/.vim/.cache')
+        call EnsureExists(&undodir)
+        call EnsureExists(&backupdir)
+        call EnsureExists(&directory)
+    " }}}
+" }}}
+
+" ui configuration {{{
+    set matchtime=2                                     "tens of a second to show matching parentheses
+    set laststatus=2
+    set number
+    set cursorline
+
+    if has('gui_running')
+        set lines=999
+        set columns=999
+        set guioptions+=t                               "tear off menu items
+        set guioptions-=T                               "toolbar icons
+
+        if has('gui_macvim')
+            set gfn=Ubuntu_Mono_for_Powerline:h14
+        endif
+
+        if has('gui_win32')
+            set gfn=Ubuntu_Mono_for_Powerline:h10
+        endif
+    else
+        set t_Co=256
+
+        " difference cursors for insert vs normal mode
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    endif
+" }}}
+
+" autocmd {{{
+    autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
+
+    " go back to previous position of cursor if any
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe 'normal! g`"zvzz' |
+        \ endif
+
+    " enable omni completion
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" }}}
+
 " mappings {{{
     let mapleader = ","
     let g:mapleader = ","
@@ -361,144 +496,14 @@
     NeoBundleCheck
 " }}}
 
-" base configuration {{{
-    filetype on
-    filetype plugin on
-    filetype indent on
-    syntax enable
-
-    set timeoutlen=300                                  "mapping timeout
-    set ttimeoutlen=50                                  "keycode timeout
-
-    set mouse=a                                         "enable mouse
-    set mousehide                                       "hide when characters are typed
-    set history=1000                                    "number of command lines to remember
-    set ttyfast                                         "assume fast terminal connection
-    set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
-    set encoding=utf-8                                  "set encoding for text
-    set clipboard=unnamed                               "sync with OS clipboard
-    set hidden                                          "allow buffer switching without saving
-    set autoread                                        "auto reload if file saved externally
-    set fileformats+=mac                                "add mac to auto-detection of file format line endings
-    set nrformats-=octal                                "always assume decimal numbers
-    set showcmd
-    set tags=tags;/
-    set showfulltag
-    set keywordprg=":help"                              "remap K to vim help
-    if executable('zsh')
-        set shell=zsh
-    endif
-
-    " whitespace
-    set backspace=indent,eol,start                      "allow backspacing everything in insert mode
-    set autoindent                                      "automatically indent to match adjacent lines
-    set smartindent                                     "smart indenting for additional languages
-    set expandtab                                       "spaces instead of tabs
-    set smarttab                                        "use shiftwidth to enter tabs
-    set tabstop=4                                       "number of spaces per tab for display
-    set softtabstop=4                                   "number of spaces per tab in insert mode
-    set shiftwidth=4                                    "number of spaces when indenting
-    set virtualedit=onemore                             "allow cursor one beyond end of line
-    set list                                            "highlight whitespace
-    set listchars=tab:▸\ ,trail:.,extends:❯,precedes:❮
-    set shiftround
-    set linebreak
-    set showbreak=…
-
-    set foldenable                                      "enable folds by default
-    set foldmethod=syntax
-    set foldlevelstart=1
-    set scrolloff=5                                     "always show content after scroll
-    set scrolljump=5                                    "minimum number of lines to scroll
-    set display+=lastline
-    set wildmenu                                        "show list for autocomplete
-    set wildmode=list:longest:full                      "priority for tab completion
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
-
-    set splitbelow
-    set splitright
-
-    " disable sounds
-    set noerrorbells
-    set novisualbell
-    set t_vb=
-
-    " searching
-    set hlsearch                                        "highlight searches
-    set incsearch                                       "incremental searching
-    set ignorecase                                      "ignore case for searching
-    set smartcase                                       "do case-sensitive if there's a capital letter
-    set showmatch                                       "automatically highlight matching braces/brackets/etc.
-
-    " vim file/folder management {{{
-        " persistent undo
-        set undofile
-        set undodir=~/.vim/.cache/undo
-
-        " backups
-        set backup
-        set backupdir=~/.vim/.cache/backup
-        set directory=~/.vim/.cache/swap
-
-        call EnsureExists('~/.vim/.cache')
-        call EnsureExists(&undodir)
-        call EnsureExists(&backupdir)
-        call EnsureExists(&directory)
-    " }}}
-" }}}
-
-" ui configuration {{{
-    set matchtime=2                                     "tens of a second to show matching parentheses
-    set laststatus=2
-    set number
-    set cursorline
-
-    if has('gui_running')
-        set lines=999
-        set columns=999
-        set guioptions+=t                               "tear off menu items
-        set guioptions-=T                               "toolbar icons
-
-        if has('gui_macvim')
-            set gfn=Ubuntu_Mono_for_Powerline:h14
-        endif
-
-        if has('gui_win32')
-            set gfn=Ubuntu_Mono_for_Powerline:h10
-        endif
-
+" theme {{{
+    if has("gui_running")
         set background=dark
         colorscheme Tomorrow-Night
     else
-        set t_Co=256
         set background=dark
         colorscheme hybrid
-
-        " difference cursors for insert vs normal mode
-        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
-" }}}
-
-" autocmd {{{
-    autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
-
-    " go back to previous position of cursor if any
-    autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe 'normal! g`"zvzz' |
-        \ endif
-
-    " enable omni completion
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
