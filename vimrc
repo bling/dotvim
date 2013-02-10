@@ -415,7 +415,8 @@
         " }}}
         " neosnippet {{{
             NeoBundle 'Shougo/neosnippet'
-            let g:neosnippet#snippets_directory='~/.vim/snippets'
+            NeoBundle 'honza/snipmate-snippets'
+            let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
             let g:neosnippet#enable_snipmate_compatibility=1
         " }}}
         " neocomplcache {{{
