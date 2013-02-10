@@ -226,7 +226,6 @@
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
         NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-        "NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'Lokaltog/vim-easymotion'
 
         NeoBundle 'tpope/vim-surround'
@@ -239,8 +238,6 @@
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'guns/xterm-color-table.vim'
         NeoBundle 'sjl/splice.vim'
-
-        "NeoBundle 'ervandew/supertab'
 
         NeoBundle 'myusuf3/numbers.vim'
         if !has('gui_running')
@@ -352,6 +349,7 @@
         function! YRRunAfterMaps()
             nnoremap Y :<C-U>YRYankCount 'y$'<CR>
         endfunction
+        map <leader>y :YRShow<CR>
     " }}}
     " buftabs {{{
         NeoBundle 'buftabs'
