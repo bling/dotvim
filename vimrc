@@ -97,6 +97,14 @@
     set ignorecase                                      "ignore case for searching
     set smartcase                                       "do case-sensitive if there's a capital letter
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
+    if executable('ack')
+        set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
+        set grepformat=%f:%l:%c:%m
+    endif
+    if executable('ag')
+        set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+        set grepformat=%f:%l:%c:%m
+    endif
 
     " vim file/folder management {{{
         " persistent undo
