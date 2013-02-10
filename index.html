@@ -1,61 +1,252 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="bling.vim : yet another vim distribution" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>bling.vim</title>
+    <title>bling.vim by bling</title>
   </head>
 
   <body>
+    <header>
+      <div class="inner">
+        <h1>bling.vim</h1>
+        <h2>(Y)et (A)nother (V)im (D)istribution</h2>
+        <a href="https://github.com/bling/dotvim" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/bling/dotvim">View on GitHub</a>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h2>introduction</h2>
 
-          <h1 id="project_title">bling.vim</h1>
-          <h2 id="project_tagline">yet another vim distribution</h2>
+<p>this is my personal vim configuration that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.</p>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/bling/dotvim/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/bling/dotvim/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+<p>while it is quite easy to install this distribution (i designed it that way for me to easily switch between computers), i actually recommend that you don't use it verbatim.  configuring a vimrc from scratch was an incredibly awesome experience and i want you to experience it too.  take a look at my vimrc for ideas, as well as the credits section.</p>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>bling's vim distribution</h3>
-
-<p>Here you'll find information about my vim distribution.  I recommend that you not use this verbatim, but rather, take ideas from it to build your own vimrc.</p>
-
-<p>However, it does work out of the box with minimal configuration.  Just following these steps to make it happen!</p>
+<h2>installation</h2>
 
 <ol>
-<li><code>git clone https://github.com/bling/dotvim.git ~/.vim</code></li>
-<li><code>cd ~/.vim</code></li>
-<li><code>git submodule init &amp;&amp; git submodule update</code></li>
-<li>
-<code>ln -s ~/.vim/vimrc ~/.vimrc</code> (don't forget to make a backup of your existing vimrc)</li>
-</ol>
-      </section>
+<li> clone this repository into your <code>~/.vim</code> directory</li>
+<li> <code>git submodule init &amp;&amp; git submodule update</code>
+</li>
+<li> <code>ln -s ~/.vim/vimrc ~/.vimrc</code>
+</li>
+<li> install the fonts found in the <code>font</code> directory</li>
+<li> on osx/linux, run <code>vim</code> and it will automatically ask you to install plugins.  on windows, the check is disabled, so you need to run <code>:NeoBundleInstall</code> manually.</li>
+<li> done!</li>
+</ol><h2>modifications</h2>
+
+<ul>
+<li> if you have either <a href="http://betterthangrep.com/">ack</a> or <a href="https://github.com/ggreer/the_silver_searcher">ag</a> installed, they will be used for <code>grepprg</code>
+</li>
+<li> backup/swap/undo are all turned on and persistant.  they are stored in <code>~/.vim/.cache</code> which stays out of your way.</li>
+</ul><h2>mappings</h2>
+
+<h3>normal mode</h3>
+
+<ul>
+<li> <code>&lt;leader&gt;fef</code> format entire file</li>
+<li> <code>&lt;leader&gt;f$</code> strip current line of trailing white space</li>
+<li> <code>&lt;leader&gt;fw</code> find the word under cursor into the quickfix list</li>
+<li> <code>&lt;leader&gt;ff</code> find the last search into the quickfix list</li>
+<li> <code>&lt;leader&gt;v</code> vertical split</li>
+<li> <code>&lt;leader&gt;s</code> horizontal split</li>
+<li> <code>&lt;C-h&gt;</code> <code>&lt;C-j&gt;</code> <code>&lt;C-k&gt;</code> <code>&lt;C-l&gt;</code> move to window in the direction of hkjl</li>
+<li> <code>&lt;leader&gt;vsa</code> vertically split all buffers</li>
+<li> <code>/</code> replaced with <code>/\v</code> for sane regex searching</li>
+<li> <code>&lt;Space&gt;</code> toggles hisearch</li>
+</ul><h3>visual mode</h3>
+
+<ul>
+<li> <code>&lt;leader&gt;s</code> sort selection</li>
+<li> <code>&gt;</code> and <code>&lt;</code> automatically reselects the visual selection</li>
+</ul><h2>macros</h2>
+
+<ul>
+<li> <code>@b</code> place your cursor on _f_unction and it will automatically _.bind it (very useful in javascript).</li>
+</ul><h2>plugins</h2>
+
+<h3><a href="https://github.com/milezs/ack.vim">ack.vim</a></h3>
+
+<ul>
+<li> super fast project searching if you have <a href="http://betterthangrep.com/">ack</a> installed.</li>
+<li> if you have <a href="https://github.com/ggreer/the_silver_searcher">ag</a> installed, it will use that instead</li>
+<li> <code>&lt;leader&gt;/</code>
+</li>
+</ul><h3><a href="http://www.vim.org/scripts/script.php?script_id=1147">bufkill.vim</a></h3>
+
+<ul>
+<li> <code>&lt;leader&gt;bd</code> or <code>:BD</code> will kill a buffer without changing the window layout</li>
+</ul><h3><a href="https://github.com/Lokaltog/vim-easymotion'">easymotion</a></h3>
+
+<ul>
+<li> easily jumps to any character on the screen</li>
+<li> <code>&lt;leader&gt;&lt;leader&gt;w</code> or <code>&lt;leader&gt;&lt;leader&gt;e</code> will do the trick, along with any of the other default bindings that plugin has mapped under <code>&lt;leader&gt;&lt;leader&gt;</code>
+</li>
+</ul><h3><a href="http://www.vim.org/scripts/script.php?script_id=2438">easygrep</a></h3>
+
+<ul>
+<li> makes search/replacing in your project a lot easier without relying on <code>find</code> and <code>sed</code>
+</li>
+<li> <code>&lt;leader&gt;vv</code> find word under the cursor</li>
+<li> <code>&lt;leader&gt;vV</code> find whole word under the cursor</li>
+<li> <code>&lt;leader&gt;vr</code> perform global search replace of word under cursor, with confirmation</li>
+<li> <code>&lt;leader&gt;vR</code> same as vr, but matches whole word</li>
+<li> <code>&lt;leader&gt;vo</code> shows options</li>
+</ul><h3><a href="https://github.com/tpope/vim-fugitive">fugitive</a></h3>
+
+<ul>
+<li> git wrapper</li>
+<li> <code>&lt;leader&gt;gs :Gstatus</code>
+</li>
+<li> <code>&lt;leader&gt;gd :Gdiff</code>
+</li>
+<li> <code>&lt;leader&gt;gc :Gcommit</code>
+</li>
+<li> <code>&lt;leader&gt;gb :Gblame</code>
+</li>
+<li> <code>&lt;leader&gt;gl :Glog</code>
+</li>
+<li> <code>&lt;leader&gt;gp :Git push</code>
+</li>
+<li> <code>&lt;leader&gt;gw :Gwrite</code>
+</li>
+<li> <code>&lt;leader&gt;gr :Gremove</code>
+</li>
+</ul><h3><a href="https://github.com/jeetsukumaran/vim-buffergator">buffergator</a></h3>
+
+<ul>
+<li> easily see your buffers and/or tabs</li>
+<li> <code>&lt;leader&gt;b</code> toggle buffer list</li>
+<li> <code>&lt;leader&gt;t</code> toggle tab list</li>
+</ul><h3><a href="https://github.com/scrooloose/nerdtree">nerdtree</a></h3>
+
+<ul>
+<li> file browser</li>
+<li> <code>&lt;F2&gt;</code> toggle browser</li>
+<li> <code>&lt;F3&gt;</code> open tree to path of the current file</li>
+</ul><h3><a href="https://github.com/scrooloose/nerdcommenter">nerdcommenter</a></h3>
+
+<ul>
+<li> commenter plugin</li>
+<li> all default mappings, and <code>\\</code> additionally mapped for comment toggling</li>
+</ul><h3><a href="https://github.com/kien/ctrlp.vim">ctrlp</a></h3>
+
+<ul>
+<li> fuzzy file searching</li>
+<li> <code>&lt;C-P&gt;</code> to bring up the search</li>
+<li> <code>&lt;leader&gt;p</code> search the current buffer tags</li>
+<li> <code>&lt;leader&gt;pt</code> search global tags</li>
+<li> <code>&lt;leader&gt;pl</code> search all lines of all buffers</li>
+<li> <code>&lt;leader&gt;pb</code> search open buffers</li>
+</ul><h3><a href="http://www.vim.org/scripts/script.php?script_id=1234">yankring</a></h3>
+
+<ul>
+<li> keeps a history of all your yanks and delete</li>
+<li> <code>&lt;leader&gt;y</code> to toggle showing the yankring</li>
+<li> after <code>p</code>asting, <code>&lt;BS&gt;</code> to cycle back, <code>&lt;C-BS&gt;</code> to cycle forward</li>
+</ul><h3><a href="https://github.com/godlygeek/tabular">tabular</a></h3>
+
+<ul>
+<li> easily aligns code</li>
+<li> <code>&lt;leader&gt;a&amp;</code>, <code>&lt;leader&gt;a=</code>, <code>&lt;leader&gt;a:</code>, <code>&lt;leader&gt;a,</code>, <code>&lt;leader&gt;a|</code>
+</li>
+</ul><h3><a href="http://github.com/roman/golden-ratio">golden-ratio</a></h3>
+
+<ul>
+<li> a plugin which automatically resizes all your splits to give the current one the optimal amount of viewing real estate</li>
+<li> this plugin will interfere with other plugins which rely on windows, so it is disabled by default and can be toggled on/off with <code>&lt;F4&gt;</code>
+</li>
+</ul><h3><a href="https://github.com/mattn/gist-vim">gist</a></h3>
+
+<ul>
+<li> automatically get or push changes for gists with <code>:Gist</code>
+</li>
+</ul><h3><a href="https://github.com/mattn/zencoding-vim-vim">zencoding</a></h3>
+
+<ul>
+<li> makes for writing html/css extremely fast</li>
+<li> currently, default plugin mappings are used, which means <code>&lt;C-y&gt;,</code> expand</li>
+</ul><h3><a href="https://github.com/sjl/gundo.vim">gundo</a></h3>
+
+<ul>
+<li> visualize the undo tree</li>
+<li> <code>&lt;F5&gt;</code> to toggle</li>
+</ul><h3><a href="https://github.com/tpope/vim-unimpaired">unimpaired</a></h3>
+
+<ul>
+<li> many additional bracket <code>[]</code> maps</li>
+<li> <code>&lt;C-up&gt;</code> to move lines up</li>
+<li> <code>&lt;C-down&gt;</code> to move lines down</li>
+</ul><h3><a href="https://github.com/Shougo">neocomplcache/neosnippet</a></h3>
+
+<ul>
+<li> super awesome autocomplete and snippet support</li>
+<li> <code>&lt;Tab&gt;</code> to select the next match, or expand if the keyword is a snippet</li>
+</ul><h3><a href="https://github.com/Shougo/vimshell">vimshell</a></h3>
+
+<ul>
+<li> <code>&lt;leader&gt;c</code> splits a new window with an embedded shell</li>
+</ul><h3><a href="https://github.com/Lokaltog/powerline">powerline</a></h3>
+
+<ul>
+<li> makes vim look pretty, enough said (remember to install the patched fonts!)</li>
+</ul><h2>credits</h2>
+
+<p>i wanted to give special thanks to all of the people who worked on the following projects, or people simply posted their vim distributions, because i learned a lot and took many ideas and incorporated them into my configuration.</p>
+
+<ul>
+<li> <a href="https://github.com/carlhuda/janus">janus</a>
+</li>
+<li> <a href="https://github.com/spf13/spf13-vim">spf13</a>
+</li>
+<li> <a href="http://skwp.github.com/dotfiles/">yadr</a>
+</li>
+<li> <a href="https://github.com/astrails/dotvim">astrails</a>
+</li>
+<li> <a href="https://github.com/tpope">tpope</a>
+</li>
+<li> <a href="https://github.com/scrooloose">scrooloose</a>
+</li>
+<li> <a href="https://github.com/Shougo">shougo</a>
+</li>
+<li> <a href="https://github.com/Lokaltog">lokaltog</a>
+</li>
+<li> <a href="https://github.com/sjl">sjl</a>
+</li>
+</ul><h2>license</h2>
+
+<p><a href="http://sam.zoy.org/wtfpl/">WTFPL</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/bling/dotvim/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/bling/dotvim/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/bling/dotvim"></a> is maintained by <a href="https://github.com/bling">bling</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">bling.vim maintained by <a href="https://github.com/bling">bling</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+  
   </body>
 </html>
