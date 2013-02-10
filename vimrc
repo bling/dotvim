@@ -389,7 +389,9 @@
     " }}}
     " golden-ratio {{{
         NeoBundle 'roman/golden-ratio'
-        map <silent> <leader>gr <Plug>(golden_ratio_resize)<cr>
+        let g:golden_ratio_autocommand=0
+        let g:golden_ratio_wrap_ignored=0
+        map <F4> :GoldenRatioToggle<cr>
     " }}}
     " jsbeautify {{{
         NeoBundle 'maksimr/vim-jsbeautify'
@@ -450,8 +452,8 @@
             let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
             " Plugin key-mappings
-            imap <C-k> <Plug>(neosnippet_expand_or_jump)
-            smap <C-k> <Plug>(neosnippet_expand_or_jump)
+            "imap <C-k> <Plug>(neosnippet_expand_or_jump)
+            "smap <C-k> <Plug>(neosnippet_expand_or_jump)
             inoremap <expr><C-g> neocomplcache#undo_completion()
             inoremap <expr><C-l> neocomplcache#complete_common_string()
             inoremap <expr><CR> neocomplcache#complete_common_string()
@@ -463,7 +465,7 @@
 
             " <C-h>, <BS>: close popup and delete backword char.
             inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-            inoremap <expr><C-y> neocomplcache#close_popup()
+            "inoremap <expr><C-y> neocomplcache#close_popup()
 
             " Enable heavy omni completion
             if !exists('g:neocomplcache_omni_patterns')
@@ -499,7 +501,10 @@
             nnoremap <leader>c :VimShell -split<cr>
         "}}}
     " }}}
+
+    if !has('win32')
     NeoBundleCheck
+    endif
 " }}}
 
 " theme {{{
