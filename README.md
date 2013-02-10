@@ -17,6 +17,11 @@ while it is quite easy to install this distribution (i designed it that way for 
 1.  on osx/linux, run `vim` and it will automatically ask you to install plugins.  on windows, the check is disabled, so you need to run `:NeoBundleInstall` manually.
 1.  done!
 
+## modifications
+
+*  if you have either [ack](http://betterthangrep.com/) or [ag](https://github.com/ggreer/the_silver_searcher) installed, they will be used for `grepprg`
+*  backup/swap/undo are all turned on and persistant.  they are stored in `~/.vim/.cache` which stays out of your way.
+
 ## mappings
 
 ### normal mode
@@ -38,6 +43,10 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>s` sort selection
 *  `>` and `<` automatically reselects the visual selection
 
+## macros
+
+*  `@b` place your cursor on _f_unction and it will automatically _.bind it (very useful in javascript).
+
 ## plugins
 
 ### [ack.vim](https://github.com/milezs/ack.vim)
@@ -51,6 +60,14 @@ while it is quite easy to install this distribution (i designed it that way for 
 ### [easymotion](https://github.com/Lokaltog/vim-easymotion')
 *  easily jumps to any character on the screen
 *  `<leader><leader>w` or `<leader><leader>e` will do the trick, along with any of the other default bindings that plugin has mapped under `<leader><leader>`
+
+### [easygrep](http://www.vim.org/scripts/script.php?script_id=2438)
+*  makes search/replacing in your project a lot easier without relying on `find` and `sed`
+*  `<leader>vv` find word under the cursor
+*  `<leader>vV` find whole word under the cursor
+*  `<leader>vr` perform global search replace of word under cursor, with confirmation
+*  `<leader>vR` same as vr, but matches whole word
+*  `<leader>vo` shows options
 
 ### [fugitive](https://github.com/tpope/vim-fugitive)
 *  git wrapper
@@ -98,12 +115,19 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  a plugin which automatically resizes all your splits to give the current one the optimal amount of viewing real estate
 *  this plugin will interfere with other plugins which rely on windows, so it is disabled by default and can be toggled on/off with `<F4>`
 
+### [gist](https://github.com/mattn/gist-vim)
+*  automatically get or push changes for gists with `:Gist`
+
+### [zencoding](https://github.com/mattn/zencoding-vim-vim)
+*  makes for writing html/css extremely fast
+*  currently, default plugin mappings are used, which means `<C-y>,` expand
+
 ### [gundo](https://github.com/sjl/gundo.vim)
 *  visualize the undo tree
 *  `<F5>` to toggle
 
 ### [unimpaired](https://github.com/tpope/vim-unimpaired)
-*  many additional bracket maps
+*  many additional bracket `[]` maps
 *  `<C-up>` to move lines up
 *  `<C-down>` to move lines down
 
@@ -113,6 +137,9 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 ### [vimshell](https://github.com/Shougo/vimshell)
 *  `<leader>c` splits a new window with an embedded shell
+
+### [powerline](https://github.com/Lokaltog/powerline)
+*  makes vim look pretty, enough said (remember to install the patched fonts!)
 
 ## credits
 
