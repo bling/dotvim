@@ -86,10 +86,10 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 i wanted to give special thanks to all of the people who worked on the following projects, or simply posted their vim distributions, because i learned a lot and took many ideas and incorporated them into my configuration.
 
-[janus](https://github.com/carlhuda/janus)
-[spf13](https://github.com/spf13/spf13-vim)
-[yadr](http://skwp.github.com/dotfiles/)
-[astrails](https://github.com/astrails/dotvim)
+*  [janus](https://github.com/carlhuda/janus)
+*  [spf13](https://github.com/spf13/spf13-vim)
+*  [yadr](http://skwp.github.com/dotfiles/)
+*  [astrails](https://github.com/astrails/dotvim)
 
 ## license
 [WTFPL](http://sam.zoy.org/wtfpl/)

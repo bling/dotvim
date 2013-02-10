@@ -166,6 +166,11 @@
     autocmd FileType javascript setlocal foldmethod=syntax foldlevelstart=1
 " }}}
 
+" macros {{{
+    " put cursor on _f_unction, and it will _.bind it 'this'
+    let @b='i_.bind(f{%a, this)'
+" }}}
+
 " mappings {{{
     let mapleader = ","
     let g:mapleader = ","
