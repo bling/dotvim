@@ -43,7 +43,7 @@
 <li> <code>ln -s ~/.vim/vimrc ~/.vimrc</code>
 </li>
 <li> install the fonts found in the <code>font</code> directory</li>
-<li> on osx/linux, run <code>vim</code> and it will automatically ask you to install plugins.  on windows, the check is disabled, so you need to run <code>:NeoBundleInstall</code> manually.</li>
+<li> on osx/linux, run <code>vim</code> and it will automatically ask you to install plugins.  if you're running a gui vim this check is disabled, so you need to run <code>:NeoBundleInstall</code> manually.</li>
 <li> done!</li>
 </ol><h2>modifications</h2>
 
@@ -53,7 +53,12 @@
 <li> backup/swap/undo are all turned on and persistant.  they are stored in <code>~/.vim/.cache</code> which stays out of your way.</li>
 </ul><h2>mappings</h2>
 
-<h3>normal mode</h3>
+<h3>insert mode</h3>
+
+<ul>
+<li> <code>&lt;C-h&gt;</code> move the cursor left (default behavior maps to <code>&lt;BS&gt;</code>)</li>
+<li> <code>&lt;C-l&gt;</code> move the cursor right (default behavior maps to leave insert mode)</li>
+</ul><h3>normal mode</h3>
 
 <ul>
 <li> <code>&lt;leader&gt;fef</code> format entire file</li>
@@ -66,6 +71,8 @@
 <li> <code>&lt;leader&gt;vsa</code> vertically split all buffers</li>
 <li> <code>/</code> replaced with <code>/\v</code> for sane regex searching</li>
 <li> <code>&lt;Space&gt;</code> toggles hisearch</li>
+<li> <code>&lt;Down&gt;</code> <code>&lt;Up&gt;</code> maps to <code>:bprev</code> and <code>:bnext</code> respectively</li>
+<li> <code>&lt;Left&gt;</code> <code>&lt;Right&gt;</code> maps to <code>:tabprev</code> and <code>:tabnext</code> respectively</li>
 </ul><h3>visual mode</h3>
 
 <ul>
@@ -145,7 +152,7 @@
 
 <ul>
 <li> fuzzy file searching</li>
-<li> <code>&lt;C-P&gt;</code> to bring up the search</li>
+<li> <code>&lt;C-p&gt;</code> to bring up the search</li>
 <li> <code>&lt;leader&gt;p</code> search the current buffer tags</li>
 <li> <code>&lt;leader&gt;pt</code> search global tags</li>
 <li> <code>&lt;leader&gt;pl</code> search all lines of all buffers</li>
