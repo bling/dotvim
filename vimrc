@@ -189,18 +189,20 @@
     vmap <leader>s :sort<cr>
 
     " remap arrow keys
-    nnoremap <up> :tabnext<CR>
-    nnoremap <down> :tabprev<CR>
-    nnoremap <left> :bprev<CR>
-    nnoremap <right> :bnext<CR>
-    inoremap <up> <nop>
-    inoremap <down> <nop>
-    inoremap <left> <nop>
-    inoremap <right> <nop>
+    nnoremap <down> :bprev<CR>
+    nnoremap <up> :bnext<CR>
+    nnoremap <left> :tabnext<CR>
+    nnoremap <right> :tabprev<CR>
+
+    " correct cursor position in insert mode
+    inoremap <C-h> <left>
+    inoremap <C-l> <right>
 
     " sane regex
     nnoremap / /\v
     vnoremap / /\v
+    nnoremap ? ?\v
+    vnoremap ? ?\v
 
     " screen line scroll
     nnoremap <silent> j gj
@@ -463,7 +465,7 @@
             "imap <C-k> <Plug>(neosnippet_expand_or_jump)
             "smap <C-k> <Plug>(neosnippet_expand_or_jump)
             inoremap <expr><C-g> neocomplcache#undo_completion()
-            inoremap <expr><C-l> neocomplcache#complete_common_string()
+            "inoremap <expr><C-l> neocomplcache#complete_common_string()
             inoremap <expr><CR> neocomplcache#complete_common_string()
 
             " <CR>: close popup
@@ -510,7 +512,7 @@
         "}}}
     " }}}
 
-    if !has('win32')
+    if !has('gui_running')
     NeoBundleCheck
     endif
 " }}}

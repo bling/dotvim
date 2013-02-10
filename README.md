@@ -14,7 +14,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 1.  `git submodule init && git submodule update`
 1.  `ln -s ~/.vim/vimrc ~/.vimrc`
 1.  install the fonts found in the `font` directory
-1.  on osx/linux, run `vim` and it will automatically ask you to install plugins.  on windows, the check is disabled, so you need to run `:NeoBundleInstall` manually.
+1.  on osx/linux, run `vim` and it will automatically ask you to install plugins.  if you're running a gui vim this check is disabled, so you need to run `:NeoBundleInstall` manually.
 1.  done!
 
 ## modifications
@@ -24,27 +24,29 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 ## mappings
 
+### insert mode
+*  `<C-h>` move the cursor left (default behavior maps to `<BS>`)
+*  `<C-l>` move the cursor right (default behavior maps to leave insert mode)
+
 ### normal mode
 *  `<leader>fef` format entire file
 *  `<leader>f$` strip current line of trailing white space
-
 *  `<leader>fw` find the word under cursor into the quickfix list
 *  `<leader>ff` find the last search into the quickfix list
-
 *  `<leader>v` vertical split
 *  `<leader>s` horizontal split
 *  `<C-h>` `<C-j>` `<C-k>` `<C-l>` move to window in the direction of hkjl
 *  `<leader>vsa` vertically split all buffers
-
 *  `/` replaced with `/\v` for sane regex searching
 *  `<Space>` toggles hisearch
+*  `<Down>` `<Up>` maps to `:bprev` and `:bnext` respectively
+*  `<Left>` `<Right>` maps to `:tabprev` and `:tabnext` respectively
 
 ### visual mode
 *  `<leader>s` sort selection
 *  `>` and `<` automatically reselects the visual selection
 
 ## macros
-
 *  `@b` place your cursor on _f_unction and it will automatically _.bind it (very useful in javascript).
 
 ## plugins
@@ -96,7 +98,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 ### [ctrlp](https://github.com/kien/ctrlp.vim)
 *  fuzzy file searching
-*  `<C-P>` to bring up the search
+*  `<C-p>` to bring up the search
 *  `<leader>p` search the current buffer tags
 *  `<leader>pt` search global tags
 *  `<leader>pl` search all lines of all buffers
