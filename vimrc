@@ -313,11 +313,9 @@
         let g:solarized_termcolors=256
         let g:solarized_visibility="high"
     " }}}
-    " buffergator {{{
-        NeoBundle 'jeetsukumaran/vim-buffergator'
-        let g:buffergator_suppress_keymaps=1
-        nnoremap <leader>b :BuffergatorToggle<cr>
-        nnoremap <leader>t :BuffergatorTabsToggle<cr>
+    " easybuffer {{{
+        NeoBundle 'troydm/easybuffer.vim'
+        map <leader>b :EasyBufferHorizontalBelow<cr>
     " }}}
     " nerdtree {{{
         NeoBundle 'scrooloose/nerdtree'
@@ -513,7 +511,7 @@
     " }}}
 
     if !has('gui_running')
-    NeoBundleCheck
+        NeoBundleCheck
     endif
 " }}}
 

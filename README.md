@@ -82,10 +82,9 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>gw :Gwrite`
 *  `<leader>gr :Gremove`
 
-### [buffergator](https://github.com/jeetsukumaran/vim-buffergator)
-*  easily see your buffers and/or tabs
-*  `<leader>b` toggle buffer list
-*  `<leader>t` toggle tab list
+### [easybuffer](https://github.com/troydm/easybuffer.vim)
+*  easily see your buffers
+*  `<leader>b` to show the buffer list
 
 ### [nerdtree](https://github.com/scrooloose/nerdtree)
 *  file browser
