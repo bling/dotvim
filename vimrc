@@ -150,6 +150,8 @@
         set listchars+=conceal:.
     endif
 
+    let colorcolumn=join(range(120,999),',')
+
     if has('gui_running')
         set lines=999
         set columns=999
@@ -334,9 +336,7 @@
     " }}}
     " solarized {{{
         NeoBundle 'altercation/vim-colors-solarized'
-        let g:solarized_contrast="high"
         let g:solarized_termcolors=256
-        let g:solarized_visibility="high"
     " }}}
     " easybuffer {{{
         NeoBundle 'troydm/easybuffer.vim'
