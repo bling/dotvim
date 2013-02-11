@@ -74,14 +74,15 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 ### [fugitive](https://github.com/tpope/vim-fugitive)
 *  git wrapper
-*  `<leader>gs :Gstatus`
-*  `<leader>gd :Gdiff`
-*  `<leader>gc :Gcommit`
-*  `<leader>gb :Gblame`
-*  `<leader>gl :Glog`
-*  `<leader>gp :Git push`
-*  `<leader>gw :Gwrite`
-*  `<leader>gr :Gremove`
+*  `<leader>gs` status
+*  `<leader>gd` diff
+*  `<leader>gc` commit
+*  `<leader>gb` blame
+*  `<leader>gl` log
+*  `<leader>gp` push
+*  `<leader>gw` stage
+*  `<leader>gr` rm
+*  `<leader>gU` checkout --
 
 ### [easybuffer](https://github.com/troydm/easybuffer.vim)
 *  easily see your buffers
