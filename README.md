@@ -41,6 +41,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<Space>` toggles hisearch
 *  `<Down>` `<Up>` maps to `:bprev` and `:bnext` respectively
 *  `<Left>` `<Right>` maps to `:tabprev` and `:tabnext` respectively
+*  `Q` remapped to close windows and delete the buffer (if it is the last buffer window)
 
 ### visual mode
 *  `<leader>s` sort selection
