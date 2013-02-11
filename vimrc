@@ -145,6 +145,11 @@
     set number
     set cursorline
 
+    if has('conceal')
+        set conceallevel=1
+        set listchars+=conceal:.
+    endif
+
     if has('gui_running')
         set lines=999
         set columns=999
@@ -504,11 +509,6 @@
             let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
             let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
             let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
-            " For snippet_complete marker
-            if has('conceal')
-                "set conceallevel=2 concealcursor=i
-            endif
     " }}}
         " vimshell {{{
             if executable('make')
