@@ -144,6 +144,7 @@
     set laststatus=2
     set number
     set cursorline
+    set lazyredraw
 
     if has('conceal')
         set conceallevel=1
@@ -195,6 +196,9 @@
     autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
     autocmd FileType javascript setlocal foldmethod=syntax foldlevelstart=1
+
+    let g:xml_syntax_folding=1
+    autocmd FileType xml setlocal foldmethod=syntax foldlevelstart=1
 " }}}
 
 " macros {{{
@@ -274,7 +278,6 @@
         NeoBundle 'tpope/vim-speeddating'
 
         NeoBundle 'mattn/zencoding-vim'
-        NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
 
         NeoBundle 'paradigm/vim-multicursor'
         NeoBundle 'kshenoy/vim-signature'
@@ -354,10 +357,9 @@
         map <F2> :NERDTreeToggle<CR>
         map <F3> :NERDTreeFind<CR>
     " }}}
-    " nerdcommenter {{{
-        NeoBundle 'scrooloose/nerdcommenter'
-        map \\ <plug>NERDCommenterToggle
-    "}}}
+    " commentary {{{
+        NeoBundle 'tpope/vim-commentary'
+    " }}}
     " syntastic {{{
         NeoBundle 'scrooloose/syntastic'
         let g:syntastic_error_symbol = '✗'
@@ -413,6 +415,11 @@
         NeoBundle 'sjl/gundo.vim'
         let g:gundo_right=1
         nnoremap <silent> <F5> :GundoToggle<CR>
+    " }}}
+    " gist {{{
+        NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
+        let g:gist_post_private=1
+        let g:gist_show_privates=1
     " }}}
     " unimpaired {{{
         NeoBundle 'tpope/vim-unimpaired'

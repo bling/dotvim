@@ -84,6 +84,16 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>gr` rm
 *  in addition to all the standard bindings when in the git status window, you can also use `U` to perform a `git checkout --` on the current file
 
+### [commentary](https://github.com/tpope/vim-commentary)
+*  simple straightforward commenting plugin that supports motions
+*  `\\{motion}` to toggling to a motion
+*  `\\\` to toggle comments
+
+### [unimpaired](https://github.com/tpope/vim-unimpaired)
+*  many additional bracket `[]` maps
+*  `<C-up>` to move lines up
+*  `<C-down>` to move lines down
+
 ### [easybuffer](https://github.com/troydm/easybuffer.vim)
 *  easily see your buffers
 *  `<leader>b` to show the buffer list
@@ -92,10 +102,6 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  file browser
 *  `<F2>` toggle browser
 *  `<F3>` open tree to path of the current file
-
-### [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
-*  commenter plugin
-*  all default mappings, and `\\` additionally mapped for comment toggling
 
 ### [ctrlp](https://github.com/kien/ctrlp.vim)
 *  fuzzy file searching
@@ -129,11 +135,6 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  visualize the undo tree
 *  `<F5>` to toggle
 
-### [unimpaired](https://github.com/tpope/vim-unimpaired)
-*  many additional bracket `[]` maps
-*  `<C-up>` to move lines up
-*  `<C-down>` to move lines down
-
 ### [neocomplcache/neosnippet](https://github.com/Shougo)
 *  super awesome autocomplete and snippet support
 *  `<Tab>` to select the next match, or expand if the keyword is a snippet
@@ -141,8 +142,17 @@ while it is quite easy to install this distribution (i designed it that way for 
 ### [vimshell](https://github.com/Shougo/vimshell)
 *  `<leader>c` splits a new window with an embedded shell
 
-### [powerline](https://github.com/Lokaltog/powerline)
-*  makes vim look pretty, enough said (remember to install the patched fonts!)
+### and the rest
+*  [surround](https://github.com/tpope/vim-surround) makes for quick work of surrounds
+*  [repeat](https://github.com/tpope/vim-repeat) repeat plugin commands
+*  [speeddating](https://github.com/tpope/vim-speeddating) `Ctrl+A` and `Ctrl+X` for dates
+*  [gist](https://github.com/mattn/gist-vim) awesome plugin for your gist needs
+*  [signature](https://github.com/kshenoy/vim-signature) shows marks beside line numbers
+*  [matchit](https://github.com/vim-scripts/matchit.zip) makes your `%` more awesome
+*  [syntastic](https://github.com/scrooloose/syntastic) awesome syntax checking for a variety of languages
+*  [buftabs](https://github.com/vim-scripts/buftabs) simple plugin which prints all your open buffers in the command bar
+*  [indent-guides](https://github.com/nathanaelkane/vim-indent-guides) visual guides for code blocks
+*  [powerline](https://github.com/Lokaltog/powerline) makes vim look pretty, enough said (remember to install the patched fonts!)
 
 ## credits
 
