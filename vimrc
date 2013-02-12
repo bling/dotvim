@@ -333,7 +333,7 @@
         nnoremap <silent> <leader>gp :Git push<CR>
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>gr :Gremove<CR>
-        nmap <leader>gU :Git checkout -- <C-R><C-G><CR>
+        autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
     " }}}
     " solarized {{{
         NeoBundle 'altercation/vim-colors-solarized'

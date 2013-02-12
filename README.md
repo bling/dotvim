@@ -82,7 +82,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>gp` push
 *  `<leader>gw` stage
 *  `<leader>gr` rm
-*  `<leader>gU` checkout --
+*  in addition to all the standard bindings when in the git status window, you can also use `U` to perform a `git checkout --` on the current file
 
 ### [easybuffer](https://github.com/troydm/easybuffer.vim)
 *  easily see your buffers
