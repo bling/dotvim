@@ -84,11 +84,6 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>gr` rm
 *  in addition to all the standard bindings when in the git status window, you can also use `U` to perform a `git checkout --` on the current file
 
-### [commentary](https://github.com/tpope/vim-commentary)
-*  simple straightforward commenting plugin that supports motions
-*  `\\{motion}` to toggling to a motion
-*  `\\\` to toggle comments
-
 ### [unimpaired](https://github.com/tpope/vim-unimpaired)
 *  many additional bracket `[]` maps
 *  `<C-up>` to move lines up
@@ -102,6 +97,10 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  file browser
 *  `<F2>` toggle browser
 *  `<F3>` open tree to path of the current file
+
+### [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+*  commenter plugin
+*  all default mappings, and `\\` additionally mapped for comment toggling
 
 ### [ctrlp](https://github.com/kien/ctrlp.vim)
 *  fuzzy file searching

@@ -273,6 +273,7 @@
     " bundles: plugins {{{
         " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         NeoBundle 'Lokaltog/vim-powerline'
+        let g:Powerline_symbols='fancy'
         NeoBundle 'Lokaltog/vim-easymotion'
 
         NeoBundle 'tpope/vim-surround'
@@ -359,8 +360,9 @@
         map <F2> :NERDTreeToggle<CR>
         map <F3> :NERDTreeFind<CR>
     " }}}
-    " commentary {{{
-        NeoBundle 'tpope/vim-commentary'
+    " nerdcommenter {{{
+        NeoBundle 'scrooloose/nerdcommenter'
+        map \\ <Plug>NERDCommenterToggle
     " }}}
     " syntastic {{{
         NeoBundle 'scrooloose/syntastic'
