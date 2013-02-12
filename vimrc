@@ -271,7 +271,8 @@
 
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
-        NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+        " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+        NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'Lokaltog/vim-easymotion'
 
         NeoBundle 'tpope/vim-surround'
@@ -474,6 +475,7 @@
             let g:neocomplcache_enable_at_startup = 1
             let g:neocomplcache_enable_auto_delimiter = 1
             let g:neocomplcache_force_overwrite_completefunc = 1
+            let g:neocomplcache_max_list=10
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
 
             " Proper tab completion

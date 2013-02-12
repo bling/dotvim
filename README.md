@@ -13,7 +13,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 1.  clone this repository into your `~/.vim` directory
 1.  `git submodule init && git submodule update`
 1.  `ln -s ~/.vim/vimrc ~/.vimrc`
-1.  install the fonts found in the `font` directory
+1.  install the fonts found in the `font` directory, and head over to the [powerline documentation](https://powerline.readthedocs.org/en/latest/index.html)
 1.  on osx/linux, run `vim` and it will automatically ask you to install plugins.  if you're running a gui vim this check is disabled, so you need to run `:NeoBundleInstall` manually.
 1.  done!
 
