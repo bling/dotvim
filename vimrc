@@ -92,6 +92,7 @@
     set showbreak=…
 
     set foldenable                                      "enable folds by default
+    set foldmethod=syntax                               "fold via syntax of files
     set scrolloff=5                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
@@ -195,10 +196,10 @@
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
-    autocmd FileType javascript setlocal foldmethod=syntax foldlevelstart=1
+    autocmd FileType javascript setlocal foldlevelstart=1
 
     let g:xml_syntax_folding=1
-    autocmd FileType xml setlocal foldmethod=syntax foldlevelstart=1
+    autocmd FileType xml setlocal foldlevel=999
 " }}}
 
 " macros {{{
