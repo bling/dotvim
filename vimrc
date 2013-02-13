@@ -272,23 +272,14 @@
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
         NeoBundle 'Lokaltog/vim-easymotion'
-
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
         NeoBundle 'tpope/vim-speeddating'
-
         NeoBundle 'mattn/zencoding-vim'
-
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'guns/xterm-color-table.vim'
         NeoBundle 'sjl/splice.vim'
 
-        NeoBundle 'myusuf3/numbers.vim'
-        if !has('gui_running')
-            NeoBundleDisable numbers.vim
-        endif
-    " }}}
-    " bundles: vim-scripts {{{
         NeoBundle 'vimwiki'
         NeoBundle 'bufkill.vim'
         NeoBundle 'matchit.zip'
@@ -364,6 +355,13 @@
     " nerdcommenter {{{
         NeoBundle 'scrooloose/nerdcommenter'
         map \\ <Plug>NERDCommenterToggle
+    " }}}
+    " numbers {{{
+        NeoBundle 'myusuf3/numbers.vim'
+        if !has('gui_running')
+            "too slow in terminal
+            NeoBundleDisable numbers.vim
+        endif
     " }}}
     " syntastic {{{
         NeoBundle 'scrooloose/syntastic'
