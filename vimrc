@@ -279,7 +279,6 @@
 
         NeoBundle 'mattn/zencoding-vim'
 
-        NeoBundle 'paradigm/vim-multicursor'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'guns/xterm-color-table.vim'
         NeoBundle 'sjl/splice.vim'
@@ -446,9 +445,12 @@
     " }}}
     " ultisnips {{{
         "NeoBundle 'SirVer/ultisnips'
-        "let g:UltiSnipsExpandTrigger="<tab>"
-        "let g:UltiSnipsJumpForwardTrigger="<tab>"
-        "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    " }}}
+    " markmultiple {{{
+        NeoBundle 'adinapoli/vim-markmultiple'
     " }}}
     " indent guides {{{
         NeoBundle 'nathanaelkane/vim-indent-guides'

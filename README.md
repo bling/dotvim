@@ -134,6 +134,9 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  visualize the undo tree
 *  `<F5>` to toggle
 
+### [markmultiple](https://github.com/adinapoli/vim-markmultiple)
+*  easily mark multiple matching words with `<C-n>` and do operations on them
+
 ### [neocomplcache/neosnippet](https://github.com/Shougo)
 *  super awesome autocomplete and snippet support
 *  `<Tab>` to select the next match, or expand if the keyword is a snippet
