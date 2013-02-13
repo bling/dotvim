@@ -271,7 +271,6 @@
 
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
-        NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
         NeoBundle 'tpope/vim-speeddating'
@@ -340,6 +339,10 @@
     " easybuffer {{{
         NeoBundle 'troydm/easybuffer.vim'
         map <leader>b :EasyBufferHorizontalBelow<cr>
+    " }}}
+    " easymotion {{{
+        "NeoBundle 'Lokaltog/vim-easymotion'
+        NeoBundle 'skwp/vim-easymotion'
     " }}}
     " nerdtree {{{
         NeoBundle 'scrooloose/nerdtree'
