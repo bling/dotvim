@@ -271,9 +271,6 @@
 
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
-        " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-        NeoBundle 'Lokaltog/vim-powerline'
-        let g:Powerline_symbols='fancy'
         NeoBundle 'Lokaltog/vim-easymotion'
 
         NeoBundle 'tpope/vim-surround'
@@ -313,6 +310,11 @@
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
+    " }}}
+    " powerline {{{
+        "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+        NeoBundle 'Lokaltog/vim-powerline'
+        let g:Powerline_symbols='fancy'
     " }}}
     " ack/ag {{{
         if executable('ack') || executable('ag')
