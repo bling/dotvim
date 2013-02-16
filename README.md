@@ -92,7 +92,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 ### [easybuffer](https://github.com/troydm/easybuffer.vim)
 *  easily see your buffers
-*  `<leader>b` to show the buffer list
+*  `<leader>B` to show the buffer list
 
 ### [nerdtree](https://github.com/scrooloose/nerdtree)
 *  file browser
@@ -109,7 +109,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>p` search the current buffer tags
 *  `<leader>pt` search global tags
 *  `<leader>pl` search all lines of all buffers
-*  `<leader>pb` search open buffers
+*  `<leader>b` search open buffers
 
 ### [yankring](http://www.vim.org/scripts/script.php?script_id=1234)
 *  keeps a history of all your yanks and delete

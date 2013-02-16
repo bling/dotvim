@@ -344,7 +344,7 @@
     " }}}
     " easybuffer {{{
         NeoBundle 'troydm/easybuffer.vim'
-        map <leader>b :EasyBufferHorizontalBelow<cr>
+        map <leader>B :EasyBufferHorizontalBelow<cr>
     " }}}
     " easymotion {{{
         "NeoBundle 'Lokaltog/vim-easymotion'
@@ -393,7 +393,7 @@
         map <leader>p :CtrlPBufTag<cr>
         map <leader>pt :CtrlPTag<cr>
         map <leader>pl :CtrlPLine<cr>
-        map <leader>pb :CtrlPBuffer<cr>
+        map <leader>b :CtrlPBuffer<cr>
     " }}}
     " yankring {{{
         NeoBundle 'YankRing.vim'
@@ -469,8 +469,8 @@
         let g:indent_guides_color_change_percent=5
         if !has('gui_running')
             let g:indent_guides_auto_colors=0
-            hi IndentGuidesOdd  ctermbg=235
-            hi IndentGuidesEven ctermbg=236
+            autocmd ColorScheme * :hi IndentGuidesOdd  ctermbg=235
+            autocmd ColorScheme * :hi IndentGuidesEven ctermbg=236
         endif
     " }}}
     " shougo plugins {{{
