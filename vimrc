@@ -167,6 +167,10 @@
         if has('gui_win32')
             set gfn=Ubuntu_Mono_for_Powerline:h10
         endif
+
+        if has('gui_gtk')
+            set gfn=Ubuntu\ Mono\ for\ Powerline\ 11
+        endif
     else
         set t_Co=256
 
@@ -179,8 +183,8 @@
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
@@ -200,6 +204,8 @@
 
     let g:xml_syntax_folding=1
     autocmd FileType xml setlocal foldlevel=999
+
+    autocmd FileType scss setlocal foldlevel=999 foldmethod=marker foldmarker={,}
 " }}}
 
 " macros {{{
@@ -352,6 +358,7 @@
         let NERDTreeChDirMode=0
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.git','\.hg']
+        let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
         map <F2> :NERDTreeToggle<CR>
         map <F3> :NERDTreeFind<CR>
     " }}}
@@ -455,14 +462,15 @@
     " }}}
     " indent guides {{{
         NeoBundle 'nathanaelkane/vim-indent-guides'
+        let g:indent_guides_enable_on_vim_startup=1
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=1
         let g:indent_guides_color_change_percent=5
         if !has('gui_running')
             let g:indent_guides_auto_colors=0
-            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+            hi IndentGuidesOdd  ctermbg=235
+            hi IndentGuidesEven ctermbg=236
         endif
     " }}}
     " shougo plugins {{{
