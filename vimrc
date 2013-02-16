@@ -273,6 +273,12 @@
     " general
     nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
+
+    " helpers for profiling
+    nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+    nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+    nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+    nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
 " }}}
 
 " plugin/mapping configuration {{{
