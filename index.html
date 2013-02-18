@@ -75,6 +75,16 @@
 <li> <code>&lt;Down&gt;</code> <code>&lt;Up&gt;</code> maps to <code>:bprev</code> and <code>:bnext</code> respectively</li>
 <li> <code>&lt;Left&gt;</code> <code>&lt;Right&gt;</code> maps to <code>:tabprev</code> and <code>:tabnext</code> respectively</li>
 <li> <code>Q</code> remapped to close windows and delete the buffer (if it is the last buffer window)</li>
+<li> profiling
+
+<ul>
+<li>DD starts profiling all functions and files into a file <code>profile.log</code>
+</li>
+<li>DP pauses profiling</li>
+<li>DC continues profiling</li>
+<li>DQ finishs profiling and exits vim</li>
+</ul>
+</li>
 </ul><h3>visual mode</h3>
 
 <ul>
@@ -97,12 +107,13 @@
 
 <ul>
 <li> <code>&lt;leader&gt;bd</code> or <code>:BD</code> will kill a buffer without changing the window layout</li>
-</ul><h3><a href="https://github.com/Lokaltog/vim-easymotion'">easymotion</a></h3>
+</ul><h3><a href="https://github.com/skwp/vim-easymotion">easymotion</a></h3>
 
 <ul>
 <li> easily jumps to any character on the screen</li>
 <li> <code>&lt;leader&gt;&lt;leader&gt;w</code> or <code>&lt;leader&gt;&lt;leader&gt;e</code> will do the trick, along with any of the other default bindings that plugin has mapped under <code>&lt;leader&gt;&lt;leader&gt;</code>
 </li>
+<li> this is a forked version of <a href="https://github.com/skwp/vim-easymotion">lokaltog</a>'s version which uses vimperator style double keystrokes</li>
 </ul><h3><a href="http://www.vim.org/scripts/script.php?script_id=2438">easygrep</a></h3>
 
 <ul>
@@ -136,7 +147,7 @@
 
 <ul>
 <li> easily see your buffers</li>
-<li> <code>&lt;leader&gt;b</code> to show the buffer list</li>
+<li> <code>&lt;leader&gt;B</code> to show the buffer list</li>
 </ul><h3><a href="https://github.com/scrooloose/nerdtree">nerdtree</a></h3>
 
 <ul>
@@ -156,7 +167,7 @@
 <li> <code>&lt;leader&gt;p</code> search the current buffer tags</li>
 <li> <code>&lt;leader&gt;pt</code> search global tags</li>
 <li> <code>&lt;leader&gt;pl</code> search all lines of all buffers</li>
-<li> <code>&lt;leader&gt;pb</code> search open buffers</li>
+<li> <code>&lt;leader&gt;b</code> search open buffers</li>
 </ul><h3><a href="http://www.vim.org/scripts/script.php?script_id=1234">yankring</a></h3>
 
 <ul>
@@ -214,7 +225,7 @@
 <li> <a href="https://github.com/vim-scripts/matchit.zip">matchit</a> makes your <code>%</code> more awesome</li>
 <li> <a href="https://github.com/scrooloose/syntastic">syntastic</a> awesome syntax checking for a variety of languages</li>
 <li> <a href="https://github.com/vim-scripts/buftabs">buftabs</a> simple plugin which prints all your open buffers in the command bar</li>
-<li> <a href="https://github.com/nathanaelkane/vim-indent-guides">indent-guides</a> visual guides for code blocks</li>
+<li> <a href="https://github.com/Yggdroot/indentLine">indentLine</a> nice vertical lines</li>
 <li> <a href="https://github.com/Lokaltog/powerline">powerline</a> makes vim look pretty, enough said (remember to install the patched fonts!)</li>
 </ul><h2>credits</h2>
 
