@@ -159,7 +159,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  [matchit](https://github.com/vim-scripts/matchit.zip) makes your `%` more awesome
 *  [syntastic](https://github.com/scrooloose/syntastic) awesome syntax checking for a variety of languages
 *  [buftabs](https://github.com/vim-scripts/buftabs) simple plugin which prints all your open buffers in the command bar
-*  [indent-guides](https://github.com/nathanaelkane/vim-indent-guides) visual guides for code blocks
+*  [indentLine](https://github.com/Yggdroot/indentLine) nice vertical lines
 *  [powerline](https://github.com/Lokaltog/powerline) makes vim look pretty, enough said (remember to install the patched fonts!)
 
 ## credits
