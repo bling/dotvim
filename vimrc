@@ -93,7 +93,7 @@
 
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
-    set scrolloff=5                                     "always show content after scroll
+    set scrolloff=1                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
     set wildmenu                                        "show list for autocomplete
@@ -183,8 +183,8 @@
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
@@ -323,7 +323,7 @@
             if executable('ag')
                 let g:ackprg="ag --nogroup --column --smart-case --follow"
             endif
-            map <leader>/ :Ack 
+            nnoremap <leader>/ :Ack 
         endif
     " }}}
     " easygrep {{{
@@ -350,7 +350,7 @@
     " }}}
     " easybuffer {{{
         NeoBundle 'troydm/easybuffer.vim'
-        map <leader>B :EasyBufferHorizontalBelow<cr>
+        nnoremap <leader>B :EasyBufferHorizontalBelow<cr>
     " }}}
     " easymotion {{{
         "NeoBundle 'Lokaltog/vim-easymotion'
@@ -365,12 +365,12 @@
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.git','\.hg']
         let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
-        map <F2> :NERDTreeToggle<CR>
-        map <F3> :NERDTreeFind<CR>
+        nnoremap <F2> :NERDTreeToggle<CR>
+        nnoremap <F3> :NERDTreeFind<CR>
     " }}}
     " nerdcommenter {{{
         NeoBundle 'scrooloose/nerdcommenter'
-        map \\ <Plug>NERDCommenterToggle
+        nmap \\ <Plug>NERDCommenterToggle
     " }}}
     " numbers {{{
         NeoBundle 'myusuf3/numbers.vim'
@@ -396,10 +396,10 @@
         let g:ctrlp_working_path_mode=0
         let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
 
-        map <leader>p :CtrlPBufTag<cr>
-        map <leader>pt :CtrlPTag<cr>
-        map <leader>pl :CtrlPLine<cr>
-        map <leader>b :CtrlPBuffer<cr>
+        nnoremap <leader>p :CtrlPBufTag<cr>
+        nnoremap <leader>pt :CtrlPTag<cr>
+        nnoremap <leader>pl :CtrlPLine<cr>
+        nnoremap <leader>b :CtrlPBuffer<cr>
     " }}}
     " yankring {{{
         NeoBundle 'YankRing.vim'
@@ -409,7 +409,7 @@
         function! YRRunAfterMaps()
             nnoremap Y :<C-U>YRYankCount 'y$'<CR>
         endfunction
-        map <leader>y :YRShow<CR>
+        nnoremap <leader>y :YRShow<CR>
     " }}}
     " buftabs {{{
         NeoBundle 'buftabs'
@@ -451,11 +451,11 @@
         NeoBundle 'roman/golden-ratio'
         let g:golden_ratio_autocommand=0
         let g:golden_ratio_wrap_ignored=0
-        map <F4> :GoldenRatioToggle<cr>
+        nnoremap <F4> :GoldenRatioToggle<cr>
     " }}}
     " jsbeautify {{{
         NeoBundle 'maksimr/vim-jsbeautify'
-        nmap <leader>fjs :call JsBeautify()<CR>
+        nnoremap <leader>fjs :call JsBeautify()<CR>
     " }}}
     " ultisnips {{{
         "NeoBundle 'SirVer/ultisnips'
