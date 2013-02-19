@@ -93,6 +93,7 @@
 
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
+    set synmaxcol=150
     set scrolloff=1                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
@@ -371,6 +372,7 @@
     " nerdcommenter {{{
         NeoBundle 'scrooloose/nerdcommenter'
         nmap \\ <Plug>NERDCommenterToggle
+        vmap \\ <Plug>NERDCommenterToggle
     " }}}
     " numbers {{{
         NeoBundle 'myusuf3/numbers.vim'
@@ -469,6 +471,8 @@
     " indent lines {{{
         NeoBundle 'Yggdroot/indentLine'
         let g:indentLine_color_term=236
+        let g:indentLine_enabled=0
+        nnoremap <leader>il :IndentLinesToggle<cr>
     " }}}
     " shougo plugins {{{
         " unite {{{
@@ -484,11 +488,13 @@
         " neocomplcache {{{
             NeoBundle 'Shougo/neocomplcache'
 
-            let g:neocomplcache_enable_at_startup = 1
-            let g:neocomplcache_enable_auto_delimiter = 1
-            let g:neocomplcache_force_overwrite_completefunc = 1
+            let g:neocomplcache_enable_at_startup=1
+            let g:neocomplcache_enable_auto_delimiter=1
+            let g:neocomplcache_force_overwrite_completefunc=1
             let g:neocomplcache_max_list=10
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
+            let g:neocomplcache_enable_auto_select=1
+            let g:neocomplcache_use_vimproc=1
 
             " Proper tab completion
             imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
@@ -496,10 +502,10 @@
 
             " Define dictionary
             let g:neocomplcache_dictionary_filetype_lists = {
-                \ 'default' : '',
-                \ 'vimshell' : $HOME.'/.vimshell_hist',
-                \ 'scheme' : $HOME.'/.gosh_completions'
-                \ }
+                        \ 'default' : '',
+                        \ 'vimshell' : $HOME.'/.vimshell_hist',
+                        \ 'scheme' : $HOME.'/.gosh_completions'
+                        \ }
 
             " Define keyword
             if !exists('g:neocomplcache_keyword_patterns')
@@ -510,17 +516,17 @@
             " Plugin key-mappings
             "imap <C-k> <Plug>(neosnippet_expand_or_jump)
             "smap <C-k> <Plug>(neosnippet_expand_or_jump)
-            inoremap <expr><C-g> neocomplcache#undo_completion()
+            "inoremap <expr><C-g> neocomplcache#undo_completion()
             "inoremap <expr><C-l> neocomplcache#complete_common_string()
-            inoremap <expr><CR> neocomplcache#complete_common_string()
+            "inoremap <expr><CR> neocomplcache#complete_common_string()
 
             " <CR>: close popup
             " <s-CR>: close popup and save indent.
-            inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-            inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+            "inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+            "inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
             " <C-h>, <BS>: close popup and delete backword char.
-            inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+            "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
             "inoremap <expr><C-y> neocomplcache#close_popup()
 
             " Enable heavy omni completion
@@ -532,7 +538,7 @@
             let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
             let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
             let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-    " }}}
+        " }}}
         " vimshell {{{
             if executable('make')
                 NeoBundle 'Shougo/vimproc', {
