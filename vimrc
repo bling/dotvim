@@ -475,6 +475,11 @@
         let g:indent_guides_start_level=2
         let g:indent_guides_enable_on_vim_startup=1
         let g:indent_guides_color_change_percent=5
+        if !has('gui_running')
+            let g:indent_guides_auto_colors=0
+            autocmd ColorScheme * :hi IndentGuidesOdd  ctermbg=232
+            autocmd ColorScheme * :hi IndentGuidesEven ctermbg=234
+        endif
     " }}}
     " shougo plugins {{{
         " unite {{{
@@ -497,6 +502,7 @@
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
             let g:neocomplcache_enable_auto_select=1
             let g:neocomplcache_use_vimproc=1
+            let g:neocomplcache_enable_auto_select=1
 
             " Proper tab completion
             imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
@@ -568,7 +574,9 @@
 
 " theme {{{
     set background=dark
-    colorscheme Tomorrow-Night
+    colorscheme jellybeans
+    highlight Pmenu ctermbg=234 ctermfg=240 guibg=#1c1c1c guifg=#585858
+    highlight PmenuSel ctermbg=57 ctermfg=255 guibg=#5f00df guifg=#ffffff
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
