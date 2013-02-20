@@ -468,11 +468,13 @@
     " markmultiple {{{
         NeoBundle 'adinapoli/vim-markmultiple'
     " }}}
-    " indent lines {{{
-        NeoBundle 'Yggdroot/indentLine'
-        let g:indentLine_color_term=236
-        let g:indentLine_enabled=0
-        nnoremap <leader>il :IndentLinesToggle<cr>
+    " indent guides {{{
+        NeoBundle 'nathanaelkane/vim-indent-guides'
+        let g:indent_guides_enable_on_vim_startup=0
+        let g:indent_guides_guide_size=1
+        let g:indent_guides_start_level=2
+        let g:indent_guides_enable_on_vim_startup=1
+        let g:indent_guides_color_change_percent=5
     " }}}
     " shougo plugins {{{
         " unite {{{
