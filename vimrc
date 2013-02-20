@@ -86,7 +86,7 @@
     set shiftwidth=4                                    "number of spaces when indenting
     set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
-    set listchars=tab:▸\ ,trail:.,extends:❯,precedes:❮
+    set listchars=tab:│\ ,trail:.,extends:❯,precedes:❮
     set shiftround
     set linebreak
     set showbreak=…
@@ -529,7 +529,7 @@
             "inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
             " <C-h>, <BS>: close popup and delete backword char.
-            "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+            inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
             "inoremap <expr><C-y> neocomplcache#close_popup()
 
             " Enable heavy omni completion
