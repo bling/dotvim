@@ -184,8 +184,8 @@
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
@@ -315,8 +315,8 @@
     " }}}
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-        NeoBundle 'Lokaltog/vim-powerline'
-        let g:Powerline_symbols='fancy'
+            NeoBundle 'Lokaltog/vim-powerline'
+            let g:Powerline_symbols='fancy'
     " }}}
     " ack/ag {{{
         if executable('ack') || executable('ag')
@@ -565,13 +565,8 @@
 " }}}
 
 " theme {{{
-    if has("gui_running")
-        set background=dark
-        colorscheme Tomorrow-Night
-    else
-        set background=dark
-        colorscheme hybrid
-    endif
+    set background=dark
+    colorscheme Tomorrow-Night
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
