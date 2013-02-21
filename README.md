@@ -116,10 +116,10 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>pl` search all lines of all buffers
 *  `<leader>b` search open buffers
 
-### [yankring](http://www.vim.org/scripts/script.php?script_id=1234)
-*  keeps a history of all your yanks and delete
-*  `<leader>y` to toggle showing the yankring
-*  after `p`asting, `<BS>` to cycle back, `<C-BS>` to cycle forward
+### [yankstack](http://github.com/maxbrunsfeld/vim-yankstack)
+*  keeps a history of all your yanks and deletions
+*  `<leader>y` to toggle showing the yank stack
+*  after `p`asting, `<BS><BS>` to cycle back, `<BS>\` to cycle forward
 
 ### [tabular](https://github.com/godlygeek/tabular)
 *  easily aligns code

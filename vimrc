@@ -142,6 +142,9 @@
         call EnsureExists(&backupdir)
         call EnsureExists(&directory)
     " }}}
+
+    let mapleader = ","
+    let g:mapleader = ","
 " }}}
 
 " ui configuration {{{
@@ -216,74 +219,6 @@
 " macros {{{
     " put cursor on _f_unction, and it will _.bind it 'this'
     let @b='i_.bind(f{%a, this)'
-" }}}
-
-" mappings {{{
-    let mapleader = ","
-    let g:mapleader = ","
-
-    " formatting shortcuts
-    nmap <leader>fef :call Preserve("normal gg=G")<CR>
-    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-    vmap <leader>s :sort<cr>
-
-    " remap arrow keys
-    nnoremap <down> :bprev<CR>
-    nnoremap <up> :bnext<CR>
-    nnoremap <left> :tabnext<CR>
-    nnoremap <right> :tabprev<CR>
-
-    " correct cursor position in insert mode
-    inoremap <C-h> <left>
-    inoremap <C-l> <right>
-
-    " sane regex
-    nnoremap / /\v
-    vnoremap / /\v
-    nnoremap ? ?\v
-    vnoremap ? ?\v
-
-    " screen line scroll
-    nnoremap <silent> j gj
-    nnoremap <silent> k gk
-
-    " reselect visual block after indent
-    vnoremap < <gv
-    vnoremap > >gv
-
-    " find current word in quickfix
-    nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
-    " find last search in quickfix
-    nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
-
-    " shortcuts for windows
-    nnoremap <leader>v <C-w>v<C-w>l
-    nnoremap <leader>s <C-w>s
-    nnoremap <leader>vsa :vert sba<cr>
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
-
-    " tab shortcuts
-    map <leader>tn :tabnew<CR>
-    map <leader>tc :tabclose<CR>
-
-    " make Y consistent with C and D.  See :help Y.
-    nnoremap Y y$
-
-    " window killer
-    nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
-
-    " general
-    nmap <leader>l :set list! list?<cr>
-    noremap <space> :set hlsearch! hlsearch?<cr>
-
-    " helpers for profiling
-    nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-    nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
-    nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-    nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
 " }}}
 
 " plugin/mapping configuration {{{
@@ -408,15 +343,13 @@
         nnoremap <leader>pl :CtrlPLine<cr>
         nnoremap <leader>b :CtrlPBuffer<cr>
     " }}}
-    " yankring {{{
-        NeoBundle 'YankRing.vim'
-        let g:yankring_replace_n_nkey = '<C-BS>'
-        let g:yankring_replace_n_pkey = '<BS>'
-        let g:yankring_history_dir='~/.vim/.cache'
-        function! YRRunAfterMaps()
-            nnoremap Y :<C-U>YRYankCount 'y$'<CR>
-        endfunction
-        nnoremap <leader>y :YRShow<CR>
+    " yankstack {{{
+        NeoBundle 'maxbrunsfeld/vim-yankstack'
+        let g:yankstack_map_keys=0
+        nmap <BS><BS> <Plug>yankstack_substitute_older_paste
+        nmap <BS>\ <Plug>yankstack_substitute_newer_paste
+        nnoremap <leader>y :Yanks<cr>
+        call yankstack#setup()
     " }}}
     " buftabs {{{
         NeoBundle 'buftabs'
@@ -553,6 +486,71 @@
     if !has('gui_running')
         NeoBundleCheck
     endif
+" }}}
+
+" mappings {{{
+    " formatting shortcuts
+    nmap <leader>fef :call Preserve("normal gg=G")<CR>
+    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+    vmap <leader>s :sort<cr>
+
+    " remap arrow keys
+    nnoremap <down> :bprev<CR>
+    nnoremap <up> :bnext<CR>
+    nnoremap <left> :tabnext<CR>
+    nnoremap <right> :tabprev<CR>
+
+    " correct cursor position in insert mode
+    inoremap <C-h> <left>
+    inoremap <C-l> <right>
+
+    " sane regex
+    nnoremap / /\v
+    vnoremap / /\v
+    nnoremap ? ?\v
+    vnoremap ? ?\v
+
+    " screen line scroll
+    nnoremap <silent> j gj
+    nnoremap <silent> k gk
+
+    " reselect visual block after indent
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " find current word in quickfix
+    nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
+    " find last search in quickfix
+    nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
+
+    " shortcuts for windows
+    nnoremap <leader>v <C-w>v<C-w>l
+    nnoremap <leader>s <C-w>s
+    nnoremap <leader>vsa :vert sba<cr>
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+
+    " tab shortcuts
+    map <leader>tn :tabnew<CR>
+    map <leader>tc :tabclose<CR>
+
+    " make Y consistent with C and D.  See :help Y.
+    nnoremap Y y$
+
+    " window killer
+    nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
+
+    " general
+    nmap <leader>l :set list! list?<cr>
+    noremap <space> :set hlsearch! hlsearch?<cr>
+
+    " helpers for profiling
+    nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+    nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+    nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+    nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
 " }}}
 
 " theme {{{
