@@ -182,9 +182,11 @@
     else
         set t_Co=256
 
+        if $TERM_PROGRAM == 'iTerm.app'
         " difference cursors for insert vs normal mode
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    endif
     endif
 " }}}
 
@@ -252,6 +254,7 @@
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
+        NeoBundle 'othree/javascript-libraries-syntax.vim'
     " }}}
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
