@@ -132,6 +132,9 @@
         " backups
         set backup
         set backupdir=~/.vim/.cache/backup
+
+        " swap files
+        set noswapfile
         set directory=~/.vim/.cache/swap
 
         call EnsureExists('~/.vim/.cache')
