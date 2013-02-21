@@ -202,7 +202,7 @@
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
-    autocmd FileType javascript setlocal foldlevelstart=1
+    autocmd FileType javascript setlocal foldlevelstart=2
 
     let g:xml_syntax_folding=1
     autocmd FileType xml setlocal foldlevel=999
@@ -287,6 +287,7 @@
     " bundles: plugins {{{
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
+        NeoBundle 'tpope/vim-sleuth'
         NeoBundle 'tpope/vim-speeddating'
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'kshenoy/vim-signature'
@@ -495,9 +496,9 @@
             let g:neocomplcache_force_overwrite_completefunc=1
             let g:neocomplcache_max_list=10
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
-            let g:neocomplcache_enable_auto_select=1
             let g:neocomplcache_use_vimproc=1
             let g:neocomplcache_enable_auto_select=1
+            let g:neocomplcache_enable_fuzzy_completion=1
 
             " Proper tab completion
             imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
@@ -515,22 +516,6 @@
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
-            " Plugin key-mappings
-            "imap <C-k> <Plug>(neosnippet_expand_or_jump)
-            "smap <C-k> <Plug>(neosnippet_expand_or_jump)
-            "inoremap <expr><C-g> neocomplcache#undo_completion()
-            "inoremap <expr><C-l> neocomplcache#complete_common_string()
-            "inoremap <expr><CR> neocomplcache#complete_common_string()
-
-            " <CR>: close popup
-            " <s-CR>: close popup and save indent.
-            "inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-            "inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-
-            " <C-h>, <BS>: close popup and delete backword char.
-            inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-            "inoremap <expr><C-y> neocomplcache#close_popup()
 
             " Enable heavy omni completion
             if !exists('g:neocomplcache_omni_patterns')
@@ -571,7 +556,7 @@
     set background=dark
     colorscheme jellybeans
     highlight Pmenu ctermbg=234 ctermfg=240 guibg=#1c1c1c guifg=#585858
-    highlight PmenuSel ctermbg=57 ctermfg=255 guibg=#5f00df guifg=#ffffff
+    highlight PmenuSel ctermbg=25 ctermfg=255 guibg=#005faf guifg=#ffffff
 " }}}
 
 if filereadable(expand("~/.vimrc.local"))
