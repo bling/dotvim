@@ -202,13 +202,13 @@
     set statusline+=%5*\ %3p%%\ 
     set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
 
-    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33
-    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204
-    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white
-    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white
-    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white
-    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white
-    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black
+    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
+    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
+    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
+    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
+    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
+    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
+    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
     autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
 " }}}
 
