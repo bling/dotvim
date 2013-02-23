@@ -192,10 +192,24 @@
 
 " {{{ status line
     set statusline=
-    set statusline+=\ %3n\ %r%m%h%w%q%F%=
-    set statusline+=\ %1*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
-    set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
-    set statusline+=\ %{&ff}%y\ \|\ %{strlen(&fenc)?&fenc:'none'}\ \|\ %3v\ \ %4l\/%4L\ \|\ %3p%%
+    set statusline+=%7*%m%*
+    set statusline+=\ %r%h%w%q%F%=
+    set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
+    set statusline+=%1*\ %{&ff}%y\ 
+    set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
+    set statusline+=%3*\ %3v\ 
+    set statusline+=%4*%4l\/%4L\ 
+    set statusline+=%5*\ %3p%%\ 
+    set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
+
+    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33
+    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204
+    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white
+    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white
+    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white
+    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white
+    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black
+    autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
 " }}}
 
 " autocmd {{{
@@ -257,9 +271,8 @@
     " }}}
     " smartusline {{{
         NeoBundle 'molok/vim-smartusline'
-        let g:smartusline_string_to_highlight=" %3n %r%m%h%w%q%F%="
+        let g:smartusline_string_to_highlight=" %r%h%w%q%F%="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
-        autocmd ColorScheme * hi User1 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
     " }}}
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
