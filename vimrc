@@ -190,6 +190,14 @@
     endif
 " }}}
 
+" {{{ status line
+    set statusline=
+    set statusline+=\ %3n\ %r%m%h%w%q%F%=
+    set statusline+=\ %1*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
+    set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
+    set statusline+=\ %{&ff}%y\ \|\ %{strlen(&fenc)?&fenc:'none'}\ \|\ %3v\ \ %4l\/%4L\ \|\ %3p%%
+" }}}
+
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
@@ -257,11 +265,6 @@
     " }}}
     " smartusline {{{
         NeoBundle 'molok/vim-smartusline'
-        set statusline=
-        set statusline+=\ %3n\ %r%m%h%w%q%F%=
-        set statusline+=\ %1*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
-        set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
-        set statusline+=\ %{&ff}%y\ \|\ %{strlen(&fenc)?&fenc:'none'}\ \|\ %3v\ \ %4l\/%4L\ \|\ %3p%%
         let g:smartusline_string_to_highlight=" %3n %r%m%h%w%q%F%="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
         autocmd ColorScheme * hi User1 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
