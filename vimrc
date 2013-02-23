@@ -183,10 +183,10 @@
         set t_Co=256
 
         if $TERM_PROGRAM == 'iTerm.app'
-        " difference cursors for insert vs normal mode
-        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    endif
+            " difference cursors for insert vs normal mode
+            let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+            let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+        endif
     endif
 " }}}
 
@@ -258,13 +258,13 @@
     " smartusline {{{
         NeoBundle 'molok/vim-smartusline'
         set statusline=
-        set statusline+=\ \ %n\ %q%F
-        set statusline+=%=%r%m%h%w
+        set statusline+=\ %3n\ %r%m%h%w%q%F%=
+        set statusline+=\ %1*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
         set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
-        set statusline+=\ %{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
-        set statusline+=%{&ff}%y\ \|\ %{strlen(&fenc)?&fenc:'none'}\ \|\ %3v\ \ %4l\/%4L\ \|\ %3p%%
-        let g:smartusline_string_to_highlight="\ \ %n\ %q%F%=%r%m%h%w"
+        set statusline+=\ %{&ff}%y\ \|\ %{strlen(&fenc)?&fenc:'none'}\ \|\ %3v\ \ %4l\/%4L\ \|\ %3p%%
+        let g:smartusline_string_to_highlight=" %3n %r%m%h%w%q%F%="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
+        autocmd ColorScheme * hi User1 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
     " }}}
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
@@ -457,10 +457,10 @@
 
             " Define dictionary
             let g:neocomplcache_dictionary_filetype_lists = {
-                        \ 'default' : '',
-                        \ 'vimshell' : $HOME.'/.vimshell_hist',
-                        \ 'scheme' : $HOME.'/.gosh_completions'
-                        \ }
+                \ 'default' : '',
+                \ 'vimshell' : $HOME.'/.vimshell_hist',
+                \ 'scheme' : $HOME.'/.gosh_completions'
+                \ }
 
             " Define keyword
             if !exists('g:neocomplcache_keyword_patterns')
