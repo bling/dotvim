@@ -227,7 +227,6 @@
     " bundles: plugins {{{
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'tpope/vim-repeat'
-        NeoBundle 'tpope/vim-sleuth'
         NeoBundle 'tpope/vim-speeddating'
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'kshenoy/vim-signature'
@@ -256,10 +255,21 @@
         NeoBundle 'othree/html5.vim'
         NeoBundle 'othree/javascript-libraries-syntax.vim'
     " }}}
+    " smartusline {{{
+        NeoBundle 'molok/vim-smartusline'
+        set statusline=
+        set statusline+=\ \ %n\ %q%F
+        set statusline+=%=%r%m%h%w
+        set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
+        set statusline+=\ %{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
+        set statusline+=%{&ff}%y\ \|\ %{strlen(&fenc)?&fenc:'none'}\ \|\ %3v\ \ %4l\/%4L\ \|\ %3p%%
+        let g:smartusline_string_to_highlight="\ \ %n\ %q%F%=%r%m%h%w"
+        let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
+    " }}}
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-            NeoBundle 'Lokaltog/vim-powerline'
-            let g:Powerline_symbols='fancy'
+        "NeoBundle 'Lokaltog/vim-powerline'
+        "let g:Powerline_symbols='fancy'
     " }}}
     " ack/ag {{{
         if executable('ack') || executable('ag')
@@ -413,7 +423,7 @@
         NeoBundle 'nathanaelkane/vim-indent-guides'
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
-        let g:indent_guides_enable_on_vim_startup=1
+        let g:indent_guides_enable_on_vim_startup=0
         let g:indent_guides_color_change_percent=5
     " }}}
     " shougo plugins {{{
@@ -437,7 +447,9 @@
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
             let g:neocomplcache_use_vimproc=1
             let g:neocomplcache_enable_auto_select=1
-            let g:neocomplcache_enable_fuzzy_completion=1
+            let g:neocomplcache_enable_cursor_hold_i=1
+            let g:neocomplcache_cursor_hold_i_time=250
+            "let g:neocomplcache_enable_fuzzy_completion=1
 
             " Proper tab completion
             imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
@@ -520,6 +532,7 @@
     " reselect visual block after indent
     vnoremap < <gv
     vnoremap > >gv
+    nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
     " find current word in quickfix
     nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>

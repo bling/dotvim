@@ -42,6 +42,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<Down>` `<Up>` maps to `:bprev` and `:bnext` respectively
 *  `<Left>` `<Right>` maps to `:tabprev` and `:tabnext` respectively
 *  `Q` remapped to close windows and delete the buffer (if it is the last buffer window)
+*  `gp` remapped to visually reselect the last paste
 *  profiling shortcuts
    * `<leader>DD` starts profiling all functions and files into a file `profile.log`
    * `<leader>DP` pauses profiling
