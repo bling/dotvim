@@ -254,7 +254,6 @@
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
         NeoBundle 'othree/javascript-libraries-syntax.vim'
-        NeoBundle 'teramako/jscomplete-vim'
     " }}}
     " smartusline {{{
         NeoBundle 'molok/vim-smartusline'
@@ -424,17 +423,29 @@
     " }}}
     " shougo plugins {{{
         " unite {{{
-            NeoBundle 'Shougo/unite.vim'
+            NeoBundleDepends 'Shougo/unite.vim'
             let g:unite_data_directory='~/.vim/.cache/unite'
         " }}}
-        " neosnippet {{{
-            NeoBundle 'Shougo/neosnippet'
-            NeoBundle 'honza/snipmate-snippets'
+        " vimproc {{{
+            if executable('make')
+                NeoBundleDepends 'Shougo/vimproc', {
+                    \ 'build': {
+                        \ 'mac': 'make -f make_mac.mak',
+                        \ 'windows': 'make -f make_mingw32.mak',
+                        \ 'unix': 'make -f make_unix.mak',
+                    \ },
+                \ }
+            endif
+        " }}}
+        " neocomplcache/neosnippet {{{
+            NeoBundle 'Shougo/neocomplcache', { 'depends': [
+                        \ 'teramako/jscomplete-vim',
+                        \ 'Shougo/neosnippet',
+                        \ 'honza/snipmate-snippets',
+                        \ ] }
+
             let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
             let g:neosnippet#enable_snipmate_compatibility=1
-        " }}}
-        " neocomplcache {{{
-            NeoBundle 'Shougo/neocomplcache'
 
             let g:neocomplcache_enable_at_startup=1
             let g:neocomplcache_enable_auto_delimiter=1
@@ -442,35 +453,39 @@
             let g:neocomplcache_auto_completion_start_length=1
             let g:neocomplcache_max_list=10
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
-            let g:neocomplcache_use_vimproc=1
             let g:neocomplcache_enable_auto_select=1
             let g:neocomplcache_enable_cursor_hold_i=1
-            let g:neocomplcache_cursor_hold_i_time=300
+            let g:neocomplcache_cursor_hold_i_time=200
             "let g:neocomplcache_enable_fuzzy_completion=1
 
-            " Proper tab completion
+            " define empty defaults
+            if !exists('g:neocomplcache_keyword_patterns')
+                let g:neocomplcache_keyword_patterns = {}
+            endif
+            if !exists('g:neocomplcache_omni_patterns')
+                let g:neocomplcache_omni_patterns = {}
+            endif
+            if !exists('g:neocomplcache_omni_functions')
+                let g:neocomplcache_omni_functions = {}
+            endif
+
+            " tab completion
             imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
             smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
             imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
             smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
-            " Define dictionary
+            " define dictionary
             let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
                 \ 'vimshell' : $HOME.'/.vimshell_hist',
                 \ 'scheme' : $HOME.'/.gosh_completions'
                 \ }
 
-            " Define keyword
-            if !exists('g:neocomplcache_keyword_patterns')
-                let g:neocomplcache_keyword_patterns = {}
-            endif
+            " define keyword
             let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
-            " Enable heavy omni completion
-            if !exists('g:neocomplcache_omni_patterns')
-                let g:neocomplcache_omni_patterns = {}
-            endif
+            " enable heavy omni completion
             let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
             let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
             let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
@@ -485,30 +500,20 @@
             autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
             " js completion
-            if !exists('g:neocomplcache_omni_functions')
-                let g:neocomplcache_omni_functions = {}
-            endif
             let g:jscomplete_use = [ 'dom' ]
             let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
             autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
         " }}}
         " vimshell {{{
-            if executable('make')
-                NeoBundle 'Shougo/vimproc', {
-                    \ 'build': {
-                        \ 'mac': 'make -f make_mac.mak',
-                        \ 'windows': 'make -f make_mingw32.mak',
-                        \ 'unix': 'make -f make_unix.mak',
-                    \ },
-                \ }
+            if neobundle#is_sourced('vimproc')
                 NeoBundle 'Shougo/vimshell'
+
+                let g:vimshell_editor_command="/usr/local/bin/vim"
+                let g:vimshell_right_prompt='getcwd()'
+                let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
+
+                nnoremap <leader>c :VimShell -split<cr>
             endif
-
-            let g:vimshell_editor_command="/usr/local/bin/vim"
-            let g:vimshell_right_prompt='getcwd()'
-            let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
-
-            nnoremap <leader>c :VimShell -split<cr>
         "}}}
     " }}}
 
