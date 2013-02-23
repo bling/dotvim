@@ -210,14 +210,6 @@
         \   exe 'normal! g`"zvzz' |
         \ endif
 
-    " enable omni completion
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-
     autocmd FileType javascript setlocal foldlevelstart=2
 
     let g:xml_syntax_folding=1
@@ -262,6 +254,7 @@
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
         NeoBundle 'othree/javascript-libraries-syntax.vim'
+        NeoBundle 'teramako/jscomplete-vim'
     " }}}
     " smartusline {{{
         NeoBundle 'molok/vim-smartusline'
@@ -446,17 +439,20 @@
             let g:neocomplcache_enable_at_startup=1
             let g:neocomplcache_enable_auto_delimiter=1
             let g:neocomplcache_force_overwrite_completefunc=1
+            let g:neocomplcache_auto_completion_start_length=1
             let g:neocomplcache_max_list=10
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
             let g:neocomplcache_use_vimproc=1
             let g:neocomplcache_enable_auto_select=1
             let g:neocomplcache_enable_cursor_hold_i=1
-            let g:neocomplcache_cursor_hold_i_time=250
+            let g:neocomplcache_cursor_hold_i_time=300
             "let g:neocomplcache_enable_fuzzy_completion=1
 
             " Proper tab completion
             imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
             smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+            smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
             " Define dictionary
             let g:neocomplcache_dictionary_filetype_lists = {
@@ -480,6 +476,21 @@
             let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
             let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
             let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+            " enable general omni completion
+            autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+            autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+            autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+            autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+            autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+            " js completion
+            if !exists('g:neocomplcache_omni_functions')
+                let g:neocomplcache_omni_functions = {}
+            endif
+            let g:jscomplete_use = [ 'dom' ]
+            let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
+            autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
         " }}}
         " vimshell {{{
             if executable('make')
