@@ -232,11 +232,6 @@
     autocmd FileType scss setlocal foldlevel=999 foldmethod=marker foldmarker={,}
 " }}}
 
-" macros {{{
-    " put cursor on _f_unction, and it will _.bind it 'this'
-    let @b='i_.bind(f{%a, this)'
-" }}}
-
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
         NeoBundle 'tpope/vim-surround'
@@ -245,7 +240,7 @@
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'guns/xterm-color-table.vim'
-        NeoBundle 'sjl/splice.vim'
+        "NeoBundle 'sjl/splice.vim'
 
         NeoBundle 'vimwiki'
         NeoBundle 'bufkill.vim'
@@ -540,7 +535,6 @@
     " formatting shortcuts
     nmap <leader>fef :call Preserve("normal gg=G")<CR>
     nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-    vmap <leader>s :sort<cr>
 
     " remap arrow keys
     nnoremap <down> :bprev<CR>
@@ -600,6 +594,15 @@
     nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
     nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
     nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
+
+" }}}
+
+" refactoring mappings {{{
+    " put cursor on _f_unction, and it will _.bind it 'this'
+    autocmd FileType javascript nnoremap <leader>rb i_.bind(f{%a, this)
+
+    " sorts CSS
+    autocmd FileType css,scss nnoremap <silent> <leader>s vi{:sort<CR>
 " }}}
 
 " theme {{{

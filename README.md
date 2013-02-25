@@ -53,9 +53,6 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<leader>s` sort selection
 *  `>` and `<` automatically reselects the visual selection
 
-## macros
-*  `@b` place your cursor on _f_unction and it will automatically _.bind it (very useful in javascript).
-
 ## plugins
 
 ### [ack.vim](https://github.com/milezs/ack.vim)
