@@ -193,13 +193,13 @@
 " {{{ status line
     set statusline=
     set statusline+=%7*%m%*
-    set statusline+=\ %r%h%w%q%F%=
+    set statusline+=\ %r%h%w%q%F\ %=
     set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
     set statusline+=%1*\ %{&ff}%y\ 
     set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
-    set statusline+=%3*\ %3v\ 
-    set statusline+=%4*%4l\/%4L\ 
-    set statusline+=%5*\ %3p%%\ 
+    set statusline+=%3*%3v:%l\ 
+    set statusline+=%4*\ %3p%%\ 
+    set statusline+=%5*%4L\ 
     set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
 
     autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
@@ -256,6 +256,7 @@
         NeoBundle 'tomasr/molokai'
         NeoBundle 'chriskempson/vim-tomorrow-theme'
         NeoBundle 'w0ng/vim-hybrid'
+        NeoBundle 'sjl/badwolf'
     " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
@@ -603,7 +604,7 @@
 
 " theme {{{
     set background=dark
-    colorscheme jellybeans
+    colorscheme badwolf
     highlight Pmenu ctermbg=234 ctermfg=240 guibg=#1c1c1c guifg=#585858
     highlight PmenuSel ctermbg=25 ctermfg=255 guibg=#005faf guifg=#ffffff
 " }}}
