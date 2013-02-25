@@ -263,11 +263,10 @@
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
-        NeoBundle 'othree/javascript-libraries-syntax.vim'
     " }}}
     " smartusline {{{
         NeoBundle 'molok/vim-smartusline'
-        let g:smartusline_string_to_highlight=" %r%h%w%q%F%="
+        let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     " }}}
     " powerline {{{
@@ -429,6 +428,10 @@
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
         let g:indent_guides_color_change_percent=5
+    " }}}
+    " javascript-libraries {{{
+        "NeoBundle 'othree/javascript-libraries-syntax.vim'
+        "let g:used_javascript_libs='underscore,jquery'
     " }}}
     " shougo plugins {{{
         " unite {{{
