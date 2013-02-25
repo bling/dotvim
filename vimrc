@@ -265,12 +265,12 @@
         NeoBundle 'othree/html5.vim'
     " }}}
     " smartusline {{{
-        NeoBundle 'molok/vim-smartusline'
+        "NeoBundle 'molok/vim-smartusline'
         let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     " }}}
     " powerline {{{
-        "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+        NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         "NeoBundle 'Lokaltog/vim-powerline'
         "let g:Powerline_symbols='fancy'
     " }}}
