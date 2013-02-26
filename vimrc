@@ -270,7 +270,12 @@
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     " }}}
     " powerline {{{
-        NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+        NeoBundle 'Lokaltog/powerline', {
+            \ 'rtp': 'powerline/bindings/vim',
+            \ 'build': {
+                \ 'mac': 'python setup.py install',
+            \ }
+        \ }
         "NeoBundle 'Lokaltog/vim-powerline'
         "let g:Powerline_symbols='fancy'
     " }}}
@@ -431,7 +436,7 @@
     " }}}
     " javascript-libraries {{{
         "NeoBundle 'othree/javascript-libraries-syntax.vim'
-        "let g:used_javascript_libs='underscore,jquery'
+        "let g:used_javascript_libs='underscore,jquery,requirejs'
     " }}}
     " shougo plugins {{{
         " unite {{{
