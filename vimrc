@@ -538,6 +538,7 @@
     " formatting shortcuts
     nmap <leader>fef :call Preserve("normal gg=G")<CR>
     nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+    vmap <leader>s :sort<cr>
 
     " remap arrow keys
     nnoremap <down> :bprev<CR>
@@ -601,11 +602,8 @@
 " }}}
 
 " refactoring mappings {{{
-    " put cursor on _f_unction, and it will _.bind it 'this'
-    autocmd FileType javascript nnoremap <leader>rb i_.bind(f{%a, this)
-
     " sorts CSS
-    autocmd FileType css,scss nnoremap <silent> <leader>s vi{:sort<CR>
+    autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 " }}}
 
 " theme {{{
