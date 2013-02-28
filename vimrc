@@ -63,6 +63,7 @@
     set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
     set encoding=utf-8                                  "set encoding for text
     set clipboard=unnamed                               "sync with OS clipboard
+    set pastetoggle=<F6>
     set hidden                                          "allow buffer switching without saving
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac                                "add mac to auto-detection of file format line endings
@@ -252,6 +253,10 @@
         NeoBundle 'chriskempson/vim-tomorrow-theme'
         NeoBundle 'w0ng/vim-hybrid'
         NeoBundle 'sjl/badwolf'
+        " solarized {{{
+            NeoBundle 'altercation/vim-colors-solarized'
+            let g:solarized_termcolors=256
+        " }}}
     " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
@@ -265,17 +270,18 @@
         NeoBundle 'othree/html5.vim'
     " }}}
     " smartusline {{{
-        "NeoBundle 'molok/vim-smartusline'
+        NeoBundle 'molok/vim-smartusline'
         let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     " }}}
     " powerline {{{
-        NeoBundle 'Lokaltog/powerline', {
-            \ 'rtp': 'powerline/bindings/vim',
-            \ 'build': {
-                \ 'mac': 'python setup.py install',
-            \ }
-        \ }
+        "NeoBundle 'Lokaltog/powerline', {
+            "\ 'rtp': 'powerline/bindings/vim',
+            "\ 'build': {
+                "\ 'mac': 'python setup.py install',
+                "\ 'unix': 'python setup.py install',
+            "\ }
+        "\ }
         "NeoBundle 'Lokaltog/vim-powerline'
         "let g:Powerline_symbols='fancy'
     " }}}
@@ -305,10 +311,6 @@
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>gr :Gremove<CR>
         autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
-    " }}}
-    " solarized {{{
-        NeoBundle 'altercation/vim-colors-solarized'
-        let g:solarized_termcolors=256
     " }}}
     " easybuffer {{{
         NeoBundle 'troydm/easybuffer.vim'
@@ -434,7 +436,7 @@
         let g:indent_guides_enable_on_vim_startup=0
         let g:indent_guides_color_change_percent=5
     " }}}
-    " javascript-libraries {{{
+     " javascript-libraries {{{
         "NeoBundle 'othree/javascript-libraries-syntax.vim'
         "let g:used_javascript_libs='underscore,jquery,requirejs'
     " }}}
@@ -603,7 +605,6 @@
     nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
     nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
     nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
-
 " }}}
 
 " refactoring mappings {{{
@@ -613,7 +614,7 @@
 
 " theme {{{
     set background=dark
-    colorscheme badwolf
+    colorscheme molokai
     highlight Pmenu ctermbg=234 ctermfg=240 guibg=#1c1c1c guifg=#585858
     highlight PmenuSel ctermbg=25 ctermfg=255 guibg=#005faf guifg=#ffffff
 " }}}
