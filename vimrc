@@ -230,6 +230,18 @@
     autocmd FileType scss setlocal foldlevel=999 foldmethod=marker foldmarker={,}
 " }}}
 
+" color schemes {{{
+    NeoBundle 'nanotech/jellybeans.vim'
+    NeoBundle 'tomasr/molokai'
+    NeoBundle 'chriskempson/vim-tomorrow-theme'
+    NeoBundle 'w0ng/vim-hybrid'
+    NeoBundle 'sjl/badwolf'
+    NeoBundle 'altercation/vim-colors-solarized' "{{{
+        let g:solarized_termcolors=256
+    " }}}
+    NeoBundle 'mgutz/vim-colors'
+" }}}
+
 " plugin/mapping configuration {{{
     " bundles: plugins {{{
         NeoBundle 'tpope/vim-surround'
@@ -243,17 +255,6 @@
         NeoBundle 'vimwiki'
         NeoBundle 'bufkill.vim'
         NeoBundle 'matchit.zip'
-    " }}}
-    " bundles: color schemes {{{
-        NeoBundle 'nanotech/jellybeans.vim'
-        NeoBundle 'tomasr/molokai'
-        NeoBundle 'chriskempson/vim-tomorrow-theme'
-        NeoBundle 'w0ng/vim-hybrid'
-        NeoBundle 'sjl/badwolf'
-        " solarized {{{
-            NeoBundle 'altercation/vim-colors-solarized'
-            let g:solarized_termcolors=256
-        " }}}
     " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
@@ -611,7 +612,11 @@
 
 " theme {{{
     set background=dark
-    colorscheme molokai
+    if has('gui_running')
+        colorscheme chance-of-storm
+    else
+        colorscheme jellybeans
+    endif
     highlight Pmenu ctermbg=234 ctermfg=240 guibg=#1c1c1c guifg=#585858
     highlight PmenuSel ctermbg=25 ctermfg=255 guibg=#005faf guifg=#ffffff
 " }}}
