@@ -267,11 +267,6 @@
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
     " }}}
-    " smartusline {{{
-        NeoBundle 'molok/vim-smartusline'
-        let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
-        let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
-    " }}}
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', {
             "\ 'rtp': 'powerline/bindings/vim',
@@ -280,8 +275,10 @@
                 "\ 'unix': 'python setup.py install',
             "\ }
         "\ }
-        "NeoBundle 'Lokaltog/vim-powerline'
-        "let g:Powerline_symbols='fancy'
+        NeoBundle 'Lokaltog/vim-powerline'
+        if has('gui_running')
+            let g:Powerline_symbols='fancy'
+        endif
     " }}}
     " ack/ag {{{
         if executable('ack') || executable('ag')
@@ -292,14 +289,16 @@
             nnoremap <leader>/ :Ack 
         endif
     " }}}
-    " easygrep {{{
-        NeoBundle 'EasyGrep'
+    "NeoBundle 'molok/vim-smartusline' "{{{
+        let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
+        let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
+    " }}}
+    NeoBundle 'EasyGrep' "{{{
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
         let g:EasyGrepCommand=1
     " }}}
-    " fugitive {{{
-        NeoBundle 'tpope/vim-fugitive'
+    NeoBundle 'tpope/vim-fugitive' "{{{
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -310,16 +309,12 @@
         nnoremap <silent> <leader>gr :Gremove<CR>
         autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
     " }}}
-    " easybuffer {{{
-        NeoBundle 'troydm/easybuffer.vim'
+    NeoBundle 'troydm/easybuffer.vim' "{{{
         nnoremap <leader>B :EasyBufferHorizontalBelow<cr>
     " }}}
-    " easymotion {{{
-        "NeoBundle 'Lokaltog/vim-easymotion'
-        NeoBundle 'skwp/vim-easymotion'
-    " }}}
-    " nerdtree {{{
-        NeoBundle 'scrooloose/nerdtree'
+    "NeoBundle 'Lokaltog/vim-easymotion'
+    NeoBundle 'skwp/vim-easymotion'
+    NeoBundle 'scrooloose/nerdtree' "{{{
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
         let NERDTreeShowLineNumbers=1
@@ -330,27 +325,23 @@
         nnoremap <F2> :NERDTreeToggle<CR>
         nnoremap <F3> :NERDTreeFind<CR>
     " }}}
-    " nerdcommenter {{{
-        NeoBundle 'scrooloose/nerdcommenter'
+    NeoBundle 'scrooloose/nerdcommenter' "{{{
         nmap \\ <Plug>NERDCommenterToggle
         vmap \\ <Plug>NERDCommenterToggle
     " }}}
-    " numbers {{{
-        NeoBundle 'myusuf3/numbers.vim'
+    NeoBundle 'myusuf3/numbers.vim' "{{{
         if !has('gui_running')
             "too slow in terminal
             NeoBundleDisable numbers.vim
         endif
     " }}}
-    " syntastic {{{
-        NeoBundle 'scrooloose/syntastic'
+    NeoBundle 'scrooloose/syntastic' "{{{
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_style_error_symbol = '✠'
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
     " }}}
-    " ctrlp {{{
-        NeoBundle 'kien/ctrlp.vim'
+    NeoBundle 'kien/ctrlp.vim' "{{{
         "let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_max_height=40
         let g:ctrlp_max_files=2000
@@ -364,20 +355,17 @@
         nnoremap <leader>pl :CtrlPLine<cr>
         nnoremap <leader>b :CtrlPBuffer<cr>
     " }}}
-    " yankstack {{{
-        NeoBundle 'maxbrunsfeld/vim-yankstack'
+    NeoBundle 'maxbrunsfeld/vim-yankstack' "{{{
         let g:yankstack_map_keys=0
         nmap <BS><BS> <Plug>yankstack_substitute_older_paste
         nmap <BS>\ <Plug>yankstack_substitute_newer_paste
         nnoremap <leader>y :Yanks<cr>
         call yankstack#setup()
     " }}}
-    " buftabs {{{
-        NeoBundle 'buftabs'
+    NeoBundle 'buftabs' "{{{
         let g:buftabs_only_basename=1
     " }}}
-    " tabular {{{
-        NeoBundle 'godlygeek/tabular'
+    NeoBundle 'godlygeek/tabular' "{{{
         nmap <Leader>a& :Tabularize /&<CR>
         vmap <Leader>a& :Tabularize /&<CR>
         nmap <Leader>a= :Tabularize /=<CR>
@@ -391,51 +379,41 @@
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     " }}}
-    " gundo {{{
-        NeoBundle 'sjl/gundo.vim'
+    NeoBundle 'sjl/gundo.vim' "{{{
         let g:gundo_right=1
         nnoremap <silent> <F5> :GundoToggle<CR>
     " }}}
-    " gist {{{
-        NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
+    NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' } "{{{
         let g:gist_post_private=1
         let g:gist_show_privates=1
     " }}}
-    " unimpaired {{{
-        NeoBundle 'tpope/vim-unimpaired'
+    NeoBundle 'tpope/vim-unimpaired' "{{{
         nmap <c-up> [e
         nmap <c-down> ]e
         vmap <c-up> [egv
         vmap <c-down> ]egv
     " }}}
-    " golden-ratio {{{
-        NeoBundle 'roman/golden-ratio'
+    NeoBundle 'roman/golden-ratio' "{{{
         let g:golden_ratio_autocommand=0
         let g:golden_ratio_wrap_ignored=0
         nnoremap <F4> :GoldenRatioToggle<cr>
     " }}}
-    " jsbeautify {{{
-        NeoBundle 'maksimr/vim-jsbeautify'
+    NeoBundle 'maksimr/vim-jsbeautify' "{{{
         nnoremap <leader>fjs :call JsBeautify()<CR>
     " }}}
-    " ultisnips {{{
-        "NeoBundle 'SirVer/ultisnips'
+    "NeoBundle 'SirVer/ultisnips' "{{{
         let g:UltiSnipsExpandTrigger="<tab>"
         let g:UltiSnipsJumpForwardTrigger="<tab>"
         let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     " }}}
-    " markmultiple {{{
-        NeoBundle 'adinapoli/vim-markmultiple'
-    " }}}
-    " indent guides {{{
-        NeoBundle 'nathanaelkane/vim-indent-guides'
+    NeoBundle 'adinapoli/vim-markmultiple'
+    NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
         let g:indent_guides_color_change_percent=5
     " }}}
-     " javascript-libraries {{{
-        "NeoBundle 'othree/javascript-libraries-syntax.vim'
+    "NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         "let g:used_javascript_libs='underscore,jquery,requirejs'
     " }}}
     " shougo plugins {{{
