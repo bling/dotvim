@@ -87,8 +87,7 @@
     set listchars=tab:│\ ,trail:.,extends:❯,precedes:❮
     set shiftround
     set linebreak
-    set showbreak=…
-
+    set showbreak=↪\ 
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
     set synmaxcol=150
@@ -544,6 +543,14 @@
     " screen line scroll
     nnoremap <silent> j gj
     nnoremap <silent> k gk
+
+    " auto center
+    nnoremap <silent> n nzz
+    nnoremap <silent> N Nzz
+    nnoremap <silent> * *zz
+    nnoremap <silent> # #zz
+    nnoremap <silent> g* g*zz
+    nnoremap <silent> g# g#zz
 
     " reselect visual block after indent
     vnoremap < <gv
