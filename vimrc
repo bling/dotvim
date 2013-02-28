@@ -515,6 +515,8 @@
     if !has('gui_running')
         NeoBundleCheck
     endif
+
+    nnoremap <leader>nbu :Unite neobundle/update<cr>
 " }}}
 
 " mappings {{{
