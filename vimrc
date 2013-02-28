@@ -8,7 +8,7 @@
 " }}}
 
 " functions {{{
-    function! Preserve(command)
+    function! Preserve(command) "{{{
         " preparation: save last search, and cursor position.
         let _s=@/
         let l = line(".")
@@ -18,19 +18,16 @@
         " clean up: restore previous search history, and cursor position
         let @/=_s
         call cursor(l, c)
-    endfunction
-
-    function! StripTrailingWhitespace()
+    endfunction"}}}
+    function! StripTrailingWhitespace() "{{{
         call Preserve("%s/\\s\\+$//e")
-    endfunction
-
-    function! EnsureExists(path)
+    endfunction"}}}
+    function! EnsureExists(path) "{{{
         if !isdirectory(expand(a:path))
             call mkdir(expand(a:path))
         endif
-    endfunction
-
-    function! CloseWindowOrKillBuffer()
+    endfunction"}}}
+    function! CloseWindowOrKillBuffer() "{{{
         let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
 
         " never bdelete a nerd tree
@@ -44,7 +41,7 @@
         else
             bdelete
         endif
-    endfunction
+    endfunction"}}}
 " }}}
 
 " base configuration {{{
