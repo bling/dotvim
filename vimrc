@@ -84,10 +84,11 @@
     set shiftwidth=4                                    "number of spaces when indenting
     set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
-    set listchars=tab:│\ ,trail:.,extends:❯,precedes:❮
+    set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
     set shiftround
     set linebreak
     set showbreak=↪\ 
+
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
     set synmaxcol=150
@@ -151,13 +152,12 @@
     set cursorline
     set cursorcolumn
     set lazyredraw
+    set colorcolumn=120
 
     if has('conceal')
         set conceallevel=1
         set listchars+=conceal:.
     endif
-
-    let colorcolumn=join(range(120,999),',')
 
     if has('gui_running')
         set lines=999
@@ -311,8 +311,11 @@
     NeoBundle 'troydm/easybuffer.vim' "{{{
         nnoremap <leader>B :EasyBufferHorizontalBelow<cr>
     " }}}
+    " easymotion {{{
     "NeoBundle 'Lokaltog/vim-easymotion'
     NeoBundle 'skwp/vim-easymotion'
+        let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
+    " }}}
     NeoBundle 'scrooloose/nerdtree' "{{{
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
@@ -448,8 +451,8 @@
             let g:neocomplcache_max_list=10
             let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
             let g:neocomplcache_enable_auto_select=1
-            let g:neocomplcache_enable_cursor_hold_i=1
-            let g:neocomplcache_cursor_hold_i_time=200
+            "let g:neocomplcache_enable_cursor_hold_i=1
+            "let g:neocomplcache_cursor_hold_i_time=300
             "let g:neocomplcache_enable_fuzzy_completion=1
 
             " define empty defaults
