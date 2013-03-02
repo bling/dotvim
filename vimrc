@@ -112,7 +112,6 @@
     set incsearch                                       "incremental searching
     set ignorecase                                      "ignore case for searching
     set smartcase                                       "do case-sensitive if there's a capital letter
-    set showmatch                                       "automatically highlight matching braces/brackets/etc.
     if executable('ack')
         set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
         set grepformat=%f:%l:%c:%m
@@ -146,6 +145,7 @@
 " }}}
 
 " ui configuration {{{
+    set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set matchtime=2                                     "tens of a second to show matching parentheses
     set laststatus=2
     set number
@@ -267,13 +267,7 @@
         NeoBundle 'othree/html5.vim'
     " }}}
     " powerline {{{
-        "NeoBundle 'Lokaltog/powerline', {
-            "\ 'rtp': 'powerline/bindings/vim',
-            "\ 'build': {
-                "\ 'mac': 'python setup.py install',
-                "\ 'unix': 'python setup.py install',
-            "\ }
-        "\ }
+        "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
             let g:Powerline_symbols='fancy'
@@ -312,8 +306,8 @@
         nnoremap <leader>B :EasyBufferHorizontalBelow<cr>
     " }}}
     " easymotion {{{
-    "NeoBundle 'Lokaltog/vim-easymotion'
-    NeoBundle 'skwp/vim-easymotion'
+        "NeoBundle 'Lokaltog/vim-easymotion'
+        NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
     " }}}
     NeoBundle 'scrooloose/nerdtree' "{{{
@@ -417,7 +411,7 @@
     " }}}
     "NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         "let g:used_javascript_libs='underscore,jquery,requirejs'
-    " }}}
+    "}}}
     " shougo plugins {{{
         " unite {{{
             NeoBundleDepends 'Shougo/unite.vim'
@@ -554,6 +548,8 @@
     nnoremap <silent> # #zz
     nnoremap <silent> g* g*zz
     nnoremap <silent> g# g#zz
+    nnoremap <silent> <C-o> <C-o>zz
+    nnoremap <silent> <C-i> <C-i>zz
 
     " reselect visual block after indent
     vnoremap < <gv
