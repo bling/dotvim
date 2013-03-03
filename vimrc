@@ -150,19 +150,6 @@
 " }}}
 
 " plugin/mapping configuration {{{
-    " bundles: plugins {{{
-        NeoBundle 'tpope/vim-surround'
-        NeoBundle 'tpope/vim-repeat'
-        NeoBundle 'tpope/vim-speeddating'
-        NeoBundle 'mattn/zencoding-vim'
-        NeoBundle 'kshenoy/vim-signature'
-        NeoBundle 'guns/xterm-color-table.vim'
-        "NeoBundle 'sjl/splice.vim'
-
-        NeoBundle 'vimwiki'
-        NeoBundle 'bufkill.vim'
-        NeoBundle 'matchit.zip'
-    " }}}
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'groenewege/vim-less'
@@ -174,6 +161,16 @@
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
     " }}}
+    NeoBundle 'tpope/vim-surround'
+    NeoBundle 'tpope/vim-repeat'
+    NeoBundle 'tpope/vim-speeddating'
+    NeoBundle 'mattn/zencoding-vim'
+    "NeoBundle 'kshenoy/vim-signature'
+    NeoBundle 'guns/xterm-color-table.vim'
+    "NeoBundle 'sjl/splice.vim'
+    NeoBundle 'vimwiki'
+    NeoBundle 'bufkill.vim'
+    NeoBundle 'matchit.zip'
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         "NeoBundle 'Lokaltog/vim-powerline'
@@ -291,7 +288,8 @@
         let g:gist_post_private=1
         let g:gist_show_privates=1
     " }}}
-    NeoBundle 'airblade/vim-gitgutter'
+    "NeoBundle 'airblade/vim-gitgutter'
+    NeoBundle 'tomtom/quickfixsigns_vim'
     NeoBundle 'tpope/vim-unimpaired' "{{{
         nmap <c-up> [e
         nmap <c-down> ]e
@@ -313,7 +311,7 @@
         "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     " }}}
     NeoBundle 'adinapoli/vim-markmultiple'
-    NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
+    "NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
@@ -543,7 +541,7 @@
     set colorcolumn=120
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
-    set foldcolumn=4
+    set foldcolumn=3
 
     if has('conceal')
         set conceallevel=1
