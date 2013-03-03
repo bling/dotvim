@@ -44,171 +44,6 @@
     endfunction"}}}
 " }}}
 
-" base configuration {{{
-    filetype on
-    filetype plugin on
-    filetype indent on
-    syntax enable
-
-    set timeoutlen=300                                  "mapping timeout
-    set ttimeoutlen=50                                  "keycode timeout
-
-    set mouse=a                                         "enable mouse
-    set mousehide                                       "hide when characters are typed
-    set history=1000                                    "number of command lines to remember
-    set ttyfast                                         "assume fast terminal connection
-    set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
-    set encoding=utf-8                                  "set encoding for text
-    set clipboard=unnamed                               "sync with OS clipboard
-    set pastetoggle=<F6>
-    set hidden                                          "allow buffer switching without saving
-    set autoread                                        "auto reload if file saved externally
-    set fileformats+=mac                                "add mac to auto-detection of file format line endings
-    set nrformats-=octal                                "always assume decimal numbers
-    set showcmd
-    set tags=tags;/
-    set showfulltag
-    set keywordprg=":help"                              "remap K to vim help
-    if executable('zsh')
-        set shell=zsh
-    endif
-
-    " whitespace
-    set backspace=indent,eol,start                      "allow backspacing everything in insert mode
-    set autoindent                                      "automatically indent to match adjacent lines
-    set smartindent                                     "smart indenting for additional languages
-    set expandtab                                       "spaces instead of tabs
-    set smarttab                                        "use shiftwidth to enter tabs
-    set tabstop=4                                       "number of spaces per tab for display
-    set softtabstop=4                                   "number of spaces per tab in insert mode
-    set shiftwidth=4                                    "number of spaces when indenting
-    set virtualedit=onemore                             "allow cursor one beyond end of line
-    set list                                            "highlight whitespace
-    set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
-    set shiftround
-    set linebreak
-    set showbreak=↪\ 
-
-    set foldenable                                      "enable folds by default
-    set foldmethod=syntax                               "fold via syntax of files
-    set synmaxcol=150
-    set scrolloff=1                                     "always show content after scroll
-    set scrolljump=5                                    "minimum number of lines to scroll
-    set display+=lastline
-    set wildmenu                                        "show list for autocomplete
-    set wildmode=list:longest:full                      "priority for tab completion
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
-
-    set splitbelow
-    set splitright
-
-    " disable sounds
-    set noerrorbells
-    set novisualbell
-    set t_vb=
-
-    " searching
-    set hlsearch                                        "highlight searches
-    set incsearch                                       "incremental searching
-    set ignorecase                                      "ignore case for searching
-    set smartcase                                       "do case-sensitive if there's a capital letter
-    if executable('ack')
-        set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
-        set grepformat=%f:%l:%c:%m
-    endif
-    if executable('ag')
-        set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-        set grepformat=%f:%l:%c:%m
-    endif
-
-    " vim file/folder management {{{
-        " persistent undo
-        set undofile
-        set undodir=~/.vim/.cache/undo
-
-        " backups
-        set backup
-        set backupdir=~/.vim/.cache/backup
-
-        " swap files
-        set noswapfile
-        set directory=~/.vim/.cache/swap
-
-        call EnsureExists('~/.vim/.cache')
-        call EnsureExists(&undodir)
-        call EnsureExists(&backupdir)
-        call EnsureExists(&directory)
-    " }}}
-
-    let mapleader = ","
-    let g:mapleader = ","
-" }}}
-
-" ui configuration {{{
-    set showmatch                                       "automatically highlight matching braces/brackets/etc.
-    set matchtime=2                                     "tens of a second to show matching parentheses
-    set laststatus=2
-    set number
-    set cursorline
-    set cursorcolumn
-    set lazyredraw
-    set colorcolumn=120
-
-    if has('conceal')
-        set conceallevel=1
-        set listchars+=conceal:.
-    endif
-
-    if has('gui_running')
-        set lines=999
-        set columns=999
-        set guioptions+=t                               "tear off menu items
-        set guioptions-=T                               "toolbar icons
-
-        if has('gui_macvim')
-            set gfn=Ubuntu_Mono_for_Powerline:h14
-        endif
-
-        if has('gui_win32')
-            set gfn=Ubuntu_Mono_for_Powerline:h10
-        endif
-
-        if has('gui_gtk')
-            set gfn=Ubuntu\ Mono\ for\ Powerline\ 11
-        endif
-    else
-        set t_Co=256
-
-        if $TERM_PROGRAM == 'iTerm.app'
-            " difference cursors for insert vs normal mode
-            let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-            let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-        endif
-    endif
-" }}}
-
-" {{{ status line
-    set statusline=
-    set statusline+=%7*%m%*
-    set statusline+=\ %r%h%w%q%F\ %=
-    set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
-    set statusline+=%1*\ %{&ff}%y\ 
-    set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
-    set statusline+=%3*%3v:%l\ 
-    set statusline+=%4*\ %3p%%\ 
-    set statusline+=%5*%4L\ 
-    set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
-
-    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
-    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
-    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
-    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
-    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
-    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
-    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
-    autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
-" }}}
-
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
@@ -229,16 +64,83 @@
     autocmd FileType scss setlocal foldlevel=999 foldmethod=marker foldmarker={,}
 " }}}
 
-" color schemes {{{
-    NeoBundle 'nanotech/jellybeans.vim'
-    NeoBundle 'tomasr/molokai'
-    NeoBundle 'chriskempson/vim-tomorrow-theme'
-    NeoBundle 'w0ng/vim-hybrid'
-    NeoBundle 'sjl/badwolf'
-    NeoBundle 'altercation/vim-colors-solarized' "{{{
-        let g:solarized_termcolors=256
-    " }}}
-    NeoBundle 'mgutz/vim-colors'
+" mappings {{{
+    let mapleader = ","
+    let g:mapleader = ","
+
+    " formatting shortcuts
+    nmap <leader>fef :call Preserve("normal gg=G")<CR>
+    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+    vmap <leader>s :sort<cr>
+
+    " remap arrow keys
+    nnoremap <down> :bprev<CR>
+    nnoremap <up> :bnext<CR>
+    nnoremap <left> :tabnext<CR>
+    nnoremap <right> :tabprev<CR>
+
+    " correct cursor position in insert mode
+    inoremap <C-h> <left>
+    inoremap <C-l> <right>
+
+    " sane regex
+    nnoremap / /\v
+    vnoremap / /\v
+    nnoremap ? ?\v
+    vnoremap ? ?\v
+
+    " screen line scroll
+    nnoremap <silent> j gj
+    nnoremap <silent> k gk
+
+    " auto center
+    nnoremap <silent> n nzz
+    nnoremap <silent> N Nzz
+    nnoremap <silent> * *zz
+    nnoremap <silent> # #zz
+    nnoremap <silent> g* g*zz
+    nnoremap <silent> g# g#zz
+    nnoremap <silent> <C-o> <C-o>zz
+    nnoremap <silent> <C-i> <C-i>zz
+
+    " reselect visual block after indent
+    vnoremap < <gv
+    vnoremap > >gv
+    nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+    " find current word in quickfix
+    nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
+    " find last search in quickfix
+    nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
+
+    " shortcuts for windows
+    nnoremap <leader>v <C-w>v<C-w>l
+    nnoremap <leader>s <C-w>s
+    nnoremap <leader>vsa :vert sba<cr>
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+
+    " tab shortcuts
+    map <leader>tn :tabnew<CR>
+    map <leader>tc :tabclose<CR>
+
+    " make Y consistent with C and D.  See :help Y.
+    nnoremap Y y$
+
+    " window killer
+    nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
+
+    " general
+    nmap <leader>l :set list! list?<cr>
+    noremap <space> :set hlsearch! hlsearch?<cr>
+
+    " helpers for profiling
+    nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+    nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+    nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+    nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
 " }}}
 
 " plugin/mapping configuration {{{
@@ -398,10 +300,11 @@
     NeoBundle 'maksimr/vim-jsbeautify' "{{{
         nnoremap <leader>fjs :call JsBeautify()<CR>
     " }}}
+    "NeoBundle 'Valloric/YouCompleteMe'
     "NeoBundle 'SirVer/ultisnips' "{{{
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<tab>"
-        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        "let g:UltiSnipsExpandTrigger="<tab>"
+        "let g:UltiSnipsJumpForwardTrigger="<tab>"
+        "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     " }}}
     NeoBundle 'adinapoli/vim-markmultiple'
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
@@ -516,80 +419,16 @@
     nnoremap <leader>nbu :Unite neobundle/update<cr>
 " }}}
 
-" mappings {{{
-    " formatting shortcuts
-    nmap <leader>fef :call Preserve("normal gg=G")<CR>
-    nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-    vmap <leader>s :sort<cr>
-
-    " remap arrow keys
-    nnoremap <down> :bprev<CR>
-    nnoremap <up> :bnext<CR>
-    nnoremap <left> :tabnext<CR>
-    nnoremap <right> :tabprev<CR>
-
-    " correct cursor position in insert mode
-    inoremap <C-h> <left>
-    inoremap <C-l> <right>
-
-    " sane regex
-    nnoremap / /\v
-    vnoremap / /\v
-    nnoremap ? ?\v
-    vnoremap ? ?\v
-
-    " screen line scroll
-    nnoremap <silent> j gj
-    nnoremap <silent> k gk
-
-    " auto center
-    nnoremap <silent> n nzz
-    nnoremap <silent> N Nzz
-    nnoremap <silent> * *zz
-    nnoremap <silent> # #zz
-    nnoremap <silent> g* g*zz
-    nnoremap <silent> g# g#zz
-    nnoremap <silent> <C-o> <C-o>zz
-    nnoremap <silent> <C-i> <C-i>zz
-
-    " reselect visual block after indent
-    vnoremap < <gv
-    vnoremap > >gv
-    nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-    " find current word in quickfix
-    nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
-    " find last search in quickfix
-    nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
-
-    " shortcuts for windows
-    nnoremap <leader>v <C-w>v<C-w>l
-    nnoremap <leader>s <C-w>s
-    nnoremap <leader>vsa :vert sba<cr>
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
-
-    " tab shortcuts
-    map <leader>tn :tabnew<CR>
-    map <leader>tc :tabclose<CR>
-
-    " make Y consistent with C and D.  See :help Y.
-    nnoremap Y y$
-
-    " window killer
-    nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
-
-    " general
-    nmap <leader>l :set list! list?<cr>
-    noremap <space> :set hlsearch! hlsearch?<cr>
-
-    " helpers for profiling
-    nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-    nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
-    nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-    nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
+" color schemes {{{
+    NeoBundle 'nanotech/jellybeans.vim'
+    NeoBundle 'tomasr/molokai'
+    NeoBundle 'chriskempson/vim-tomorrow-theme'
+    NeoBundle 'w0ng/vim-hybrid'
+    NeoBundle 'sjl/badwolf'
+    NeoBundle 'altercation/vim-colors-solarized' "{{{
+        let g:solarized_termcolors=256
+    " }}}
+    NeoBundle 'mgutz/vim-colors'
 " }}}
 
 " refactoring mappings {{{
@@ -597,7 +436,165 @@
     autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 " }}}
 
-" theme {{{
+" base configuration {{{
+    filetype plugin indent on
+    syntax enable
+
+    set timeoutlen=300                                  "mapping timeout
+    set ttimeoutlen=50                                  "keycode timeout
+
+    set mouse=a                                         "enable mouse
+    set mousehide                                       "hide when characters are typed
+    set history=1000                                    "number of command lines to remember
+    set ttyfast                                         "assume fast terminal connection
+    set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
+    set encoding=utf-8                                  "set encoding for text
+    set clipboard=unnamed                               "sync with OS clipboard
+    set pastetoggle=<F6>
+    set hidden                                          "allow buffer switching without saving
+    set autoread                                        "auto reload if file saved externally
+    set fileformats+=mac                                "add mac to auto-detection of file format line endings
+    set nrformats-=octal                                "always assume decimal numbers
+    set showcmd
+    set tags=tags;/
+    set showfulltag
+    set keywordprg=":help"                              "remap K to vim help
+    if executable('zsh')
+        set shell=zsh
+    endif
+
+    " whitespace
+    set backspace=indent,eol,start                      "allow backspacing everything in insert mode
+    set autoindent                                      "automatically indent to match adjacent lines
+    set smartindent                                     "smart indenting for additional languages
+    set expandtab                                       "spaces instead of tabs
+    set smarttab                                        "use shiftwidth to enter tabs
+    set tabstop=4                                       "number of spaces per tab for display
+    set softtabstop=4                                   "number of spaces per tab in insert mode
+    set shiftwidth=4                                    "number of spaces when indenting
+    set virtualedit=onemore                             "allow cursor one beyond end of line
+    set list                                            "highlight whitespace
+    set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
+    set shiftround
+    set linebreak
+    set showbreak=↪\ 
+
+    set foldenable                                      "enable folds by default
+    set foldmethod=syntax                               "fold via syntax of files
+    set synmaxcol=150
+    set scrolloff=1                                     "always show content after scroll
+    set scrolljump=5                                    "minimum number of lines to scroll
+    set display+=lastline
+    set wildmenu                                        "show list for autocomplete
+    set wildmode=list:longest:full                      "priority for tab completion
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
+
+    set splitbelow
+    set splitright
+
+    " disable sounds
+    set noerrorbells
+    set novisualbell
+    set t_vb=
+
+    " searching
+    set hlsearch                                        "highlight searches
+    set incsearch                                       "incremental searching
+    set ignorecase                                      "ignore case for searching
+    set smartcase                                       "do case-sensitive if there's a capital letter
+    if executable('ack')
+        set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
+        set grepformat=%f:%l:%c:%m
+    endif
+    if executable('ag')
+        set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+        set grepformat=%f:%l:%c:%m
+    endif
+
+    " vim file/folder management {{{
+        " persistent undo
+        set undofile
+        set undodir=~/.vim/.cache/undo
+
+        " backups
+        set backup
+        set backupdir=~/.vim/.cache/backup
+
+        " swap files
+        set noswapfile
+        set directory=~/.vim/.cache/swap
+
+        call EnsureExists('~/.vim/.cache')
+        call EnsureExists(&undodir)
+        call EnsureExists(&backupdir)
+        call EnsureExists(&directory)
+    " }}}
+" }}}
+
+" {{{ status line
+    set statusline=
+    set statusline+=%7*%m%*
+    set statusline+=\ %r%h%w%q%F\ %=
+    set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
+    set statusline+=%1*\ %{&ff}%y\ 
+    set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
+    set statusline+=%3*%3v:%l\ 
+    set statusline+=%4*\ %3p%%\ 
+    set statusline+=%5*%4L\ 
+    set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
+
+    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
+    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
+    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
+    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
+    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
+    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
+    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
+    autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
+" }}}
+
+" ui configuration {{{
+    set showmatch                                       "automatically highlight matching braces/brackets/etc.
+    set matchtime=2                                     "tens of a second to show matching parentheses
+    set laststatus=2
+    set number
+    set cursorline
+    set cursorcolumn
+    set lazyredraw
+    set colorcolumn=120
+
+    if has('conceal')
+        set conceallevel=1
+        set listchars+=conceal:.
+    endif
+
+    if has('gui_running')
+        set lines=999
+        set columns=999
+        set guioptions+=t                               "tear off menu items
+        set guioptions-=T                               "toolbar icons
+
+        if has('gui_macvim')
+            set gfn=Ubuntu_Mono_for_Powerline:h14
+        endif
+
+        if has('gui_win32')
+            set gfn=Ubuntu_Mono_for_Powerline:h10
+        endif
+
+        if has('gui_gtk')
+            set gfn=Ubuntu\ Mono\ for\ Powerline\ 11
+        endif
+    else
+        set t_Co=256
+
+        if $TERM_PROGRAM == 'iTerm.app'
+            " difference cursors for insert vs normal mode
+            let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+            let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+        endif
+    endif
+
     set background=dark
     if has('gui_running')
         colorscheme chance-of-storm
