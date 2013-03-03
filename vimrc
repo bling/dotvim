@@ -1,7 +1,6 @@
 " vim: fdm=marker
 
 " setup & neobundle {{{
-    set nocompatible
     set rtp+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
@@ -56,7 +55,7 @@
         \   exe 'normal! g`"zvzz' |
         \ endif
 
-    autocmd FileType javascript setlocal foldlevelstart=2
+    autocmd FileType javascript setlocal foldlevelstart=3
 
     let g:xml_syntax_folding=1
     autocmd FileType xml setlocal foldlevel=999
@@ -83,25 +82,27 @@
     inoremap <C-h> <left>
     inoremap <C-l> <right>
 
-    " sane regex
-    nnoremap / /\v
-    vnoremap / /\v
-    nnoremap ? ?\v
-    vnoremap ? ?\v
+    " sane regex {{{
+        nnoremap / /\v
+        vnoremap / /\v
+        nnoremap ? ?\v
+        vnoremap ? ?\v
+    " }}}
 
     " screen line scroll
     nnoremap <silent> j gj
     nnoremap <silent> k gk
 
-    " auto center
-    nnoremap <silent> n nzz
-    nnoremap <silent> N Nzz
-    nnoremap <silent> * *zz
-    nnoremap <silent> # #zz
-    nnoremap <silent> g* g*zz
-    nnoremap <silent> g# g#zz
-    nnoremap <silent> <C-o> <C-o>zz
-    nnoremap <silent> <C-i> <C-i>zz
+    " auto center {{{
+        nnoremap <silent> n nzz
+        nnoremap <silent> N Nzz
+        nnoremap <silent> * *zz
+        nnoremap <silent> # #zz
+        nnoremap <silent> g* g*zz
+        nnoremap <silent> g# g#zz
+        nnoremap <silent> <C-o> <C-o>zz
+        nnoremap <silent> <C-i> <C-i>zz
+    " }}}
 
     " reselect visual block after indent
     vnoremap < <gv
@@ -113,14 +114,15 @@
     " find last search in quickfix
     nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 
-    " shortcuts for windows
-    nnoremap <leader>v <C-w>v<C-w>l
-    nnoremap <leader>s <C-w>s
-    nnoremap <leader>vsa :vert sba<cr>
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
+    " shortcuts for windows {{{
+        nnoremap <leader>v <C-w>v<C-w>l
+        nnoremap <leader>s <C-w>s
+        nnoremap <leader>vsa :vert sba<cr>
+        nnoremap <C-h> <C-w>h
+        nnoremap <C-j> <C-w>j
+        nnoremap <C-k> <C-w>k
+        nnoremap <C-l> <C-w>l
+    " }}}
 
     " tab shortcuts
     map <leader>tn :tabnew<CR>
@@ -136,11 +138,15 @@
     nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
 
-    " helpers for profiling
-    nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-    nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
-    nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-    nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
+    " helpers for profiling {{{
+        nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+        nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+        nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+        nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
+    " }}}
+
+    " sorts CSS
+    autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 " }}}
 
 " plugin/mapping configuration {{{
@@ -339,65 +345,67 @@
                         \ 'honza/snipmate-snippets',
                         \ ] }
 
-            let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
-            let g:neosnippet#enable_snipmate_compatibility=1
+            if neobundle#is_sourced('neocomplcache')
+                let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
+                let g:neosnippet#enable_snipmate_compatibility=1
 
-            let g:neocomplcache_enable_at_startup=1
-            let g:neocomplcache_enable_auto_delimiter=1
-            let g:neocomplcache_force_overwrite_completefunc=1
-            let g:neocomplcache_auto_completion_start_length=1
-            let g:neocomplcache_max_list=10
-            let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
-            let g:neocomplcache_enable_auto_select=1
-            "let g:neocomplcache_enable_cursor_hold_i=1
-            "let g:neocomplcache_cursor_hold_i_time=300
-            "let g:neocomplcache_enable_fuzzy_completion=1
+                let g:neocomplcache_enable_at_startup=1
+                let g:neocomplcache_enable_auto_delimiter=1
+                let g:neocomplcache_force_overwrite_completefunc=1
+                let g:neocomplcache_auto_completion_start_length=1
+                let g:neocomplcache_max_list=10
+                let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
+                "let g:neocomplcache_enable_auto_select=1
+                "let g:neocomplcache_enable_cursor_hold_i=1
+                "let g:neocomplcache_cursor_hold_i_time=300
+                "let g:neocomplcache_enable_fuzzy_completion=1
 
-            " define empty defaults
-            if !exists('g:neocomplcache_keyword_patterns')
-                let g:neocomplcache_keyword_patterns = {}
+                " define empty defaults
+                if !exists('g:neocomplcache_keyword_patterns')
+                    let g:neocomplcache_keyword_patterns = {}
+                endif
+                if !exists('g:neocomplcache_omni_patterns')
+                    let g:neocomplcache_omni_patterns = {}
+                endif
+                if !exists('g:neocomplcache_omni_functions')
+                    let g:neocomplcache_omni_functions = {}
+                endif
+
+                " tab completion
+                imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+                smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+                imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+                smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+
+                " define dictionary
+                let g:neocomplcache_dictionary_filetype_lists = {
+                    \ 'default' : '',
+                    \ 'vimshell' : $HOME.'/.vimshell_hist',
+                    \ 'scheme' : $HOME.'/.gosh_completions'
+                    \ }
+
+                " define keyword
+                let g:neocomplcache_keyword_patterns._ = '\h\w*'
+
+                " enable heavy omni completion
+                let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+                let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+                " enable general omni completion
+                autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+                autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+                autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+                autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+                autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+                " js completion
+                let g:jscomplete_use = [ 'dom' ]
+                let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
+                autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
             endif
-            if !exists('g:neocomplcache_omni_patterns')
-                let g:neocomplcache_omni_patterns = {}
-            endif
-            if !exists('g:neocomplcache_omni_functions')
-                let g:neocomplcache_omni_functions = {}
-            endif
-
-            " tab completion
-            imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
-            smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-            imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-            smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-
-            " define dictionary
-            let g:neocomplcache_dictionary_filetype_lists = {
-                \ 'default' : '',
-                \ 'vimshell' : $HOME.'/.vimshell_hist',
-                \ 'scheme' : $HOME.'/.gosh_completions'
-                \ }
-
-            " define keyword
-            let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
-            " enable heavy omni completion
-            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-            let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
-            " enable general omni completion
-            autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-            autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-            autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-            autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-            autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-
-            " js completion
-            let g:jscomplete_use = [ 'dom' ]
-            let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
-            autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
         " }}}
         " vimshell {{{
             if neobundle#is_sourced('vimproc')
@@ -429,11 +437,6 @@
         let g:solarized_termcolors=256
     " }}}
     NeoBundle 'mgutz/vim-colors'
-" }}}
-
-" refactoring mappings {{{
-    " sorts CSS
-    autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 " }}}
 
 " base configuration {{{
@@ -531,28 +534,6 @@
     " }}}
 " }}}
 
-" {{{ status line
-    set statusline=
-    set statusline+=%7*%m%*
-    set statusline+=\ %r%h%w%q%F\ %=
-    set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
-    set statusline+=%1*\ %{&ff}%y\ 
-    set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
-    set statusline+=%3*%3v:%l\ 
-    set statusline+=%4*\ %3p%%\ 
-    set statusline+=%5*%4L\ 
-    set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
-
-    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
-    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
-    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
-    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
-    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
-    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
-    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
-    autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
-" }}}
-
 " ui configuration {{{
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set matchtime=2                                     "tens of a second to show matching parentheses
@@ -594,6 +575,28 @@
             let &t_EI = "\<Esc>]50;CursorShape=0\x7"
         endif
     endif
+
+    " {{{ status line
+        set statusline=
+        set statusline+=%7*%m%*
+        set statusline+=\ %r%h%w%q%F\ %=
+        set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
+        set statusline+=%1*\ %{&ff}%y\ 
+        set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
+        set statusline+=%3*%3v:%l\ 
+        set statusline+=%4*\ %3p%%\ 
+        set statusline+=%5*%4L\ 
+        set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
+
+        autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
+        autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
+        autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
+        autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
+        autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
+        autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
+        autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
+        autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
+    " }}}
 
     set background=dark
     if has('gui_running')
