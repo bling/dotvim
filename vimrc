@@ -291,7 +291,7 @@
     "}}}
     "NeoBundle 'airblade/vim-gitgutter'
     NeoBundle 'tomtom/quickfixsigns_vim', "{{{
-        \ { 'autoload': { 'commands': 'remove(g:quickfixsigns#vcsdiff#highlight, ''DEL'')' } }
+        sign define QFS_VCS_CHANGE text=~ texthl=DiffChange
     "}}}
     NeoBundle 'tpope/vim-unimpaired' "{{{
         nmap <c-up> [e
