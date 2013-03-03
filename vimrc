@@ -262,6 +262,7 @@
         nmap <BS>\ <Plug>yankstack_substitute_newer_paste
         nnoremap <leader>y :Yanks<cr>
         call yankstack#setup()
+        nnoremap Y y$
     " }}}
     NeoBundle 'buftabs' "{{{
         let g:buftabs_only_basename=1
@@ -289,7 +290,9 @@
         let g:gist_show_privates=1
     " }}}
     "NeoBundle 'airblade/vim-gitgutter'
-    NeoBundle 'tomtom/quickfixsigns_vim'
+    NeoBundle 'tomtom/quickfixsigns_vim', "{{{
+        \ { 'autoload': { 'commands': 'remove(g:quickfixsigns#vcsdiff#highlight, ''DEL'')' } }
+    "}}}
     NeoBundle 'tpope/vim-unimpaired' "{{{
         nmap <c-up> [e
         nmap <c-down> ]e
@@ -599,7 +602,7 @@
 
     set background=dark
     if has('gui_running')
-        colorscheme chance-of-storm
+        colorscheme underwater-mod
     else
         colorscheme jellybeans
     endif
