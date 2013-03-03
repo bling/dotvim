@@ -4,7 +4,7 @@
     set rtp+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
-" }}}
+"}}}
 
 " functions {{{
     function! Preserve(command) "{{{
@@ -41,7 +41,7 @@
             bdelete
         endif
     endfunction"}}}
-" }}}
+"}}}
 
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
@@ -61,7 +61,7 @@
     autocmd FileType xml setlocal foldlevel=999
 
     autocmd FileType scss setlocal foldlevel=999 foldmethod=marker foldmarker={,}
-" }}}
+"}}}
 
 " mappings {{{
     let mapleader = ","
@@ -87,7 +87,7 @@
         vnoremap / /\v
         nnoremap ? ?\v
         vnoremap ? ?\v
-    " }}}
+    "}}}
 
     " screen line scroll
     nnoremap <silent> j gj
@@ -102,7 +102,7 @@
         nnoremap <silent> g# g#zz
         nnoremap <silent> <C-o> <C-o>zz
         nnoremap <silent> <C-i> <C-i>zz
-    " }}}
+    "}}}
 
     " reselect visual block after indent
     vnoremap < <gv
@@ -122,7 +122,7 @@
         nnoremap <C-j> <C-w>j
         nnoremap <C-k> <C-w>k
         nnoremap <C-l> <C-w>l
-    " }}}
+    "}}}
 
     " tab shortcuts
     map <leader>tn :tabnew<CR>
@@ -143,11 +143,11 @@
         nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
         nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
         nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
-    " }}}
+    "}}}
 
     " sorts CSS
     autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
-" }}}
+"}}}
 
 " plugin/mapping configuration {{{
     " bundles: languages {{{
@@ -160,7 +160,7 @@
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'ap/vim-css-color'
         NeoBundle 'othree/html5.vim'
-    " }}}
+    "}}}
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
     NeoBundle 'tpope/vim-speeddating'
@@ -177,7 +177,7 @@
         if has('gui_running')
             let g:Powerline_symbols='fancy'
         endif
-    " }}}
+    "}}}
     " ack/ag {{{
         if executable('ack') || executable('ag')
             NeoBundle 'mileszs/ack.vim'
@@ -186,16 +186,16 @@
             endif
             nnoremap <leader>/ :Ack 
         endif
-    " }}}
+    "}}}
     NeoBundle 'molok/vim-smartusline' "{{{
         let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
-    " }}}
+    "}}}
     NeoBundle 'EasyGrep' "{{{
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
         let g:EasyGrepCommand=1
-    " }}}
+    "}}}
     NeoBundle 'tpope/vim-fugitive' "{{{
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -206,15 +206,15 @@
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>gr :Gremove<CR>
         autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
-    " }}}
+    "}}}
     NeoBundle 'troydm/easybuffer.vim' "{{{
         nnoremap <leader>B :EasyBufferHorizontalBelow<cr>
-    " }}}
+    "}}}
     " easymotion {{{
         "NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
-    " }}}
+    "}}}
     NeoBundle 'scrooloose/nerdtree' "{{{
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
@@ -225,23 +225,23 @@
         let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
         nnoremap <F2> :NERDTreeToggle<CR>
         nnoremap <F3> :NERDTreeFind<CR>
-    " }}}
+    "}}}
     NeoBundle 'scrooloose/nerdcommenter' "{{{
         nmap \\ <Plug>NERDCommenterToggle
         vmap \\ <Plug>NERDCommenterToggle
-    " }}}
+    "}}}
     NeoBundle 'myusuf3/numbers.vim' "{{{
         if !has('gui_running')
             "too slow in terminal
             NeoBundleDisable numbers.vim
         endif
-    " }}}
+    "}}}
     NeoBundle 'scrooloose/syntastic' "{{{
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_style_error_symbol = '✠'
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
-    " }}}
+    "}}}
     NeoBundle 'kien/ctrlp.vim' "{{{
         "let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_max_height=40
@@ -255,7 +255,7 @@
         nnoremap <leader>pt :CtrlPTag<cr>
         nnoremap <leader>pl :CtrlPLine<cr>
         nnoremap <leader>b :CtrlPBuffer<cr>
-    " }}}
+    "}}}
     NeoBundle 'maxbrunsfeld/vim-yankstack' "{{{
         let g:yankstack_map_keys=0
         nmap <BS><BS> <Plug>yankstack_substitute_older_paste
@@ -263,10 +263,10 @@
         nnoremap <leader>y :Yanks<cr>
         call yankstack#setup()
         nnoremap Y y$
-    " }}}
+    "}}}
     NeoBundle 'buftabs' "{{{
         let g:buftabs_only_basename=1
-    " }}}
+    "}}}
     NeoBundle 'godlygeek/tabular' "{{{
         nmap <Leader>a& :Tabularize /&<CR>
         vmap <Leader>a& :Tabularize /&<CR>
@@ -280,15 +280,15 @@
         vmap <Leader>a, :Tabularize /,<CR>
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    " }}}
+    "}}}
     NeoBundle 'sjl/gundo.vim' "{{{
         let g:gundo_right=1
         nnoremap <silent> <F5> :GundoToggle<CR>
-    " }}}
+    "}}}
     NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' } "{{{
         let g:gist_post_private=1
         let g:gist_show_privates=1
-    " }}}
+    "}}}
     "NeoBundle 'airblade/vim-gitgutter'
     NeoBundle 'tomtom/quickfixsigns_vim', "{{{
         \ { 'autoload': { 'commands': 'remove(g:quickfixsigns#vcsdiff#highlight, ''DEL'')' } }
@@ -298,28 +298,28 @@
         nmap <c-down> ]e
         vmap <c-up> [egv
         vmap <c-down> ]egv
-    " }}}
+    "}}}
     NeoBundle 'roman/golden-ratio' "{{{
         let g:golden_ratio_autocommand=0
         let g:golden_ratio_wrap_ignored=0
         nnoremap <F4> :GoldenRatioToggle<cr>
-    " }}}
+    "}}}
     NeoBundle 'maksimr/vim-jsbeautify' "{{{
         nnoremap <leader>fjs :call JsBeautify()<CR>
-    " }}}
+    "}}}
     "NeoBundle 'Valloric/YouCompleteMe'
     "NeoBundle 'SirVer/ultisnips' "{{{
         "let g:UltiSnipsExpandTrigger="<tab>"
         "let g:UltiSnipsJumpForwardTrigger="<tab>"
         "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-    " }}}
+    "}}}
     NeoBundle 'adinapoli/vim-markmultiple'
     "NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
         let g:indent_guides_color_change_percent=5
-    " }}}
+    "}}}
     "NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         "let g:used_javascript_libs='underscore,jquery,requirejs'
     "}}}
@@ -327,7 +327,7 @@
         " unite {{{
             NeoBundleDepends 'Shougo/unite.vim'
             let g:unite_data_directory='~/.vim/.cache/unite'
-        " }}}
+        "}}}
         " vimproc {{{
             if executable('make')
                 NeoBundleDepends 'Shougo/vimproc', {
@@ -338,7 +338,7 @@
                     \ },
                 \ }
             endif
-        " }}}
+        "}}}
         " neocomplcache/neosnippet {{{
             NeoBundle 'Shougo/neocomplcache', { 'depends': [
                         \ 'teramako/jscomplete-vim',
@@ -407,7 +407,7 @@
                 let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
                 autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
             endif
-        " }}}
+        "}}}
         " vimshell {{{
             if neobundle#is_sourced('vimproc')
                 NeoBundle 'Shougo/vimshell'
@@ -419,14 +419,14 @@
                 nnoremap <leader>c :VimShell -split<cr>
             endif
         "}}}
-    " }}}
+    "}}}
 
     if !has('gui_running')
         NeoBundleCheck
     endif
 
     nnoremap <leader>nbu :Unite neobundle/update<cr>
-" }}}
+"}}}
 
 " color schemes {{{
     NeoBundle 'nanotech/jellybeans.vim'
@@ -436,9 +436,9 @@
     NeoBundle 'sjl/badwolf'
     NeoBundle 'altercation/vim-colors-solarized' "{{{
         let g:solarized_termcolors=256
-    " }}}
+    "}}}
     NeoBundle 'mgutz/vim-colors'
-" }}}
+"}}}
 
 " base configuration {{{
     filetype plugin indent on
@@ -530,8 +530,8 @@
         call EnsureExists(&undodir)
         call EnsureExists(&backupdir)
         call EnsureExists(&directory)
-    " }}}
-" }}}
+    "}}}
+"}}}
 
 " ui configuration {{{
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
@@ -598,7 +598,7 @@
         autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
         autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
         autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
-    " }}}
+    "}}}
 
     set background=dark
     if has('gui_running')
@@ -608,7 +608,7 @@
     endif
     highlight Pmenu ctermbg=234 ctermfg=240 guibg=#1c1c1c guifg=#585858
     highlight PmenuSel ctermbg=25 ctermfg=255 guibg=#005faf guifg=#ffffff
-" }}}
+"}}}
 
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
