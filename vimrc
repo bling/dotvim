@@ -482,8 +482,6 @@
     set linebreak
     set showbreak=↪\ 
 
-    set foldenable                                      "enable folds by default
-    set foldmethod=syntax                               "fold via syntax of files
     set synmaxcol=150
     set scrolloff=1                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
@@ -543,6 +541,9 @@
     set cursorcolumn
     set lazyredraw
     set colorcolumn=120
+    set foldenable                                      "enable folds by default
+    set foldmethod=syntax                               "fold via syntax of files
+    set foldcolumn=4
 
     if has('conceal')
         set conceallevel=1
