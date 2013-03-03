@@ -268,7 +268,7 @@
     " }}}
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-        NeoBundle 'Lokaltog/vim-powerline'
+        "NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
             let g:Powerline_symbols='fancy'
         endif
@@ -282,7 +282,7 @@
             nnoremap <leader>/ :Ack 
         endif
     " }}}
-    "NeoBundle 'molok/vim-smartusline' "{{{
+    NeoBundle 'molok/vim-smartusline' "{{{
         let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     " }}}
@@ -383,6 +383,7 @@
         let g:gist_post_private=1
         let g:gist_show_privates=1
     " }}}
+    NeoBundle 'airblade/vim-gitgutter'
     NeoBundle 'tpope/vim-unimpaired' "{{{
         nmap <c-up> [e
         nmap <c-down> ]e
