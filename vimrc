@@ -56,6 +56,8 @@
         \ endif
 
     autocmd FileType scss setlocal foldmethod=marker foldmarker={,}
+
+    autocmd BufReadPost fugitive://* set bufhidden=delete
 "}}}
 
 " mappings {{{
@@ -162,6 +164,7 @@
     NeoBundle 'tpope/vim-speeddating'
     NeoBundle 'mattn/zencoding-vim'
     "NeoBundle 'kshenoy/vim-signature'
+    NeoBundle 'adinapoli/vim-markmultiple'
     NeoBundle 'guns/xterm-color-table.vim'
     "NeoBundle 'sjl/splice.vim'
     NeoBundle 'vimwiki'
@@ -309,7 +312,6 @@
         "let g:UltiSnipsJumpForwardTrigger="<tab>"
         "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     "}}}
-    NeoBundle 'adinapoli/vim-markmultiple'
     "NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
@@ -349,8 +351,8 @@
                 let g:neocomplcache_enable_at_startup=1
                 let g:neocomplcache_enable_auto_delimiter=1
                 let g:neocomplcache_force_overwrite_completefunc=1
-                let g:neocomplcache_auto_completion_start_length=1
-                let g:neocomplcache_max_list=10
+                "let g:neocomplcache_auto_completion_start_length=1
+                "let g:neocomplcache_max_list=10
                 let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
                 "let g:neocomplcache_enable_auto_select=1
                 "let g:neocomplcache_enable_cursor_hold_i=1
