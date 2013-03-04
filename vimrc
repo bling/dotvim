@@ -1,4 +1,4 @@
-" vim: fdm=marker
+" vim: fdm=marker fdl=0
 
 " setup & neobundle {{{
     set rtp+=~/.vim/bundle/neobundle.vim/
@@ -55,12 +55,7 @@
         \   exe 'normal! g`"zvzz' |
         \ endif
 
-    autocmd FileType javascript setlocal foldlevelstart=3
-
-    let g:xml_syntax_folding=1
-    autocmd FileType xml setlocal foldlevel=999
-
-    autocmd FileType scss setlocal foldlevel=999 foldmethod=marker foldmarker={,}
+    autocmd FileType scss setlocal foldmethod=marker foldmarker={,}
 "}}}
 
 " mappings {{{
@@ -87,6 +82,7 @@
         vnoremap / /\v
         nnoremap ? ?\v
         vnoremap ? ?\v
+        cnoremap s/ s/\v
     "}}}
 
     " screen line scroll
@@ -173,7 +169,7 @@
     NeoBundle 'matchit.zip'
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-        "NeoBundle 'Lokaltog/vim-powerline'
+        NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
             let g:Powerline_symbols='fancy'
         endif
@@ -187,7 +183,7 @@
             nnoremap <leader>/ :Ack 
         endif
     "}}}
-    NeoBundle 'molok/vim-smartusline' "{{{
+    "NeoBundle 'molok/vim-smartusline' "{{{
         let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     "}}}
@@ -523,7 +519,6 @@
         set backupdir=~/.vim/.cache/backup
 
         " swap files
-        set noswapfile
         set directory=~/.vim/.cache/swap
 
         call EnsureExists('~/.vim/.cache')
@@ -544,7 +539,9 @@
     set colorcolumn=120
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
-    set foldcolumn=3
+    set foldcolumn=4
+    set foldlevel=99                                    "expand all by default
+    let g:xml_syntax_folding=1                          "enable xml folding
 
     if has('conceal')
         set conceallevel=1
