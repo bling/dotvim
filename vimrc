@@ -306,13 +306,15 @@
     NeoBundle 'maksimr/vim-jsbeautify' "{{{
         nnoremap <leader>fjs :call JsBeautify()<CR>
     "}}}
-    "NeoBundle 'Valloric/YouCompleteMe'
-    "NeoBundle 'SirVer/ultisnips' "{{{
-        "let g:UltiSnipsExpandTrigger="<tab>"
-        "let g:UltiSnipsJumpForwardTrigger="<tab>"
-        "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    "NeoBundle 'Valloric/YouCompleteMe' "{{{
+        let g:ycm_complete_in_comments_and_strings=1
     "}}}
-    "NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
+    "NeoBundle 'SirVer/ultisnips' "{{{
+        let g:UltiSnipsExpandTrigger="<c-k>"
+        let g:UltiSnipsJumpForwardTrigger="<c-k>"
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    "}}}
+    NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
         let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
@@ -424,6 +426,10 @@
     endif
 
     nnoremap <leader>nbu :Unite neobundle/update<cr>
+
+    if filereadable(expand("~/.vimrc.bundle"))
+        source ~/.vimrc.bundle
+    endif
 "}}}
 
 " color schemes {{{
