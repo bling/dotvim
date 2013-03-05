@@ -355,22 +355,16 @@
 
                 let g:neocomplcache_enable_at_startup=1
                 let g:neocomplcache_enable_auto_delimiter=1
-                let g:neocomplcache_force_overwrite_completefunc=1
+                "let g:neocomplcache_force_overwrite_completefunc=1
                 "let g:neocomplcache_auto_completion_start_length=1
-                "let g:neocomplcache_max_list=10
+                let g:neocomplcache_max_list=10
                 let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
                 "let g:neocomplcache_enable_auto_select=1
                 "let g:neocomplcache_enable_cursor_hold_i=1
-                "let g:neocomplcache_cursor_hold_i_time=300
+                "let g:neocomplcache_cursor_hold_i_time=100
                 "let g:neocomplcache_enable_fuzzy_completion=1
 
                 " define empty defaults
-                if !exists('g:neocomplcache_keyword_patterns')
-                    let g:neocomplcache_keyword_patterns = {}
-                endif
-                if !exists('g:neocomplcache_omni_patterns')
-                    let g:neocomplcache_omni_patterns = {}
-                endif
                 if !exists('g:neocomplcache_omni_functions')
                     let g:neocomplcache_omni_functions = {}
                 endif
@@ -381,26 +375,10 @@
                 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
                 smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
-                " define dictionary
-                let g:neocomplcache_dictionary_filetype_lists = {
-                    \ 'default' : '',
-                    \ 'vimshell' : $HOME.'/.vimshell_hist',
-                    \ 'scheme' : $HOME.'/.gosh_completions'
-                    \ }
-
-                " define keyword
-                let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
-                " enable heavy omni completion
-                let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-                let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-                let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-                let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-                let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
                 " enable general omni completion
                 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
                 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+                "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
                 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
                 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
                 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
