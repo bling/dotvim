@@ -46,8 +46,8 @@
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
@@ -308,11 +308,14 @@
     "}}}
     "NeoBundle 'Valloric/YouCompleteMe' "{{{
         let g:ycm_complete_in_comments_and_strings=1
+        let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
     "}}}
     "NeoBundle 'SirVer/ultisnips' "{{{
-        let g:UltiSnipsExpandTrigger="<c-k>"
-        let g:UltiSnipsJumpForwardTrigger="<c-k>"
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
         let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        let g:UltiSnipsSnippetsDir='~/.vim/snippets'
     "}}}
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
         let g:indent_guides_guide_size=1
@@ -421,14 +424,14 @@
         "}}}
     "}}}
 
-    if !has('gui_running')
-        NeoBundleCheck
-    endif
-
     nnoremap <leader>nbu :Unite neobundle/update<cr>
 
     if filereadable(expand("~/.vimrc.bundle"))
         source ~/.vimrc.bundle
+    endif
+
+    if !has('gui_running')
+        NeoBundleCheck
     endif
 "}}}
 
@@ -537,12 +540,12 @@
 "}}}
 
 " ui configuration {{{
+    set noshowmode
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set matchtime=2                                     "tens of a second to show matching parentheses
     set laststatus=2
     set number
     set cursorline
-    set cursorcolumn
     set lazyredraw
     set colorcolumn=120
     set foldenable                                      "enable folds by default
@@ -553,7 +556,7 @@
 
     if has('conceal')
         set conceallevel=1
-        set listchars+=conceal:.
+        set listchars+=conceal:◎
     endif
 
     if has('gui_running')
