@@ -58,8 +58,8 @@
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
@@ -69,7 +69,6 @@
 
     autocmd FileType scss setlocal foldmethod=marker foldmarker={,}
 
-    autocmd BufReadPost fugitive://* set bufhidden=delete
 "}}}
 
 " base configuration {{{
@@ -108,7 +107,7 @@
     set tabstop=4                                       "number of spaces per tab for display
     set softtabstop=4                                   "number of spaces per tab in insert mode
     set shiftwidth=4                                    "number of spaces when indenting
-    set virtualedit=onemore                             "allow cursor one beyond end of line
+    "set virtualedit=onemore                             "allow cursor one beyond end of line
     set list                                            "highlight whitespace
     set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
     set shiftround
@@ -174,12 +173,13 @@
     set laststatus=2
     set number
     set cursorline
+    set cursorcolumn
     set lazyredraw
     set colorcolumn=120
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
-    set foldcolumn=4
     set foldlevel=99                                    "expand all by default
+    "set foldcolumn=4
     let g:xml_syntax_folding=1                          "enable xml folding
 
     if has('conceal')
@@ -304,6 +304,7 @@
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>gr :Gremove<CR>
         autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
+        autocmd BufReadPost fugitive://* set bufhidden=delete
     "}}}
     NeoBundle 'troydm/easybuffer.vim' "{{{
         nnoremap <leader>B :EasyBufferHorizontalBelow<cr>
@@ -312,10 +313,12 @@
         "NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
+        highlight link EasyMotionTarget WarningMsg
+        highlight link EasyMotionShade Comment
     "}}}
     NeoBundle 'scrooloose/nerdtree' "{{{
         let NERDTreeShowHidden=1
-        let NERDTreeQuitOnOpen=1
+        let NERDTreeQuitOnOpen=0
         let NERDTreeShowLineNumbers=1
         let NERDTreeChDirMode=0
         let NERDTreeShowBookmarks=1
