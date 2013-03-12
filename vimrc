@@ -236,14 +236,8 @@
         autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
     "}}}
 
-    set background=dark
-    if has('gui_running')
-        colorscheme underwater-mod
-    else
-        colorscheme jellybeans
-    endif
-    highlight Pmenu ctermbg=234 ctermfg=240 guibg=#1c1c1c guifg=#585858
-    highlight PmenuSel ctermbg=25 ctermfg=255 guibg=#005faf guifg=#ffffff
+    set background=light
+    colorscheme Tomorrow
 "}}}
 
 " plugin/mapping configuration {{{
@@ -419,10 +413,20 @@
         let g:UltiSnipsSnippetsDir='~/.vim/snippets'
     "}}}
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
-        let g:indent_guides_guide_size=1
+        "let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
         let g:indent_guides_color_change_percent=5
+        if !has('gui_running')
+            let g:indent_guides_auto_colors=0
+            if &background ==# 'dark'
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
+            else
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=253
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=254
+            endif
+        endif
     "}}}
     "NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         let g:used_javascript_libs='underscore'
