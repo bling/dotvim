@@ -67,6 +67,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  easily jumps to any character on the screen
 *  `<leader><leader>w` or `<leader><leader>e` will do the trick, along with any of the other default bindings that plugin has mapped under `<leader><leader>`
 *  this is a forked version of [lokaltog](https://github.com/skwp/vim-easymotion)'s version which uses vimperator style double keystrokes
+*  `W`, `E`, `B`, and `F` are remapped to easymotion equivilents
 
 ### [easygrep](http://www.vim.org/scripts/script.php?script_id=2438)
 *  makes search/replacing in your project a lot easier without relying on `find` and `sed`

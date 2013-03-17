@@ -236,8 +236,8 @@
         autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
     "}}}
 
-    set background=light
-    colorscheme Tomorrow
+    set background=dark
+    colorscheme jellybeans
 "}}}
 
 " plugin/mapping configuration {{{
@@ -258,6 +258,7 @@
     NeoBundle 'mattn/zencoding-vim'
     "NeoBundle 'kshenoy/vim-signature'
     NeoBundle 'adinapoli/vim-markmultiple'
+    NeoBundle 'hlissner/vim-multiedit'
     NeoBundle 'guns/xterm-color-table.vim'
     "NeoBundle 'sjl/splice.vim'
     NeoBundle 'vimwiki'
@@ -307,8 +308,11 @@
         "NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
-        highlight link EasyMotionTarget WarningMsg
-        highlight link EasyMotionShade Comment
+
+        nmap W <leader><leader>wzz
+        nmap B <leader><leader>bzz
+        nmap E <leader><leader>ezz
+        nmap F <leader><leader>fzz
     "}}}
     NeoBundle 'scrooloose/nerdtree' "{{{
         let NERDTreeShowHidden=1
@@ -416,7 +420,7 @@
         "let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
-        let g:indent_guides_color_change_percent=5
+        let g:indent_guides_color_change_percent=2
         if !has('gui_running')
             let g:indent_guides_auto_colors=0
             if &background ==# 'dark'
