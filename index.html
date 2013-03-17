@@ -30,7 +30,7 @@
         <section id="main-content">
           <h2>introduction</h2>
 
-<p>this is my personal vim distribution that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.</p>
+<p>this is my personal vim configuration that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.</p>
 
 <p>while it is quite easy to install this distribution (i designed it that way for me to easily switch between computers), i actually recommend that you don't use it verbatim.  configuring a vimrc from scratch was an incredibly awesome experience and i want you to experience it too.  take a look at my vimrc for ideas, as well as the credits section.</p>
 
@@ -75,6 +75,7 @@
 <li> <code>&lt;Down&gt;</code> <code>&lt;Up&gt;</code> maps to <code>:bprev</code> and <code>:bnext</code> respectively</li>
 <li> <code>&lt;Left&gt;</code> <code>&lt;Right&gt;</code> maps to <code>:tabprev</code> and <code>:tabnext</code> respectively</li>
 <li> <code>Q</code> remapped to close windows and delete the buffer (if it is the last buffer window)</li>
+<li> <code>gp</code> remapped to visually reselect the last paste</li>
 <li> profiling shortcuts
 
 <ul>
@@ -94,10 +95,6 @@
 <ul>
 <li> <code>&lt;leader&gt;s</code> sort selection</li>
 <li> <code>&gt;</code> and <code>&lt;</code> automatically reselects the visual selection</li>
-</ul><h2>macros</h2>
-
-<ul>
-<li> <code>@b</code> place your cursor on _f_unction and it will automatically _.bind it (very useful in javascript).</li>
 </ul><h2>plugins</h2>
 
 <h3><a href="https://github.com/milezs/ack.vim">ack.vim</a></h3>
@@ -118,6 +115,7 @@
 <li> <code>&lt;leader&gt;&lt;leader&gt;w</code> or <code>&lt;leader&gt;&lt;leader&gt;e</code> will do the trick, along with any of the other default bindings that plugin has mapped under <code>&lt;leader&gt;&lt;leader&gt;</code>
 </li>
 <li> this is a forked version of <a href="https://github.com/skwp/vim-easymotion">lokaltog</a>'s version which uses vimperator style double keystrokes</li>
+<li> <code>W</code>, <code>E</code>, <code>B</code>, and <code>F</code> are remapped to easymotion equivilents</li>
 </ul><h3><a href="http://www.vim.org/scripts/script.php?script_id=2438">easygrep</a></h3>
 
 <ul>
