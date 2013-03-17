@@ -309,10 +309,10 @@
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
 
-        nmap W <leader><leader>wzz
-        nmap B <leader><leader>bzz
-        nmap E <leader><leader>ezz
-        nmap F <leader><leader>fzz
+        nmap W <leader><leader>w
+        nmap B <leader><leader>b
+        nmap E <leader><leader>e
+        nmap F <leader><leader>f
     "}}}
     NeoBundle 'scrooloose/nerdtree' "{{{
         let NERDTreeShowHidden=1
