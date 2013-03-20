@@ -15,7 +15,6 @@
     NeoBundle 'altercation/vim-colors-solarized' "{{{
         let g:solarized_termcolors=256
     "}}}
-    NeoBundle 'mgutz/vim-colors'
 "}}}
 
 " functions {{{
@@ -268,7 +267,7 @@
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
-            let g:Powerline_symbols='fancy'
+        let g:Powerline_symbols='fancy'
         endif
     "}}}
     " ack/ag {{{
@@ -308,6 +307,9 @@
         "NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
+
+        highlight EasyMotionTarget ctermfg=32  guifg=#0087df
+        highlight EasyMotionShade  ctermfg=235 guifg=#262626
 
         nmap W <leader><leader>w
         nmap B <leader><leader>b
