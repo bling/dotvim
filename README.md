@@ -94,10 +94,6 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<C-up>` to move lines up
 *  `<C-down>` to move lines down
 
-### [easybuffer](https://github.com/troydm/easybuffer.vim)
-*  easily see your buffers
-*  `<leader>B` to show the buffer list
-
 ### [nerdtree](https://github.com/scrooloose/nerdtree)
 *  file browser
 *  `<F2>` toggle browser

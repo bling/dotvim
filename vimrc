@@ -175,6 +175,7 @@
     set cursorcolumn
     set lazyredraw
     set colorcolumn=120
+    set completeopt-=preview
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
     set foldlevel=99                                    "expand all by default
@@ -300,16 +301,13 @@
         autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
         autocmd BufReadPost fugitive://* set bufhidden=delete
     "}}}
-    NeoBundle 'troydm/easybuffer.vim' "{{{
-        nnoremap <leader>B :EasyBufferHorizontalBelow<cr>
-    "}}}
     " easymotion {{{
         "NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
 
         highlight EasyMotionTarget ctermfg=32  guifg=#0087df
-        highlight EasyMotionShade  ctermfg=235 guifg=#262626
+        highlight EasyMotionShade  ctermfg=236 guifg=#303030
 
         nmap W <leader><leader>w
         nmap B <leader><leader>b
@@ -346,7 +344,6 @@
     NeoBundle 'kien/ctrlp.vim' "{{{
         "let g:ctrlp_clear_cache_on_exit=0
         let g:ctrlp_max_height=40
-        let g:ctrlp_max_files=2000
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
