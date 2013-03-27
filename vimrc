@@ -12,9 +12,6 @@
     NeoBundle 'chriskempson/vim-tomorrow-theme'
     NeoBundle 'w0ng/vim-hybrid'
     NeoBundle 'sjl/badwolf'
-    NeoBundle 'altercation/vim-colors-solarized' "{{{
-        let g:solarized_termcolors=256
-    "}}}
 "}}}
 
 " functions {{{
@@ -174,6 +171,7 @@
     set cursorline
     set cursorcolumn
     set lazyredraw
+    set showmode
     set colorcolumn=120
     set completeopt-=preview
     set foldenable                                      "enable folds by default
@@ -255,6 +253,8 @@
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
     NeoBundle 'tpope/vim-speeddating'
+    "NeoBundle 'kana/vim-smartinput'
+    "NeoBundle 'Raimondi/delimitMate'
     NeoBundle 'mattn/zencoding-vim'
     "NeoBundle 'kshenoy/vim-signature'
     NeoBundle 'adinapoli/vim-markmultiple'
@@ -266,7 +266,7 @@
     NeoBundle 'matchit.zip'
     " powerline {{{
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-        NeoBundle 'Lokaltog/vim-powerline'
+        "NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
         let g:Powerline_symbols='fancy'
         endif
@@ -280,9 +280,12 @@
             nnoremap <leader>/ :Ack 
         endif
     "}}}
-    "NeoBundle 'molok/vim-smartusline' "{{{
         let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
+    NeoBundle 'molok/vim-smartusline' "{{{
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
+    "}}}
+    NeoBundle 'majutsushi/tagbar' "{{{
+        nnoremap <silent> <F9> :TagbarToggle<CR>
     "}}}
     NeoBundle 'EasyGrep' "{{{
         let g:EasyGrepRecursive=1
@@ -347,6 +350,8 @@
         let g:ctrlp_show_hidden=1
         let g:ctrlp_follow_symlinks=1
         let g:ctrlp_working_path_mode=0
+        let g:ctrlp_working_path_mode=0
+        let g:ctrlp_max_files=20000
         let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
 
         nnoremap <leader>p :CtrlPBufTag<cr>
@@ -361,8 +366,13 @@
         nnoremap <leader>y :Yanks<cr>
         call yankstack#setup()
     "}}}
-    NeoBundle 'buftabs' "{{{
+    NeoBundle 'techlivezheng/vim-plugin-minibufexpl' "{{{
+        let g:miniBufExplorerMoreThanOne=0
+        let g:miniBufExplSplitBelow=0
+    "}}}
+    "NeoBundle 'buftabs' "{{{
         let g:buftabs_only_basename=1
+        let g:buftabs_in_statusline=1
     "}}}
     NeoBundle 'godlygeek/tabular' "{{{
         nmap <Leader>a& :Tabularize /&<CR>
@@ -468,7 +478,7 @@
                 let g:neocomplcache_max_list=10
                 let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
                 "let g:neocomplcache_enable_auto_select=1
-                "let g:neocomplcache_enable_cursor_hold_i=1
+                let g:neocomplcache_enable_cursor_hold_i=1
                 "let g:neocomplcache_cursor_hold_i_time=100
                 "let g:neocomplcache_enable_fuzzy_completion=1
 
@@ -608,4 +618,3 @@
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
-
