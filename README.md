@@ -138,8 +138,11 @@ while it is quite easy to install this distribution (i designed it that way for 
 ### [markmultiple](https://github.com/adinapoli/vim-markmultiple)
 *  easily mark multiple matching words with `<C-n>` and do operations on them
 
-### [neocomplcache/neosnippet](https://github.com/Shougo)
-*  super awesome autocomplete and snippet support
+### [youcompleteme](https://github.com/Valloric/YouCompleteMe)
+*  amazingly fast fuzzy autocomplete engine
+
+### [neosnippet](https://github.com/Shougo/neosnippet)
+*  snippet support
 *  `<Tab>` to select the next match, or expand if the keyword is a snippet
 
 ### [vimshell](https://github.com/Shougo/vimshell)

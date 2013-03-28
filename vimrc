@@ -400,7 +400,7 @@
     NeoBundle 'maksimr/vim-jsbeautify' "{{{
         nnoremap <leader>fjs :call JsBeautify()<CR>
     "}}}
-    "NeoBundle 'Valloric/YouCompleteMe' "{{{
+    NeoBundle 'Valloric/YouCompleteMe' "{{{
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
@@ -446,17 +446,21 @@
                 \ }
             endif
         "}}}
-        " neocomplcache/neosnippet {{{
-            NeoBundle 'Shougo/neocomplcache', { 'depends': [
-                        \ 'teramako/jscomplete-vim',
-                        \ 'Shougo/neosnippet',
-                        \ 'honza/snipmate-snippets',
-                        \ ] }
-
-            if neobundle#is_sourced('neocomplcache')
+        " neosnippet {{{
+            NeoBundle 'Shougo/neosnippet', { 'depends': [ 'honza/snipmate-snippets' ] }
                 let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
                 let g:neosnippet#enable_snipmate_compatibility=1
 
+            " tab completion
+            imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+            smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+            smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+        " }}}
+        " neocomplcache {{{
+            "NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'teramako/jscomplete-vim' ] }
+
+            if neobundle#is_sourced('neocomplcache')
                 let g:neocomplcache_enable_at_startup=1
                 let g:neocomplcache_enable_auto_delimiter=1
                 "let g:neocomplcache_force_overwrite_completefunc=1
@@ -472,12 +476,6 @@
                 if !exists('g:neocomplcache_omni_functions')
                     let g:neocomplcache_omni_functions = {}
                 endif
-
-                " tab completion
-                imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
-                smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-                imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-                smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
                 " enable general omni completion
                 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
