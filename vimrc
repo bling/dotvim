@@ -332,12 +332,6 @@
         nmap \\ <Plug>NERDCommenterToggle
         vmap \\ <Plug>NERDCommenterToggle
     "}}}
-    NeoBundle 'myusuf3/numbers.vim' "{{{
-        if !has('gui_running')
-            "too slow in terminal
-            NeoBundleDisable numbers.vim
-        endif
-    "}}}
     NeoBundle 'scrooloose/syntastic' "{{{
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_style_error_symbol = '✠'
@@ -366,10 +360,6 @@
         nnoremap <leader>y :Yanks<cr>
         call yankstack#setup()
     "}}}
-    NeoBundle 'techlivezheng/vim-plugin-minibufexpl' "{{{
-        let g:miniBufExplorerMoreThanOne=0
-        let g:miniBufExplSplitBelow=0
-    "}}}
     "NeoBundle 'buftabs' "{{{
         let g:buftabs_only_basename=1
         let g:buftabs_in_statusline=1
@@ -396,7 +386,7 @@
         let g:gist_post_private=1
         let g:gist_show_privates=1
     "}}}
-    NeoBundle 'airblade/vim-gitgutter'
+    NeoBundle 'mhinz/vim-signify'
     "NeoBundle 'tomtom/quickfixsigns_vim', "{{{
         sign define QFS_VCS_CHANGE text=~ texthl=DiffChange
     "}}}
