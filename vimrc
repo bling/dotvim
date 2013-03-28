@@ -215,7 +215,7 @@
     " {{{ status line
         set statusline=
         set statusline+=%7*%m%*
-        set statusline+=\ %r%h%w%q%F\ %=
+        set statusline+=\ %r%h%w%q%f\ %=
         set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
         set statusline+=%1*\ %{&ff}%y\ 
         set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
@@ -280,8 +280,8 @@
             nnoremap <leader>/ :Ack 
         endif
     "}}}
-        let g:smartusline_string_to_highlight=" %r%h%w%q%F %="
     NeoBundle 'molok/vim-smartusline' "{{{
+        let g:smartusline_string_to_highlight=" %r%h%w%q%f %="
         let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     "}}}
     NeoBundle 'majutsushi/tagbar' "{{{
@@ -359,10 +359,6 @@
         nmap <BS>\ <Plug>yankstack_substitute_newer_paste
         nnoremap <leader>y :Yanks<cr>
         call yankstack#setup()
-    "}}}
-    "NeoBundle 'buftabs' "{{{
-        let g:buftabs_only_basename=1
-        let g:buftabs_in_statusline=1
     "}}}
     NeoBundle 'godlygeek/tabular' "{{{
         nmap <Leader>a& :Tabularize /&<CR>
