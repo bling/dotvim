@@ -182,7 +182,7 @@
 
     if has('conceal')
         set conceallevel=1
-        set listchars+=conceal:◎
+        set listchars+=conceal:‥
     endif
 
     if has('gui_running')
@@ -193,6 +193,7 @@
 
         if has('gui_macvim')
             set gfn=Ubuntu_Mono_for_Powerline:h14
+            set transparency=3
         endif
 
         if has('gui_win32')
@@ -256,10 +257,11 @@
     "NeoBundle 'kana/vim-smartinput'
     "NeoBundle 'Raimondi/delimitMate'
     NeoBundle 'mattn/zencoding-vim'
-    "NeoBundle 'kshenoy/vim-signature'
-    NeoBundle 'adinapoli/vim-markmultiple'
+    NeoBundle 'mhinz/vim-signify'
+    NeoBundle 'kshenoy/vim-signature'
     NeoBundle 'hlissner/vim-multiedit'
     NeoBundle 'guns/xterm-color-table.vim'
+    NeoBundle 'tomtom/tcomment_vim'
     "NeoBundle 'sjl/splice.vim'
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
@@ -268,7 +270,7 @@
         "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         "NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
-        let g:Powerline_symbols='fancy'
+            let g:Powerline_symbols='fancy'
         endif
     "}}}
     " ack/ag {{{
@@ -328,15 +330,12 @@
         nnoremap <F2> :NERDTreeToggle<CR>
         nnoremap <F3> :NERDTreeFind<CR>
     "}}}
-    NeoBundle 'scrooloose/nerdcommenter' "{{{
-        nmap \\ <Plug>NERDCommenterToggle
-        vmap \\ <Plug>NERDCommenterToggle
-    "}}}
     NeoBundle 'scrooloose/syntastic' "{{{
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_style_error_symbol = '✠'
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
+        let g:syntastic_auto_loc_list=1
     "}}}
     NeoBundle 'kien/ctrlp.vim' "{{{
         "let g:ctrlp_clear_cache_on_exit=0
@@ -382,7 +381,6 @@
         let g:gist_post_private=1
         let g:gist_show_privates=1
     "}}}
-    NeoBundle 'mhinz/vim-signify'
     "NeoBundle 'tomtom/quickfixsigns_vim', "{{{
         sign define QFS_VCS_CHANGE text=~ texthl=DiffChange
     "}}}
@@ -448,14 +446,17 @@
         "}}}
         " neosnippet {{{
             NeoBundle 'Shougo/neosnippet', { 'depends': [ 'honza/snipmate-snippets' ] }
+
+            if neobundle#is_sourced('neosnippet')
                 let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
                 let g:neosnippet#enable_snipmate_compatibility=1
 
-            " tab completion
-            imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
-            smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-            imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-            smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+                " tab completion
+                imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+                smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+                imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+                smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+            endif
         " }}}
         " neocomplcache {{{
             "NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'teramako/jscomplete-vim' ] }

@@ -99,9 +99,8 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  `<F2>` toggle browser
 *  `<F3>` open tree to path of the current file
 
-### [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
-*  commenter plugin
-*  all default mappings, and `\\` additionally mapped for comment toggling
+### [tcomment](https://github.com/tomtom/tcomment_vim)
+*  very versatile commenting plugin that can do motions
 
 ### [ctrlp](https://github.com/kien/ctrlp.vim)
 *  fuzzy file searching
