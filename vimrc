@@ -254,6 +254,8 @@
     NeoBundle 'tpope/vim-speeddating'
     "NeoBundle 'kana/vim-smartinput'
     "NeoBundle 'Raimondi/delimitMate'
+    NeoBundle 'bling/vim-bufferline'
+    NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'mattn/zencoding-vim'
     NeoBundle 'mhinz/vim-signify'
     NeoBundle 'kshenoy/vim-signature'
