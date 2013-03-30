@@ -64,7 +64,7 @@
         \ endif
 
     autocmd FileType scss setlocal foldmethod=marker foldmarker={,}
-
+    autocmd FileType javascript setlocal foldlevel=1
 "}}}
 
 " base configuration {{{
@@ -173,11 +173,9 @@
     set lazyredraw
     set showmode
     set colorcolumn=120
-    set completeopt-=preview
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
-    set foldlevel=99                                    "expand all by default
-    "set foldcolumn=4
+    " set foldcolumn=4
     let g:xml_syntax_folding=1                          "enable xml folding
 
     if has('conceal')
@@ -380,9 +378,6 @@
     NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' } "{{{
         let g:gist_post_private=1
         let g:gist_show_privates=1
-    "}}}
-    "NeoBundle 'tomtom/quickfixsigns_vim', "{{{
-        sign define QFS_VCS_CHANGE text=~ texthl=DiffChange
     "}}}
     NeoBundle 'tpope/vim-unimpaired' "{{{
         nmap <c-up> [e
