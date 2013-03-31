@@ -1,5 +1,7 @@
 " vim: fdm=marker fdl=0
 
+let s:is_windows = has('win32') || has('win64')
+
 " setup & neobundle {{{
     set rtp+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
@@ -194,8 +196,8 @@
             set transparency=3
         endif
 
-        if has('gui_win32')
-            set gfn=Ubuntu_Mono_for_Powerline:h10
+        if s:is_windows
+            set gfn=Consolas:h10
         endif
 
         if has('gui_gtk')
@@ -395,10 +397,13 @@
     NeoBundle 'maksimr/vim-jsbeautify' "{{{
         nnoremap <leader>fjs :call JsBeautify()<CR>
     "}}}
-    NeoBundle 'Valloric/YouCompleteMe' "{{{
+    " YouCompleteMe {{{
+        if !s:is_windows
+            NeoBundle 'Valloric/YouCompleteMe'
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+        endif
     "}}}
     "NeoBundle 'SirVer/ultisnips' "{{{
         let g:UltiSnipsExpandTrigger="<tab>"
@@ -456,7 +461,9 @@
             endif
         " }}}
         " neocomplcache {{{
-            "NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'teramako/jscomplete-vim' ] }
+            if s:is_windows
+                NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'teramako/jscomplete-vim' ] }
+            endif
 
             if neobundle#is_sourced('neocomplcache')
                 let g:neocomplcache_enable_at_startup=1

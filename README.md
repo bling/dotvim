@@ -139,6 +139,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 ### [youcompleteme](https://github.com/Valloric/YouCompleteMe)
 *  amazingly fast fuzzy autocomplete engine
+*  this is only enabled on osx/linux, on windows boxes it uses [neocomplcache](https://github.com/Shougo/neocomplcache) instead
 
 ### [neosnippet](https://github.com/Shougo/neosnippet)
 *  snippet support
@@ -155,7 +156,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  [signature](https://github.com/kshenoy/vim-signature) shows marks beside line numbers
 *  [matchit](https://github.com/vim-scripts/matchit.zip) makes your `%` more awesome
 *  [syntastic](https://github.com/scrooloose/syntastic) awesome syntax checking for a variety of languages
-*  [buftabs](https://github.com/vim-scripts/buftabs) simple plugin which prints all your open buffers in the command bar
+*  [bufferline](https://github.com/bling/vim-bufferline) simple plugin which prints all your open buffers in the command bar
 *  [indent-guides](https://github.com/nathanaelkane/vim-indent-guides) vertical lines
 *  [powerline](https://github.com/Lokaltog/powerline) makes vim look pretty, enough said (remember to install the patched fonts!)
 
