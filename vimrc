@@ -261,7 +261,6 @@ let s:is_windows = has('win32') || has('win64')
     NeoBundle 'mattn/zencoding-vim'
     NeoBundle 'mhinz/vim-signify'
     NeoBundle 'kshenoy/vim-signature'
-    NeoBundle 'hlissner/vim-multiedit'
     NeoBundle 'guns/xterm-color-table.vim'
     NeoBundle 'tomtom/tcomment_vim'
     "NeoBundle 'sjl/splice.vim'
@@ -320,6 +319,10 @@ let s:is_windows = has('win32') || has('win64')
         nmap B <leader><leader>b
         nmap E <leader><leader>e
         nmap F <leader><leader>f
+    "}}}
+    NeoBundle 'hlissner/vim-multiedit' "{{{
+        nmap <silent> <leader>mn <leader>mm/<C-r>=expand("<cword>")<CR><CR>
+        nmap <silent> <leader>mp <leader>mm?<C-r>=expand("<cword>")<CR><CR>
     "}}}
     NeoBundle 'scrooloose/nerdtree' "{{{
         let NERDTreeShowHidden=1
