@@ -1,6 +1,7 @@
 " vim: fdm=marker fdl=0
 
 let s:is_windows = has('win32') || has('win64')
+let s:max_column = 120
 
 " setup & neobundle {{{
     set rtp+=~/.vim/bundle/neobundle.vim/
@@ -83,7 +84,7 @@ let s:is_windows = has('win32') || has('win64')
     set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
     set encoding=utf-8                                  "set encoding for text
     set clipboard=unnamed                               "sync with OS clipboard
-    set pastetoggle=<F6>
+    set pastetoggle='<F6>'
     set hidden                                          "allow buffer switching without saving
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac                                "add mac to auto-detection of file format line endings
@@ -112,7 +113,7 @@ let s:is_windows = has('win32') || has('win64')
     set linebreak
     set showbreak=↪\ 
 
-    set synmaxcol=150
+    let &synmaxcol=s:max_column
     set scrolloff=1                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
@@ -174,9 +175,10 @@ let s:is_windows = has('win32') || has('win64')
     set cursorcolumn
     set lazyredraw
     set showmode
-    set colorcolumn=120
+    let &colorcolumn=s:max_column
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
+    set foldlevel=2
     " set foldcolumn=4
     let g:xml_syntax_folding=1                          "enable xml folding
 
@@ -207,7 +209,7 @@ let s:is_windows = has('win32') || has('win64')
         set t_Co=256
 
         if $TERM_PROGRAM == 'iTerm.app'
-            " difference cursors for insert vs normal mode
+            " different cursors for insert vs normal mode
             let &t_SI = "\<Esc>]50;CursorShape=1\x7"
             let &t_EI = "\<Esc>]50;CursorShape=0\x7"
         endif
@@ -591,6 +593,9 @@ let s:is_windows = has('win32') || has('win64')
 
     " window killer
     nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
+
+    " toggle things known to slow down rendering
+    noremap <silent> <F8> :call ToggleFastDrawing()<cr>
 
     " general
     nmap <leader>l :set list! list?<cr>
