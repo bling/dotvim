@@ -28,15 +28,15 @@ let s:max_column = 120
         " clean up: restore previous search history, and cursor position
         let @/=_s
         call cursor(l, c)
-    endfunction"}}}
+    endfunction "}}}
     function! StripTrailingWhitespace() "{{{
         call Preserve("%s/\\s\\+$//e")
-    endfunction"}}}
+    endfunction "}}}
     function! EnsureExists(path) "{{{
         if !isdirectory(expand(a:path))
             call mkdir(expand(a:path))
         endif
-    endfunction"}}}
+    endfunction "}}}
     function! CloseWindowOrKillBuffer() "{{{
         let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
 
@@ -51,14 +51,27 @@ let s:max_column = 120
         else
             bdelete
         endif
-    endfunction"}}}
+    endfunction "}}}
+    let s:toggle_fast_drawing=1
+    function! ToggleFastDrawing() "{{{
+        if s:toggle_fast_drawing
+            set colorcolumn=0
+            set nocursorcolumn
+            set nocursorline
+            syntax off
+            let s:toggle_fast_drawing = 0
+        else
+            let &colorcolumn=s:max_column
+            set cursorcolumn
+            set cursorline
+            syntax enable
+            let s:toggle_fast_drawing = 1
+        endif
+    endfunction "}}}
 "}}}
 
 " autocmd {{{
     autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
 
     " go back to previous position of cursor if any
     autocmd BufReadPost *
@@ -171,8 +184,6 @@ let s:max_column = 120
     set matchtime=2                                     "tens of a second to show matching parentheses
     set laststatus=2
     set number
-    set cursorline
-    set cursorcolumn
     set lazyredraw
     set showmode
     let &colorcolumn=s:max_column
@@ -181,6 +192,10 @@ let s:max_column = 120
     set foldlevel=2
     " set foldcolumn=4
     let g:xml_syntax_folding=1                          "enable xml folding
+
+    set cursorline cursorcolumn
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
 
     if has('conceal')
         set conceallevel=1
@@ -405,9 +420,9 @@ let s:max_column = 120
     " YouCompleteMe {{{
         if !s:is_windows
             NeoBundle 'Valloric/YouCompleteMe'
-        let g:ycm_complete_in_comments_and_strings=1
-        let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-        let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+            let g:ycm_complete_in_comments_and_strings=1
+            let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+            let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
         endif
     "}}}
     "NeoBundle 'SirVer/ultisnips' "{{{
