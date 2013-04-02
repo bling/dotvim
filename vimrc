@@ -126,7 +126,7 @@ let s:max_column = 120
     set linebreak
     set showbreak=↪\ 
 
-    let &synmaxcol=s:max_column
+    let &synmaxcol=s:max_column*2
     set scrolloff=1                                     "always show content after scroll
     set scrolljump=5                                    "minimum number of lines to scroll
     set display+=lastline
@@ -190,6 +190,7 @@ let s:max_column = 120
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
     set foldlevelstart=99                               "open all folds by default
+    set foldopen=all
     " set foldcolumn=4
     let g:xml_syntax_folding=1                          "enable xml folding
 
@@ -314,6 +315,8 @@ let s:max_column = 120
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
         let g:EasyGrepCommand=1
+    "}}}
+    NeoBundle 'tpope/vim-dispatch' "{{{
     "}}}
     NeoBundle 'tpope/vim-fugitive' "{{{
         nnoremap <silent> <leader>gs :Gstatus<CR>
@@ -537,9 +540,7 @@ let s:max_column = 120
         source ~/.vimrc.bundle
     endif
 
-    if !has('gui_running')
-        NeoBundleCheck
-    endif
+    NeoBundleCheck
 "}}}
 
 " mappings {{{
@@ -554,7 +555,7 @@ let s:max_column = 120
     nnoremap <left> :tabnext<CR>
     nnoremap <right> :tabprev<CR>
 
-    " correct cursor position in insert mode
+    " change cursor position in insert mode
     inoremap <C-h> <left>
     inoremap <C-l> <right>
 
@@ -584,6 +585,8 @@ let s:max_column = 120
     " reselect visual block after indent
     vnoremap < <gv
     vnoremap > >gv
+
+    " reselect last paste
     nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
     " find current word in quickfix
@@ -613,6 +616,9 @@ let s:max_column = 120
 
     " toggle things known to slow down rendering
     noremap <silent> <F8> :call ToggleFastDrawing()<cr>
+
+    " quick buffer open
+    nnoremap <leader>o :ls<cr>:e #
 
     " general
     nmap <leader>l :set list! list?<cr>
