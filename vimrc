@@ -15,6 +15,7 @@ let s:max_column = 120
     NeoBundle 'chriskempson/vim-tomorrow-theme'
     NeoBundle 'w0ng/vim-hybrid'
     NeoBundle 'sjl/badwolf'
+    NeoBundle 'jelera/vim-gummybears-colorscheme'
 "}}}
 
 " functions {{{
@@ -80,7 +81,6 @@ let s:max_column = 120
         \ endif
 
     autocmd FileType scss setlocal foldmethod=marker foldmarker={,}
-    autocmd FileType javascript setlocal foldlevel=1
 "}}}
 
 " base configuration {{{
@@ -189,7 +189,7 @@ let s:max_column = 120
     let &colorcolumn=s:max_column
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
-    set foldlevel=2
+    set foldlevelstart=99                               "open all folds by default
     " set foldcolumn=4
     let g:xml_syntax_folding=1                          "enable xml folding
 
@@ -210,7 +210,7 @@ let s:max_column = 120
 
         if has('gui_macvim')
             set gfn=Ubuntu_Mono_for_Powerline:h14
-            set transparency=3
+            set transparency=2
         endif
 
         if s:is_windows
@@ -252,8 +252,11 @@ let s:max_column = 120
         autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
     "}}}
 
-    set background=dark
-    colorscheme jellybeans
+    if has('gui_running')
+        colorscheme gummybears
+    else
+        colorscheme jellybeans
+    endif
 "}}}
 
 " plugin/mapping configuration {{{
@@ -280,13 +283,13 @@ let s:max_column = 120
     NeoBundle 'kshenoy/vim-signature'
     NeoBundle 'guns/xterm-color-table.vim'
     NeoBundle 'tomtom/tcomment_vim'
-    "NeoBundle 'sjl/splice.vim'
+    " NeoBundle 'sjl/splice.vim'
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
     NeoBundle 'matchit.zip'
     " powerline {{{
-        "NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-        "NeoBundle 'Lokaltog/vim-powerline'
+        " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+        " NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
             let g:Powerline_symbols='fancy'
         endif
@@ -325,7 +328,7 @@ let s:max_column = 120
         autocmd BufReadPost fugitive://* set bufhidden=delete
     "}}}
     " easymotion {{{
-        "NeoBundle 'Lokaltog/vim-easymotion'
+        " NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
 
@@ -357,7 +360,6 @@ let s:max_column = 120
         let g:syntastic_style_error_symbol = '✠'
         let g:syntastic_warning_symbol = '∆'
         let g:syntastic_style_warning_symbol = '≈'
-        let g:syntastic_auto_loc_list=1
     "}}}
     NeoBundle 'kien/ctrlp.vim' "{{{
         "let g:ctrlp_clear_cache_on_exit=0
@@ -425,7 +427,7 @@ let s:max_column = 120
             let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
         endif
     "}}}
-    "NeoBundle 'SirVer/ultisnips' "{{{
+    " NeoBundle 'SirVer/ultisnips' "{{{
         let g:UltiSnipsExpandTrigger="<tab>"
         let g:UltiSnipsJumpForwardTrigger="<tab>"
         let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -447,7 +449,7 @@ let s:max_column = 120
             endif
         endif
     "}}}
-    "NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
+    " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         let g:used_javascript_libs='underscore'
     "}}}
     " shougo plugins {{{
@@ -620,7 +622,7 @@ let s:max_column = 120
         nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
         nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
         nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-        nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:exe ":noautocmd qall!"<cr>
+        nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
     "}}}
 
     " sorts CSS
