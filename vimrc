@@ -1,4 +1,4 @@
-" vim: fdm=marker fdl=0
+" vim: fdm=marker
 
 let s:is_windows = has('win32') || has('win64')
 let s:max_column = 120
@@ -274,8 +274,6 @@ let s:max_column = 120
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
     NeoBundle 'tpope/vim-speeddating'
-    "NeoBundle 'kana/vim-smartinput'
-    "NeoBundle 'Raimondi/delimitMate'
     NeoBundle 'bling/vim-bufferline'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'mattn/zencoding-vim'
@@ -314,6 +312,9 @@ let s:max_column = 120
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
         let g:EasyGrepCommand=1
+    "}}}
+    NeoBundle 'Raimondi/delimitMate' "{{{
+        let delimitMate_expand_cr=1
     "}}}
     NeoBundle 'tpope/vim-dispatch' "{{{
     "}}}
@@ -435,7 +436,11 @@ let s:max_column = 120
         let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
         let g:UltiSnipsSnippetsDir='~/.vim/snippets'
     "}}}
-    NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
+    NeoBundle 'Yggdroot/indentLine' "{{{
+        let g:indentLine_color_term=234
+        let g:indentLine_color_gui='#444444'
+    "}}}
+    " NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
         "let g:indent_guides_guide_size=1
         let g:indent_guides_start_level=1
         let g:indent_guides_enable_on_vim_startup=0
