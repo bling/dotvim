@@ -564,6 +564,13 @@ let s:max_column = 120
         cnoremap s/ s/\v
     "}}}
 
+    " folds {{{
+        nnoremap zr zr:echo &foldlevel<cr>
+        nnoremap zm zm:echo &foldlevel<cr>
+        nnoremap zR zR:echo &foldlevel<cr>
+        nnoremap zM zM:echo &foldlevel<cr>
+    " }}}
+
     " screen line scroll
     nnoremap <silent> j gj
     nnoremap <silent> k gk
