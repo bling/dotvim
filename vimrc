@@ -16,6 +16,9 @@ let s:max_column = 120
     NeoBundle 'w0ng/vim-hybrid'
     NeoBundle 'sjl/badwolf'
     NeoBundle 'jelera/vim-gummybears-colorscheme'
+    NeoBundle 'zeis/vim-kolor' "{{{
+        let g:kolor_underlined=1
+    "}}}
 "}}}
 
 " functions {{{
@@ -253,11 +256,7 @@ let s:max_column = 120
         autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
     "}}}
 
-    if has('gui_running')
-        colorscheme gummybears
-    else
-        colorscheme jellybeans
-    endif
+    colorscheme kolor
 "}}}
 
 " plugin/mapping configuration {{{
@@ -471,20 +470,6 @@ let s:max_column = 120
                 \ }
             endif
         "}}}
-        " neosnippet {{{
-            NeoBundle 'Shougo/neosnippet', { 'depends': [ 'honza/snipmate-snippets' ] }
-
-            if neobundle#is_sourced('neosnippet')
-                let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
-                let g:neosnippet#enable_snipmate_compatibility=1
-
-                " tab completion
-                imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
-                smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-                imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-                smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-            endif
-        " }}}
         " neocomplcache {{{
             if s:is_windows
                 NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'teramako/jscomplete-vim' ] }
@@ -521,6 +506,18 @@ let s:max_column = 120
                 autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
             endif
         "}}}
+        " neosnippet {{{
+            NeoBundle 'Shougo/neosnippet', { 'depends': [ 'honza/snipmate-snippets' ] }
+
+            let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
+            let g:neosnippet#enable_snipmate_compatibility=1
+
+            " tab completion
+            imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+            smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+            smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+        " }}}
         " vimshell {{{
             if neobundle#is_sourced('vimproc')
                 NeoBundle 'Shougo/vimshell'
