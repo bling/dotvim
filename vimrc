@@ -56,8 +56,10 @@ let s:max_column = 120
             bdelete
         endif
     endfunction "}}}
-    let s:toggle_fast_drawing=1
     function! ToggleFastDrawing() "{{{
+        if !exists('s:toggle_fast_drawing')
+            let s:toggle_fast_drawing=1
+        endif
         if s:toggle_fast_drawing
             set colorcolumn=0
             set nocursorcolumn
@@ -285,6 +287,9 @@ let s:max_column = 120
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
     NeoBundle 'matchit.zip'
+    NeoBundle 'scratch.vim' "{{{
+        nnoremap <leader>h :Sscratch<cr>
+    "}}}
     " powerline {{{
         " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         " NeoBundle 'Lokaltog/vim-powerline'
