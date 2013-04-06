@@ -279,7 +279,6 @@ let s:max_column = 120
     NeoBundle 'bling/vim-bufferline'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'mattn/zencoding-vim'
-    NeoBundle 'mhinz/vim-signify'
     NeoBundle 'kshenoy/vim-signature'
     NeoBundle 'guns/xterm-color-table.vim'
     NeoBundle 'tomtom/tcomment_vim'
@@ -313,6 +312,9 @@ let s:max_column = 120
     NeoBundle 'majutsushi/tagbar' "{{{
         nnoremap <silent> <F9> :TagbarToggle<CR>
     "}}}
+    NeoBundle 'mhinz/vim-signify' "{{{
+        let g:signify_update_on_bufenter=0
+    "}}}
     NeoBundle 'EasyGrep' "{{{
         let g:EasyGrepRecursive=1
         let g:EasyGrepAllOptionsInExplorer=1
@@ -335,7 +337,7 @@ let s:max_column = 120
         autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
         autocmd BufReadPost fugitive://* set bufhidden=delete
     "}}}
-    " easymotion {{{
+    " EasyMotion {{{
         " NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
         let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
@@ -464,7 +466,7 @@ let s:max_column = 120
     " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         let g:used_javascript_libs='underscore'
     "}}}
-    " shougo plugins {{{
+    " Shougo plugins {{{
         " unite {{{
             NeoBundleDepends 'Shougo/unite.vim'
             let g:unite_data_directory='~/.vim/.cache/unite'
@@ -481,7 +483,7 @@ let s:max_column = 120
             endif
         "}}}
         " neocomplcache {{{
-            if s:is_windows
+            if !neobundle#is_sourced('YouCompleteMe')
                 NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'teramako/jscomplete-vim' ] }
             endif
 
@@ -625,6 +627,9 @@ let s:max_column = 120
     " make Y consistent with C and D.  See :help Y.
     nnoremap Y y$
 
+    " hide annoying quit message
+    nnoremap <C-c> <Esc>
+
     " window killer
     nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
@@ -637,6 +642,10 @@ let s:max_column = 120
     " general
     nmap <leader>l :set list! list?<cr>
     noremap <space> :set hlsearch! hlsearch?<cr>
+
+    map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
     " helpers for profiling {{{
         nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
