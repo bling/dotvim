@@ -1,15 +1,19 @@
 " vim: fdm=marker
 
-let s:is_windows = has('win32') || has('win64')
-let s:max_column = 120
+let s:is_windows  = has('win32') || has('win64')
+let s:max_column  = 120
+let s:use_plugins = 1
 
 " setup & neobundle {{{
+if s:use_plugins == 1
     set rtp+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
+endif
 "}}}
 
 " color schemes {{{
+if s:use_plugins == 1
     NeoBundle 'nanotech/jellybeans.vim'
     NeoBundle 'tomasr/molokai'
     NeoBundle 'chriskempson/vim-tomorrow-theme'
@@ -19,6 +23,7 @@ let s:max_column = 120
     NeoBundle 'zeis/vim-kolor' "{{{
         let g:kolor_underlined=1
     "}}}
+endif
 "}}}
 
 " functions {{{
@@ -262,6 +267,7 @@ let s:max_column = 120
 "}}}
 
 " plugin/mapping configuration {{{
+if s:use_plugins == 1
     " bundles: languages {{{
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'groenewege/vim-less'
@@ -550,6 +556,7 @@ let s:max_column = 120
     endif
 
     NeoBundleCheck
+endif
 "}}}
 
 " mappings {{{
