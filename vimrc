@@ -3,6 +3,7 @@
 let s:is_windows  = has('win32') || has('win64')
 let s:max_column  = 120
 let s:use_plugins = 1
+let s:use_autocomplete = 1
 
 " setup & neobundle {{{
     set rtp+=~/.vim/bundle/neobundle.vim/
@@ -57,22 +58,16 @@ let s:use_plugins = 1
             bdelete
         endif
     endfunction "}}}
-    function! ToggleFastDrawing() "{{{
-        if !exists('s:toggle_fast_drawing')
-            let s:toggle_fast_drawing=1
+    function! ToggleSyntax() "{{{
+        if !exists('s:toggle_syntax')
+            let s:toggle_syntax=1
         endif
-        if s:toggle_fast_drawing
-            set colorcolumn=0
-            set nocursorcolumn
-            set nocursorline
+        if s:toggle_syntax == 1
             syntax off
-            let s:toggle_fast_drawing = 0
+            let s:toggle_syntax = 0
         else
-            let &colorcolumn=s:max_column
-            set cursorcolumn
-            set cursorline
             syntax enable
-            let s:toggle_fast_drawing = 1
+            let s:toggle_syntax = 1
         endif
     endfunction "}}}
 "}}}
@@ -432,7 +427,7 @@ if s:use_plugins == 1
         nnoremap <leader>fjs :call JsBeautify()<CR>
     "}}}
     " YouCompleteMe {{{
-        if !s:is_windows
+        if !s:is_windows && s:use_autocomplete == 1
             NeoBundle 'Valloric/YouCompleteMe'
             let g:ycm_complete_in_comments_and_strings=1
             let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
@@ -485,8 +480,8 @@ if s:use_plugins == 1
             endif
         "}}}
         " neocomplcache {{{
-            if !neobundle#is_sourced('YouCompleteMe')
-                NeoBundle 'Shougo/neocomplcache', { 'depends': [ 'teramako/jscomplete-vim' ] }
+            if s:use_autocomplete == 1 && !neobundle#is_sourced('YouCompleteMe')
+                NeoBundle 'Shougo/neocomplcache'
             endif
 
             if neobundle#is_sourced('neocomplcache')
@@ -635,7 +630,7 @@ endif
     nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
     " toggle things known to slow down rendering
-    noremap <silent> <F8> :call ToggleFastDrawing()<cr>
+    noremap <silent> <F8> :call ToggleSyntax()<cr>
 
     " quick buffer open
     nnoremap <leader>o :ls<cr>:e #
