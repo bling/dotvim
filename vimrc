@@ -496,32 +496,30 @@ if s:use_plugins == 1
             if neobundle#is_sourced('neocomplcache')
                 let g:neocomplcache_enable_at_startup=1
                 let g:neocomplcache_enable_auto_delimiter=1
-                "let g:neocomplcache_force_overwrite_completefunc=1
-                "let g:neocomplcache_auto_completion_start_length=1
+                " let g:neocomplcache_force_overwrite_completefunc=1
+                " let g:neocomplcache_auto_completion_start_length=1
                 let g:neocomplcache_max_list=10
                 let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
-                "let g:neocomplcache_enable_auto_select=1
-                let g:neocomplcache_enable_cursor_hold_i=1
-                "let g:neocomplcache_cursor_hold_i_time=100
-                "let g:neocomplcache_enable_fuzzy_completion=1
+                " let g:neocomplcache_enable_auto_select=1
+                " let g:neocomplcache_enable_cursor_hold_i=1
+                " let g:neocomplcache_cursor_hold_i_time=100
+                " let g:neocomplcache_enable_fuzzy_completion=1
 
-                " define empty defaults
                 if !exists('g:neocomplcache_omni_functions')
                     let g:neocomplcache_omni_functions = {}
                 endif
 
                 " enable general omni completion
-                autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-                autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-                "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-                autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-                autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-                autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+                let g:neocomplcache_omni_functions.css      = 'csscomplete#CompleteCSS'
+                let g:neocomplcache_omni_functions.html     = 'htmlcomplete#CompleteTags'
+                let g:neocomplcache_omni_functions.markdown = 'htmlcomplete#CompleteTags'
+                let g:neocomplcache_omni_functions.python   = 'pythoncomplete#Complete'
+                let g:neocomplcache_omni_functions.xml      = 'xmlcomplete#CompleteTags'
+                let g:neocomplcache_omni_functions.ruby     = 'rubycomplete#Complete'
 
                 " js completion
                 let g:jscomplete_use = [ 'dom' ]
                 let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
-                autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
             endif
         "}}}
         " neosnippet {{{
