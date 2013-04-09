@@ -5,15 +5,12 @@ let s:max_column  = 120
 let s:use_plugins = 1
 
 " setup & neobundle {{{
-if s:use_plugins == 1
     set rtp+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
-endif
 "}}}
 
 " color schemes {{{
-if s:use_plugins == 1
     NeoBundle 'nanotech/jellybeans.vim'
     NeoBundle 'tomasr/molokai'
     NeoBundle 'chriskempson/vim-tomorrow-theme'
@@ -23,7 +20,6 @@ if s:use_plugins == 1
     NeoBundle 'zeis/vim-kolor' "{{{
         let g:kolor_underlined=1
     "}}}
-endif
 "}}}
 
 " functions {{{
@@ -196,17 +192,18 @@ endif
     set number
     set lazyredraw
     set showmode
-    let &colorcolumn=s:max_column
     set foldenable                                      "enable folds by default
     set foldmethod=syntax                               "fold via syntax of files
     set foldlevelstart=99                               "open all folds by default
-    set foldopen=all
-    " set foldcolumn=4
     let g:xml_syntax_folding=1                          "enable xml folding
 
-    set cursorline cursorcolumn
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
+    " let &colorcolumn=s:max_column
+    set cursorline
+    autocmd WinLeave * setlocal nocursorline
+    autocmd WinEnter * setlocal cursorline
+    " set cursorcolumn
+    " autocmd WinLeave * setlocal nocursorcolumn
+    " autocmd WinEnter * setlocal cursorcolumn
 
     if has('conceal')
         set conceallevel=1
@@ -264,6 +261,8 @@ endif
     "}}}
 
     colorscheme kolor
+    highlight Normal guibg=#222222
+    highlight Pmenu guibg=#333333 ctermbg=236
 "}}}
 
 " plugin/mapping configuration {{{
@@ -292,9 +291,6 @@ if s:use_plugins == 1
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
     NeoBundle 'matchit.zip'
-    NeoBundle 'scratch.vim' "{{{
-        nnoremap <leader>h :Sscratch<cr>
-    "}}}
     " powerline {{{
         " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
         " NeoBundle 'Lokaltog/vim-powerline'
@@ -346,10 +342,10 @@ if s:use_plugins == 1
     " EasyMotion {{{
         " NeoBundle 'Lokaltog/vim-easymotion'
         NeoBundle 'skwp/vim-easymotion'
-        let g:EasyMotion_keys = 'qwertyuiopasdfghjklzxcvbnm'
+        let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
 
-        highlight EasyMotionTarget ctermfg=32  guifg=#0087df
-        highlight EasyMotionShade  ctermfg=236 guifg=#303030
+        autocmd WinEnter * highlight EasyMotionTarget ctermfg=32  guifg=#0087df
+        autocmd WinEnter * highlight EasyMotionShade  ctermfg=237 guifg=#3a3a3a
 
         nmap W <leader><leader>w
         nmap B <leader><leader>b
@@ -633,7 +629,7 @@ endif
     nnoremap Y y$
 
     " hide annoying quit message
-    nnoremap <C-c> <Esc>
+    nnoremap <C-c> <C-c>:echo<cr>
 
     " window killer
     nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
