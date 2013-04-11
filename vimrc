@@ -466,6 +466,7 @@ if s:use_plugins == 1
     " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         let g:used_javascript_libs='underscore'
     "}}}
+    NeoBundleDepends 'honza/vim-snippets'
     NeoBundleDepends 'teramako/jscomplete-vim'
     " Shougo plugins {{{
         " unite {{{
@@ -518,9 +519,9 @@ if s:use_plugins == 1
             endif
         "}}}
         " neosnippet {{{
-            NeoBundle 'Shougo/neosnippet', { 'depends': [ 'honza/snipmate-snippets' ] }
+            NeoBundle 'Shougo/neosnippet'
 
-            let g:neosnippet#snippets_directory='~/.vim/bundle/honza/snipmate-snippets/snippets,~/.vim/snippets'
+            let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
             let g:neosnippet#enable_snipmate_compatibility=1
 
             " tab completion
