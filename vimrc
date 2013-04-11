@@ -3,7 +3,7 @@
 let s:is_windows  = has('win32') || has('win64')
 let s:max_column  = 120
 let s:use_plugins = 1
-let s:use_autocomplete = 1
+let s:autocomplete = 'neocomplcache'
 
 " setup & neobundle {{{
     set rtp+=~/.vim/bundle/neobundle.vim/
@@ -168,6 +168,7 @@ let s:use_autocomplete = 1
 
         " swap files
         set directory=~/.vim/.cache/swap
+        set noswapfile
 
         call EnsureExists('~/.vim/.cache')
         call EnsureExists(&undodir)
@@ -180,7 +181,6 @@ let s:use_autocomplete = 1
 "}}}
 
 " ui configuration {{{
-    set noshowmode
     set showmatch                                       "automatically highlight matching braces/brackets/etc.
     set matchtime=2                                     "tens of a second to show matching parentheses
     set laststatus=2
@@ -291,6 +291,9 @@ if s:use_plugins == 1
         " NeoBundle 'Lokaltog/vim-powerline'
         if has('gui_running')
             let g:Powerline_symbols='fancy'
+        endif
+        if neobundle#is_sourced('powerline') || neobundle#is_sourced('vim-powerline')
+            set noshowmode
         endif
     "}}}
     " ack/ag {{{
@@ -427,7 +430,7 @@ if s:use_plugins == 1
         nnoremap <leader>fjs :call JsBeautify()<CR>
     "}}}
     " YouCompleteMe {{{
-        if !s:is_windows && s:use_autocomplete == 1
+        if !s:is_windows && s:autocomplete == 'ycm'
             NeoBundle 'Valloric/YouCompleteMe'
             let g:ycm_complete_in_comments_and_strings=1
             let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
@@ -463,6 +466,7 @@ if s:use_plugins == 1
     " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
         let g:used_javascript_libs='underscore'
     "}}}
+    NeoBundleDepends 'teramako/jscomplete-vim'
     " Shougo plugins {{{
         " unite {{{
             NeoBundleDepends 'Shougo/unite.vim'
@@ -480,7 +484,7 @@ if s:use_plugins == 1
             endif
         "}}}
         " neocomplcache {{{
-            if s:use_autocomplete == 1 && !neobundle#is_sourced('YouCompleteMe')
+            if s:autocomplete == 'neocomplcache' || !neobundle#is_sourced('YouCompleteMe')
                 NeoBundle 'Shougo/neocomplcache'
             endif
 
@@ -492,9 +496,9 @@ if s:use_plugins == 1
                 let g:neocomplcache_max_list=10
                 let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
                 " let g:neocomplcache_enable_auto_select=1
-                " let g:neocomplcache_enable_cursor_hold_i=1
-                " let g:neocomplcache_cursor_hold_i_time=100
-                " let g:neocomplcache_enable_fuzzy_completion=1
+                let g:neocomplcache_enable_cursor_hold_i=1
+                let g:neocomplcache_cursor_hold_i_time=300
+                let g:neocomplcache_enable_fuzzy_completion=1
 
                 if !exists('g:neocomplcache_omni_functions')
                     let g:neocomplcache_omni_functions = {}
