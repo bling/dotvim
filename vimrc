@@ -75,10 +75,12 @@ let s:plugin_groups = [
         endif
         if s:toggle_syntax == 1
             syntax off
-            let s:toggle_syntax = 0
+            let s:toggle_syntax=0
+            let g:neocomplcache_enable_cursor_hold_i=0
         else
             syntax enable
-            let s:toggle_syntax = 1
+            let s:toggle_syntax=1
+            let g:neocomplcache_enable_cursor_hold_i=1
         endif
     endfunction "}}}
 "}}}
@@ -202,13 +204,13 @@ let s:plugin_groups = [
     set foldlevelstart=99                               "open all folds by default
     let g:xml_syntax_folding=1                          "enable xml folding
 
-    let &colorcolumn=s:max_column
     set cursorline
     autocmd WinLeave * setlocal nocursorline
     autocmd WinEnter * setlocal cursorline
-    set cursorcolumn
-    autocmd WinLeave * setlocal nocursorcolumn
-    autocmd WinEnter * setlocal cursorcolumn
+    " let &colorcolumn=s:max_column
+    " set cursorcolumn
+    " autocmd WinLeave * setlocal nocursorcolumn
+    " autocmd WinEnter * setlocal cursorcolumn
 
     if has('conceal')
         set conceallevel=1
@@ -267,7 +269,7 @@ let s:plugin_groups = [
 
     colorscheme kolor
     highlight Normal guibg=#222222
-    highlight Pmenu guibg=#333333 ctermbg=236
+    highlight Pmenu guibg=#000000 ctermbg=0
 "}}}
 
 " plugin/mapping configuration {{{
