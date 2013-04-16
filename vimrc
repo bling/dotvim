@@ -288,7 +288,7 @@ call add(s:plugin_groups, 'misc')
     endif "}}}
     if count(s:plugin_groups, 'web') "{{{
         NeoBundle 'pangloss/vim-javascript'
-        NeoBundle 'leafgarland/typecript-vim'
+        NeoBundle 'leafgarland/typescript-vim'
         NeoBundle 'groenewege/vim-less'
         NeoBundle 'mmalecki/vim-node.js'
         NeoBundle 'leshill/vim-json'
