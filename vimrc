@@ -7,6 +7,7 @@ let s:autocomplete_method = 'neocomplcache'
 " a list of plugin groups which can be used to enable/disable an entire group
 let s:plugin_groups = []
 call add(s:plugin_groups, 'core')
+call add(s:plugin_groups, 'web')
 call add(s:plugin_groups, 'ruby')
 call add(s:plugin_groups, 'scm')
 call add(s:plugin_groups, 'editing')
@@ -287,6 +288,7 @@ call add(s:plugin_groups, 'misc')
     endif "}}}
     if count(s:plugin_groups, 'web') "{{{
         NeoBundle 'pangloss/vim-javascript'
+        NeoBundle 'leafgarland/typecript-vim'
         NeoBundle 'groenewege/vim-less'
         NeoBundle 'mmalecki/vim-node.js'
         NeoBundle 'leshill/vim-json'
