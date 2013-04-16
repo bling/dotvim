@@ -18,6 +18,7 @@ call add(s:plugin_groups, 'autocomplete')
 call add(s:plugin_groups, 'misc')
 
 " setup & neobundle {{{
+    set nocompatible
     set rtp+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
@@ -98,7 +99,6 @@ call add(s:plugin_groups, 'misc')
 "}}}
 
 " base configuration {{{
-    filetype plugin indent on
     syntax enable
 
     set timeoutlen=300                                  "mapping timeout
@@ -288,10 +288,8 @@ call add(s:plugin_groups, 'misc')
     endif "}}}
     if count(s:plugin_groups, 'web') "{{{
         NeoBundle 'pangloss/vim-javascript'
-        NeoBundle 'leafgarland/typescript-vim' "{{{
-            " override *.ts from stock vim
-            autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
-        "}}}
+        NeoBundle 'leafgarland/typescript-vim'
+        NeoBundle 'kchmck/vim-coffee-script'
         NeoBundle 'groenewege/vim-less'
         NeoBundle 'mmalecki/vim-node.js'
         NeoBundle 'leshill/vim-json'
@@ -679,6 +677,10 @@ call add(s:plugin_groups, 'misc')
     " sorts CSS
     autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 "}}}
+
+" fixes bug with vundle
+filetype off
+filetype plugin indent on
 
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
