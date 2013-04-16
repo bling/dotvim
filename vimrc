@@ -11,6 +11,7 @@ call add(s:plugin_groups, 'ruby')
 call add(s:plugin_groups, 'scm')
 call add(s:plugin_groups, 'editing')
 call add(s:plugin_groups, 'visual')
+call add(s:plugin_groups, 'indents')
 call add(s:plugin_groups, 'navigation')
 call add(s:plugin_groups, 'autocomplete')
 call add(s:plugin_groups, 'misc')
@@ -470,6 +471,11 @@ call add(s:plugin_groups, 'misc')
     if count(s:plugin_groups, 'visual') "{{{
         NeoBundle 'bling/vim-bufferline'
         NeoBundle 'kshenoy/vim-signature'
+        NeoBundle 'roman/golden-ratio' "{{{
+            let g:golden_ratio_autocommand=0
+            let g:golden_ratio_wrap_ignored=0
+            nnoremap <F4> :GoldenRatioToggle<cr>
+        "}}}
         " powerline {{{
             " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
             NeoBundle 'Lokaltog/vim-powerline'
@@ -482,31 +488,23 @@ call add(s:plugin_groups, 'misc')
             let g:smartusline_string_to_highlight=" %r%h%w%q%f %="
             let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
         "}}}
-        NeoBundle 'bling/indentLine' "{{{
+    endif "}}}
+    if count(s:plugin_groups, 'indents') "{{{
+        " NeoBundle 'bling/indentLine' "{{{
             let g:indentLine_color_term=235
             let g:indentLine_color_gui='#444444'
             let g:indentLine_indentLevel=3
             let g:indentLine_fastRender=1
         "}}}
-        NeoBundle 'roman/golden-ratio' "{{{
-            let g:golden_ratio_autocommand=0
-            let g:golden_ratio_wrap_ignored=0
-            nnoremap <F4> :GoldenRatioToggle<cr>
-        "}}}
-        " NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
-            "let g:indent_guides_guide_size=1
+        NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
             let g:indent_guides_start_level=1
-            let g:indent_guides_enable_on_vim_startup=0
+            let g:indent_guides_guide_size=1
+            let g:indent_guides_enable_on_vim_startup=1
             let g:indent_guides_color_change_percent=2
             if !has('gui_running')
                 let g:indent_guides_auto_colors=0
-                if &background ==# 'dark'
-                    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
-                    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
-                else
-                    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=253
-                    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=254
-                endif
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+                autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
             endif
         "}}}
     endif "}}}
