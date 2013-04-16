@@ -126,7 +126,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 ### [gist](https://github.com/mattn/gist-vim)
 *  automatically get or push changes for gists with `:Gist`
 
-### [zencoding](https://github.com/mattn/zencoding-vim-vim)
+### [zencoding](https://github.com/mattn/zencoding-vim)
 *  makes for writing html/css extremely fast
 *  currently, default plugin mappings are used, which means `<C-y>,` expand
 
