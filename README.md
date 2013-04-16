@@ -1,10 +1,10 @@
 # bling.vim
 
-(Y)et (A)nother (V)im (D)istribution
+A highly tuned Vim distribution that will blow your socks off!
 
 ## introduction
 
-this is my personal vim configuration that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.
+this is my personal vim distribution that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.
 
 while it is quite easy to install this distribution (i designed it that way for me to easily switch between computers), i actually recommend that you don't use it verbatim.  configuring a vimrc from scratch was an incredibly awesome experience and i want you to experience it too.  take a look at my vimrc for ideas, as well as the credits section.
 

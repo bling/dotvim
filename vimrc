@@ -5,16 +5,15 @@ let s:max_column  = 120
 let s:autocomplete_method = 'neocomplcache'
 
 " a list of plugin groups which can be used to enable/disable an entire group
-let s:plugin_groups = [
-            \    'core',
-            \    'web',
-            \    'scm',
-            \    'editing',
-            \    'visual',
-            \    'navigation',
-            \    'autocomplete',
-            \    'misc'
-            \ ]
+let s:plugin_groups = []
+call add(s:plugin_groups, 'core')
+call add(s:plugin_groups, 'ruby')
+call add(s:plugin_groups, 'scm')
+call add(s:plugin_groups, 'editing')
+call add(s:plugin_groups, 'visual')
+call add(s:plugin_groups, 'navigation')
+call add(s:plugin_groups, 'autocomplete')
+call add(s:plugin_groups, 'misc')
 
 " setup & neobundle {{{
     set rtp+=~/.vim/bundle/neobundle.vim/
@@ -286,8 +285,7 @@ let s:plugin_groups = [
         "}}}
     endif "}}}
     if count(s:plugin_groups, 'web') "{{{
-        " NeoBundle 'pangloss/vim-javascript'
-        NeoBundle 'jelera/vim-javascript-syntax'
+        NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'groenewege/vim-less'
         NeoBundle 'mmalecki/vim-node.js'
         NeoBundle 'leshill/vim-json'
@@ -299,6 +297,10 @@ let s:plugin_groups = [
         " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
             let g:used_javascript_libs='underscore'
         "}}}
+    endif "}}}
+    if count(s:plugin_groups, 'ruby') "{{{
+        NeoBundle 'tpope/vim-rails'
+        NeoBundle 'tpope/vim-bundler'
     endif "}}}
     if count(s:plugin_groups, 'scm') "{{{
         " NeoBundle 'sjl/splice.vim'
@@ -388,6 +390,7 @@ let s:plugin_groups = [
             nmap <silent> <leader>mn <leader>mm/<C-r>=expand("<cword>")<CR><CR>
             nmap <silent> <leader>mp <leader>mm?<C-r>=expand("<cword>")<CR><CR>
         "}}}
+        NeoBundle 'terryma/vim-multiple-cursors'
         NeoBundle 'godlygeek/tabular' "{{{
             nmap <Leader>a& :Tabularize /&<CR>
             vmap <Leader>a& :Tabularize /&<CR>
@@ -479,9 +482,11 @@ let s:plugin_groups = [
             let g:smartusline_string_to_highlight=" %r%h%w%q%f %="
             let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
         "}}}
-        NeoBundle 'Yggdroot/indentLine' "{{{
-            let g:indentLine_color_term=234
+        NeoBundle 'bling/indentLine' "{{{
+            let g:indentLine_color_term=235
             let g:indentLine_color_gui='#444444'
+            let g:indentLine_indentLevel=3
+            let g:indentLine_fastRender=1
         "}}}
         NeoBundle 'roman/golden-ratio' "{{{
             let g:golden_ratio_autocommand=0
