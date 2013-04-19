@@ -473,6 +473,7 @@ call add(s:plugin_groups, 'misc')
     endif "}}}
     if count(s:plugin_groups, 'visual') "{{{
         NeoBundle 'bling/vim-bufferline'
+        NeoBundle 'myusuf3/numbers.vim'
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'roman/golden-ratio' "{{{
             let g:golden_ratio_autocommand=0
@@ -683,5 +684,5 @@ filetype off
 filetype plugin indent on
 
 if filereadable(expand("~/.vimrc.local"))
-    source expand('~/.vimrc.local')
+    source ~/.vimrc.local
 endif
