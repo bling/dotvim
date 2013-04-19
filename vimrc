@@ -111,7 +111,7 @@ call add(s:plugin_groups, 'misc')
     set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
     set encoding=utf-8                                  "set encoding for text
     set clipboard=unnamed                               "sync with OS clipboard
-    set pastetoggle='<F6>'
+    set pastetoggle=<F6>
     set hidden                                          "allow buffer switching without saving
     set autoread                                        "auto reload if file saved externally
     set fileformats+=mac                                "add mac to auto-detection of file format line endings
@@ -473,13 +473,17 @@ call add(s:plugin_groups, 'misc')
     endif "}}}
     if count(s:plugin_groups, 'visual') "{{{
         NeoBundle 'bling/vim-bufferline'
-        NeoBundle 'myusuf3/numbers.vim'
+        NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
         NeoBundle 'kshenoy/vim-signature'
-        NeoBundle 'roman/golden-ratio' "{{{
-            let g:golden_ratio_autocommand=0
-            let g:golden_ratio_wrap_ignored=0
-            nnoremap <F4> :GoldenRatioToggle<cr>
+        NeoBundle 'zhaocai/GoldenView.Vim' "{{{
+            let g:goldenview__enable_default_mapping=0
+            nmap <F4> <Plug>ToggleGoldenViewAutoResize
         "}}}
+        " NeoBundle 'roman/golden-ratio' "{{{
+        "     let g:golden_ratio_autocommand=0
+        "     let g:golden_ratio_wrap_ignored=0
+        "     nnoremap <F4> :GoldenRatioToggle<cr>
+        " "}}}
         " powerline {{{
             " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
             NeoBundle 'Lokaltog/vim-powerline'
