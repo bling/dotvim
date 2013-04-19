@@ -1,7 +1,7 @@
 " vim: fdm=marker
 
-let s:is_windows  = has('win32') || has('win64')
-let s:max_column  = 120
+let s:is_windows = has('win32') || has('win64')
+let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
 
 " a list of plugin groups which can be used to enable/disable an entire group
@@ -348,7 +348,7 @@ call add(s:plugin_groups, 'misc')
                 let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
                 " let g:neocomplcache_enable_auto_select=1
                 let g:neocomplcache_enable_cursor_hold_i=1
-                let g:neocomplcache_cursor_hold_i_time=500
+                let g:neocomplcache_cursor_hold_i_time=300
                 let g:neocomplcache_enable_fuzzy_completion=1
 
                 if !exists('g:neocomplcache_omni_functions')
@@ -390,11 +390,11 @@ call add(s:plugin_groups, 'misc')
         NeoBundle 'tpope/vim-speeddating'
         NeoBundle 'tomtom/tcomment_vim'
         NeoBundle 'terryma/vim-expand-region'
+        NeoBundle 'terryma/vim-multiple-cursors'
         NeoBundle 'hlissner/vim-multiedit' "{{{
             nmap <silent> <leader>mn <leader>mm/<C-r>=expand("<cword>")<CR><CR>
             nmap <silent> <leader>mp <leader>mm?<C-r>=expand("<cword>")<CR><CR>
         "}}}
-        NeoBundle 'terryma/vim-multiple-cursors'
         NeoBundle 'godlygeek/tabular' "{{{
             nmap <Leader>a& :Tabularize /&<CR>
             vmap <Leader>a& :Tabularize /&<CR>
@@ -442,7 +442,7 @@ call add(s:plugin_groups, 'misc')
             nnoremap <silent> <F5> :GundoToggle<CR>
         "}}}
         NeoBundle 'kien/ctrlp.vim' "{{{
-            let g:ctrlp_clear_cache_on_exit=0
+            " let g:ctrlp_clear_cache_on_exit=0
             let g:ctrlp_max_height=40
             let g:ctrlp_show_hidden=1
             let g:ctrlp_follow_symlinks=1
@@ -503,7 +503,7 @@ call add(s:plugin_groups, 'misc')
             let g:indent_guides_start_level=1
             let g:indent_guides_guide_size=1
             let g:indent_guides_enable_on_vim_startup=1
-            let g:indent_guides_color_change_percent=2
+            let g:indent_guides_color_change_percent=3
             if !has('gui_running')
                 let g:indent_guides_auto_colors=0
                 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
@@ -678,10 +678,10 @@ call add(s:plugin_groups, 'misc')
     autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 "}}}
 
-" fixes bug with vundle
+" vundle rtp load sequence requires the filetypes to be reloaded
 filetype off
 filetype plugin indent on
 
 if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
+    source expand('~/.vimrc.local')
 endif
