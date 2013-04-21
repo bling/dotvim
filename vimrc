@@ -120,8 +120,12 @@ call add(s:plugin_groups, 'misc')
   set tags=tags;/
   set showfulltag
   set keywordprg=":help"                              "remap K to vim help
-  if executable('zsh')
-      set shell=zsh
+
+  if s:is_windows
+    " ensure gvim and cygwin have the correct shell set
+    if !has('win32unix')
+      set shell=cmd.exe
+    endif
   endif
 
   " whitespace
