@@ -347,8 +347,8 @@ call add(s:plugin_groups, 'misc')
         let g:neocomplcache_max_list=10
         let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
         " let g:neocomplcache_enable_auto_select=1
-        let g:neocomplcache_enable_cursor_hold_i=1
-        let g:neocomplcache_cursor_hold_i_time=300
+        " let g:neocomplcache_enable_cursor_hold_i=1
+        " let g:neocomplcache_cursor_hold_i_time=300
         let g:neocomplcache_enable_fuzzy_completion=1
 
         if !exists('g:neocomplcache_omni_functions')
@@ -475,15 +475,15 @@ call add(s:plugin_groups, 'misc')
     NeoBundle 'bling/vim-bufferline'
     NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
-    NeoBundle 'zhaocai/GoldenView.Vim' "{{{
+    " NeoBundle 'zhaocai/GoldenView.Vim' "{{{
       let g:goldenview__enable_default_mapping=0
       nmap <F4> <Plug>ToggleGoldenViewAutoResize
     "}}}
-    " NeoBundle 'roman/golden-ratio' "{{{
-    "   let g:golden_ratio_autocommand=0
-    "   let g:golden_ratio_wrap_ignored=0
-    "   nnoremap <F4> :GoldenRatioToggle<cr>
-    " "}}}
+    NeoBundle 'roman/golden-ratio' "{{{
+      let g:golden_ratio_autocommand=0
+      let g:golden_ratio_wrap_ignored=0
+      nnoremap <F4> :GoldenRatioToggle<cr>
+    "}}}
     " powerline {{{
       " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
       NeoBundle 'Lokaltog/vim-powerline'
