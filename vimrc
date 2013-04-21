@@ -1,4 +1,4 @@
-" vim: fdm=marker sw=2
+" vim: fdm=marker ts=2 sts=2 sw=2
 
 let s:is_windows = has('win32') || has('win64')
 let s:max_column = 120
@@ -120,6 +120,8 @@ call add(s:plugin_groups, 'misc')
   set tags=tags;/
   set showfulltag
   set keywordprg=":help"                              "remap K to vim help
+  set modeline
+  set modelines=5
 
   if s:is_windows
     " ensure gvim and cygwin have the correct shell set
