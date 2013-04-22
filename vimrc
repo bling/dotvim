@@ -111,7 +111,11 @@ call add(s:plugin_groups, 'misc')
   set ttyfast                                         "assume fast terminal connection
   set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
   set encoding=utf-8                                  "set encoding for text
-  set clipboard=unnamed                               "sync with OS clipboard
+  if exists('$TMUX')
+    set clipboard=
+  else
+    set clipboard=unnamed                             "sync with OS clipboard
+  endif
   set hidden                                          "allow buffer switching without saving
   set autoread                                        "auto reload if file saved externally
   set fileformats+=mac                                "add mac to auto-detection of file format line endings
@@ -245,8 +249,13 @@ call add(s:plugin_groups, 'misc')
 
     if $TERM_PROGRAM == 'iTerm.app'
       " different cursors for insert vs normal mode
-      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+      if exists('$TMUX')
+        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+      else
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+      endif
     endif
   endif
 
