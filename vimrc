@@ -111,7 +111,6 @@ call add(s:plugin_groups, 'misc')
   set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
   set encoding=utf-8                                  "set encoding for text
   set clipboard=unnamed                               "sync with OS clipboard
-  set pastetoggle=<F6>
   set hidden                                          "allow buffer switching without saving
   set autoread                                        "auto reload if file saved externally
   set fileformats+=mac                                "add mac to auto-detection of file format line endings
@@ -146,7 +145,6 @@ call add(s:plugin_groups, 'misc')
   set linebreak
   set showbreak=↪\ 
 
-  let &synmaxcol=s:max_column*2
   set scrolloff=1                                     "always show content after scroll
   set scrolljump=5                                    "minimum number of lines to scroll
   set display+=lastline
@@ -168,31 +166,31 @@ call add(s:plugin_groups, 'misc')
   set ignorecase                                      "ignore case for searching
   set smartcase                                       "do case-sensitive if there's a capital letter
   if executable('ack')
-      set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
-      set grepformat=%f:%l:%c:%m
+    set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
+    set grepformat=%f:%l:%c:%m
   endif
   if executable('ag')
-      set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-      set grepformat=%f:%l:%c:%m
+    set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+    set grepformat=%f:%l:%c:%m
   endif
 
   " vim file/folder management {{{
-      " persistent undo
-      set undofile
-      set undodir=~/.vim/.cache/undo
+    " persistent undo
+    set undofile
+    set undodir=~/.vim/.cache/undo
 
-      " backups
-      set backup
-      set backupdir=~/.vim/.cache/backup
+    " backups
+    set backup
+    set backupdir=~/.vim/.cache/backup
 
-      " swap files
-      set directory=~/.vim/.cache/swap
-      set noswapfile
+    " swap files
+    set directory=~/.vim/.cache/swap
+    set noswapfile
 
-      call EnsureExists('~/.vim/.cache')
-      call EnsureExists(&undodir)
-      call EnsureExists(&backupdir)
-      call EnsureExists(&directory)
+    call EnsureExists('~/.vim/.cache')
+    call EnsureExists(&undodir)
+    call EnsureExists(&backupdir)
+    call EnsureExists(&directory)
   "}}}
 
   let mapleader = ","
@@ -220,58 +218,58 @@ call add(s:plugin_groups, 'misc')
   " autocmd WinEnter * setlocal cursorcolumn
 
   if has('conceal')
-      set conceallevel=1
-      set listchars+=conceal:Δ
+    set conceallevel=1
+    set listchars+=conceal:Δ
   endif
 
   if has('gui_running')
-      set lines=999
-      set columns=999
-      set guioptions+=t                               "tear off menu items
-      set guioptions-=T                               "toolbar icons
+    set lines=999
+    set columns=999
+    set guioptions+=t                                 "tear off menu items
+    set guioptions-=T                                 "toolbar icons
 
-      if has('gui_macvim')
-          set gfn=Ubuntu_Mono_for_Powerline:h14
-          set transparency=2
-      endif
+    if has('gui_macvim')
+      set gfn=Ubuntu_Mono_for_Powerline:h14
+      set transparency=2
+    endif
 
-      if s:is_windows
-          set gfn=Consolas:h10
-      endif
+    if s:is_windows
+      set gfn=Consolas:h10
+    endif
 
-      if has('gui_gtk')
-          set gfn=Ubuntu\ Mono\ for\ Powerline\ 11
-      endif
+    if has('gui_gtk')
+      set gfn=Ubuntu\ Mono\ for\ Powerline\ 11
+    endif
   else
-      set t_Co=256
+    set t_Co=256
 
-      if $TERM_PROGRAM == 'iTerm.app'
-          " different cursors for insert vs normal mode
-          let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-          let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-      endif
+    if $TERM_PROGRAM == 'iTerm.app'
+      " different cursors for insert vs normal mode
+      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    endif
   endif
 
   " {{{ status line
-      set statusline=
-      set statusline+=%7*%m%*
-      set statusline+=\ %r%h%w%q%f\ %=
-      set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
-      set statusline+=%1*\ %{&ff}%y\ 
-      set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
-      set statusline+=%3*%3v:%l\ 
-      set statusline+=%4*\ %3p%%\ 
-      set statusline+=%5*%4L\ 
-      set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
+    set statusline=
+    set statusline+=%7*%m%*
+    set statusline+=\ %r%h%w%q%f\ %=
+    set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
+    set statusline+=%1*\ %{&ff}%y\ 
+    set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
+    set statusline+=%3*%3v:%l\ 
+    set statusline+=%4*\ %3p%%\ 
+    set statusline+=%5*%4L\ 
+    set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
 
-      autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
-      autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
-      autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
-      autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
-      autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
-      autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
-      autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
-      autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
+    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
+    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
+    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
+    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
+    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
+    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
+    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
+    autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
   "}}}
 
   colorscheme kolor
@@ -285,6 +283,7 @@ call add(s:plugin_groups, 'misc')
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
     NeoBundle 'tpope/vim-dispatch'
+    NeoBundle 'tpope/vim-eunuch'
     NeoBundle 'tpope/vim-unimpaired' "{{{
       nmap <c-up> [e
       nmap <c-down> ]e
@@ -588,6 +587,9 @@ call add(s:plugin_groups, 'misc')
   nmap <leader>fef :call Preserve("normal gg=G")<CR>
   nmap <leader>f$ :call StripTrailingWhitespace()<CR>
   vmap <leader>s :sort<cr>
+
+  " toggle paste
+  map <F6> :set invpaste<CR>:set paste?<CR>
 
   " remap arrow keys
   nnoremap <down> :bprev<CR>
