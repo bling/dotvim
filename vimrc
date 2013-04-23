@@ -1,6 +1,7 @@
 " vim: fdm=marker ts=2 sts=2 sw=2
 
 let s:is_windows = has('win32') || has('win64')
+let s:is_cygwin = has('win32unix')
 let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
 let s:autocomplete_method = 'ycm'
@@ -129,7 +130,7 @@ call add(s:plugin_groups, 'misc')
 
   if s:is_windows
     " ensure gvim and cygwin have the correct shell set
-    if !has('win32unix')
+    if !s:is_cygwin
       set shell=c:\windows\system32\cmd.exe
     endif
   endif
