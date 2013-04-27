@@ -332,7 +332,7 @@ call add(s:plugin_groups, 'misc')
   if count(s:plugin_groups, 'autocomplete') "{{{
     NeoBundleDepends 'teramako/jscomplete-vim'
     " YouCompleteMe {{{
-      if !s:is_windows && s:autocomplete_method == 'ycm'
+      if s:autocomplete_method == 'ycm'
         NeoBundle 'Valloric/YouCompleteMe'
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
