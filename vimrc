@@ -3,6 +3,7 @@
 let s:is_windows = has('win32') || has('win64')
 let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
+let s:autocomplete_method = 'ycm'
 
 " a list of plugin groups which can be used to enable/disable an entire group
 let s:plugin_groups = []
@@ -125,7 +126,7 @@ call add(s:plugin_groups, 'misc')
   if s:is_windows
     " ensure gvim and cygwin have the correct shell set
     if !has('win32unix')
-      set shell=cmd.exe
+      set shell=c:\windows\system32\cmd.exe
     endif
   endif
 
@@ -223,22 +224,21 @@ call add(s:plugin_groups, 'misc')
   endif
 
   if has('gui_running')
-    set lines=999
-    set columns=999
+    set lines=999 columns=999                         "open maximized
     set guioptions+=t                                 "tear off menu items
     set guioptions-=T                                 "toolbar icons
 
     if has('gui_macvim')
-      set gfn=Ubuntu_Mono_for_Powerline:h14
+      set gfn=Ubuntu_Mono:h14
       set transparency=2
     endif
 
     if s:is_windows
-      set gfn=Consolas:h10
+      set gfn=Ubuntu_Mono:h11
     endif
 
     if has('gui_gtk')
-      set gfn=Ubuntu\ Mono\ for\ Powerline\ 11
+      set gfn=Ubuntu\ Mono\ 11
     endif
   else
     set t_Co=256
@@ -549,15 +549,13 @@ call add(s:plugin_groups, 'misc')
         let g:unite_data_directory='~/.vim/.cache/unite'
       "}}}
       " vimproc {{{
-        if executable('make')
-          NeoBundleDepends 'Shougo/vimproc', {
-            \ 'build': {
-              \ 'mac': 'make -f make_mac.mak',
-              \ 'windows': 'make -f make_mingw32.mak',
-              \ 'unix': 'make -f make_unix.mak',
-            \ },
-          \ }
-        endif
+        NeoBundleDepends 'Shougo/vimproc', {
+          \ 'build': {
+            \ 'mac': 'make -f make_mac.mak',
+            \ 'unix': 'make -f make_unix.mak',
+            \ 'windows': 'C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake make_msvc32.mak',
+          \ },
+        \ }
       "}}}
       " vimshell {{{
         if neobundle#is_sourced('vimproc')
@@ -566,6 +564,7 @@ call add(s:plugin_groups, 'misc')
           let g:vimshell_editor_command="/usr/local/bin/vim"
           let g:vimshell_right_prompt='getcwd()'
           let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
+          let g:vimshell_vimshrc_path='~/.vim/vimshrc'
 
           nnoremap <leader>c :VimShell -split<cr>
         endif
