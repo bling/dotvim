@@ -404,10 +404,6 @@ call add(s:plugin_groups, 'misc')
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'terryma/vim-multiple-cursors'
-    NeoBundle 'hlissner/vim-multiedit' "{{{
-      nmap <silent> <leader>mn <leader>mm/<C-r>=expand("<cword>")<CR><CR>
-      nmap <silent> <leader>mp <leader>mm?<C-r>=expand("<cword>")<CR><CR>
-    "}}}
     NeoBundle 'godlygeek/tabular' "{{{
       nmap <Leader>a& :Tabularize /&<CR>
       vmap <Leader>a& :Tabularize /&<CR>
@@ -511,12 +507,6 @@ call add(s:plugin_groups, 'misc')
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'indents') "{{{
-    " NeoBundle 'bling/indentLine' "{{{
-      let g:indentLine_color_term=235
-      let g:indentLine_color_gui='#444444'
-      let g:indentLine_indentLevel=3
-      let g:indentLine_fastRender=1
-    "}}}
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
       let g:indent_guides_start_level=1
       let g:indent_guides_guide_size=1
