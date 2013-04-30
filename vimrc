@@ -234,7 +234,7 @@ call add(s:plugin_groups, 'misc')
     endif
 
     if s:is_windows
-      set gfn=Ubuntu_Mono:h11
+      set gfn=DejaVu_Sans_Mono:h10
     endif
 
     if has('gui_gtk')
@@ -271,10 +271,6 @@ call add(s:plugin_groups, 'misc')
     autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
     autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
   "}}}
-
-  colorscheme kolor
-  highlight Normal guibg=#222222
-  highlight Pmenu guibg=#000000 ctermbg=0
 "}}}
 
 " plugin/mapping configuration {{{
@@ -423,8 +419,8 @@ call add(s:plugin_groups, 'misc')
       NeoBundle 'skwp/vim-easymotion'
       let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
 
-      autocmd WinEnter * highlight EasyMotionTarget ctermfg=32 guifg=#0087df
-      autocmd WinEnter * highlight EasyMotionShade ctermfg=237 guifg=#3a3a3a
+      autocmd ColorScheme * highlight EasyMotionTarget ctermfg=32 guifg=#0087df
+      autocmd ColorScheme * highlight EasyMotionShade ctermfg=237 guifg=#3a3a3a
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'navigation') "{{{
@@ -492,7 +488,7 @@ call add(s:plugin_groups, 'misc')
     " powerline {{{
       " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
       NeoBundle 'Lokaltog/vim-powerline'
-      let g:Powerline_symbols='fancy'
+      let g:Powerline_symbols='unicode'
       if neobundle#is_sourced('powerline') || neobundle#is_sourced('vim-powerline')
         set noshowmode
       endif
@@ -693,6 +689,10 @@ call add(s:plugin_groups, 'misc')
 " vundle rtp load sequence requires the filetypes to be reloaded
 filetype off
 filetype plugin indent on
+
+autocmd ColorScheme * highlight Normal guibg=#222222
+autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=0
+colorscheme kolor
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
