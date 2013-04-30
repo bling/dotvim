@@ -2,6 +2,7 @@
 
 let s:is_windows = has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
+let s:default_indent = 2
 let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
 let s:autocomplete_method = 'ycm'
@@ -141,10 +142,9 @@ call add(s:plugin_groups, 'misc')
   set smartindent                                     "smart indenting for additional languages
   set expandtab                                       "spaces instead of tabs
   set smarttab                                        "use shiftwidth to enter tabs
-  set tabstop=4                                       "number of spaces per tab for display
-  set softtabstop=4                                   "number of spaces per tab in insert mode
-  set shiftwidth=4                                    "number of spaces when indenting
-  "set virtualedit=onemore                             "allow cursor one beyond end of line
+  let &tabstop=s:default_indent                       "number of spaces per tab for display
+  let &softtabstop=s:default_indent                   "number of spaces per tab in insert mode
+  let &shiftwidth=s:default_indent                    "number of spaces when indenting
   set list                                            "highlight whitespace
   set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
   set shiftround
@@ -308,9 +308,11 @@ call add(s:plugin_groups, 'misc')
     NeoBundle 'hail2u/vim-css3-syntax'
     NeoBundle 'ap/vim-css-color'
     NeoBundle 'othree/html5.vim'
+    NeoBundle 'wavded/vim-stylus'
+    NeoBundle 'digitaltoad/vim-jade'
     NeoBundle 'mattn/zencoding-vim'
     " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
-      let g:used_javascript_libs='underscore'
+      let g:used_javascript_libs='jquery,requirejs'
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'ruby') "{{{
@@ -453,7 +455,7 @@ call add(s:plugin_groups, 'misc')
       nnoremap <silent> <F5> :GundoToggle<CR>
     "}}}
     NeoBundle 'kien/ctrlp.vim' "{{{
-      " let g:ctrlp_clear_cache_on_exit=0
+      let g:ctrlp_clear_cache_on_exit=1
       let g:ctrlp_max_height=40
       let g:ctrlp_show_hidden=1
       let g:ctrlp_follow_symlinks=1
@@ -529,6 +531,9 @@ call add(s:plugin_groups, 'misc')
   endif "}}}
   if count(s:plugin_groups, 'misc') "{{{
     NeoBundle 'tpope/vim-markdown'
+    if executable('redcarpet') && executable('instant-markdown-d')
+      NeoBundle 'suan/vim-instant-markdown'
+    endif
     NeoBundle 'guns/xterm-color-table.vim'
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
@@ -601,6 +606,10 @@ call add(s:plugin_groups, 'misc')
   nnoremap <up> :bnext<CR>
   nnoremap <left> :tabnext<CR>
   nnoremap <right> :tabprev<CR>
+
+  " smash escape
+  inoremap jk <esc>
+  inoremap kj <esc>
 
   " change cursor position in insert mode
   inoremap <C-h> <left>
@@ -700,7 +709,7 @@ call add(s:plugin_groups, 'misc')
 filetype off
 filetype plugin indent on
 
-autocmd ColorScheme * highlight Normal guibg=#222222
+autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
 autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=0
 colorscheme kolor
 
