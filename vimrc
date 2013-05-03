@@ -102,8 +102,6 @@ call add(s:plugin_groups, 'misc')
 "}}}
 
 " base configuration {{{
-  syntax enable
-
   set timeoutlen=300                                  "mapping timeout
   set ttimeoutlen=50                                  "keycode timeout
 
@@ -496,7 +494,7 @@ call add(s:plugin_groups, 'misc')
     " powerline {{{
       " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
       NeoBundle 'Lokaltog/vim-powerline'
-      let g:Powerline_symbols='unicode'
+      let g:Powerline_symbols='fancy'
       if neobundle#is_sourced('powerline') || neobundle#is_sourced('vim-powerline')
         set noshowmode
       endif
@@ -554,7 +552,7 @@ call add(s:plugin_groups, 'misc')
           \ 'build': {
             \ 'mac': 'make -f make_mac.mak',
             \ 'unix': 'make -f make_unix.mak',
-            \ 'windows': 'C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake make_msvc32.mak',
+            \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
           \ },
         \ }
       "}}}
@@ -562,7 +560,6 @@ call add(s:plugin_groups, 'misc')
         if neobundle#is_sourced('vimproc')
           NeoBundle 'Shougo/vimshell'
 
-          let g:vimshell_editor_command="/usr/local/bin/vim"
           let g:vimshell_right_prompt='getcwd()'
           let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
           let g:vimshell_vimshrc_path='~/.vim/vimshrc'
@@ -676,6 +673,8 @@ call add(s:plugin_groups, 'misc')
   " quick buffer open
   nnoremap <leader>o :ls<cr>:e #
 
+  nnoremap <leader>tag :Dispatch ctags -R<cr>
+
   " general
   nmap <leader>l :set list! list?<cr>
   noremap <space> :set hlsearch! hlsearch?<cr>
@@ -695,12 +694,13 @@ call add(s:plugin_groups, 'misc')
   autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 "}}}
 
-" vundle rtp load sequence requires the filetypes to be reloaded
+" vundle rtp load sequence requires the filetypes to be loaded after all bundles are loaded
 filetype off
 filetype plugin indent on
+syntax enable
 
 autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
-autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=0
+autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
 colorscheme kolor
 
 if filereadable(expand("~/.vimrc.local"))
