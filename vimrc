@@ -19,6 +19,9 @@ call add(s:plugin_groups, 'indents')
 call add(s:plugin_groups, 'navigation')
 call add(s:plugin_groups, 'autocomplete')
 call add(s:plugin_groups, 'misc')
+if s:is_windows
+  call add(s:plugin_groups, 'windows')
+endif
 
 " setup & neobundle {{{
   set nocompatible
@@ -577,6 +580,10 @@ call add(s:plugin_groups, 'misc')
         endif
       "}}}
     "}}}
+  endif "}}}
+  if count(s:plugin_groups, 'windows') "{{{
+    NeoBundle 'PProvost/vim-ps1'
+    NeoBundle 'OrangeT/vim-csharp'
   endif "}}}
 
   nnoremap <leader>nbu :Unite neobundle/update<cr>
