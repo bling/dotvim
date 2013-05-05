@@ -525,6 +525,10 @@ call add(s:plugin_groups, 'misc')
     NeoBundle 'guns/xterm-color-table.vim'
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
+    NeoBundle 'mhinz/vim-startify' "{{{
+      let g:startify_session_dir = '~/.vim/.cache/sessions'
+      let g:startify_show_sessions = 1
+    "}}}
     NeoBundle 'scrooloose/syntastic' "{{{
       let g:syntastic_error_symbol = '✗'
       let g:syntastic_style_error_symbol = '✠'
@@ -560,7 +564,11 @@ call add(s:plugin_groups, 'misc')
         if neobundle#is_sourced('vimproc')
           NeoBundle 'Shougo/vimshell'
 
-          let g:vimshell_editor_command='vim'
+          if has('gui_macvim')
+            let g:vimshell_editor_command='vim'
+          else
+            let g:vimshell_editor_command='mvim'
+          endif
           let g:vimshell_right_prompt='getcwd()'
           let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
           let g:vimshell_vimshrc_path='~/.vim/vimshrc'
