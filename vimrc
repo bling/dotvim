@@ -497,7 +497,11 @@ endif
     " powerline {{{
       " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
       NeoBundle 'Lokaltog/vim-powerline'
-      let g:Powerline_symbols='fancy'
+      if s:is_windows
+        let g:Powerline_symbols='unicode'
+      else
+        let g:Powerline_symbols='fancy'
+      endif
       if neobundle#is_sourced('powerline') || neobundle#is_sourced('vim-powerline')
         set noshowmode
       endif
@@ -568,9 +572,9 @@ endif
           NeoBundle 'Shougo/vimshell'
 
           if has('gui_macvim')
-            let g:vimshell_editor_command='vim'
-          else
             let g:vimshell_editor_command='mvim'
+          else
+            let g:vimshell_editor_command='vim'
           endif
           let g:vimshell_right_prompt='getcwd()'
           let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
