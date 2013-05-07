@@ -5,7 +5,9 @@ let s:is_cygwin = has('win32unix')
 let s:default_indent = 2
 let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
-let s:autocomplete_method = 'ycm'
+if filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
+  let s:autocomplete_method = 'ycm'
+endif
 
 " a list of plugin groups which can be used to enable/disable an entire group
 let s:plugin_groups = []
