@@ -8,6 +8,9 @@ let s:autocomplete_method = 'neocomplcache'
 if filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
   let s:autocomplete_method = 'ycm'
 endif
+if s:is_windows
+  set rtp+=~/.vim
+endif
 
 " a list of plugin groups which can be used to enable/disable an entire group
 let s:plugin_groups = []
@@ -262,28 +265,6 @@ endif
       endif
     endif
   endif
-
-  " {{{ status line
-    set statusline=
-    set statusline+=%7*%m%*
-    set statusline+=\ %r%h%w%q%f\ %=
-    set statusline+=%6*\ %{exists('g:loaded_fugitive')?fugitive#head():''}\ 
-    set statusline+=%1*\ %{&ff}%y\ 
-    set statusline+=%2*\ %{strlen(&fenc)?&fenc:'none'}\ 
-    set statusline+=%3*%3v:%l\ 
-    set statusline+=%4*\ %3p%%\ 
-    set statusline+=%5*%4L\ 
-    set statusline+=%9*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
-
-    autocmd ColorScheme * hi User1 ctermbg=17 ctermfg=33 guibg=#00005f guifg=#0087ff
-    autocmd ColorScheme * hi User2 ctermbg=53 ctermfg=204 guibg=#5f005f guifg=#ff5f87
-    autocmd ColorScheme * hi User3 ctermbg=234 ctermfg=white guibg=#1c1c1c guifg=white
-    autocmd ColorScheme * hi User4 ctermbg=235 ctermfg=white guibg=#262626 guifg=white
-    autocmd ColorScheme * hi User5 ctermbg=236 ctermfg=white guibg=#303030 guifg=white
-    autocmd ColorScheme * hi User6 ctermbg=black ctermfg=white guibg=black guifg=white
-    autocmd ColorScheme * hi User7 ctermbg=202 ctermfg=black guibg=#ff5f00 guifg=black
-    autocmd ColorScheme * hi User9 ctermbg=88 ctermfg=white guibg=#870000 guifg=white
-  "}}}
 "}}}
 
 " plugin/mapping configuration {{{
@@ -495,22 +476,6 @@ endif
       let g:golden_ratio_autocommand=0
       let g:golden_ratio_wrap_ignored=0
       nnoremap <F4> :GoldenRatioToggle<cr>
-    "}}}
-    " powerline {{{
-      " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-      NeoBundle 'Lokaltog/vim-powerline'
-      if s:is_windows
-        let g:Powerline_symbols='unicode'
-      else
-        let g:Powerline_symbols='fancy'
-      endif
-      if neobundle#is_sourced('powerline') || neobundle#is_sourced('vim-powerline')
-        set noshowmode
-      endif
-    "}}}
-    " NeoBundle 'molok/vim-smartusline' "{{{
-      let g:smartusline_string_to_highlight=" %r%h%w%q%f %="
-      let g:smartusline_hi_normal='ctermbg=33 ctermfg=black guibg=#0087ff guifg=black'
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'indents') "{{{
