@@ -388,6 +388,7 @@ endif
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'terryma/vim-multiple-cursors'
+    NeoBundle 'dahu/vim-fanfingtastic'
     NeoBundle 'godlygeek/tabular' "{{{
       nmap <Leader>a& :Tabularize /&<CR>
       vmap <Leader>a& :Tabularize /&<CR>

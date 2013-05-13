@@ -18,17 +18,15 @@ function! Mode()
     hi User9 guifg=#ff0000 guibg=#1c1c1c ctermfg=9 ctermbg=234
 
     if l:mode ==# "i"
-      hi User1 guibg=#00dfff guifg=#000000
-      hi User2 guibg=#00dfff guifg=#000000
-      hi User3 guifg=#00dfff
-      hi User5 guibg=#00dfff
-      hi User9 guibg=#00dfff
+      hi User2 guibg=#00dfff guifg=#000000 ctermbg=45 ctermfg=0
+      hi User3 guibg=#005fff guifg=#00dfff ctermbg=27 ctermfg=45
+      hi User4 guibg=#005fff ctermbg=27
+      hi User5 guifg=#005fff ctermfg=27
     elseif l:mode ==? "v" || l:mode ==# ""
-      hi User1 guibg=#ffaf00 guifg=#000000
-      hi User2 guibg=#ffaf00 guifg=#000000
-      hi User3 guifg=#ffaf00
-      hi User5 guibg=#ffaf00
-      hi User9 guibg=#ffaf00
+      hi User2 guibg=#ffaf00 guifg=#000000 ctermbg=214 ctermfg=0
+      hi User3 guifg=#ffaf00 guibg=#ff5f00 ctermfg=214 ctermbg=202
+      hi User4 guibg=#ff5f00 guifg=#000000 ctermbg=202 ctermfg=0
+      hi User5 guifg=#ff5f00 ctermfg=202
     endif
   endif
 
