@@ -48,9 +48,9 @@ function! Mode()
 endfunction
 
 set statusline=%2*%{Mode()}%3*▶%4*
-set statusline+=%{strlen(fugitive#statusline())>0?'\ ':''}
-set statusline+=%{matchstr(fugitive#statusline(),'(\\zs.*\\ze)')}
-set statusline+=%{strlen(fugitive#statusline())>0?'\ \ ':'\ '}
+set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ ':''}
+set statusline+=%{exists('g:loaded_fugitive')?matchstr(fugitive#statusline(),'(\\zs.*\\ze)'):''}
+set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ \ ':'\ '}
 set statusline+=%5*▶\ %1*%f\ 
 set statusline+=%9*%{&ro?'◘':''}%{&mod?'+':''}%<
 set statusline+=%#warningmsg#
