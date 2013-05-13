@@ -54,7 +54,7 @@ set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'
 set statusline+=%5*▶\ %1*%f\ 
 set statusline+=%9*%{&ro?'◘':''}%{&mod?'+':''}%<
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
 set statusline+=%5*%=◀%4*
 set statusline+=\ %{strlen(&fileformat)>0?&fileformat.'\ ◇\ ':''}
 set statusline+=%{strlen(&fileencoding)>0?&fileencoding.'\ ◇\ ':''}
