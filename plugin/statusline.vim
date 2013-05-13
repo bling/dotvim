@@ -9,13 +9,13 @@ function! Mode()
     " mode
     hi User2 guifg=#005f00 guibg=#dfff00 gui=bold ctermfg=22 ctermbg=190
     " mode seperator
-    hi User3 guifg=#dfff00 guibg=#444444 ctermfg=255 ctermbg=238
+    hi User3 guifg=#dfff00 guibg=#444444 ctermfg=190 ctermbg=238
     " info
     hi User4 guifg=#ffffff guibg=#444444 ctermfg=255 ctermbg=238
     " info seperator
     hi User5 guifg=#444444 guibg=#1c1c1c ctermfg=238 ctermbg=234
     " file info
-    hi User9 guifg=#ff0000 guibg=#1c1c1c ctermfg=9 ctermbg=234
+    hi User9 guifg=#ff0000 guibg=#1c1c1c ctermfg=160 ctermbg=234
 
     if l:mode ==# "i"
       hi User2 guibg=#00dfff guifg=#000000 ctermbg=45 ctermfg=0
