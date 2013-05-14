@@ -1,5 +1,5 @@
 let g:last_mode = ''
-function! Mode()
+function! ModePrefix()
   let l:mode = mode()
   if l:mode !=# g:last_mode
     let g:last_mode = l:mode
@@ -47,7 +47,7 @@ function! Mode()
   endif
 endfunction
 
-set statusline=%2*%{Mode()}%3*▶%4*
+set statusline=%2*%{ModePrefix()}%3*▶%4*
 set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ ':''}
 set statusline+=%{exists('g:loaded_fugitive')?matchstr(fugitive#statusline(),'(\\zs.*\\ze)'):''}
 set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ \ ':'\ '}
@@ -55,8 +55,8 @@ set statusline+=%5*▶\ %1*%f\
 set statusline+=%9*%{&ro?'◘':''}%{&mod?'+':''}%<
 set statusline+=%#warningmsg#
 set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
-set statusline+=%5*%=◀%4*
-set statusline+=\ %{strlen(&fileformat)>0?&fileformat.'\ ◇\ ':''}
+set statusline+=%5*%=◀%4*\ 
+set statusline+=%{strlen(&fileformat)>0?&fileformat.'\ ◇\ ':''}
 set statusline+=%{strlen(&fileencoding)>0?&fileencoding.'\ ◇\ ':''}
 set statusline+=%{strlen(&filetype)>0?&filetype:''}
 set statusline+=\ %3*◀
