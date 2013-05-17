@@ -5,7 +5,7 @@ function! ModePrefix()
     let g:last_mode = l:mode
 
     " default
-    hi User1 guifg=#ffffff guibg=#1c1c1c ctermfg=255 ctermbg=234
+    hi User1 guifg=#ffffff guibg=#1c1c1c ctermfg=255 ctermbg=233
     " mode
     hi User2 guifg=#005f00 guibg=#dfff00 gui=bold ctermfg=22 ctermbg=190
     " mode seperator
@@ -13,11 +13,12 @@ function! ModePrefix()
     " info
     hi User4 guifg=#ffffff guibg=#444444 ctermfg=255 ctermbg=238
     " info seperator
-    hi User5 guifg=#444444 guibg=#1c1c1c ctermfg=238 ctermbg=234
+    hi User5 guifg=#444444 guibg=#1c1c1c ctermfg=238 ctermbg=233
     " file info
-    hi User9 guifg=#ff0000 guibg=#1c1c1c ctermfg=160 ctermbg=234
+    hi User9 guifg=#ff0000 guibg=#1c1c1c ctermfg=160 ctermbg=233
 
     if l:mode ==# "i"
+      hi User1 guifg=#00ffff ctermfg=14
       hi User2 guibg=#00dfff guifg=#000000 ctermbg=45 ctermfg=0
       hi User3 guibg=#005fff guifg=#00dfff ctermbg=27 ctermfg=45
       hi User4 guibg=#005fff ctermbg=27
@@ -52,12 +53,11 @@ set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'
 set statusline+=%{exists('g:loaded_fugitive')?matchstr(fugitive#statusline(),'(\\zs.*\\ze)'):''}
 set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ \ ':'\ '}
 set statusline+=%5*▶\ %1*%f\ 
-set statusline+=%9*%{&ro?'◘':''}%{&mod?'+':''}%<
+set statusline+=%9*%{&ro?'RO':''}%{&mod?'+':''}%<
 set statusline+=%#warningmsg#
 set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
-set statusline+=%5*%=◀%4*\ 
-set statusline+=%{strlen(&fileformat)>0?&fileformat.'\ ◇\ ':''}
-set statusline+=%{strlen(&fileencoding)>0?&fileencoding.'\ ◇\ ':''}
-set statusline+=%{strlen(&filetype)>0?&filetype:''}
+set statusline+=%1*%=%{strlen(&filetype)>0?&filetype.'\ ':''}%5*◀%4*\ 
+set statusline+=%{strlen(&fileencoding)>0?&fileencoding:''}
+set statusline+=%{strlen(&fileformat)>0?'['.&fileformat.']':''}
 set statusline+=\ %3*◀
 set statusline+=%2*\ %3p%%\ ◇\ %3l:%3c\ 
