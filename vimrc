@@ -322,7 +322,7 @@ endif
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'autocomplete') "{{{
-    NeoBundleDepends 'teramako/jscomplete-vim'
+    NeoBundle 'teramako/jscomplete-vim'
     " YouCompleteMe {{{
       if s:autocomplete_method == 'ycm'
         NeoBundle 'Valloric/YouCompleteMe'
@@ -365,7 +365,7 @@ endif
         let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
       endif
     "}}}
-    NeoBundleDepends 'honza/vim-snippets'
+    NeoBundle 'honza/vim-snippets'
     " NeoBundle 'SirVer/ultisnips' "{{{
       let g:UltiSnipsExpandTrigger="<tab>"
       let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -523,14 +523,15 @@ endif
     "}}}
     " Shougo plugins {{{
       " unite {{{
-        NeoBundleDepends 'Shougo/unite.vim'
+        NeoBundle 'Shougo/unite.vim'
         let g:unite_data_directory='~/.vim/.cache/unite'
       "}}}
       " vimproc {{{
-        NeoBundleDepends 'Shougo/vimproc', {
+        NeoBundle 'Shougo/vimproc', {
           \ 'build': {
             \ 'mac': 'make -f make_mac.mak',
             \ 'unix': 'make -f make_unix.mak',
+            \ 'cygwin': 'make -f make_cygwin.mak',
             \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
           \ },
         \ }
