@@ -82,20 +82,6 @@ endif
       bdelete
     endif
   endfunction "}}}
-  function! ToggleSyntax() "{{{
-    if !exists('s:toggle_syntax')
-      let s:toggle_syntax=1
-    endif
-    if s:toggle_syntax == 1
-      syntax off
-      let s:toggle_syntax=0
-      let g:neocomplcache_enable_cursor_hold_i=0
-    else
-      syntax enable
-      let s:toggle_syntax=1
-      let g:neocomplcache_enable_cursor_hold_i=1
-    endif
-  endfunction "}}}
 "}}}
 
 " autocmd {{{
@@ -245,7 +231,7 @@ endif
     endif
 
     if s:is_windows
-      set gfn=DejaVu_Sans_Mono:h10
+      set gfn=Ubuntu_Mono:h10
     endif
 
     if has('gui_gtk')
@@ -424,6 +410,8 @@ endif
           let g:ackprg="ag --nogroup --column --smart-case --follow"
         endif
         nnoremap <leader>/ :Ack 
+      else
+        nnoremap <leader>/ :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
       endif
     "}}}
     NeoBundle 'EasyGrep' "{{{
@@ -656,13 +644,12 @@ endif
   " window killer
   nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
-  " toggle things known to slow down rendering
-  noremap <silent> <F8> :call ToggleSyntax()<cr>
-
   " quick buffer open
   nnoremap <leader>o :ls<cr>:e #
 
-  nnoremap <leader>tag :Dispatch ctags -R<cr>
+  if neobundle#is_sourced('vim-dispatch')
+    nnoremap <leader>tag :Dispatch ctags -R<cr>
+  endif
 
   " general
   nmap <leader>l :set list! list?<cr>
