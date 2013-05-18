@@ -36,6 +36,7 @@ endif
 "}}}
 
 " color schemes {{{
+  NeoBundle 'altercation/vim-colors-solarized'
   NeoBundle 'nanotech/jellybeans.vim'
   NeoBundle 'tomasr/molokai'
   NeoBundle 'chriskempson/vim-tomorrow-theme'
@@ -121,11 +122,9 @@ endif
   set modeline
   set modelines=5
 
-  if s:is_windows
-    " ensure gvim and cygwin have the correct shell set
-    if !s:is_cygwin
-      set shell=c:\windows\system32\cmd.exe
-    endif
+  if s:is_windows && !s:is_cygwin
+    " ensure correct shell in gvim
+    set shell=c:\windows\system32\cmd.exe
   endif
 
   " whitespace
@@ -174,8 +173,10 @@ endif
 
   " vim file/folder management {{{
     " persistent undo
-    set undofile
-    set undodir=~/.vim/.cache/undo
+    if exists('+undofile')
+      set undofile
+      set undodir=~/.vim/.cache/undo
+    endif
 
     " backups
     set backup
@@ -310,7 +311,7 @@ endif
   if count(s:plugin_groups, 'autocomplete') "{{{
     NeoBundle 'teramako/jscomplete-vim'
     " YouCompleteMe {{{
-      if s:autocomplete_method == 'ycm'
+      if s:autocomplete_method == 'ycm' && version >= 584
         NeoBundle 'Valloric/YouCompleteMe'
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
