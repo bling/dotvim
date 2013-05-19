@@ -86,17 +86,6 @@ endif
   endfunction "}}}
 "}}}
 
-" autocmd {{{
-  " go back to previous position of cursor if any
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \  exe 'normal! g`"zvzz' |
-    \ endif
-
-  autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-  autocmd FileType scss setlocal foldmethod=marker foldmarker={,}
-"}}}
-
 " base configuration {{{
   set timeoutlen=300                                  "mapping timeout
   set ttimeoutlen=50                                  "keycode timeout
@@ -203,7 +192,7 @@ endif
   set laststatus=2
   set number
   set lazyredraw
-  set showmode
+  set noshowmode
   set foldenable                                      "enable folds by default
   set foldmethod=syntax                               "fold via syntax of files
   set foldlevelstart=99                               "open all folds by default
@@ -428,7 +417,7 @@ endif
     NeoBundle 'kien/ctrlp.vim' "{{{
       let g:ctrlp_clear_cache_on_exit=1
       let g:ctrlp_max_height=40
-      let g:ctrlp_show_hidden=1
+      let g:ctrlp_show_hidden=0
       let g:ctrlp_follow_symlinks=1
       let g:ctrlp_working_path_mode=0
       let g:ctrlp_working_path_mode=0
@@ -669,8 +658,17 @@ endif
     nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
     nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
   "}}}
+"}}}
 
-  " sorts CSS
+" autocmd {{{
+  " go back to previous position of cursor if any
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \  exe 'normal! g`"zvzz' |
+    \ endif
+
+  autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+  autocmd FileType css,scss setlocal foldmethod=marker foldmarker={,}
   autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 "}}}
 
@@ -680,8 +678,9 @@ filetype plugin indent on
 syntax enable
 
 autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
-autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
-colorscheme kolor
+autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232
+" autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
+colorscheme gummybears
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
