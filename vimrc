@@ -2,6 +2,7 @@
 
 let s:is_windows = has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
+let s:is_macvim = has('gui_macvim')
 let s:default_indent = 2
 let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
@@ -226,7 +227,7 @@ endif
     set guioptions+=t                                 "tear off menu items
     set guioptions-=T                                 "toolbar icons
 
-    if has('gui_macvim')
+    if s:is_macvim
       set gfn=Ubuntu_Mono:h14
       set transparency=2
     endif
@@ -529,7 +530,7 @@ endif
         if neobundle#is_sourced('vimproc')
           NeoBundle 'Shougo/vimshell'
 
-          if has('gui_macvim')
+          if s:is_macvim
             let g:vimshell_editor_command='mvim'
           else
             let g:vimshell_editor_command='vim'
@@ -554,7 +555,9 @@ endif
     source ~/.vimrc.bundle
   endif
 
-  NeoBundleCheck
+  if !s:is_windows && !s:is_macvim
+    NeoBundleCheck
+  endif
 "}}}
 
 " mappings {{{
