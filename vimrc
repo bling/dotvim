@@ -472,7 +472,8 @@ endif
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'misc') "{{{
-    NeoBundle 'tpope/vim-markdown'
+    NeoBundle 'plasticboy/vim-markdown'
+    " NeoBundle 'tpope/vim-markdown'
     if executable('redcarpet') && executable('instant-markdown-d')
       NeoBundle 'suan/vim-instant-markdown'
     endif
@@ -544,9 +545,7 @@ endif
     source ~/.vimrc.bundle
   endif
 
-  if !s:is_windows && !s:is_macvim
-    NeoBundleCheck
-  endif
+  NeoBundleCheck
 "}}}
 
 " mappings {{{
