@@ -300,20 +300,21 @@ endif
   endif "}}}
   if count(s:plugin_groups, 'autocomplete') "{{{
     NeoBundle 'teramako/jscomplete-vim'
-    " YouCompleteMe {{{
-      if s:autocomplete_method == 'ycm' && version >= 584
-        NeoBundle 'Valloric/YouCompleteMe'
+    if s:autocomplete_method == 'ycm' && version >= 584 "{{{
+      NeoBundle 'Valloric/YouCompleteMe' "{{{
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-      endif
-    "}}}
-    " neocomplcache {{{
-      if s:autocomplete_method == 'neocomplcache' || !neobundle#is_sourced('YouCompleteMe')
-        NeoBundle 'Shougo/neocomplcache'
-      endif
-
-      if neobundle#is_sourced('neocomplcache')
+      "}}}
+      NeoBundle 'SirVer/ultisnips' "{{{
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        let g:UltiSnipsSnippetsDir='~/.vim/snippets'
+      "}}}
+    endif "}}}
+    if s:autocomplete_method == 'neocomplcache' || !neobundle#is_sourced('YouCompleteMe') "{{{
+      NeoBundle 'Shougo/neocomplcache' "{{{
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_auto_delimiter=1
         " let g:neocomplcache_force_overwrite_completefunc=1
@@ -340,24 +341,18 @@ endif
         " js completion
         let g:jscomplete_use = [ 'dom' ]
         let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
-      endif
-    "}}}
-    NeoBundle 'honza/vim-snippets'
-    " NeoBundle 'SirVer/ultisnips' "{{{
-      let g:UltiSnipsExpandTrigger="<tab>"
-      let g:UltiSnipsJumpForwardTrigger="<tab>"
-      let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-      let g:UltiSnipsSnippetsDir='~/.vim/snippets'
-    "}}}
-    NeoBundle 'Shougo/neosnippet' "{{{
-      let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
-      let g:neosnippet#enable_snipmate_compatibility=1
+      "}}}
+      NeoBundle 'Shougo/neosnippet' "{{{
+        let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
+        let g:neosnippet#enable_snipmate_compatibility=1
 
-      imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
-      smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-      imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-      smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-    " }}}
+        imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+        smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+        imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+        smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+      "}}}
+    endif "}}}
+    NeoBundle 'honza/vim-snippets'
   endif "}}}
   if count(s:plugin_groups, 'editing') "{{{
     NeoBundle 'editorconfig/editorconfig-vim'
