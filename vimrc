@@ -440,7 +440,10 @@ endif
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'visual') "{{{
-    NeoBundle 'bling/vim-bufferline'
+    NeoBundle 'bling/vim-bufferline' "{{{
+      let g:bufferline_echo=0
+    "}}}
+    " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
     NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
     " NeoBundle 'zhaocai/GoldenView.Vim' "{{{
@@ -672,7 +675,7 @@ filetype plugin indent on
 syntax enable
 
 autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
-autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232
+autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
 " autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
 colorscheme gummybears
 
