@@ -1,3 +1,6 @@
+let g:statusline_left_sep="▶"
+let g:statusline_right_sep="◀"
+
 let g:last_mode = ''
 function! ModePrefix()
   let l:mode = mode()
@@ -41,8 +44,9 @@ function! ModePrefix()
   endif
 endfunction
 
-set statusline=%2*%{ModePrefix()}%3*▶%4*
-set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ ':''}
+set statusline=%2*%{ModePrefix()}%3*
+set statusline+=%{g:statusline_left_sep}
+set statusline+=%4*%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ ':''}
 set statusline+=%{exists('g:loaded_fugitive')?matchstr(fugitive#statusline(),'(\\zs.*\\ze)'):''}
 set statusline+=%{exists('g:loaded_fugitive')&&strlen(fugitive#statusline())>0?'\ \ ':'\ '}
 set statusline+=%*\ %{bufferline#generate_string()}%<
@@ -52,5 +56,5 @@ set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():
 set statusline+=%*%=%{strlen(&filetype)>0?&filetype.'\ ':''}%4*\ 
 set statusline+=%{strlen(&fileencoding)>0?&fileencoding:''}
 set statusline+=%{strlen(&fileformat)>0?'['.&fileformat.']':''}
-set statusline+=\ %3*◀
+set statusline+=\ %3*%{g:statusline_right_sep}
 set statusline+=%2*\ %3p%%\ ◇\ %3l:%3c\ 
