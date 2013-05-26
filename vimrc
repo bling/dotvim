@@ -260,6 +260,9 @@ endif
   endif "}}}
   if count(s:plugin_groups, 'web') "{{{
     NeoBundle 'pangloss/vim-javascript'
+    NeoBundle 'maksimr/vim-jsbeautify' "{{{
+      nnoremap <leader>fjs :call JsBeautify()<cr>
+    "}}}
     NeoBundle 'leafgarland/typescript-vim'
     NeoBundle 'kchmck/vim-coffee-script'
     NeoBundle 'groenewege/vim-less'
