@@ -539,7 +539,7 @@ endif
     NeoBundle 'OrangeT/vim-csharp'
   endif "}}}
 
-  nnoremap <leader>nbu :Unite neobundle/update<cr>
+  nnoremap <leader>nbu :Unite neobundle/update -no-start-insert<cr>
 "}}}
 
 " mappings {{{
