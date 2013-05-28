@@ -13,7 +13,7 @@ if s:is_windows
   set rtp+=~/.vim
 endif
 
-" a list of plugin groups which can be used to enable/disable an entire group
+" plugin groups {{{
 let s:plugin_groups = []
 call add(s:plugin_groups, 'core')
 call add(s:plugin_groups, 'web')
@@ -28,25 +28,13 @@ call add(s:plugin_groups, 'misc')
 if s:is_windows
   call add(s:plugin_groups, 'windows')
 endif
+"}}}
 
 " setup & neobundle {{{
   set nocompatible
   set rtp+=~/.vim/bundle/neobundle.vim/
   call neobundle#rc(expand('~/.vim/bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
-"}}}
-
-" color schemes {{{
-  NeoBundle 'altercation/vim-colors-solarized'
-  NeoBundle 'nanotech/jellybeans.vim'
-  NeoBundle 'tomasr/molokai'
-  NeoBundle 'chriskempson/vim-tomorrow-theme'
-  NeoBundle 'w0ng/vim-hybrid'
-  NeoBundle 'sjl/badwolf'
-  NeoBundle 'jelera/vim-gummybears-colorscheme'
-  NeoBundle 'zeis/vim-kolor' "{{{
-    let g:kolor_underlined=1
-  "}}}
 "}}}
 
 " functions {{{
@@ -435,6 +423,7 @@ endif
   if count(s:plugin_groups, 'visual') "{{{
     NeoBundle 'bling/vim-bufferline' "{{{
       let g:bufferline_echo=0
+      let g:bufferline_rotate=1
     "}}}
     " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
     " NeoBundle 'zhaocai/linepower.vim'
@@ -506,7 +495,8 @@ endif
       let g:unite_data_directory='~/.vim/.cache/unite'
       let g:unite_enable_start_insert=1
       let g:unite_source_history_yank_enable=1
-      let g:unite_split_rule="botright"
+      let g:unite_source_file_rec_max_cache_files=3000
+      " let g:unite_split_rule="botright"
 
       if executable('ag')
         let g:unite_source_grep_command='ag'
@@ -550,12 +540,6 @@ endif
   endif "}}}
 
   nnoremap <leader>nbu :Unite neobundle/update<cr>
-
-  if filereadable(expand("~/.vimrc.bundle"))
-    source ~/.vimrc.bundle
-  endif
-
-  NeoBundleCheck
 "}}}
 
 " mappings {{{
@@ -690,11 +674,26 @@ filetype off
 filetype plugin indent on
 syntax enable
 
-autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
-autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
-autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
-colorscheme gummybears
+" color schemes {{{
+  NeoBundle 'altercation/vim-colors-solarized'
+  NeoBundle 'nanotech/jellybeans.vim'
+  NeoBundle 'tomasr/molokai'
+  NeoBundle 'chriskempson/vim-tomorrow-theme'
+  NeoBundle 'w0ng/vim-hybrid'
+  NeoBundle 'sjl/badwolf'
+  NeoBundle 'jelera/vim-gummybears-colorscheme'
+  NeoBundle 'zeis/vim-kolor' "{{{
+    let g:kolor_underlined=1
+  "}}}
+
+  autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
+  autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
+  autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
+  colorscheme gummybears
+"}}}
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+NeoBundleCheck
