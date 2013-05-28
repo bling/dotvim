@@ -308,6 +308,7 @@ endif
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+        let g:ycm_filetype_specific_completion_to_disable={'unite':'unite'}
       "}}}
       NeoBundle 'SirVer/ultisnips' "{{{
         let g:UltiSnipsExpandTrigger="<tab>"
@@ -505,7 +506,21 @@ endif
     " Shougo plugins {{{
       " unite {{{
         NeoBundle 'Shougo/unite.vim'
+        call unite#filters#matcher_default#use(['matcher_fuzzy'])
         let g:unite_data_directory='~/.vim/.cache/unite'
+        let g:unite_enable_start_insert=1
+        let g:unite_source_history_yank_enable=1
+        let g:unite_split_rule="botright"
+
+        function! s:unite_settings()
+          nmap <buffer> <esc> <plug>(unite_exit)
+          imap <buffer> <esc> <plug>(unite_exit)
+          imap <buffer> <C-c> <plug>(unite_exit)
+        endfunction
+        autocmd FileType unite call s:unite_settings()
+
+        nnoremap <silent> <space><space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
+        nnoremap <silent> <space>y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       "}}}
       " vimproc {{{
         NeoBundle 'Shougo/vimproc', {
@@ -646,7 +661,7 @@ endif
 
   " general
   nmap <leader>l :set list! list?<cr>
-  noremap <space> :set hlsearch! hlsearch?<cr>
+  noremap <cr> :set hlsearch! hlsearch?<cr>
 
   map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
         \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -679,7 +694,7 @@ syntax enable
 
 autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
 autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
-" autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
+autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
 colorscheme gummybears
 
 if filereadable(expand("~/.vimrc.local"))

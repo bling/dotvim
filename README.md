@@ -40,7 +40,7 @@ this is my personal vim distribution that i have tweaked over time and evolved f
   *  `<leader>fw` find the word under cursor into the quickfix list
   *  `<leader>ff` find the last search into the quickfix list
   *  `/` replaced with `/\v` for sane regex searching
-  *  `<Space>` toggles hisearch
+  *  `<cr>` toggles hlsearch
 *  `<Down>` `<Up>` maps to `:bprev` and `:bnext` respectively
 *  `<Left>` `<Right>` maps to `:tabprev` and `:tabnext` respectively
 *  `gp` remapped to visually reselect the last paste
