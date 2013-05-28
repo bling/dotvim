@@ -516,7 +516,11 @@ endif
       endfunction
       autocmd FileType unite call s:unite_settings()
 
-      nnoremap <silent> <space><space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
+      if s:is_windows
+        nnoremap <silent> <space><space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec<cr>
+      else
+        nnoremap <silent> <space><space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
+      endif
       nnoremap <silent> <space>y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> <space>l :<C-u>Unite -buffer-name=line line<cr>
       nnoremap <silent> <space>/ :<C-u>Unite -buffer-name=search grep:.<cr>
