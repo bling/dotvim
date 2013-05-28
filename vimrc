@@ -503,51 +503,53 @@ endif
       let g:gist_post_private=1
       let g:gist_show_privates=1
     "}}}
-    " Shougo plugins {{{
-      " unite {{{
-        NeoBundle 'Shougo/unite.vim'
-        call unite#filters#matcher_default#use(['matcher_fuzzy'])
-        let g:unite_data_directory='~/.vim/.cache/unite'
-        let g:unite_enable_start_insert=1
-        let g:unite_source_history_yank_enable=1
-        let g:unite_split_rule="botright"
+    NeoBundle 'Shougo/vimproc', {
+      \ 'build': {
+        \ 'mac': 'make -f make_mac.mak',
+        \ 'unix': 'make -f make_unix.mak',
+        \ 'cygwin': 'make -f make_cygwin.mak',
+        \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
+      \ },
+    \ }
+    NeoBundle 'Shougo/unite.vim' "{{{
+      call unite#filters#matcher_default#use(['matcher_fuzzy'])
+      let g:unite_data_directory='~/.vim/.cache/unite'
+      let g:unite_enable_start_insert=1
+      let g:unite_source_history_yank_enable=1
+      let g:unite_split_rule="botright"
 
-        function! s:unite_settings()
-          nmap <buffer> <esc> <plug>(unite_exit)
-          imap <buffer> <esc> <plug>(unite_exit)
-          imap <buffer> <C-c> <plug>(unite_exit)
-        endfunction
-        autocmd FileType unite call s:unite_settings()
+      if executable('ag')
+        let g:unite_source_grep_command='ag'
+        let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden'
+        let g:unite_source_grep_recursive_opt=''
+      elseif executable('ack')
+        let g:unite_source_grep_command='ack'
+        let g:unite_source_grep_default_opts='--no-heading --no-color -a'
+        let g:unite_source_grep_recursive_opt=''
+      endif
 
-        nnoremap <silent> <space><space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
-        nnoremap <silent> <space>y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-      "}}}
-      " vimproc {{{
-        NeoBundle 'Shougo/vimproc', {
-          \ 'build': {
-            \ 'mac': 'make -f make_mac.mak',
-            \ 'unix': 'make -f make_unix.mak',
-            \ 'cygwin': 'make -f make_cygwin.mak',
-            \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
-          \ },
-        \ }
-      "}}}
-      " vimshell {{{
-        if neobundle#is_sourced('vimproc')
-          NeoBundle 'Shougo/vimshell'
+      function! s:unite_settings()
+        nmap <buffer> <esc> <plug>(unite_exit)
+        imap <buffer> <esc> <plug>(unite_exit)
+        imap <buffer> <C-c> <plug>(unite_exit)
+      endfunction
+      autocmd FileType unite call s:unite_settings()
 
-          if s:is_macvim
-            let g:vimshell_editor_command='mvim'
-          else
-            let g:vimshell_editor_command='vim'
-          endif
-          let g:vimshell_right_prompt='getcwd()'
-          let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
-          let g:vimshell_vimshrc_path='~/.vim/vimshrc'
+      nnoremap <silent> <space><space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
+      nnoremap <silent> <space>y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+      nnoremap <silent> <space>l :<C-u>Unite -buffer-name=line line<cr>
+    "}}}
+    NeoBundle 'Shougo/vimshell' "{{{
+      if s:is_macvim
+        let g:vimshell_editor_command='mvim'
+      else
+        let g:vimshell_editor_command='vim'
+      endif
+      let g:vimshell_right_prompt='getcwd()'
+      let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
+      let g:vimshell_vimshrc_path='~/.vim/vimshrc'
 
-          nnoremap <leader>c :VimShell -split<cr>
-        endif
-      "}}}
+      nnoremap <leader>c :VimShell -split<cr>
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'windows') "{{{

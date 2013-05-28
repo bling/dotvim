@@ -182,6 +182,7 @@ i wanted to give special thanks to all of the people who worked on the following
 *  [shougo](https://github.com/Shougo)
 *  [lokaltog](https://github.com/Lokaltog)
 *  [sjl](https://github.com/sjl)
+*  [terryma](https://github.com/terryma)
 
 ## license
 [WTFPL](http://sam.zoy.org/wtfpl/)
