@@ -1,12 +1,10 @@
 # bling.vim
 
-A highly tuned Vim distribution that will blow your socks off!
+A highly tuned vim distribution that will blow your socks off!
 
 ## introduction
 
 this is my personal vim distribution that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.
-
-while it is quite easy to install this distribution (i designed it that way for me to easily switch between computers), i actually recommend that you don't use it verbatim.  configuring a vimrc from scratch was an incredibly awesome experience and i want you to experience it too.  take a look at my vimrc for ideas, as well as the credits section.
 
 ## installation
 
@@ -31,17 +29,20 @@ while it is quite easy to install this distribution (i designed it that way for 
 ### normal mode
 *  `<leader>fef` format entire file
 *  `<leader>f$` strip current line of trailing white space
-*  `<leader>fw` find the word under cursor into the quickfix list
-*  `<leader>ff` find the last search into the quickfix list
-*  `<leader>v` vertical split
-*  `<leader>s` horizontal split
-*  `<leader>vsa` vertically split all buffers
-*  `<C-h>` `<C-j>` `<C-k>` `<C-l>` move to window in the direction of hkjl
-*  `/` replaced with `/\v` for sane regex searching
-*  `<Space>` toggles hisearch
+*  window shortcuts
+  *  `<leader>v` vertical split
+  *  `<leader>s` horizontal split
+  *  `<leader>vsa` vertically split all buffers
+  *  `<C-h>` `<C-j>` `<C-k>` `<C-l>` move to window in the direction of hkjl
+*  window killer
+  *  `Q` remapped to close windows and delete the buffer (if it is the last buffer window)
+* searching
+  *  `<leader>fw` find the word under cursor into the quickfix list
+  *  `<leader>ff` find the last search into the quickfix list
+  *  `/` replaced with `/\v` for sane regex searching
+  *  `<Space>` toggles hisearch
 *  `<Down>` `<Up>` maps to `:bprev` and `:bnext` respectively
 *  `<Left>` `<Right>` maps to `:tabprev` and `:tabnext` respectively
-*  `Q` remapped to close windows and delete the buffer (if it is the last buffer window)
 *  `gp` remapped to visually reselect the last paste
 *  `gb` for quick going to buffer
 *  `<leader>l` toggles `list` and `nolist`
@@ -69,7 +70,6 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  easily jumps to any character on the screen
 *  `<leader><leader>w` or `<leader><leader>e` will do the trick, along with any of the other default bindings that plugin has mapped under `<leader><leader>`
 *  this is a forked version of [lokaltog](https://github.com/skwp/vim-easymotion)'s version which uses vimperator style double keystrokes
-*  `W`, `E`, `B`, and `F` are remapped to easymotion equivilents
 
 ### [easygrep](http://www.vim.org/scripts/script.php?script_id=2438)
 *  makes search/replacing in your project a lot easier without relying on `find` and `sed`
@@ -139,6 +139,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 
 ### [youcompleteme](https://github.com/Valloric/YouCompleteMe)/[ultisnips](https://github.com/SirVer/ultisnips)
 *  amazingly fast fuzzy autocomplete engine combined with an excellent snippets library
+*  use `<C-n>` and `<C-p>` to go back/forward between selections, and `<tab>` to expand snippets
 
 ### [neocomplcache](https://github.com/Shougo/neocomplcache)/[neosnippet](https://github.com/Shougo/neosnippet)
 *  autocomplete/snippet support as a fallback choice when YCM and/or python is unavailable
@@ -150,7 +151,7 @@ while it is quite easy to install this distribution (i designed it that way for 
 ### [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 *  mapped to `<C-N>`, this will select all matching words and lets you concurrently change all matches at the same time
 
-### and the rest
+# and some more plugins
 *  [surround](https://github.com/tpope/vim-surround) makes for quick work of surrounds
 *  [repeat](https://github.com/tpope/vim-repeat) repeat plugin commands
 *  [speeddating](https://github.com/tpope/vim-speeddating) `Ctrl+A` and `Ctrl+X` for dates
@@ -160,7 +161,13 @@ while it is quite easy to install this distribution (i designed it that way for 
 *  [syntastic](https://github.com/scrooloose/syntastic) awesome syntax checking for a variety of languages
 *  [bufferline](https://github.com/bling/vim-bufferline) simple plugin which prints all your open buffers in the command bar
 *  [indent-guides](https://github.com/nathanaelkane/vim-indent-guides) vertical lines
-*  and a whole lot more...check the `vimrc` for the full list
+*  [signify](https://github.com/mhinz/vim-signify) adds + and - to the signs column when changes are detected to source control files (supports git/hg/svn)
+*  [delimitmate](https://github.com/Raimondi/delimitMate) automagically adds closing quotes and braces
+*  [startify](https://github.com/mhinz/vim-startify) gives you a better start screen
+
+# and even more plugins
+
+*  the `vimrc` has over 50 plugins sourced
 
 ## credits
 

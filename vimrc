@@ -33,7 +33,7 @@ endif
   set nocompatible
   set rtp+=~/.vim/bundle/neobundle.vim/
   call neobundle#rc(expand('~/.vim/bundle/'))
-  NeoBundleFetch 'Shougo/neobundle.vim'
+  NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
 "}}}
 
 " color schemes {{{
@@ -380,7 +380,7 @@ endif
     "}}}
     NeoBundle 'Raimondi/delimitMate' "{{{
       let delimitMate_expand_cr=1
-      au FileType markdown let b:loaded_delimitMate=1
+      au FileType markdown,vim let b:loaded_delimitMate=1
     "}}}
     " EasyMotion {{{
       " NeoBundle 'Lokaltog/vim-easymotion'
