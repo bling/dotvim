@@ -3,37 +3,38 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
     <title>bling.vim by bling</title>
   </head>
 
   <body>
-    <div id="container">
+    <header>
       <div class="inner">
+        <h1>bling.vim</h1>
+        <h2>lean &amp; mean vim distribution</h2>
+        <a href="https://github.com/bling/dotvim" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-        <header>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
           <h1>bling.vim</h1>
-          <h2>lean &amp; mean vim distribution</h2>
-        </header>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/bling/dotvim/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/bling/dotvim/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/bling/dotvim" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+<p>A highly tuned vim distribution that will blow your socks off!</p>
 
-        <hr>
+<h2>introduction</h2>
 
-        <section id="main_content">
-          <h2>introduction</h2>
-
-<p>lean &amp; mean vim distribution that will blow your socks off!</p>
+<p>this is my personal vim distribution that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.</p>
 
 <h2>installation</h2>
 
@@ -43,40 +44,58 @@
 </li>
 <li> <code>ln -s ~/.vim/vimrc ~/.vimrc</code>
 </li>
-<li> install the fonts found in the <code>font</code> directory, and head over to the <a href="https://powerline.readthedocs.org/en/latest/index.html">powerline documentation</a>
+<li> startup vim and neobundle will detect and ask you install any missing plugins.  you can also manually initiate this with <code>:NeoBundleInstall</code>
 </li>
-<li> on osx/linux, run <code>vim</code> and it will automatically ask you to install plugins.  if you're running a gui vim this check is disabled, so you need to run <code>:NeoBundleInstall</code> manually.</li>
 <li> done!</li>
-</ol><h2>modifications</h2>
+</ol><h2>standard modifications</h2>
 
 <ul>
 <li> if you have either <a href="http://betterthangrep.com/">ack</a> or <a href="https://github.com/ggreer/the_silver_searcher">ag</a> installed, they will be used for <code>grepprg</code>
 </li>
-<li> backup/swap/undo are all turned on and persistant.  they are stored in <code>~/.vim/.cache</code> which stays out of your way.</li>
+<li> all temporary files are stored in <code>~/.vim/.cache</code>, such as backup files and persistent undo</li>
 </ul><h2>mappings</h2>
 
 <h3>insert mode</h3>
 
 <ul>
-<li> <code>&lt;C-h&gt;</code> move the cursor left (default behavior maps to <code>&lt;BS&gt;</code>)</li>
-<li> <code>&lt;C-l&gt;</code> move the cursor right (default behavior maps to leave insert mode)</li>
+<li> <code>&lt;C-h&gt;</code> move the cursor left</li>
+<li> <code>&lt;C-l&gt;</code> move the cursor right</li>
+<li> <code>jk</code>,<code>kj</code> "smash escape"</li>
 </ul><h3>normal mode</h3>
 
 <ul>
 <li> <code>&lt;leader&gt;fef</code> format entire file</li>
 <li> <code>&lt;leader&gt;f$</code> strip current line of trailing white space</li>
-<li> <code>&lt;leader&gt;fw</code> find the word under cursor into the quickfix list</li>
-<li> <code>&lt;leader&gt;ff</code> find the last search into the quickfix list</li>
+<li> window shortcuts
+
+<ul>
 <li> <code>&lt;leader&gt;v</code> vertical split</li>
 <li> <code>&lt;leader&gt;s</code> horizontal split</li>
-<li> <code>&lt;C-h&gt;</code> <code>&lt;C-j&gt;</code> <code>&lt;C-k&gt;</code> <code>&lt;C-l&gt;</code> move to window in the direction of hkjl</li>
 <li> <code>&lt;leader&gt;vsa</code> vertically split all buffers</li>
+<li> <code>&lt;C-h&gt;</code> <code>&lt;C-j&gt;</code> <code>&lt;C-k&gt;</code> <code>&lt;C-l&gt;</code> move to window in the direction of hkjl</li>
+</ul>
+</li>
+<li> window killer
+
+<ul>
+<li> <code>Q</code> remapped to close windows and delete the buffer (if it is the last buffer window)</li>
+</ul>
+</li>
+<li>searching
+
+<ul>
+<li> <code>&lt;leader&gt;fw</code> find the word under cursor into the quickfix list</li>
+<li> <code>&lt;leader&gt;ff</code> find the last search into the quickfix list</li>
 <li> <code>/</code> replaced with <code>/\v</code> for sane regex searching</li>
 <li> <code>&lt;Space&gt;</code> toggles hisearch</li>
+</ul>
+</li>
 <li> <code>&lt;Down&gt;</code> <code>&lt;Up&gt;</code> maps to <code>:bprev</code> and <code>:bnext</code> respectively</li>
 <li> <code>&lt;Left&gt;</code> <code>&lt;Right&gt;</code> maps to <code>:tabprev</code> and <code>:tabnext</code> respectively</li>
-<li> <code>Q</code> remapped to close windows and delete the buffer (if it is the last buffer window)</li>
 <li> <code>gp</code> remapped to visually reselect the last paste</li>
+<li> <code>gb</code> for quick going to buffer</li>
+<li> <code>&lt;leader&gt;l</code> toggles <code>list</code> and <code>nolist</code>
+</li>
 <li> profiling shortcuts
 
 <ul>
@@ -116,7 +135,6 @@
 <li> <code>&lt;leader&gt;&lt;leader&gt;w</code> or <code>&lt;leader&gt;&lt;leader&gt;e</code> will do the trick, along with any of the other default bindings that plugin has mapped under <code>&lt;leader&gt;&lt;leader&gt;</code>
 </li>
 <li> this is a forked version of <a href="https://github.com/skwp/vim-easymotion">lokaltog</a>'s version which uses vimperator style double keystrokes</li>
-<li> <code>W</code>, <code>E</code>, <code>B</code>, and <code>F</code> are remapped to easymotion equivilents</li>
 </ul><h3><a href="http://www.vim.org/scripts/script.php?script_id=2438">easygrep</a></h3>
 
 <ul>
@@ -146,22 +164,18 @@
 <li> many additional bracket <code>[]</code> maps</li>
 <li> <code>&lt;C-up&gt;</code> to move lines up</li>
 <li> <code>&lt;C-down&gt;</code> to move lines down</li>
-</ul><h3><a href="https://github.com/troydm/easybuffer.vim">easybuffer</a></h3>
-
-<ul>
-<li> easily see your buffers</li>
-<li> <code>&lt;leader&gt;B</code> to show the buffer list</li>
 </ul><h3><a href="https://github.com/scrooloose/nerdtree">nerdtree</a></h3>
 
 <ul>
 <li> file browser</li>
 <li> <code>&lt;F2&gt;</code> toggle browser</li>
 <li> <code>&lt;F3&gt;</code> open tree to path of the current file</li>
-</ul><h3><a href="https://github.com/scrooloose/nerdcommenter">nerdcommenter</a></h3>
+</ul><h3><a href="https://github.com/tomtom/tcomment_vim">tcomment</a></h3>
 
 <ul>
-<li> commenter plugin</li>
-<li> all default mappings, and <code>\\</code> additionally mapped for comment toggling</li>
+<li> very versatile commenting plugin that can do motions</li>
+<li> <code>gcc</code> to toggle or <code>gc{motion}</code>
+</li>
 </ul><h3><a href="https://github.com/kien/ctrlp.vim">ctrlp</a></h3>
 
 <ul>
@@ -170,7 +184,7 @@
 <li> <code>&lt;leader&gt;p</code> search the current buffer tags</li>
 <li> <code>&lt;leader&gt;pt</code> search global tags</li>
 <li> <code>&lt;leader&gt;pl</code> search all lines of all buffers</li>
-<li> <code>&lt;leader&gt;b</code> search open buffers</li>
+<li> <code>&lt;leader&gt;o</code> search open buffers</li>
 </ul><h3><a href="http://github.com/maxbrunsfeld/vim-yankstack">yankstack</a></h3>
 
 <ul>
@@ -194,7 +208,7 @@
 <ul>
 <li> automatically get or push changes for gists with <code>:Gist</code>
 </li>
-</ul><h3><a href="https://github.com/mattn/zencoding-vim-vim">zencoding</a></h3>
+</ul><h3><a href="https://github.com/mattn/zencoding-vim">zencoding</a></h3>
 
 <ul>
 <li> makes for writing html/css extremely fast</li>
@@ -204,20 +218,29 @@
 <ul>
 <li> visualize the undo tree</li>
 <li> <code>&lt;F5&gt;</code> to toggle</li>
-</ul><h3><a href="https://github.com/adinapoli/vim-markmultiple">markmultiple</a></h3>
+</ul><h3>
+<a href="https://github.com/Valloric/YouCompleteMe">youcompleteme</a>/<a href="https://github.com/SirVer/ultisnips">ultisnips</a>
+</h3>
 
 <ul>
-<li> easily mark multiple matching words with <code>&lt;C-n&gt;</code> and do operations on them</li>
-</ul><h3><a href="https://github.com/Shougo">neocomplcache/neosnippet</a></h3>
+<li> amazingly fast fuzzy autocomplete engine combined with an excellent snippets library</li>
+<li> use <code>&lt;C-n&gt;</code> and <code>&lt;C-p&gt;</code> to go back/forward between selections, and <code>&lt;tab&gt;</code> to expand snippets</li>
+</ul><h3>
+<a href="https://github.com/Shougo/neocomplcache">neocomplcache</a>/<a href="https://github.com/Shougo/neosnippet">neosnippet</a>
+</h3>
 
 <ul>
-<li> super awesome autocomplete and snippet support</li>
+<li> autocomplete/snippet support as a fallback choice when YCM and/or python is unavailable</li>
 <li> <code>&lt;Tab&gt;</code> to select the next match, or expand if the keyword is a snippet</li>
 </ul><h3><a href="https://github.com/Shougo/vimshell">vimshell</a></h3>
 
 <ul>
 <li> <code>&lt;leader&gt;c</code> splits a new window with an embedded shell</li>
-</ul><h3>and the rest</h3>
+</ul><h3><a href="https://github.com/terryma/vim-multiple-cursors">vim-multiple-cursors</a></h3>
+
+<ul>
+<li> mapped to <code>&lt;C-N&gt;</code>, this will select all matching words and lets you concurrently change all matches at the same time</li>
+</ul><h1>and some more plugins</h1>
 
 <ul>
 <li> <a href="https://github.com/tpope/vim-surround">surround</a> makes for quick work of surrounds</li>
@@ -227,9 +250,15 @@
 <li> <a href="https://github.com/kshenoy/vim-signature">signature</a> shows marks beside line numbers</li>
 <li> <a href="https://github.com/vim-scripts/matchit.zip">matchit</a> makes your <code>%</code> more awesome</li>
 <li> <a href="https://github.com/scrooloose/syntastic">syntastic</a> awesome syntax checking for a variety of languages</li>
-<li> <a href="https://github.com/vim-scripts/buftabs">buftabs</a> simple plugin which prints all your open buffers in the command bar</li>
+<li> <a href="https://github.com/bling/vim-bufferline">bufferline</a> simple plugin which prints all your open buffers in the command bar</li>
 <li> <a href="https://github.com/nathanaelkane/vim-indent-guides">indent-guides</a> vertical lines</li>
-<li> <a href="https://github.com/Lokaltog/powerline">powerline</a> makes vim look pretty, enough said (remember to install the patched fonts!)</li>
+<li> <a href="https://github.com/mhinz/vim-signify">signify</a> adds + and - to the signs column when changes are detected to source control files (supports git/hg/svn)</li>
+<li> <a href="https://github.com/Raimondi/delimitMate">delimitmate</a> automagically adds closing quotes and braces</li>
+<li> <a href="https://github.com/mhinz/vim-startify">startify</a> gives you a better start screen</li>
+</ul><h1>and even more plugins</h1>
+
+<ul>
+<li> the <code>vimrc</code> has over 50 plugins sourced</li>
 </ul><h2>credits</h2>
 
 <p>i wanted to give special thanks to all of the people who worked on the following projects, or people simply posted their vim distributions, because i learned a lot and took many ideas and incorporated them into my configuration.</p>
@@ -258,12 +287,24 @@
 <p><a href="http://sam.zoy.org/wtfpl/">WTFPL</a></p>
         </section>
 
-        <footer>
-          bling.vim is maintained by <a href="https://github.com/bling">bling</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+        <aside id="sidebar">
+          <a href="https://github.com/bling/dotvim/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/bling/dotvim/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-                  <script type="text/javascript">
+          <p class="repo-owner"><a href="https://github.com/bling/dotvim"></a> is maintained by <a href="https://github.com/bling">bling</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -274,7 +315,5 @@
             } catch(err) {}
           </script>
 
-      </div>
-    </div>
   </body>
 </html>
