@@ -308,7 +308,7 @@ endif
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-        let g:ycm_filetype_specific_completion_to_disable={'unite':'unite'}
+        let g:ycm_filetype_blacklist={'unite': 1}
       "}}}
       NeoBundle 'SirVer/ultisnips' "{{{
         let g:UltiSnipsExpandTrigger="<tab>"
@@ -393,17 +393,6 @@ endif
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'navigation') "{{{
-    " ack/ag {{{
-      if executable('ack') || executable('ag')
-        NeoBundle 'mileszs/ack.vim'
-        if executable('ag')
-          let g:ackprg="ag --nogroup --column --smart-case --follow"
-        endif
-        nnoremap <leader>/ :Ack 
-      else
-        nnoremap <leader>/ :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
-      endif
-    "}}}
     NeoBundle 'EasyGrep' "{{{
       let g:EasyGrepRecursive=1
       let g:EasyGrepAllOptionsInExplorer=1
@@ -448,6 +437,7 @@ endif
       let g:bufferline_echo=0
     "}}}
     " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+    " NeoBundle 'zhaocai/linepower.vim'
     NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
     " NeoBundle 'zhaocai/GoldenView.Vim' "{{{
@@ -529,6 +519,7 @@ endif
       endif
 
       function! s:unite_settings()
+        nmap <buffer> Q <plug>(unite_exit)
         nmap <buffer> <esc> <plug>(unite_exit)
         imap <buffer> <esc> <plug>(unite_exit)
         imap <buffer> <C-c> <plug>(unite_exit)
@@ -538,6 +529,7 @@ endif
       nnoremap <silent> <space><space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
       nnoremap <silent> <space>y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> <space>l :<C-u>Unite -buffer-name=line line<cr>
+      nnoremap <silent> <space>/ :<C-u>Unite -buffer-name=search grep:.<cr>
     "}}}
     NeoBundle 'Shougo/vimshell' "{{{
       if s:is_macvim
@@ -588,6 +580,10 @@ endif
   " change cursor position in insert mode
   inoremap <C-h> <left>
   inoremap <C-l> <right>
+
+  if mapcheck('<space>/') == ''
+    nnoremap <space>/ :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
+  endif
 
   " sane regex {{{
     nnoremap / /\v
