@@ -1,38 +1,41 @@
 " vim: fdm=marker ts=2 sts=2 sw=2
 
-let s:is_windows = has('win32') || has('win64')
-let s:is_cygwin = has('win32unix')
-let s:is_macvim = has('gui_macvim')
 let s:default_indent = 2
 let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
 if filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
   let s:autocomplete_method = 'ycm'
 endif
-if s:is_windows
-  set rtp+=~/.vim
-endif
+
+" detect OS {{{
+  let s:is_windows = has('win32') || has('win64')
+  let s:is_cygwin = has('win32unix')
+  let s:is_macvim = has('gui_macvim')
+"}}}
 
 " plugin groups {{{
-let s:plugin_groups = []
-call add(s:plugin_groups, 'core')
-call add(s:plugin_groups, 'web')
-call add(s:plugin_groups, 'ruby')
-call add(s:plugin_groups, 'scm')
-call add(s:plugin_groups, 'editing')
-call add(s:plugin_groups, 'visual')
-call add(s:plugin_groups, 'indents')
-call add(s:plugin_groups, 'navigation')
-call add(s:plugin_groups, 'autocomplete')
-call add(s:plugin_groups, 'misc')
-if s:is_windows
-  call add(s:plugin_groups, 'windows')
-endif
+  let s:plugin_groups = []
+  call add(s:plugin_groups, 'core')
+  call add(s:plugin_groups, 'web')
+  call add(s:plugin_groups, 'ruby')
+  call add(s:plugin_groups, 'scm')
+  call add(s:plugin_groups, 'editing')
+  call add(s:plugin_groups, 'visual')
+  call add(s:plugin_groups, 'indents')
+  call add(s:plugin_groups, 'navigation')
+  call add(s:plugin_groups, 'autocomplete')
+  call add(s:plugin_groups, 'misc')
+  if s:is_windows
+    call add(s:plugin_groups, 'windows')
+  endif
 "}}}
 
 " setup & neobundle {{{
   set nocompatible
-  set rtp+=~/.vim/bundle/neobundle.vim/
+  if s:is_windows
+    set rtp+=~/.vim
+  endif
+  set rtp+=~/.vim/bundle/neobundle.vim
   call neobundle#rc(expand('~/.vim/bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
 "}}}
@@ -390,32 +393,37 @@ endif
       let g:gundo_right=1
       nnoremap <silent> <F5> :GundoToggle<CR>
     "}}}
-    NeoBundle 'kien/ctrlp.vim' "{{{
-      let g:ctrlp_clear_cache_on_exit=1
-      let g:ctrlp_max_height=40
-      let g:ctrlp_show_hidden=0
-      let g:ctrlp_follow_symlinks=1
-      let g:ctrlp_working_path_mode=0
-      let g:ctrlp_working_path_mode=0
-      let g:ctrlp_max_files=20000
-      let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
+    " NeoBundle 'kien/ctrlp.vim' "{{{
+    "   let g:ctrlp_clear_cache_on_exit=1
+    "   let g:ctrlp_max_height=40
+    "   let g:ctrlp_show_hidden=0
+    "   let g:ctrlp_follow_symlinks=1
+    "   let g:ctrlp_working_path_mode=0
+    "   let g:ctrlp_max_files=20000
+    "   let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
 
-      nnoremap <leader>p :CtrlPBufTag<cr>
-      nnoremap <leader>pt :CtrlPTag<cr>
-      nnoremap <leader>pl :CtrlPLine<cr>
-      nnoremap <leader>b :CtrlPBuffer<cr>
+    "   nnoremap <leader>p :CtrlPBufTag<cr>
+    "   nnoremap <leader>pt :CtrlPTag<cr>
+    "   nnoremap <leader>pl :CtrlPLine<cr>
+    "   nnoremap <leader>b :CtrlPBuffer<cr>
+    " "}}}
+    NeoBundle 'Shougo/vimfiler' "{{{
+      let g:vimfiler_as_default_explorer=1
+      let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
+      nnoremap <F2> :VimFilerExplorer<CR>
+      nnoremap <F3> :VimFilerBufferDir --explorer<CR>
     "}}}
-    NeoBundle 'scrooloose/nerdtree' "{{{
-      let NERDTreeShowHidden=1
-      let NERDTreeQuitOnOpen=0
-      let NERDTreeShowLineNumbers=1
-      let NERDTreeChDirMode=0
-      let NERDTreeShowBookmarks=1
-      let NERDTreeIgnore=['\.git','\.hg']
-      let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
-      nnoremap <F2> :NERDTreeToggle<CR>
-      nnoremap <F3> :NERDTreeFind<CR>
-    "}}}
+    " NeoBundle 'scrooloose/nerdtree' "{{{
+    "   let NERDTreeShowHidden=1
+    "   let NERDTreeQuitOnOpen=0
+    "   let NERDTreeShowLineNumbers=1
+    "   let NERDTreeChDirMode=0
+    "   let NERDTreeShowBookmarks=1
+    "   let NERDTreeIgnore=['\.git','\.hg']
+    "   let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
+    "   nnoremap <F2> :NERDTreeToggle<CR>
+    "   nnoremap <F3> :NERDTreeFind<CR>
+    " "}}}
     NeoBundle 'majutsushi/tagbar' "{{{
       nnoremap <silent> <F9> :TagbarToggle<CR>
     "}}}
@@ -497,7 +505,6 @@ endif
       let g:unite_enable_start_insert=1
       let g:unite_source_history_yank_enable=1
       let g:unite_source_file_rec_max_cache_files=3000
-      let g:unite_split_rule="botright"
       let g:unite_prompt='» '
 
       if executable('ag')
@@ -521,12 +528,14 @@ endif
       nmap <space> [unite]
 
       if s:is_windows
-        nnoremap <silent> [unite]<space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec -auto-resize<cr>
       else
-        nnoremap <silent> [unite]<space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async -auto-resize<cr>
       endif
+      nmap <silent> <C-p> [unite]<space>
       nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> [unite]l :<C-u>Unite -buffer-name=line line<cr>
+      nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffers buffer<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -buffer-name=search grep:.<cr>
     "}}}
     NeoBundle 'Shougo/vimshell' "{{{
