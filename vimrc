@@ -265,6 +265,7 @@ endif
     NeoBundle 'othree/html5.vim'
     NeoBundle 'wavded/vim-stylus'
     NeoBundle 'digitaltoad/vim-jade'
+    NeoBundle 'juvenn/mustache.vim'
     NeoBundle 'mattn/zencoding-vim'
     " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
       let g:used_javascript_libs='jquery,requirejs'
@@ -490,7 +491,7 @@ endif
       let g:gist_post_private=1
       let g:gist_show_privates=1
     "}}}
-    NeoBundle 'Shougo/vimproc', {
+    NeoBundleDepends 'Shougo/vimproc', {
       \ 'build': {
         \ 'mac': 'make -f make_mac.mak',
         \ 'unix': 'make -f make_unix.mak',
@@ -498,9 +499,11 @@ endif
         \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
       \ },
     \ }
-    NeoBundle 'Shougo/unite.vim' "{{{
+    NeoBundle 'Shougo/unite.vim', { 'depends': 'tsukkee/unite-tag' } "{{{
       call unite#filters#matcher_default#use(['matcher_fuzzy'])
       call unite#filters#sorter_default#use(['sorter_rank'])
+      call unite#set_profile('files', 'smartcase', 1)
+
       let g:unite_data_directory='~/.vim/.cache/unite'
       let g:unite_enable_start_insert=1
       let g:unite_source_history_yank_enable=1
@@ -528,15 +531,16 @@ endif
       nmap <space> [unite]
 
       if s:is_windows
-        nnoremap <silent> [unite]<space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec -auto-resize<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files buffer file_mru bookmark file_rec<cr>
       else
-        nnoremap <silent> [unite]<space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async -auto-resize<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
       endif
       nmap <silent> <C-p> [unite]<space>
-      nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-      nnoremap <silent> [unite]l :<C-u>Unite -buffer-name=line line<cr>
-      nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffers buffer<cr>
-      nnoremap <silent> [unite]/ :<C-u>Unite -buffer-name=search grep:.<cr>
+      nnoremap <silent> [unite]y :<C-u>Unite -auto-resize -buffer-name=yanks history/yank<cr>
+      nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+      nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+      nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
+      nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     "}}}
     NeoBundle 'Shougo/vimshell' "{{{
       if s:is_macvim
@@ -699,14 +703,16 @@ syntax enable
   NeoBundle 'w0ng/vim-hybrid'
   NeoBundle 'sjl/badwolf'
   NeoBundle 'jelera/vim-gummybears-colorscheme'
+  NeoBundle 'goatslacker/mango.vim'
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
 
-  autocmd ColorScheme * highlight Normal guibg=#222222 ctermbg=234
-  autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
-  autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
-  colorscheme gummybears
+  autocmd ColorScheme * highlight Normal guibg=#121212 ctermbg=233
+  " autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
+  " autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
+  set bg=dark
+  colorscheme mango
 "}}}
 
 if filereadable(expand("~/.vimrc.local"))
