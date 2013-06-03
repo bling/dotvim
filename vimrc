@@ -408,23 +408,23 @@ endif
     "   nnoremap <leader>pl :CtrlPLine<cr>
     "   nnoremap <leader>b :CtrlPBuffer<cr>
     " "}}}
-    NeoBundle 'Shougo/vimfiler' "{{{
-      let g:vimfiler_as_default_explorer=1
-      let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
-      nnoremap <F2> :VimFilerExplorer<CR>
-      nnoremap <F3> :VimFilerBufferDir --explorer<CR>
-    "}}}
-    " NeoBundle 'scrooloose/nerdtree' "{{{
-    "   let NERDTreeShowHidden=1
-    "   let NERDTreeQuitOnOpen=0
-    "   let NERDTreeShowLineNumbers=1
-    "   let NERDTreeChDirMode=0
-    "   let NERDTreeShowBookmarks=1
-    "   let NERDTreeIgnore=['\.git','\.hg']
-    "   let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
-    "   nnoremap <F2> :NERDTreeToggle<CR>
-    "   nnoremap <F3> :NERDTreeFind<CR>
+    " NeoBundle 'Shougo/vimfiler' "{{{
+    "   let g:vimfiler_as_default_explorer=1
+    "   let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
+    "   nnoremap <F2> :VimFilerExplorer<CR>
+    "   nnoremap <F3> :VimFilerBufferDir --explorer<CR>
     " "}}}
+    NeoBundle 'scrooloose/nerdtree' "{{{
+      let NERDTreeShowHidden=1
+      let NERDTreeQuitOnOpen=0
+      let NERDTreeShowLineNumbers=1
+      let NERDTreeChDirMode=0
+      let NERDTreeShowBookmarks=1
+      let NERDTreeIgnore=['\.git','\.hg']
+      let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
+      nnoremap <F2> :NERDTreeToggle<CR>
+      nnoremap <F3> :NERDTreeFind<CR>
+    "}}}
     NeoBundle 'majutsushi/tagbar' "{{{
       nnoremap <silent> <F9> :TagbarToggle<CR>
     "}}}
@@ -536,7 +536,7 @@ endif
         nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
       endif
       nmap <silent> <C-p> [unite]<space>
-      nnoremap <silent> [unite]y :<C-u>Unite -auto-resize -buffer-name=yanks history/yank<cr>
+      nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
       nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
