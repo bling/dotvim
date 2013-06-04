@@ -312,31 +312,8 @@ endif
     if s:autocomplete_method == 'neocomplcache' || !neobundle#is_sourced('YouCompleteMe') "{{{
       if has('lua')
         NeoBundle 'Shougo/neocomplete.vim' "{{{
-          let g:neocomplete_enable_at_startup=1
-          let g:neocomplete_data_directory='~/.vim/.cache/neocomplete'
-          " let g:neocomplete#enable_auto_delimiter=1
-          " let g:neocomplete_force_overwrite_completefunc=1
-          let g:neocomplete#auto_completion_start_length=1
-          " let g:neocomplete_max_list=10
-          " let g:neocomplete_enable_auto_select=1
-          " let g:neocomplete_enable_cursor_hold_i=1
-          " let g:neocomplete_cursor_hold_i_time=300
-
-          if !exists('g:neocomplete_omni_functions')
-            let g:neocomplete_omni_functions = {}
-          endif
-
-          " enable general omni completion
-          let g:neocomplete_omni_functions.css      = 'csscomplete#CompleteCSS'
-          let g:neocomplete_omni_functions.html     = 'htmlcomplete#CompleteTags'
-          let g:neocomplete_omni_functions.markdown = 'htmlcomplete#CompleteTags'
-          let g:neocomplete_omni_functions.python   = 'pythoncomplete#Complete'
-          let g:neocomplete_omni_functions.xml      = 'xmlcomplete#CompleteTags'
-          let g:neocomplete_omni_functions.ruby     = 'rubycomplete#Complete'
-
-          " js completion
-          let g:jscomplete_use = [ 'dom' ]
-          let g:neocomplete_omni_functions.javascript = 'jscomplete#CompleteJS'
+          let g:neocomplete#enable_at_startup=1
+          let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
         "}}}
       else
         NeoBundle 'Shougo/neocomplcache' "{{{
