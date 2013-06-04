@@ -310,34 +310,64 @@ endif
       "}}}
     endif "}}}
     if s:autocomplete_method == 'neocomplcache' || !neobundle#is_sourced('YouCompleteMe') "{{{
-      NeoBundle 'Shougo/neocomplcache' "{{{
-        let g:neocomplcache_enable_at_startup=1
-        let g:neocomplcache_enable_auto_delimiter=1
-        " let g:neocomplcache_force_overwrite_completefunc=1
-        " let g:neocomplcache_auto_completion_start_length=1
-        let g:neocomplcache_max_list=10
-        let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
-        " let g:neocomplcache_enable_auto_select=1
-        " let g:neocomplcache_enable_cursor_hold_i=1
-        " let g:neocomplcache_cursor_hold_i_time=300
-        let g:neocomplcache_enable_fuzzy_completion=1
+      if has('lua')
+        NeoBundle 'Shougo/neocomplete.vim' "{{{
+          let g:neocomplete_enable_at_startup=1
+          let g:neocomplete_data_directory='~/.vim/.cache/neocomplete'
+          " let g:neocomplete#enable_auto_delimiter=1
+          " let g:neocomplete_force_overwrite_completefunc=1
+          let g:neocomplete#auto_completion_start_length=1
+          " let g:neocomplete_max_list=10
+          " let g:neocomplete_enable_auto_select=1
+          " let g:neocomplete_enable_cursor_hold_i=1
+          " let g:neocomplete_cursor_hold_i_time=300
 
-        if !exists('g:neocomplcache_omni_functions')
-          let g:neocomplcache_omni_functions = {}
-        endif
+          if !exists('g:neocomplete_omni_functions')
+            let g:neocomplete_omni_functions = {}
+          endif
 
-        " enable general omni completion
-        let g:neocomplcache_omni_functions.css      = 'csscomplete#CompleteCSS'
-        let g:neocomplcache_omni_functions.html     = 'htmlcomplete#CompleteTags'
-        let g:neocomplcache_omni_functions.markdown = 'htmlcomplete#CompleteTags'
-        let g:neocomplcache_omni_functions.python   = 'pythoncomplete#Complete'
-        let g:neocomplcache_omni_functions.xml      = 'xmlcomplete#CompleteTags'
-        let g:neocomplcache_omni_functions.ruby     = 'rubycomplete#Complete'
+          " enable general omni completion
+          let g:neocomplete_omni_functions.css      = 'csscomplete#CompleteCSS'
+          let g:neocomplete_omni_functions.html     = 'htmlcomplete#CompleteTags'
+          let g:neocomplete_omni_functions.markdown = 'htmlcomplete#CompleteTags'
+          let g:neocomplete_omni_functions.python   = 'pythoncomplete#Complete'
+          let g:neocomplete_omni_functions.xml      = 'xmlcomplete#CompleteTags'
+          let g:neocomplete_omni_functions.ruby     = 'rubycomplete#Complete'
 
-        " js completion
-        let g:jscomplete_use = [ 'dom' ]
-        let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
-      "}}}
+          " js completion
+          let g:jscomplete_use = [ 'dom' ]
+          let g:neocomplete_omni_functions.javascript = 'jscomplete#CompleteJS'
+        "}}}
+      else
+        NeoBundle 'Shougo/neocomplcache' "{{{
+          let g:neocomplcache_enable_at_startup=1
+          let g:neocomplcache_enable_auto_delimiter=1
+          " let g:neocomplcache_force_overwrite_completefunc=1
+          " let g:neocomplcache_auto_completion_start_length=1
+          let g:neocomplcache_max_list=10
+          let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
+          " let g:neocomplcache_enable_auto_select=1
+          " let g:neocomplcache_enable_cursor_hold_i=1
+          " let g:neocomplcache_cursor_hold_i_time=300
+          let g:neocomplcache_enable_fuzzy_completion=1
+
+          if !exists('g:neocomplcache_omni_functions')
+            let g:neocomplcache_omni_functions = {}
+          endif
+
+          " enable general omni completion
+          let g:neocomplcache_omni_functions.css      = 'csscomplete#CompleteCSS'
+          let g:neocomplcache_omni_functions.html     = 'htmlcomplete#CompleteTags'
+          let g:neocomplcache_omni_functions.markdown = 'htmlcomplete#CompleteTags'
+          let g:neocomplcache_omni_functions.python   = 'pythoncomplete#Complete'
+          let g:neocomplcache_omni_functions.xml      = 'xmlcomplete#CompleteTags'
+          let g:neocomplcache_omni_functions.ruby     = 'rubycomplete#Complete'
+
+          " js completion
+          let g:jscomplete_use = [ 'dom' ]
+          let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
+        "}}}
+      endif
       NeoBundle 'Shougo/neosnippet' "{{{
         let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
         let g:neosnippet#enable_snipmate_compatibility=1
@@ -499,7 +529,7 @@ endif
         \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
       \ },
     \ }
-    NeoBundle 'Shougo/unite.vim', { 'depends': 'tsukkee/unite-tag' } "{{{
+    NeoBundle 'Shougo/unite.vim', { 'depends': ['tsukkee/unite-tag','Shougo/unite-outline'] } "{{{
       call unite#filters#matcher_default#use(['matcher_fuzzy'])
       call unite#filters#sorter_default#use(['sorter_rank'])
       call unite#set_profile('files', 'smartcase', 1)
@@ -531,15 +561,16 @@ endif
       nmap <space> [unite]
 
       if s:is_windows
-        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files buffer file_mru bookmark file_rec<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files file_rec buffer file_mru bookmark<cr>
       else
-        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files buffer file_mru bookmark file_rec/async<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files file_rec/async buffer file_mru bookmark<cr>
       endif
       nmap <silent> <C-p> [unite]<space>
       nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
       nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
+      nnoremap <silent> [unite]o :<C-u>Unite -auto-resize outline<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     "}}}
     NeoBundle 'Shougo/vimshell' "{{{
@@ -703,16 +734,14 @@ syntax enable
   NeoBundle 'w0ng/vim-hybrid'
   NeoBundle 'sjl/badwolf'
   NeoBundle 'jelera/vim-gummybears-colorscheme'
-  NeoBundle 'goatslacker/mango.vim'
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
 
   autocmd ColorScheme * highlight Normal guibg=#121212 ctermbg=233
-  " autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
+  autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
   " autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
-  set bg=dark
-  colorscheme mango
+  colorscheme gummybears
 "}}}
 
 if filereadable(expand("~/.vimrc.local"))
