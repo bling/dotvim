@@ -263,6 +263,7 @@ endif
     NeoBundle 'hail2u/vim-css3-syntax'
     NeoBundle 'ap/vim-css-color'
     NeoBundle 'othree/html5.vim'
+    NeoBundle 'gregsexton/MatchTag'
     NeoBundle 'wavded/vim-stylus'
     NeoBundle 'digitaltoad/vim-jade'
     NeoBundle 'juvenn/mustache.vim'
@@ -277,6 +278,7 @@ endif
   endif "}}}
   if count(s:plugin_groups, 'scm') "{{{
     " NeoBundle 'sjl/splice.vim'
+    NeoBundle 'gregsexton/gitv'
     NeoBundle 'mhinz/vim-signify' "{{{
       let g:signify_update_on_bufenter=0
     "}}}
