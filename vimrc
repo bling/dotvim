@@ -404,20 +404,70 @@ endif
       let g:gundo_right=1
       nnoremap <silent> <F5> :GundoToggle<CR>
     "}}}
-    " NeoBundle 'kien/ctrlp.vim' "{{{
-    "   let g:ctrlp_clear_cache_on_exit=1
-    "   let g:ctrlp_max_height=40
-    "   let g:ctrlp_show_hidden=0
-    "   let g:ctrlp_follow_symlinks=1
-    "   let g:ctrlp_working_path_mode=0
-    "   let g:ctrlp_max_files=20000
-    "   let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
+    NeoBundle 'kien/ctrlp.vim', { 'depends': 'tacahiroy/ctrlp-funky' } "{{{
+      let g:ctrlp_clear_cache_on_exit=1
+      let g:ctrlp_max_height=40
+      let g:ctrlp_show_hidden=0
+      let g:ctrlp_follow_symlinks=1
+      let g:ctrlp_working_path_mode=0
+      let g:ctrlp_max_files=20000
+      let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
+      let g:ctrlp_extensions=['funky']
 
-    "   nnoremap <leader>p :CtrlPBufTag<cr>
-    "   nnoremap <leader>pt :CtrlPTag<cr>
-    "   nnoremap <leader>pl :CtrlPLine<cr>
-    "   nnoremap <leader>b :CtrlPBuffer<cr>
-    " "}}}
+      nmap \ [ctrlp]
+      nnoremap [ctrlp] <nop>
+
+      nnoremap [ctrlp]t :CtrlPBufTag<cr>
+      nnoremap [ctrlp]T :CtrlPTag<cr>
+      nnoremap [ctrlp]l :CtrlPLine<cr>
+      nnoremap [ctrlp]f :CtrlPFunky<cr>
+      nnoremap [ctrlp]b :CtrlPBuffer<cr>
+    "}}}
+    NeoBundle 'Shougo/unite.vim', { 'depends': ['tsukkee/unite-tag','Shougo/unite-outline'] } "{{{
+      call unite#filters#matcher_default#use(['matcher_fuzzy'])
+      call unite#filters#sorter_default#use(['sorter_rank'])
+      call unite#set_profile('files', 'smartcase', 1)
+
+      let g:unite_data_directory='~/.vim/.cache/unite'
+      let g:unite_enable_start_insert=1
+      let g:unite_source_history_yank_enable=1
+      let g:unite_source_file_rec_max_cache_files=5000
+      let g:unite_prompt='» '
+
+      if executable('ag')
+        let g:unite_source_grep_command='ag'
+        let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden'
+        let g:unite_source_grep_recursive_opt=''
+      elseif executable('ack')
+        let g:unite_source_grep_command='ack'
+        let g:unite_source_grep_default_opts='--no-heading --no-color -a'
+        let g:unite_source_grep_recursive_opt=''
+      endif
+
+      function! s:unite_settings()
+        nmap <buffer> Q <plug>(unite_exit)
+        nmap <buffer> <esc> <plug>(unite_exit)
+        imap <buffer> <esc> <plug>(unite_exit)
+      endfunction
+      autocmd FileType unite call s:unite_settings()
+
+      nmap <space> [unite]
+      nnoremap [unite] <nop>
+
+      if s:is_windows
+        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec buffer file_mru bookmark<cr>
+        nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec<cr>
+      else
+        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr>
+        nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec/async<cr>
+      endif
+      nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+      nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+      nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+      nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
+      nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline -vertical -winwidth=35 outline<cr>
+      nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+    "}}}
     " NeoBundle 'Shougo/vimfiler' "{{{
     "   let g:vimfiler_as_default_explorer=1
     "   let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
@@ -446,7 +496,7 @@ endif
     "}}}
     " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
     " NeoBundle 'zhaocai/linepower.vim'
-    NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
+    " NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
     " NeoBundle 'zhaocai/GoldenView.Vim' "{{{
       let g:goldenview__enable_default_mapping=0
@@ -509,51 +559,6 @@ endif
         \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
       \ },
     \ }
-    NeoBundle 'Shougo/unite.vim', { 'depends': ['tsukkee/unite-tag','Shougo/unite-outline'] } "{{{
-      call unite#filters#matcher_default#use(['matcher_fuzzy'])
-      call unite#filters#sorter_default#use(['sorter_rank'])
-      call unite#set_profile('files', 'smartcase', 1)
-
-      let g:unite_data_directory='~/.vim/.cache/unite'
-      let g:unite_enable_start_insert=1
-      let g:unite_source_history_yank_enable=1
-      let g:unite_source_file_rec_max_cache_files=5000
-      let g:unite_prompt='» '
-
-      if executable('ag')
-        let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden'
-        let g:unite_source_grep_recursive_opt=''
-      elseif executable('ack')
-        let g:unite_source_grep_command='ack'
-        let g:unite_source_grep_default_opts='--no-heading --no-color -a'
-        let g:unite_source_grep_recursive_opt=''
-      endif
-
-      function! s:unite_settings()
-        nmap <buffer> Q <plug>(unite_exit)
-        nmap <buffer> <esc> <plug>(unite_exit)
-        imap <buffer> <esc> <plug>(unite_exit)
-      endfunction
-      autocmd FileType unite call s:unite_settings()
-
-      nnoremap [unite] <nop>
-      nmap <space> [unite]
-
-      if s:is_windows
-        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec buffer file_mru bookmark<cr>
-      else
-        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr>
-      endif
-      nmap <silent> <C-p> [unite]<space>
-      nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec/async<cr>
-      nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-      nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-      nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-      nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
-      nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
-      nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
-    "}}}
     NeoBundle 'Shougo/vimshell' "{{{
       if s:is_macvim
         let g:vimshell_editor_command='mvim'
