@@ -515,7 +515,7 @@ endif
       let g:unite_data_directory='~/.vim/.cache/unite'
       let g:unite_enable_start_insert=1
       let g:unite_source_history_yank_enable=1
-      let g:unite_source_file_rec_max_cache_files=3000
+      let g:unite_source_file_rec_max_cache_files=5000
       let g:unite_prompt='» '
 
       if executable('ag')
@@ -539,17 +539,17 @@ endif
       nmap <space> [unite]
 
       if s:is_windows
-        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files file_rec buffer file_mru bookmark<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec buffer file_mru bookmark<cr>
       else
-        nnoremap <silent> [unite]<space> :<C-u>Unite -auto-resize -buffer-name=files file_rec/async buffer file_mru bookmark<cr>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr>
       endif
       nmap <silent> <C-p> [unite]<space>
+      nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec/async<cr>
       nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
       nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
       nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
-      nnoremap <silent> [unite]f :<C-u>Unite -auto-resize -buffer-name=files file_rec/async<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     "}}}
     NeoBundle 'Shougo/vimshell' "{{{
