@@ -314,6 +314,7 @@ endif
         NeoBundle 'Shougo/neocomplete.vim' "{{{
           let g:neocomplete#enable_at_startup=1
           let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
+          let g:neocomplete#enable_auto_delimiter=1
         "}}}
       else
         NeoBundle 'Shougo/neocomplcache' "{{{
@@ -547,7 +548,8 @@ endif
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
       nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
-      nnoremap <silent> [unite]o :<C-u>Unite -auto-resize outline<cr>
+      nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
+      nnoremap <silent> [unite]f :<C-u>Unite -auto-resize -buffer-name=files file_rec/async<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     "}}}
     NeoBundle 'Shougo/vimshell' "{{{
