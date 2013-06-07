@@ -1,35 +1,42 @@
 " vim: fdm=marker ts=2 sts=2 sw=2
 
-let s:default_indent = 2
-let s:max_column = 120
-let s:autocomplete_method = 'neocomplcache'
-if version >= 885 && has('lua')
-  let s:autocomplete_method = 'neocomplete'
-elseif version >= 584 && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
-  let s:autocomplete_method = 'ycm'
-endif
-
 " detect OS {{{
   let s:is_windows = has('win32') || has('win64')
   let s:is_cygwin = has('win32unix')
   let s:is_macvim = has('gui_macvim')
 "}}}
 
-" plugin groups {{{
-  let s:plugin_groups = []
-  call add(s:plugin_groups, 'core')
-  call add(s:plugin_groups, 'web')
-  call add(s:plugin_groups, 'ruby')
-  call add(s:plugin_groups, 'scm')
-  call add(s:plugin_groups, 'editing')
-  call add(s:plugin_groups, 'visual')
-  call add(s:plugin_groups, 'indents')
-  call add(s:plugin_groups, 'navigation')
-  call add(s:plugin_groups, 'autocomplete')
-  call add(s:plugin_groups, 'misc')
-  if s:is_windows
-    call add(s:plugin_groups, 'windows')
+" dotvim settings {{{
+  if !exists('g:dotvim_settings')
+    let g:dotvim_settings = {}
+    let g:dotvim_settings.default_indent = 2
+    let g:dotvim_settings.max_column = 120
+    let g:dotvim_settings.autocomplete_method = 'neocomplcache'
+    if version >= 885 && has('lua')
+      let g:dotvim_settings.autocomplete_method = 'neocomplete'
+    elseif version >= 584 && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
+      let g:dotvim_settings.autocomplete_method = 'ycm'
+    endif
+
+    let g:dotvim_settings.plugin_groups = []
+    call add(g:dotvim_settings.plugin_groups, 'core')
+    call add(g:dotvim_settings.plugin_groups, 'web')
+    call add(g:dotvim_settings.plugin_groups, 'ruby')
+    call add(g:dotvim_settings.plugin_groups, 'scm')
+    call add(g:dotvim_settings.plugin_groups, 'editing')
+    call add(g:dotvim_settings.plugin_groups, 'visual')
+    call add(g:dotvim_settings.plugin_groups, 'indents')
+    call add(g:dotvim_settings.plugin_groups, 'navigation')
+    call add(g:dotvim_settings.plugin_groups, 'autocomplete')
+    call add(g:dotvim_settings.plugin_groups, 'misc')
+    if s:is_windows
+      call add(g:dotvim_settings.plugin_groups, 'windows')
+    endif
   endif
+
+  for key in keys(g:dotvim_settings)
+    let s:[key] = g:dotvim_settings[key]
+  endfor
 "}}}
 
 " setup & neobundle {{{
