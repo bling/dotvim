@@ -14,6 +14,9 @@ this is my personal vim distribution that i have tweaked over time and evolved f
 1.  startup vim and neobundle will detect and ask you install any missing plugins.  you can also manually initiate this with `:NeoBundleInstall`
 1.  done!
 
+## customization
+
+
 ## standard modifications
 
 *  if you have either [ack](http://betterthangrep.com/) or [ag](https://github.com/ggreer/the_silver_searcher) installed, they will be used for `grepprg`

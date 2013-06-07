@@ -9,33 +9,40 @@
 " dotvim settings {{{
   if !exists('g:dotvim_settings')
     let g:dotvim_settings = {}
-    let g:dotvim_settings.default_indent = 2
-    let g:dotvim_settings.max_column = 120
-    let g:dotvim_settings.autocomplete_method = 'neocomplcache'
-    if version >= 885 && has('lua')
-      let g:dotvim_settings.autocomplete_method = 'neocomplete'
-    elseif version >= 584 && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
-      let g:dotvim_settings.autocomplete_method = 'ycm'
-    endif
-
-    let g:dotvim_settings.plugin_groups = []
-    call add(g:dotvim_settings.plugin_groups, 'core')
-    call add(g:dotvim_settings.plugin_groups, 'web')
-    call add(g:dotvim_settings.plugin_groups, 'ruby')
-    call add(g:dotvim_settings.plugin_groups, 'scm')
-    call add(g:dotvim_settings.plugin_groups, 'editing')
-    call add(g:dotvim_settings.plugin_groups, 'visual')
-    call add(g:dotvim_settings.plugin_groups, 'indents')
-    call add(g:dotvim_settings.plugin_groups, 'navigation')
-    call add(g:dotvim_settings.plugin_groups, 'autocomplete')
-    call add(g:dotvim_settings.plugin_groups, 'misc')
-    if s:is_windows
-      call add(g:dotvim_settings.plugin_groups, 'windows')
-    endif
   endif
 
-  for key in keys(g:dotvim_settings)
-    let s:[key] = g:dotvim_settings[key]
+  " initialize default settings
+  let s:settings = {}
+  let s:settings.default_indent = 2
+  let s:settings.max_column = 120
+  let s:settings.autocomplete_method = 'neocomplcache'
+  if version >= 885 && has('lua')
+    let s:settings.autocomplete_method = 'neocomplete'
+  elseif version >= 584 && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
+    let s:settings.autocomplete_method = 'ycm'
+  endif
+
+  let s:settings.plugin_groups = []
+  call add(s:settings.plugin_groups, 'core')
+  call add(s:settings.plugin_groups, 'web')
+  call add(s:settings.plugin_groups, 'ruby')
+  call add(s:settings.plugin_groups, 'scm')
+  call add(s:settings.plugin_groups, 'editing')
+  call add(s:settings.plugin_groups, 'visual')
+  call add(s:settings.plugin_groups, 'indents')
+  call add(s:settings.plugin_groups, 'navigation')
+  call add(s:settings.plugin_groups, 'autocomplete')
+  call add(s:settings.plugin_groups, 'misc')
+  if s:is_windows
+    call add(s:settings.plugin_groups, 'windows')
+  endif
+
+  for key in keys(s:settings)
+    if has_key(g:dotvim_settings, key)
+      let s:[key] = g:dotvim_settings[key]
+    else
+      let s:[key] = s:settings[key]
+    endif
   endfor
 "}}}
 
