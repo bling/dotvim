@@ -16,6 +16,16 @@ this is my personal vim distribution that i have tweaked over time and evolved f
 
 ## customization
 
+*  there are two ways to customize the distribution to your needs.  if you just need some basic changes, you can create your own file at `~/.vimrc.local` and it will be sourced at the very end, ensuring that your settings will overwrite whatever is set by the distribution.
+*  if you need finer grained control, then it is recommended that you create a simple vimrc shim, like so:
+
+```
+let g:dotvim_settings = {}
+let g:dotvim_settings.default_indent = 3
+let g:dotvim_settings.max_column = 80
+let g:dotvim_settings.plugin_groups = ['core','web']
+source ~/.vim/vimrc
+```
 
 ## standard modifications
 
