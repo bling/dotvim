@@ -3,7 +3,9 @@
 let s:default_indent = 2
 let s:max_column = 120
 let s:autocomplete_method = 'neocomplcache'
-if filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
+if version >= 885 && has('lua')
+  let s:autocomplete_method = 'neocomplete'
+elseif version >= 584 && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
   let s:autocomplete_method = 'ycm'
 endif
 
@@ -37,7 +39,7 @@ endif
   endif
   set rtp+=~/.vim/bundle/neobundle.vim
   call neobundle#rc(expand('~/.vim/bundle/'))
-  NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
+  NeoBundleFetch 'Shougo/neobundle.vim'
 "}}}
 
 " functions {{{
@@ -297,7 +299,7 @@ endif
   endif "}}}
   if count(s:plugin_groups, 'autocomplete') "{{{
     NeoBundle 'teramako/jscomplete-vim'
-    if s:autocomplete_method == 'ycm' && version >= 584 "{{{
+    if s:autocomplete_method == 'ycm' "{{{
       NeoBundle 'Valloric/YouCompleteMe' "{{{
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
@@ -310,44 +312,7 @@ endif
         let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
         let g:UltiSnipsSnippetsDir='~/.vim/snippets'
       "}}}
-    endif "}}}
-    if s:autocomplete_method == 'neocomplcache' || !neobundle#is_sourced('YouCompleteMe') "{{{
-      if has('lua')
-        NeoBundle 'Shougo/neocomplete.vim' "{{{
-          let g:neocomplete#enable_at_startup=1
-          let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
-          let g:neocomplete#enable_auto_delimiter=1
-        "}}}
-      else
-        NeoBundle 'Shougo/neocomplcache' "{{{
-          let g:neocomplcache_enable_at_startup=1
-          let g:neocomplcache_enable_auto_delimiter=1
-          " let g:neocomplcache_force_overwrite_completefunc=1
-          " let g:neocomplcache_auto_completion_start_length=1
-          let g:neocomplcache_max_list=10
-          let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
-          " let g:neocomplcache_enable_auto_select=1
-          " let g:neocomplcache_enable_cursor_hold_i=1
-          " let g:neocomplcache_cursor_hold_i_time=300
-          let g:neocomplcache_enable_fuzzy_completion=1
-
-          if !exists('g:neocomplcache_omni_functions')
-            let g:neocomplcache_omni_functions = {}
-          endif
-
-          " enable general omni completion
-          let g:neocomplcache_omni_functions.css      = 'csscomplete#CompleteCSS'
-          let g:neocomplcache_omni_functions.html     = 'htmlcomplete#CompleteTags'
-          let g:neocomplcache_omni_functions.markdown = 'htmlcomplete#CompleteTags'
-          let g:neocomplcache_omni_functions.python   = 'pythoncomplete#Complete'
-          let g:neocomplcache_omni_functions.xml      = 'xmlcomplete#CompleteTags'
-          let g:neocomplcache_omni_functions.ruby     = 'rubycomplete#Complete'
-
-          " js completion
-          let g:jscomplete_use = [ 'dom' ]
-          let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
-        "}}}
-      endif
+    else
       NeoBundle 'Shougo/neosnippet' "{{{
         let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
         let g:neosnippet#enable_snipmate_compatibility=1
@@ -356,6 +321,43 @@ endif
         smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
         imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
         smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+      "}}}
+    endif "}}}
+    if s:autocomplete_method == 'neocomplete' "{{{
+      NeoBundle 'Shougo/neocomplete.vim' "{{{
+        let g:neocomplete#enable_at_startup=1
+        let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
+        let g:neocomplete#enable_auto_delimiter=1
+      "}}}
+    endif "}}}
+    if s:autocomplete_method == 'neocomplcache' "{{{
+      NeoBundle 'Shougo/neocomplcache' "{{{
+        let g:neocomplcache_enable_at_startup=1
+        let g:neocomplcache_enable_auto_delimiter=1
+        " let g:neocomplcache_force_overwrite_completefunc=1
+        " let g:neocomplcache_auto_completion_start_length=1
+        let g:neocomplcache_max_list=10
+        let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
+        " let g:neocomplcache_enable_auto_select=1
+        " let g:neocomplcache_enable_cursor_hold_i=1
+        " let g:neocomplcache_cursor_hold_i_time=300
+        let g:neocomplcache_enable_fuzzy_completion=1
+
+        if !exists('g:neocomplcache_omni_functions')
+          let g:neocomplcache_omni_functions = {}
+        endif
+
+        " enable general omni completion
+        let g:neocomplcache_omni_functions.css      = 'csscomplete#CompleteCSS'
+        let g:neocomplcache_omni_functions.html     = 'htmlcomplete#CompleteTags'
+        let g:neocomplcache_omni_functions.markdown = 'htmlcomplete#CompleteTags'
+        let g:neocomplcache_omni_functions.python   = 'pythoncomplete#Complete'
+        let g:neocomplcache_omni_functions.xml      = 'xmlcomplete#CompleteTags'
+        let g:neocomplcache_omni_functions.ruby     = 'rubycomplete#Complete'
+
+        " js completion
+        let g:jscomplete_use = [ 'dom' ]
+        let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
       "}}}
     endif "}}}
     NeoBundle 'honza/vim-snippets'
