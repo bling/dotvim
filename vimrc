@@ -16,9 +16,9 @@
   let s:settings.default_indent = 2
   let s:settings.max_column = 120
   let s:settings.autocomplete_method = 'neocomplcache'
-  if version >= 885 && has('lua')
+  if has('patch885') && has('lua')
     let s:settings.autocomplete_method = 'neocomplete'
-  elseif version >= 584 && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
+  elseif has('patch584') && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
     let s:settings.autocomplete_method = 'ycm'
   endif
 
