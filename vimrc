@@ -437,7 +437,7 @@
       nnoremap [ctrlp]t :CtrlPBufTag<cr>
       nnoremap [ctrlp]T :CtrlPTag<cr>
       nnoremap [ctrlp]l :CtrlPLine<cr>
-      nnoremap [ctrlp]f :CtrlPFunky<cr>
+      nnoremap [ctrlp]o :CtrlPFunky<cr>
       nnoremap [ctrlp]b :CtrlPBuffer<cr>
     "}}}
     NeoBundle 'Shougo/unite.vim', { 'depends': ['tsukkee/unite-tag','Shougo/unite-outline'] } "{{{

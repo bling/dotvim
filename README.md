@@ -78,6 +78,9 @@ source ~/.vim/vimrc
   *  `<space><space>` go to anything (files, buffers, MRU, bookmarks)
   *  `<space>y` select from previous yanks
   *  `<space>l` select line from current buffer
+  *  `<space>b` select from current buffers
+  *  `<space>o` select from outline of current file
+  *  `<space>s` quick switch buffer
   *  `<space>/` recursively search all files for matching text (uses `ag` or `ack` if found)
 
 ### [bufkill.vim](http://www.vim.org/scripts/script.php?script_id=1147)
