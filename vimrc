@@ -557,13 +557,6 @@
       let g:syntastic_warning_symbol = '∆'
       let g:syntastic_style_warning_symbol = '≈'
     "}}}
-    NeoBundle 'maxbrunsfeld/vim-yankstack' "{{{
-      let g:yankstack_map_keys=0
-      nmap <BS><BS> <Plug>yankstack_substitute_older_paste
-      nmap <BS>\ <Plug>yankstack_substitute_newer_paste
-      nnoremap <leader>y :Yanks<cr>
-      call yankstack#setup()
-    "}}}
     NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' } "{{{
       let g:gist_post_private=1
       let g:gist_show_privates=1

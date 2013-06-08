@@ -16,7 +16,7 @@ this is my personal vim distribution that i have tweaked over time and evolved f
 
 ## customization
 
-*  there are two ways to customize the distribution to your needs.  if you just need some basic changes, you can create your own file at `~/.vimrc.local` and it will be sourced at the very end, ensuring that your settings will overwrite whatever is set by the distribution.
+*  there are two ways to customize the distribution to your needs.  if you just need some basic changes, you can create your own file at `~/.vimrc.local` and it will be sourced at the very end, ensuring that your settings will overwrite whatever is set by the distribution.  if there is a certain plugin that you do not want to load, you can use `NeoBundleDisable plugin_name`.
 *  if you need finer grained control, then it is recommended that you create a simple vimrc shim, like so:
 
 ```
@@ -26,6 +26,7 @@ let g:dotvim_settings.max_column = 80
 let g:dotvim_settings.plugin_groups = ['core','web']
 source ~/.vim/vimrc
 ```
+*  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.
 
 ## standard modifications
 
@@ -129,10 +130,8 @@ source ~/.vim/vimrc
 *  `<leader>pl` search all lines of all buffers
 *  `<leader>o` search open buffers
 
-### [yankstack](http://github.com/maxbrunsfeld/vim-yankstack)
-*  keeps a history of all your yanks and deletions
-*  `<leader>y` to toggle showing the yank stack
-*  after `p`asting, `<BS><BS>` to cycle back, `<BS>\` to cycle forward
+### [nrrwrgn](http://github.com/chrisbra/NrrwRgn)
+*  `<leader>nr` puts the current visual selection into a new scratch buffer, allowing you to perform global commands and merge changes to the original file automatically
 
 ### [tabular](https://github.com/godlygeek/tabular)
 *  easily aligns code
