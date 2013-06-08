@@ -721,6 +721,7 @@
   autocmd FileType js,scss,css autocmd BufWritePre <buffer> call StripTrailingWhitespace()
   autocmd FileType css,scss setlocal foldmethod=marker foldmarker={,}
   autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
+  autocmd FileType python setlocal foldmethod=indent
 "}}}
 
 " vundle rtp load sequence requires the filetypes to be loaded after all bundles are loaded
