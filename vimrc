@@ -264,6 +264,14 @@
       vmap <c-up> [egv
       vmap <c-down> ]egv
     "}}}
+    NeoBundleDepends 'Shougo/vimproc', {
+      \ 'build': {
+        \ 'mac': 'make -f make_mac.mak',
+        \ 'unix': 'make -f make_unix.mak',
+        \ 'cygwin': 'make -f make_cygwin.mak',
+        \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
+      \ },
+    \ }
   endif "}}}
   if count(s:plugin_groups, 'web') "{{{
     NeoBundle 'pangloss/vim-javascript'
@@ -482,7 +490,8 @@
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
       nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
-      nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline -vertical -winwidth=35 outline<cr>
+      nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+      nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     "}}}
     " NeoBundle 'Shougo/vimfiler' "{{{
@@ -561,14 +570,6 @@
       let g:gist_post_private=1
       let g:gist_show_privates=1
     "}}}
-    NeoBundleDepends 'Shougo/vimproc', {
-      \ 'build': {
-        \ 'mac': 'make -f make_mac.mak',
-        \ 'unix': 'make -f make_unix.mak',
-        \ 'cygwin': 'make -f make_cygwin.mak',
-        \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
-      \ },
-    \ }
     NeoBundle 'Shougo/vimshell' "{{{
       if s:is_macvim
         let g:vimshell_editor_command='mvim'
