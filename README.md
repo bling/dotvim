@@ -30,11 +30,13 @@ source ~/.vim/vimrc
 
 ## autocomplete
 
-* this distribution will pick one of three combinations, in the following priority:
+this distribution will pick one of three combinations, in the following priority:
 
 1.  [neocomplete][nc] + [neosnippet][ns] if you have `lua` enabled and a new enough version of vim
 2.  [youcompleteme][ycm] + [ultisnips][us] if you have `python` enabled and a new enough version of vim
 3.  [neocomplcache][ncl] + [neosnippet][ns] if you only have vimscript available
+
+this can be overridden with `g:dotvim_settings.autocomplete_method`
 
 ## standard modifications
 
