@@ -28,6 +28,14 @@ source ~/.vim/vimrc
 ```
 *  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.
 
+## autocomplete
+
+* this distribution will pick one of three combinations, in the following priority:
+
+1.  [neocomplete][nc] + [neosnippet][ns] if you have `lua` enabled and a new enough version of vim
+2.  [youcompleteme][ycm] + [ultisnips][us] if you have `python` enabled and a new enough version of vim
+3.  [neocomplcache][ncl] + [neosnippet][ns] if you only have vimscript available
+
 ## standard modifications
 
 *  if you have either [ack](http://betterthangrep.com/) or [ag](https://github.com/ggreer/the_silver_searcher) installed, they will be used for `grepprg`
@@ -155,13 +163,14 @@ source ~/.vim/vimrc
 *  visualize the undo tree
 *  `<F5>` to toggle
 
-### [youcompleteme](https://github.com/Valloric/YouCompleteMe)/[ultisnips](https://github.com/SirVer/ultisnips)
+### [youcompleteme][ycm]/[ultisnips][us]
 *  amazingly fast fuzzy autocomplete engine combined with an excellent snippets library
 *  use `<C-n>` and `<C-p>` to go back/forward between selections, and `<tab>` to expand snippets
 
-### [neocomplcache](https://github.com/Shougo/neocomplcache)/[neosnippet](https://github.com/Shougo/neosnippet)
+### [neocomplcache][ncl]/[neosnippet][ns]
 *  autocomplete/snippet support as a fallback choice when YCM and/or python is unavailable
 *  `<Tab>` to select the next match, or expand if the keyword is a snippet
+*  if you have lua installed, it will use [neocomplete][nc] instead
 
 ### [vimshell](https://github.com/Shougo/vimshell)
 *  `<leader>c` splits a new window with an embedded shell
@@ -183,9 +192,8 @@ source ~/.vim/vimrc
 *  [delimitmate](https://github.com/Raimondi/delimitMate) automagically adds closing quotes and braces
 *  [startify](https://github.com/mhinz/vim-startify) gives you a better start screen
 
-# and even more plugins
-
-*  the `vimrc` has over 50 plugins sourced
+# and even more plugins...
+*  i think i've listed about half of the plugins contained in this distribution, so please have a look at the vimrc directly to see all plugins in use
 
 ## credits
 
@@ -204,3 +212,10 @@ i wanted to give special thanks to all of the people who worked on the following
 
 ## license
 [WTFPL](http://sam.zoy.org/wtfpl/)
+
+
+[ycm]: https://github.com/Valloric/YouCompleteMe
+[us]: https://github.com/SirVer/ultisnips
+[nc]: https://github.com/Shougo/neocomplete.vim
+[ncl]: https://github.com/Shougo/neocomplcache.vim
+[ns]: https://github.com/Shougo/neosnippet.vim

@@ -548,8 +548,7 @@
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'misc') "{{{
-    NeoBundle 'plasticboy/vim-markdown'
-    " NeoBundle 'tpope/vim-markdown'
+    NeoBundle 'tpope/vim-markdown'
     if executable('redcarpet') && executable('instant-markdown-d')
       NeoBundle 'suan/vim-instant-markdown'
     endif
