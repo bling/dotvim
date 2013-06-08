@@ -382,6 +382,7 @@
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'terryma/vim-multiple-cursors'
+    NeoBundle 'chrisbra/NrrwRgn'
     NeoBundle 'dahu/vim-fanfingtastic'
     NeoBundle 'godlygeek/tabular' "{{{
       nmap <Leader>a& :Tabularize /&<CR>
