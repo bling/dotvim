@@ -274,24 +274,24 @@
     \ }
   endif "}}}
   if count(s:plugin_groups, 'web') "{{{
-    NeoBundle 'pangloss/vim-javascript'
-    NeoBundle 'maksimr/vim-jsbeautify' "{{{
+    NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
+    NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload':{'filetypes':['javascript']}} "{{{
       nnoremap <leader>fjs :call JsBeautify()<cr>
     "}}}
-    NeoBundle 'leafgarland/typescript-vim'
-    NeoBundle 'kchmck/vim-coffee-script'
-    NeoBundle 'groenewege/vim-less'
-    NeoBundle 'mmalecki/vim-node.js'
-    NeoBundle 'leshill/vim-json'
-    NeoBundle 'cakebaker/scss-syntax.vim'
-    NeoBundle 'hail2u/vim-css3-syntax'
-    NeoBundle 'ap/vim-css-color'
-    NeoBundle 'othree/html5.vim'
-    NeoBundle 'gregsexton/MatchTag'
-    NeoBundle 'wavded/vim-stylus'
-    NeoBundle 'digitaltoad/vim-jade'
-    NeoBundle 'juvenn/mustache.vim'
-    NeoBundle 'mattn/zencoding-vim' "{{{
+    NeoBundleLazy 'leafgarland/typescript-vim', {'autoload':{'filetypes':['typescript']}}
+    NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
+    NeoBundleLazy 'groenewege/vim-less', {'autoload':{'filetypes':['less']}}
+    NeoBundleLazy 'mmalecki/vim-node.js', {'autoload':{'filetypes':['javascript']}}
+    NeoBundleLazy 'leshill/vim-json', {'autoload':{'filetypes':['javascript','json']}}
+    NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload':{'filetypes':['scss','sass']}}
+    NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload':{'filetypes':['css','scss','sass']}}
+    NeoBundleLazy 'ap/vim-css-color', {'autoload':{'filetypes':['css','scss','sass','less','styl']}}
+    NeoBundleLazy 'othree/html5.vim', {'autoload':{'filetypes':['html']}}
+    NeoBundleLazy 'wavded/vim-stylus', {'autoload':{'filetypes':['styl']}}
+    NeoBundleLazy 'digitaltoad/vim-jade', {'autoload':{'filetypes':['jade']}}
+    NeoBundleLazy 'juvenn/mustache.vim', {'autoload':{'filetypes':['mustache']}}
+    NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
+    NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
       autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache
             \ inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
     "}}}
