@@ -509,7 +509,7 @@
     "   nnoremap <F2> :VimFilerExplorer<CR>
     "   nnoremap <F3> :VimFilerBufferDir --explorer<CR>
     " "}}}
-    NeoBundle 'scrooloose/nerdtree' "{{{
+    NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','NERDTreeFind']}} "{{{
       let NERDTreeShowHidden=1
       let NERDTreeQuitOnOpen=0
       let NERDTreeShowLineNumbers=1
