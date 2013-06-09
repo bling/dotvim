@@ -305,7 +305,6 @@
   endif "}}}
   if count(s:plugin_groups, 'scm') "{{{
     " NeoBundle 'sjl/splice.vim'
-    NeoBundle 'gregsexton/gitv'
     NeoBundle 'mhinz/vim-signify' "{{{
       let g:signify_update_on_bufenter=0
     "}}}
@@ -320,6 +319,10 @@
       nnoremap <silent> <leader>gr :Gremove<CR>
       autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
       autocmd BufReadPost fugitive://* set bufhidden=delete
+    "}}}
+    NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} "{{{
+      nnoremap <silent> <leader>gv :Gitv<CR>
+      nnoremap <silent> <leader>gV :Gitv!<CR>
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'autocomplete') "{{{
