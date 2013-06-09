@@ -387,6 +387,7 @@
   if count(s:plugin_groups, 'editing') "{{{
     NeoBundle 'editorconfig/editorconfig-vim'
     NeoBundle 'tpope/vim-speeddating'
+    NeoBundle 'tpope/vim-endwise'
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'terryma/vim-multiple-cursors'
@@ -716,6 +717,7 @@
   autocmd FileType css,scss setlocal foldmethod=marker foldmarker={,}
   autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
   autocmd FileType python setlocal foldmethod=indent
+  autocmd FileType markdown setlocal nolist
 "}}}
 
 " vundle rtp load sequence requires the filetypes to be loaded after all bundles are loaded
