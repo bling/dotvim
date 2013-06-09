@@ -103,11 +103,11 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
 
 ### [easygrep](http://www.vim.org/scripts/script.php?script_id=2438)
 *  makes search/replacing in your project a lot easier without relying on `find` and `sed`
+*  the loading time of this plugin is relatively heavy, so it is not loaded at startup.  to load it on-demand, use `<leader>vo`, which opens the options window.
 *  `<leader>vv` find word under the cursor
 *  `<leader>vV` find whole word under the cursor
 *  `<leader>vr` perform global search replace of word under cursor, with confirmation
 *  `<leader>vR` same as vr, but matches whole word
-*  `<leader>vo` shows options
 
 ### [fugitive](https://github.com/tpope/vim-fugitive)
 *  git wrapper
