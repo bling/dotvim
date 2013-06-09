@@ -291,7 +291,10 @@
     NeoBundle 'wavded/vim-stylus'
     NeoBundle 'digitaltoad/vim-jade'
     NeoBundle 'juvenn/mustache.vim'
-    NeoBundle 'mattn/zencoding-vim'
+    NeoBundle 'mattn/zencoding-vim' "{{{
+      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache
+            \ inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
+    "}}}
     " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
       let g:used_javascript_libs='jquery,requirejs'
     "}}}
