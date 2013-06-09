@@ -396,7 +396,7 @@
     NeoBundle 'terryma/vim-multiple-cursors'
     NeoBundle 'chrisbra/NrrwRgn'
     NeoBundle 'dahu/vim-fanfingtastic'
-    NeoBundle 'godlygeek/tabular' "{{{
+    NeoBundleLazy 'godlygeek/tabular', {'autoload':{'commands':'Tabularize'}} "{{{
       nmap <Leader>a& :Tabularize /&<CR>
       vmap <Leader>a& :Tabularize /&<CR>
       nmap <Leader>a= :Tabularize /=<CR>
@@ -557,11 +557,11 @@
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'misc') "{{{
-    NeoBundle 'tpope/vim-markdown'
+    NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
     if executable('redcarpet') && executable('instant-markdown-d')
-      NeoBundle 'suan/vim-instant-markdown'
+      NeoBundleLazy 'suan/vim-instant-markdown', {'autoload':{'filetypes':['markdown']}}
     endif
-    NeoBundle 'guns/xterm-color-table.vim'
+    NeoBundleLazy 'guns/xterm-color-table.vim', {'autoload':{'commands':'XtermColorTable'}}
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
     NeoBundle 'mhinz/vim-startify' "{{{
@@ -574,11 +574,11 @@
       let g:syntastic_warning_symbol = '∆'
       let g:syntastic_style_warning_symbol = '≈'
     "}}}
-    NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' } "{{{
+    NeoBundleLazy 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim', 'autoload': { 'commands': 'Gist' } } "{{{
       let g:gist_post_private=1
       let g:gist_show_privates=1
     "}}}
-    NeoBundle 'Shougo/vimshell' "{{{
+    NeoBundleLazy 'Shougo/vimshell', {'autoload':{'commands':'VimShell'}} "{{{
       if s:is_macvim
         let g:vimshell_editor_command='mvim'
       else
@@ -592,8 +592,8 @@
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'windows') "{{{
-    NeoBundle 'PProvost/vim-ps1'
-    NeoBundle 'OrangeT/vim-csharp'
+    NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}}
+    NeoBundleLazy 'OrangeT/vim-csharp', {'autoload':{'filetypes':['cs']}}
   endif "}}}
 
   nnoremap <leader>nbu :Unite neobundle/update -no-start-insert<cr>
