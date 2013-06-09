@@ -323,7 +323,8 @@
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'autocomplete') "{{{
-    NeoBundle 'teramako/jscomplete-vim'
+    NeoBundle 'honza/vim-snippets'
+    NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}}
     if s:autocomplete_method == 'ycm' "{{{
       NeoBundle 'Valloric/YouCompleteMe' "{{{
         let g:ycm_complete_in_comments_and_strings=1
@@ -385,7 +386,6 @@
         let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
       "}}}
     endif "}}}
-    NeoBundle 'honza/vim-snippets'
   endif "}}}
   if count(s:plugin_groups, 'editing') "{{{
     NeoBundle 'editorconfig/editorconfig-vim'
@@ -424,14 +424,14 @@
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'navigation') "{{{
+    NeoBundleLazy 'sjl/gundo.vim', {'autoload':{'commands':'GundoToggle'}} "{{{
+      let g:gundo_right=1
+      nnoremap <silent> <F5> :GundoToggle<CR>
+    "}}}
     NeoBundle 'EasyGrep' "{{{
       let g:EasyGrepRecursive=1
       let g:EasyGrepAllOptionsInExplorer=1
       let g:EasyGrepCommand=1
-    "}}}
-    NeoBundle 'sjl/gundo.vim' "{{{
-      let g:gundo_right=1
-      nnoremap <silent> <F5> :GundoToggle<CR>
     "}}}
     NeoBundle 'kien/ctrlp.vim', { 'depends': 'tacahiroy/ctrlp-funky' } "{{{
       let g:ctrlp_clear_cache_on_exit=1
@@ -452,10 +452,15 @@
       nnoremap [ctrlp]o :CtrlPFunky<cr>
       nnoremap [ctrlp]b :CtrlPBuffer<cr>
     "}}}
-    NeoBundle 'Shougo/unite.vim', { 'depends': ['tsukkee/unite-tag','Shougo/unite-outline'] } "{{{
-      call unite#filters#matcher_default#use(['matcher_fuzzy'])
-      call unite#filters#sorter_default#use(['sorter_rank'])
-      call unite#set_profile('files', 'smartcase', 1)
+    NeoBundleLazy 'tsukkee/unite-tag', {'autoload':{'unite_sources':'tag'}}
+    NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
+    NeoBundleLazy 'Shougo/unite.vim', {'autoload':{'commands':'Unite'}} "{{{
+      let bundle = neobundle#get('unite.vim')
+      function! bundle.hooks.on_source(bundle)
+        call unite#filters#matcher_default#use(['matcher_fuzzy'])
+        call unite#filters#sorter_default#use(['sorter_rank'])
+        call unite#set_profile('files', 'smartcase', 1)
+      endfunction
 
       let g:unite_data_directory='~/.vim/.cache/unite'
       let g:unite_enable_start_insert=1
