@@ -74,7 +74,7 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
    * `<leader>DD` starts profiling all functions and files into a file `profile.log`
    * `<leader>DP` pauses profiling
    * `<leader>DC` continues profiling
-   * `<leader>DQ` finishs profiling and exits vim
+   * `<leader>DQ` finishes profiling and exits vim
 
 ### visual mode
 *  `<leader>s` sort selection

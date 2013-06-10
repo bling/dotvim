@@ -696,7 +696,7 @@
   nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
   " quick buffer open
-  nnoremap <leader>o :ls<cr>:e #
+  nnoremap gb :ls<cr>:e #
 
   if neobundle#is_sourced('vim-dispatch')
     nnoremap <leader>tag :Dispatch ctags -R<cr>
