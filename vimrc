@@ -297,9 +297,7 @@
       autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache
             \ inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
     "}}}
-    " NeoBundle 'othree/javascript-libraries-syntax.vim' "{{{
-      let g:used_javascript_libs='jquery,requirejs'
-    "}}}
+    NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload':{'filetypes':['javascript','coffee','ls','typescript']}}
   endif "}}}
   if count(s:plugin_groups, 'ruby') "{{{
     NeoBundle 'tpope/vim-rails'
@@ -510,7 +508,7 @@
       nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
       nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-      nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
+      nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
       nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
       nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
