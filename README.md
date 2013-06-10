@@ -138,10 +138,11 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
 ### [ctrlp](https://github.com/kien/ctrlp.vim)
 *  fuzzy file searching
 *  `<C-p>` to bring up the search
-*  `<leader>p` search the current buffer tags
-*  `<leader>pt` search global tags
-*  `<leader>pl` search all lines of all buffers
-*  `<leader>o` search open buffers
+*  `\t` search the current buffer tags
+*  `\T` search global tags
+*  `\l` search all lines of all buffers
+*  `\b` search open buffers
+*  `\o` parses the current file for functions with [funky](https://github.com/tacahiroy/ctrlp-funky)
 
 ### [nrrwrgn](http://github.com/chrisbra/NrrwRgn)
 *  `<leader>nr` puts the current visual selection into a new scratch buffer, allowing you to perform global commands and merge changes to the original file automatically

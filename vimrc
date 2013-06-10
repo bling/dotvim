@@ -602,7 +602,9 @@
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'windows') "{{{
-    NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}}
+    NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}} "{{{
+      autocmd BufNewFile,BufRead *.ps1,*.psd1,*.psm1 setlocal ft=ps1
+    "}}}
     NeoBundleLazy 'OrangeT/vim-csharp', {'autoload':{'filetypes':['cs']}}
   endif "}}}
 
