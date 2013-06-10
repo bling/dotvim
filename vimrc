@@ -26,6 +26,8 @@
   call add(s:settings.plugin_groups, 'core')
   call add(s:settings.plugin_groups, 'web')
   call add(s:settings.plugin_groups, 'ruby')
+  " call add(s:settings.plugin_groups, 'python')
+  " call add(s:settings.plugin_groups, 'go')
   call add(s:settings.plugin_groups, 'scm')
   call add(s:settings.plugin_groups, 'editing')
   call add(s:settings.plugin_groups, 'visual')
@@ -303,6 +305,12 @@
     NeoBundle 'tpope/vim-rails'
     NeoBundle 'tpope/vim-bundler'
   endif "}}}
+  if count(s:plugin_groups, 'python') "{{{
+    NeoBundleLazy 'klen/python-mode', {'autoload':{'filetypes':['python']}}
+  endif "}}}
+  if count(s:plugin_groups, 'go') "{{{
+    NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
+  endif "}}}
   if count(s:plugin_groups, 'scm') "{{{
     " NeoBundle 'sjl/splice.vim'
     NeoBundle 'mhinz/vim-signify' "{{{
@@ -342,7 +350,7 @@
         let g:UltiSnipsSnippetsDir='~/.vim/snippets'
       "}}}
     else
-      NeoBundle 'Shougo/neosnippet.vim' "{{{
+      NeoBundle 'Shougo/neosnippet' "{{{
         let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
         let g:neosnippet#enable_snipmate_compatibility=1
 
@@ -353,14 +361,14 @@
       "}}}
     endif "}}}
     if s:autocomplete_method == 'neocomplete' "{{{
-      NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}} "{{{
+      NeoBundleLazy 'Shougo/neocomplete', {'autoload':{'insert':1}} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
         let g:neocomplete#enable_auto_delimiter=1
       "}}}
     endif "}}}
     if s:autocomplete_method == 'neocomplcache' "{{{
-      NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
+      NeoBundleLazy 'Shougo/neocomplcache', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_auto_delimiter=1
         " let g:neocomplcache_force_overwrite_completefunc=1
@@ -426,9 +434,10 @@
     "}}}
   endif "}}}
   if count(s:plugin_groups, 'navigation') "{{{
-    NeoBundleLazy 'sjl/gundo.vim', {'autoload':{'commands':'GundoToggle'}} "{{{
-      let g:gundo_right=1
-      nnoremap <silent> <F5> :GundoToggle<CR>
+    NeoBundleLazy 'mbbill/undotree', {'autoload':{'commands':'UndotreeToggle'}} "{{{
+      let g:undotree_SplitLocation='botright'
+      let g:undotree_SetFocusWhenToggle=1
+      nnoremap <silent> <F5> :UndotreeToggle<CR>
     "}}}
     NeoBundleLazy 'EasyGrep', {'autoload':{'commands':'GrepOptions'}} "{{{
       let g:EasyGrepRecursive=1
