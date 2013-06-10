@@ -160,10 +160,10 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
 
 ### [zencoding](https://github.com/mattn/zencoding-vim)
 *  makes for writing html/css extremely fast
-*  for supported most filetypes, `<tab>` will automatically expand the line (you can use `<C-v><Tab>` to insert a tab character if needed)
+*  for supported most filetypes, `<tab>` will be mapped to automatically expand the line (you can use `<C-v><Tab>` to insert a tab character if needed)
 *  for other features, default plugin mappings are available, which means `<C-y>` is the prefix, followed by a variety of options (see `:help zencoding`)
 
-### [gundo](https://github.com/sjl/gundo.vim)
+### [undotree](https://github.com/mbbill/undotree)
 *  visualize the undo tree
 *  `<F5>` to toggle
 
