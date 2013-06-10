@@ -342,7 +342,7 @@
         let g:UltiSnipsSnippetsDir='~/.vim/snippets'
       "}}}
     else
-      NeoBundle 'Shougo/neosnippet' "{{{
+      NeoBundle 'Shougo/neosnippet.vim' "{{{
         let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
         let g:neosnippet#enable_snipmate_compatibility=1
 
@@ -353,14 +353,14 @@
       "}}}
     endif "}}}
     if s:autocomplete_method == 'neocomplete' "{{{
-      NeoBundle 'Shougo/neocomplete.vim' "{{{
+      NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
         let g:neocomplete#enable_auto_delimiter=1
       "}}}
     endif "}}}
     if s:autocomplete_method == 'neocomplcache' "{{{
-      NeoBundle 'Shougo/neocomplcache' "{{{
+      NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_auto_delimiter=1
         " let g:neocomplcache_force_overwrite_completefunc=1
@@ -391,7 +391,7 @@
     endif "}}}
   endif "}}}
   if count(s:plugin_groups, 'editing') "{{{
-    NeoBundle 'editorconfig/editorconfig-vim'
+    NeoBundleLazy 'editorconfig/editorconfig-vim', {'autoload':{'insert':1}}
     NeoBundle 'tpope/vim-speeddating'
     NeoBundle 'tpope/vim-endwise'
     NeoBundle 'tomtom/tcomment_vim'
@@ -417,9 +417,8 @@
       let delimitMate_expand_cr=1
       au FileType markdown,vim let b:loaded_delimitMate=1
     "}}}
-    " EasyMotion {{{
+    NeoBundle 'skwp/vim-easymotion' "{{{
       " NeoBundle 'Lokaltog/vim-easymotion'
-      NeoBundle 'skwp/vim-easymotion'
       let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
 
       autocmd ColorScheme * highlight EasyMotionTarget ctermfg=32 guifg=#0087df
@@ -524,7 +523,7 @@
       nnoremap <F2> :NERDTreeToggle<CR>
       nnoremap <F3> :NERDTreeFind<CR>
     "}}}
-    NeoBundle 'majutsushi/tagbar' "{{{
+    NeoBundleLazy 'majutsushi/tagbar', {'autoload':{'commands':'TagbarToggle'}} "{{{
       nnoremap <silent> <F9> :TagbarToggle<CR>
     "}}}
   endif "}}}
@@ -538,10 +537,10 @@
     " NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
     " NeoBundle 'zhaocai/GoldenView.Vim' "{{{
-      let g:goldenview__enable_default_mapping=0
-      nmap <F4> <Plug>ToggleGoldenViewAutoResize
-    "}}}
-    NeoBundle 'roman/golden-ratio' "{{{
+    "   let g:goldenview__enable_default_mapping=0
+    "   nmap <F4> <Plug>ToggleGoldenViewAutoResize
+    " "}}}
+    NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
       let g:golden_ratio_autocommand=0
       let g:golden_ratio_wrap_ignored=0
       nnoremap <F4> :GoldenRatioToggle<cr>
