@@ -48,7 +48,6 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
 ### insert mode
 *  `<C-h>` move the cursor left
 *  `<C-l>` move the cursor right
-*  `jk`,`kj` "smash escape"
 
 ### normal mode
 *  `<leader>fef` format entire file
