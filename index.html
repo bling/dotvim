@@ -3,34 +3,31 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
     <title>bling.vim by bling</title>
   </head>
 
   <body>
-    <div id="container">
+    <header>
       <div class="inner">
+        <h1>bling.vim</h1>
+        <h2>lean &amp; mean vim distribution</h2>
+        <a href="https://github.com/bling/dotvim" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-        <header>
-          <h1>bling.vim</h1>
-          <h2>lean &amp; mean vim distribution</h2>
-        </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/bling/dotvim/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/bling/dotvim/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/bling/dotvim" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
           <h1>
 <a name="blingvim" class="anchor" href="#blingvim"><span class="octicon octicon-link"></span></a>bling.vim</h1>
 
@@ -69,6 +66,17 @@ source ~/.vim/vimrc
 <ul>
 <li> the <code>g:dotvim_settings</code> is a dictionary that contains overrides for all possible settings.  refer to the top of the <code>vimrc</code> file directly to determine what options are available.</li>
 </ul><h2>
+<a name="autocomplete" class="anchor" href="#autocomplete"><span class="octicon octicon-link"></span></a>autocomplete</h2>
+
+<p>this distribution will pick one of three combinations, in the following priority:</p>
+
+<ol>
+<li> <a href="https://github.com/Shougo/neocomplete.vim">neocomplete</a> + <a href="https://github.com/Shougo/neosnippet.vim">neosnippet</a> if you have <code>lua</code> enabled and a new enough version of vim</li>
+<li> <a href="https://github.com/Valloric/YouCompleteMe">youcompleteme</a> + <a href="https://github.com/SirVer/ultisnips">ultisnips</a> if you have <code>python</code> enabled and a new enough version of vim</li>
+<li> <a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a> + <a href="https://github.com/Shougo/neosnippet.vim">neosnippet</a> if you only have vimscript available</li>
+</ol><p>this can be overridden with <code>g:dotvim_settings.autocomplete_method</code></p>
+
+<h2>
 <a name="standard-modifications" class="anchor" href="#standard-modifications"><span class="octicon octicon-link"></span></a>standard modifications</h2>
 
 <ul>
@@ -132,7 +140,7 @@ source ~/.vim/vimrc
 <li>
 <code>&lt;leader&gt;DC</code> continues profiling</li>
 <li>
-<code>&lt;leader&gt;DQ</code> finishs profiling and exits vim</li>
+<code>&lt;leader&gt;DQ</code> finishes profiling and exits vim</li>
 </ul>
 </li>
 </ul><h3>
@@ -184,11 +192,11 @@ source ~/.vim/vimrc
 <ul>
 <li> makes search/replacing in your project a lot easier without relying on <code>find</code> and <code>sed</code>
 </li>
+<li> the loading time of this plugin is relatively heavy, so it is not loaded at startup.  to load it on-demand, use <code>&lt;leader&gt;vo</code>, which opens the options window.</li>
 <li> <code>&lt;leader&gt;vv</code> find word under the cursor</li>
 <li> <code>&lt;leader&gt;vV</code> find whole word under the cursor</li>
 <li> <code>&lt;leader&gt;vr</code> perform global search replace of word under cursor, with confirmation</li>
 <li> <code>&lt;leader&gt;vR</code> same as vr, but matches whole word</li>
-<li> <code>&lt;leader&gt;vo</code> shows options</li>
 </ul><h3>
 <a name="fugitive" class="anchor" href="#fugitive"><span class="octicon octicon-link"></span></a><a href="https://github.com/tpope/vim-fugitive">fugitive</a>
 </h3>
@@ -235,10 +243,12 @@ source ~/.vim/vimrc
 <ul>
 <li> fuzzy file searching</li>
 <li> <code>&lt;C-p&gt;</code> to bring up the search</li>
-<li> <code>&lt;leader&gt;p</code> search the current buffer tags</li>
-<li> <code>&lt;leader&gt;pt</code> search global tags</li>
-<li> <code>&lt;leader&gt;pl</code> search all lines of all buffers</li>
-<li> <code>&lt;leader&gt;o</code> search open buffers</li>
+<li> <code>\t</code> search the current buffer tags</li>
+<li> <code>\T</code> search global tags</li>
+<li> <code>\l</code> search all lines of all buffers</li>
+<li> <code>\b</code> search open buffers</li>
+<li> <code>\o</code> parses the current file for functions with <a href="https://github.com/tacahiroy/ctrlp-funky">funky</a>
+</li>
 </ul><h3>
 <a name="nrrwrgn" class="anchor" href="#nrrwrgn"><span class="octicon octicon-link"></span></a><a href="http://github.com/chrisbra/NrrwRgn">nrrwrgn</a>
 </h3>
@@ -274,9 +284,10 @@ source ~/.vim/vimrc
 
 <ul>
 <li> makes for writing html/css extremely fast</li>
-<li> currently, default plugin mappings are used, which means <code>&lt;C-y&gt;,</code> expand</li>
+<li> for supported most filetypes, <code>&lt;tab&gt;</code> will be mapped to automatically expand the line (you can use <code>&lt;C-v&gt;&lt;Tab&gt;</code> to insert a tab character if needed)</li>
+<li> for other features, default plugin mappings are available, which means <code>&lt;C-y&gt;</code> is the prefix, followed by a variety of options (see <code>:help zencoding</code>)</li>
 </ul><h3>
-<a name="gundo" class="anchor" href="#gundo"><span class="octicon octicon-link"></span></a><a href="https://github.com/sjl/gundo.vim">gundo</a>
+<a name="undotree" class="anchor" href="#undotree"><span class="octicon octicon-link"></span></a><a href="https://github.com/mbbill/undotree">undotree</a>
 </h3>
 
 <ul>
@@ -290,12 +301,13 @@ source ~/.vim/vimrc
 <li> amazingly fast fuzzy autocomplete engine combined with an excellent snippets library</li>
 <li> use <code>&lt;C-n&gt;</code> and <code>&lt;C-p&gt;</code> to go back/forward between selections, and <code>&lt;tab&gt;</code> to expand snippets</li>
 </ul><h3>
-<a name="neocomplcacheneosnippet" class="anchor" href="#neocomplcacheneosnippet"><span class="octicon octicon-link"></span></a><a href="https://github.com/Shougo/neocomplcache">neocomplcache</a>/<a href="https://github.com/Shougo/neosnippet">neosnippet</a>
+<a name="neocomplcacheneosnippet" class="anchor" href="#neocomplcacheneosnippet"><span class="octicon octicon-link"></span></a><a href="https://github.com/Shougo/neocomplcache.vim">neocomplcache</a>/<a href="https://github.com/Shougo/neosnippet.vim">neosnippet</a>
 </h3>
 
 <ul>
 <li> autocomplete/snippet support as a fallback choice when YCM and/or python is unavailable</li>
 <li> <code>&lt;Tab&gt;</code> to select the next match, or expand if the keyword is a snippet</li>
+<li> if you have lua installed, it will use <a href="https://github.com/Shougo/neocomplete.vim">neocomplete</a> instead</li>
 </ul><h3>
 <a name="vimshell" class="anchor" href="#vimshell"><span class="octicon octicon-link"></span></a><a href="https://github.com/Shougo/vimshell">vimshell</a>
 </h3>
@@ -325,10 +337,10 @@ source ~/.vim/vimrc
 <li> <a href="https://github.com/Raimondi/delimitMate">delimitmate</a> automagically adds closing quotes and braces</li>
 <li> <a href="https://github.com/mhinz/vim-startify">startify</a> gives you a better start screen</li>
 </ul><h1>
-<a name="and-even-more-plugins" class="anchor" href="#and-even-more-plugins"><span class="octicon octicon-link"></span></a>and even more plugins</h1>
+<a name="and-even-more-plugins" class="anchor" href="#and-even-more-plugins"><span class="octicon octicon-link"></span></a>and even more plugins...</h1>
 
 <ul>
-<li> the <code>vimrc</code> has over 50 plugins sourced</li>
+<li> i think i've listed about half of the plugins contained in this distribution, so please have a look at the vimrc directly to see all plugins in use</li>
 </ul><h2>
 <a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>credits</h2>
 
@@ -361,12 +373,24 @@ source ~/.vim/vimrc
 <p><a href="http://sam.zoy.org/wtfpl/">WTFPL</a></p>
         </section>
 
-        <footer>
-          bling.vim is maintained by <a href="https://github.com/bling">bling</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+        <aside id="sidebar">
+          <a href="https://github.com/bling/dotvim/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/bling/dotvim/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-                  <script type="text/javascript">
+          <p class="repo-owner"><a href="https://github.com/bling/dotvim"></a> is maintained by <a href="https://github.com/bling">bling</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -377,7 +401,5 @@ source ~/.vim/vimrc
             } catch(err) {}
           </script>
 
-      </div>
-    </div>
   </body>
 </html>
