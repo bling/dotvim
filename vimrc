@@ -266,7 +266,7 @@
       vmap <c-up> [egv
       vmap <c-down> ]egv
     "}}}
-    NeoBundleDepends 'Shougo/vimproc', {
+    NeoBundleDepends 'Shougo/vimproc.vim', {
       \ 'build': {
         \ 'mac': 'make -f make_mac.mak',
         \ 'unix': 'make -f make_unix.mak',
@@ -348,7 +348,7 @@
         let g:UltiSnipsSnippetsDir='~/.vim/snippets'
       "}}}
     else
-      NeoBundle 'Shougo/neosnippet' "{{{
+      NeoBundle 'Shougo/neosnippet.vim' "{{{
         let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
         let g:neosnippet#enable_snipmate_compatibility=1
 
@@ -359,14 +359,14 @@
       "}}}
     endif "}}}
     if s:autocomplete_method == 'neocomplete' "{{{
-      NeoBundleLazy 'Shougo/neocomplete', {'autoload':{'insert':1}} "{{{
+      NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
         let g:neocomplete#enable_auto_delimiter=1
       "}}}
     endif "}}}
     if s:autocomplete_method == 'neocomplcache' "{{{
-      NeoBundleLazy 'Shougo/neocomplcache', {'autoload':{'insert':1}} "{{{
+      NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_auto_delimiter=1
         " let g:neocomplcache_force_overwrite_completefunc=1
@@ -421,7 +421,7 @@
     "}}}
     NeoBundle 'Raimondi/delimitMate' "{{{
       let delimitMate_expand_cr=1
-      au FileType markdown,vim let b:loaded_delimitMate=1
+      autocmd FileType markdown,vim let b:loaded_delimitMate=1
     "}}}
     NeoBundle 'skwp/vim-easymotion' "{{{
       " NeoBundle 'Lokaltog/vim-easymotion'
@@ -513,7 +513,7 @@
       nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     "}}}
-    " NeoBundle 'Shougo/vimfiler' "{{{
+    " NeoBundle 'Shougo/vimfiler.vim' "{{{
     "   let g:vimfiler_as_default_explorer=1
     "   let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
     "   nnoremap <F2> :VimFilerExplorer<CR>
@@ -543,15 +543,15 @@
     " NeoBundle 'zhaocai/linepower.vim'
     " NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
-    " NeoBundle 'zhaocai/GoldenView.Vim' "{{{
-    "   let g:goldenview__enable_default_mapping=0
-    "   nmap <F4> <Plug>ToggleGoldenViewAutoResize
-    " "}}}
-    NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
-      let g:golden_ratio_autocommand=0
-      let g:golden_ratio_wrap_ignored=0
-      nnoremap <F4> :GoldenRatioToggle<cr>
+    NeoBundleLazy 'zhaocai/GoldenView.Vim', {'autoload':{'mappings':['<Plug>ToggleGoldenViewAutoResize']}} "{{{
+      let g:goldenview__enable_default_mapping=0
+      nmap <F4> <Plug>ToggleGoldenViewAutoResize
     "}}}
+    " NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
+    "   let g:golden_ratio_autocommand=0
+    "   let g:golden_ratio_wrap_ignored=0
+    "   nnoremap <F4> :GoldenRatioToggle<cr>
+    " "}}}
   endif "}}}
   if count(s:plugin_groups, 'indents') "{{{
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
@@ -588,7 +588,7 @@
       let g:gist_post_private=1
       let g:gist_show_privates=1
     "}}}
-    NeoBundleLazy 'Shougo/vimshell', {'autoload':{'commands':'VimShell'}} "{{{
+    NeoBundleLazy 'Shougo/vimshell.vim', {'autoload':{'commands':'VimShell'}} "{{{
       if s:is_macvim
         let g:vimshell_editor_command='mvim'
       else
