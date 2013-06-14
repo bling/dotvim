@@ -294,8 +294,7 @@
     NeoBundleLazy 'juvenn/mustache.vim', {'autoload':{'filetypes':['mustache']}}
     NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
     NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
-      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache
-            \ inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
+      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
     "}}}
     NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload':{'filetypes':['javascript','coffee','ls','typescript']}}
   endif "}}}
