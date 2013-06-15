@@ -16,6 +16,7 @@
   let s:settings.default_indent = 2
   let s:settings.max_column = 120
   let s:settings.autocomplete_method = 'neocomplcache'
+  let s:settings.enable_cursorcolumn = 0
   if has('patch885') && has('lua')
     let s:settings.autocomplete_method = 'neocomplete'
   elseif has('patch584') && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
@@ -25,6 +26,7 @@
   let s:settings.plugin_groups = []
   call add(s:settings.plugin_groups, 'core')
   call add(s:settings.plugin_groups, 'web')
+  call add(s:settings.plugin_groups, 'javascript')
   call add(s:settings.plugin_groups, 'ruby')
   call add(s:settings.plugin_groups, 'python')
   call add(s:settings.plugin_groups, 'go')
@@ -215,9 +217,11 @@
   autocmd WinLeave * setlocal nocursorline
   autocmd WinEnter * setlocal cursorline
   let &colorcolumn=s:settings.max_column
-  set cursorcolumn
-  autocmd WinLeave * setlocal nocursorcolumn
-  autocmd WinEnter * setlocal cursorcolumn
+  if s:settings.enable_cursorcolumn
+    set cursorcolumn
+    autocmd WinLeave * setlocal nocursorcolumn
+    autocmd WinEnter * setlocal cursorcolumn
+  endif
 
   if has('conceal')
     set conceallevel=1
@@ -280,15 +284,7 @@
     \ }
   endif "}}}
   if count(s:settings.plugin_groups, 'web') "{{{
-    NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
-    NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload':{'filetypes':['javascript']}} "{{{
-      nnoremap <leader>fjs :call JsBeautify()<cr>
-    "}}}
-    NeoBundleLazy 'leafgarland/typescript-vim', {'autoload':{'filetypes':['typescript']}}
-    NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
     NeoBundleLazy 'groenewege/vim-less', {'autoload':{'filetypes':['less']}}
-    NeoBundleLazy 'mmalecki/vim-node.js', {'autoload':{'filetypes':['javascript']}}
-    NeoBundleLazy 'leshill/vim-json', {'autoload':{'filetypes':['javascript','json']}}
     NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload':{'filetypes':['scss','sass']}}
     NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload':{'filetypes':['css','scss','sass']}}
     NeoBundleLazy 'ap/vim-css-color', {'autoload':{'filetypes':['css','scss','sass','less','styl']}}
@@ -297,6 +293,17 @@
     NeoBundleLazy 'digitaltoad/vim-jade', {'autoload':{'filetypes':['jade']}}
     NeoBundleLazy 'juvenn/mustache.vim', {'autoload':{'filetypes':['mustache']}}
     NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
+  endif "}}}
+  if count(s:settings.plugin_groups, 'javascript') "{{{
+    NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}}
+    NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
+    NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload':{'filetypes':['javascript']}} "{{{
+      nnoremap <leader>fjs :call JsBeautify()<cr>
+    "}}}
+    NeoBundleLazy 'leafgarland/typescript-vim', {'autoload':{'filetypes':['typescript']}}
+    NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
+    NeoBundleLazy 'mmalecki/vim-node.js', {'autoload':{'filetypes':['javascript']}}
+    NeoBundleLazy 'leshill/vim-json', {'autoload':{'filetypes':['javascript','json']}}
     NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
       autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
     "}}}
@@ -339,7 +346,6 @@
   endif "}}}
   if count(s:settings.plugin_groups, 'autocomplete') "{{{
     NeoBundle 'honza/vim-snippets'
-    NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}}
     if s:settings.autocomplete_method == 'ycm' "{{{
       NeoBundle 'Valloric/YouCompleteMe' "{{{
         let g:ycm_complete_in_comments_and_strings=1
