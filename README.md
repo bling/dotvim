@@ -26,7 +26,7 @@ let g:dotvim_settings.plugin_groups = ['core','web']
 
 source ~/.vim/vimrc
 
-set wildignore+=*/node_modules/*
+set wildignore+=\*/node_modules/\*
 colorscheme my_awesome_colorscheme
 ```
 *  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.

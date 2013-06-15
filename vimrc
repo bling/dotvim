@@ -41,9 +41,7 @@
 
   for key in keys(s:settings)
     if has_key(g:dotvim_settings, key)
-      let s:[key] = g:dotvim_settings[key]
-    else
-      let s:[key] = s:settings[key]
+      let s:settings[key] = g:dotvim_settings[key]
     endif
   endfor
 "}}}
@@ -132,9 +130,9 @@
   set smartindent                                     "smart indenting for additional languages
   set expandtab                                       "spaces instead of tabs
   set smarttab                                        "use shiftwidth to enter tabs
-  let &tabstop=s:default_indent                       "number of spaces per tab for display
-  let &softtabstop=s:default_indent                   "number of spaces per tab in insert mode
-  let &shiftwidth=s:default_indent                    "number of spaces when indenting
+  let &tabstop=s:settings.default_indent              "number of spaces per tab for display
+  let &softtabstop=s:settings.default_indent          "number of spaces per tab in insert mode
+  let &shiftwidth=s:settings.default_indent           "number of spaces when indenting
   set list                                            "highlight whitespace
   set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
   set shiftround
@@ -210,7 +208,7 @@
   set cursorline
   autocmd WinLeave * setlocal nocursorline
   autocmd WinEnter * setlocal cursorline
-  let &colorcolumn=s:max_column
+  let &colorcolumn=s:settings.max_column
   set cursorcolumn
   autocmd WinLeave * setlocal nocursorcolumn
   autocmd WinEnter * setlocal cursorcolumn
@@ -254,7 +252,7 @@
 "}}}
 
 " plugin/mapping configuration {{{
-  if count(s:plugin_groups, 'core') "{{{
+  if count(s:settings.plugin_groups, 'core') "{{{
     NeoBundle 'matchit.zip'
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
@@ -275,7 +273,7 @@
       \ },
     \ }
   endif "}}}
-  if count(s:plugin_groups, 'web') "{{{
+  if count(s:settings.plugin_groups, 'web') "{{{
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload':{'filetypes':['javascript']}} "{{{
       nnoremap <leader>fjs :call JsBeautify()<cr>
@@ -298,17 +296,17 @@
     "}}}
     NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload':{'filetypes':['javascript','coffee','ls','typescript']}}
   endif "}}}
-  if count(s:plugin_groups, 'ruby') "{{{
+  if count(s:settings.plugin_groups, 'ruby') "{{{
     NeoBundle 'tpope/vim-rails'
     NeoBundle 'tpope/vim-bundler'
   endif "}}}
-  if count(s:plugin_groups, 'python') "{{{
+  if count(s:settings.plugin_groups, 'python') "{{{
     NeoBundleLazy 'klen/python-mode', {'autoload':{'filetypes':['python']}}
   endif "}}}
-  if count(s:plugin_groups, 'go') "{{{
+  if count(s:settings.plugin_groups, 'go') "{{{
     NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
   endif "}}}
-  if count(s:plugin_groups, 'scm') "{{{
+  if count(s:settings.plugin_groups, 'scm') "{{{
     " NeoBundle 'sjl/splice.vim'
     NeoBundle 'mhinz/vim-signify' "{{{
       let g:signify_update_on_bufenter=0
@@ -330,10 +328,10 @@
       nnoremap <silent> <leader>gV :Gitv!<CR>
     "}}}
   endif "}}}
-  if count(s:plugin_groups, 'autocomplete') "{{{
+  if count(s:settings.plugin_groups, 'autocomplete') "{{{
     NeoBundle 'honza/vim-snippets'
     NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}}
-    if s:autocomplete_method == 'ycm' "{{{
+    if s:settings.autocomplete_method == 'ycm' "{{{
       NeoBundle 'Valloric/YouCompleteMe' "{{{
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
@@ -357,14 +355,14 @@
         smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
       "}}}
     endif "}}}
-    if s:autocomplete_method == 'neocomplete' "{{{
+    if s:settings.autocomplete_method == 'neocomplete' "{{{
       NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
         let g:neocomplete#enable_auto_delimiter=1
       "}}}
     endif "}}}
-    if s:autocomplete_method == 'neocomplcache' "{{{
+    if s:settings.autocomplete_method == 'neocomplcache' "{{{
       NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_auto_delimiter=1
@@ -395,7 +393,7 @@
       "}}}
     endif "}}}
   endif "}}}
-  if count(s:plugin_groups, 'editing') "{{{
+  if count(s:settings.plugin_groups, 'editing') "{{{
     NeoBundleLazy 'editorconfig/editorconfig-vim', {'autoload':{'insert':1}}
     NeoBundle 'tpope/vim-speeddating'
     NeoBundle 'tpope/vim-endwise'
@@ -430,7 +428,7 @@
       autocmd ColorScheme * highlight EasyMotionShade ctermfg=237 guifg=#3a3a3a
     "}}}
   endif "}}}
-  if count(s:plugin_groups, 'navigation') "{{{
+  if count(s:settings.plugin_groups, 'navigation') "{{{
     NeoBundleLazy 'mbbill/undotree', {'autoload':{'commands':'UndotreeToggle'}} "{{{
       let g:undotree_SplitLocation='botright'
       let g:undotree_SetFocusWhenToggle=1
@@ -469,6 +467,7 @@
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
         call unite#set_profile('files', 'smartcase', 1)
+        call unite#custom#source('line','matchers','matcher_fuzzy')
       endfunction
 
       let g:unite_data_directory='~/.vim/.cache/unite'
@@ -533,7 +532,7 @@
       nnoremap <silent> <F9> :TagbarToggle<CR>
     "}}}
   endif "}}}
-  if count(s:plugin_groups, 'visual') "{{{
+  if count(s:settings.plugin_groups, 'visual') "{{{
     NeoBundle 'bling/vim-bufferline' "{{{
       let g:bufferline_echo=0
       let g:bufferline_rotate=1
@@ -552,7 +551,7 @@
     "   nnoremap <F4> :GoldenRatioToggle<cr>
     " "}}}
   endif "}}}
-  if count(s:plugin_groups, 'indents') "{{{
+  if count(s:settings.plugin_groups, 'indents') "{{{
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
       let g:indent_guides_start_level=1
       let g:indent_guides_guide_size=1
@@ -568,7 +567,7 @@
       endif
     "}}}
   endif "}}}
-  if count(s:plugin_groups, 'misc') "{{{
+  if count(s:settings.plugin_groups, 'misc') "{{{
     NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
     if executable('redcarpet') && executable('instant-markdown-d')
       NeoBundleLazy 'suan/vim-instant-markdown', {'autoload':{'filetypes':['markdown']}}
@@ -603,7 +602,7 @@
       nnoremap <leader>c :VimShell -split<cr>
     "}}}
   endif "}}}
-  if count(s:plugin_groups, 'windows') "{{{
+  if count(s:settings.plugin_groups, 'windows') "{{{
     NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}} "{{{
       autocmd BufNewFile,BufRead *.ps1,*.psd1,*.psm1 setlocal ft=ps1
     "}}}
@@ -755,7 +754,7 @@ syntax enable
     let g:kolor_underlined=1
   "}}}
 
-  colorscheme hybrid
+  colorscheme jellybeans
 "}}}
 
 if filereadable(expand("~/.vimrc.local"))
