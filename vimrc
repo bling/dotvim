@@ -1,4 +1,4 @@
-" vim: fdm=marker ts=2 sts=2 sw=2
+" vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
 
 " detect OS {{{
   let s:is_windows = has('win32') || has('win64')
@@ -26,8 +26,8 @@
   call add(s:settings.plugin_groups, 'core')
   call add(s:settings.plugin_groups, 'web')
   call add(s:settings.plugin_groups, 'ruby')
-  " call add(s:settings.plugin_groups, 'python')
-  " call add(s:settings.plugin_groups, 'go')
+  call add(s:settings.plugin_groups, 'python')
+  call add(s:settings.plugin_groups, 'go')
   call add(s:settings.plugin_groups, 'scm')
   call add(s:settings.plugin_groups, 'editing')
   call add(s:settings.plugin_groups, 'visual')
@@ -37,6 +37,12 @@
   call add(s:settings.plugin_groups, 'misc')
   if s:is_windows
     call add(s:settings.plugin_groups, 'windows')
+  endif
+
+  if exists('g:dotvim_settings.plugin_groups_exclude')
+    for group in g:dotvim_settings.plugin_groups_exclude
+      call remove(s:settings.plugin_groups, index(s:settings.plugin_groups, group))
+    endfor
   endif
 
   for key in keys(s:settings)
