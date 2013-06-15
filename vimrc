@@ -560,8 +560,11 @@
       let g:indent_guides_color_change_percent=3
       if !has('gui_running')
         let g:indent_guides_auto_colors=0
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+        function! s:indent_set_console_colors()
+          hi IndentGuidesOdd ctermbg=235
+          hi IndentGuidesEven ctermbg=236
+        endfunction
+        autocmd VimEnter,Colorscheme * call s:indent_set_console_colors()
       endif
     "}}}
   endif "}}}
@@ -752,10 +755,7 @@ syntax enable
     let g:kolor_underlined=1
   "}}}
 
-  autocmd ColorScheme * highlight Normal guibg=#121212 ctermbg=233
-  autocmd ColorScheme * highlight SignColumn ctermfg=244 ctermbg=232 guifg=#808080 guibg=#080808
-  " autocmd ColorScheme * highlight Pmenu guibg=#000000 ctermbg=232
-  colorscheme gummybears
+  colorscheme hybrid
 "}}}
 
 if filereadable(expand("~/.vimrc.local"))

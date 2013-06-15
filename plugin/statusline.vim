@@ -7,6 +7,9 @@ function! ModePrefix()
   if l:mode !=# g:last_mode
     let g:last_mode = l:mode
 
+    hi StatusLine   guifg=#9cffd3 guibg=#202020 gui=NONE ctermfg=85 ctermbg=234 cterm=NONE
+    hi StatusLineNC guifg=#000000 guibg=#202020 gui=bold ctermfg=0  ctermbg=234 cterm=BOLD
+
     " mode
     hi User2 guifg=#005f00 guibg=#dfff00 gui=bold ctermfg=22 ctermbg=190 term=bold
     " mode seperator
@@ -43,6 +46,8 @@ function! ModePrefix()
     return l:mode
   endif
 endfunction
+
+call ModePrefix()
 
 set statusline=%2*%{ModePrefix()}%3*
 set statusline+=%{g:statusline_left_sep}
