@@ -45,7 +45,9 @@
 <li> clone this repository into your <code>~/.vim</code> directory</li>
 <li> <code>git submodule init &amp;&amp; git submodule update</code>
 </li>
-<li> <code>ln -s ~/.vim/vimrc ~/.vimrc</code>
+<li> <code>mv ~/.vimrc ~/.vimrc.backup</code>
+</li>
+<li> <code>echo "source ~/.vim/vimrc" &gt; ~/.vimrc</code>
 </li>
 <li> startup vim and neobundle will detect and ask you install any missing plugins.  you can also manually initiate this with <code>:NeoBundleInstall</code>
 </li>
@@ -54,13 +56,16 @@
 <a name="customization" class="anchor" href="#customization"><span class="octicon octicon-link"></span></a>customization</h2>
 
 <ul>
-<li> there are two ways to customize the distribution to your needs.  if you just need some basic changes, you can create your own file at <code>~/.vimrc.local</code> and it will be sourced at the very end, ensuring that your settings will overwrite whatever is set by the distribution.  if there is a certain plugin that you do not want to load, you can use <code>NeoBundleDisable plugin_name</code>.</li>
-<li> if you need finer grained control, then it is recommended that you create a simple vimrc shim, like so:</li>
+<li> since the distribution is just one file, customization is straightforward.  simply add settings before or after sourcing the distribution to customize.  for example:</li>
 </ul><pre><code>let g:dotvim_settings = {}
 let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
 let g:dotvim_settings.plugin_groups = ['core','web']
+
 source ~/.vim/vimrc
+
+set wildignore+=*/node_modules/*
+colorscheme my_awesome_colorscheme
 </code></pre>
 
 <ul>
@@ -92,7 +97,6 @@ source ~/.vim/vimrc
 <ul>
 <li> <code>&lt;C-h&gt;</code> move the cursor left</li>
 <li> <code>&lt;C-l&gt;</code> move the cursor right</li>
-<li> <code>jk</code>,<code>kj</code> "smash escape"</li>
 </ul><h3>
 <a name="normal-mode" class="anchor" href="#normal-mode"><span class="octicon octicon-link"></span></a>normal mode</h3>
 
