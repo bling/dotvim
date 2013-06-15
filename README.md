@@ -10,21 +10,23 @@ this is my personal vim distribution that i have tweaked over time and evolved f
 
 1.  clone this repository into your `~/.vim` directory
 1.  `git submodule init && git submodule update`
-1.  `ln -s ~/.vim/vimrc ~/.vimrc`
+1.  `mv ~/.vimrc ~/.vimrc.backup`
+1.  `echo "source ~/.vim/vimrc" > ~/.vimrc`
 1.  startup vim and neobundle will detect and ask you install any missing plugins.  you can also manually initiate this with `:NeoBundleInstall`
 1.  done!
 
 ## customization
 
-*  there are two ways to customize the distribution to your needs.  if you just need some basic changes, you can create your own file at `~/.vimrc.local` and it will be sourced at the very end, ensuring that your settings will overwrite whatever is set by the distribution.  if there is a certain plugin that you do not want to load, you can use `NeoBundleDisable plugin_name`.
-*  if you need finer grained control, then it is recommended that you create a simple vimrc shim, like so:
-
+*  since the distribution is just one file, customization is straightforward.  simply add settings before or after sourcing the distribution to customize.  for example:
 ```
 let g:dotvim_settings = {}
 let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
 let g:dotvim_settings.plugin_groups = ['core','web']
+
 source ~/.vim/vimrc
+
+set wildignore+=*/node_modules/*
 ```
 *  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.
 

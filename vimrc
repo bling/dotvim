@@ -210,10 +210,10 @@
   set cursorline
   autocmd WinLeave * setlocal nocursorline
   autocmd WinEnter * setlocal cursorline
-  " let &colorcolumn=s:max_column
-  " set cursorcolumn
-  " autocmd WinLeave * setlocal nocursorcolumn
-  " autocmd WinEnter * setlocal cursorcolumn
+  let &colorcolumn=s:max_column
+  set cursorcolumn
+  autocmd WinLeave * setlocal nocursorcolumn
+  autocmd WinEnter * setlocal cursorcolumn
 
   if has('conceal')
     set conceallevel=1
@@ -759,6 +759,7 @@ syntax enable
 "}}}
 
 if filereadable(expand("~/.vimrc.local"))
+  echom "Sourcing ~/.vimrc.local is deprecated.  Please consult the README on how to create a shim."
   source ~/.vimrc.local
 endif
 
