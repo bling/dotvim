@@ -18,6 +18,7 @@ this is my personal vim distribution that i have tweaked over time and evolved f
 ## customization
 
 *  since the distribution is just one file, customization is straightforward.  simply add settings before or after sourcing the distribution to customize.  for example:
+
 ```
 let g:dotvim_settings = {}
 let g:dotvim_settings.default_indent = 3
@@ -29,6 +30,7 @@ source ~/.vim/vimrc
 set wildignore+=*/node_modules/*
 colorscheme my_awesome_colorscheme
 ```
+
 *  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.
 
 ## autocomplete
