@@ -60,11 +60,17 @@
 </ul><pre><code>let g:dotvim_settings = {}
 let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
+
+" this will overwrite the plugin_groups defined in the distribution
 let g:dotvim_settings.plugin_groups = ['core','web']
+
+" alternatively, you can specify excludes
+let g:dotvim_settings.plugin_groups_exclude = ['ruby','python']
 
 source ~/.vim/vimrc
 
-set wildignore+=*/node_modules/*
+" anything defined here simply overwrites
+set wildignore+=\*/node_modules/\*
 colorscheme my_awesome_colorscheme
 </code></pre>
 
