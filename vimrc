@@ -301,7 +301,10 @@
     NeoBundle 'tpope/vim-bundler'
   endif "}}}
   if count(s:settings.plugin_groups, 'python') "{{{
-    NeoBundleLazy 'klen/python-mode', {'autoload':{'filetypes':['python']}}
+    NeoBundleLazy 'klen/python-mode', {'autoload':{'filetypes':['python']}} "{{{
+      let g:pymode_rope=0
+    "}}}
+    NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'go') "{{{
     NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
