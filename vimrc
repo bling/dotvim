@@ -1,4 +1,4 @@
-" vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
+" vim: fdm=marker ts=2 sts=2 sw=2
 
 " detect OS {{{
   let s:is_windows = has('win32') || has('win64')
@@ -43,7 +43,10 @@
 
   if exists('g:dotvim_settings.plugin_groups_exclude')
     for group in g:dotvim_settings.plugin_groups_exclude
-      call remove(s:settings.plugin_groups, index(s:settings.plugin_groups, group))
+      let i = index(s:settings.plugin_groups, group)
+      if i != -1
+        call remove(s:settings.plugin_groups, i)
+      endif
     endfor
   endif
 
@@ -482,13 +485,13 @@
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
         call unite#set_profile('files', 'smartcase', 1)
-        call unite#custom#source('line','matchers','matcher_fuzzy')
+        call unite#custom#source('line,outline','matchers','matcher_fuzzy')
       endfunction
 
       let g:unite_data_directory='~/.vim/.cache/unite'
       let g:unite_enable_start_insert=1
       let g:unite_source_history_yank_enable=1
-      let g:unite_source_file_rec_max_cache_files=5000
+      let g:unite_source_rec_max_cache_files=5000
       let g:unite_prompt='» '
 
       if executable('ag')
@@ -512,11 +515,11 @@
       nnoremap [unite] <nop>
 
       if s:is_windows
-        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec buffer file_mru bookmark<cr><c-u>
-        nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec<cr><c-u>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec buffer file_mru bookmark<cr><c-u>
+        nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec<cr><c-u>
       else
-        nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr><c-u>
-        nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec/async<cr><c-u>
+        nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr><c-u>
+        nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async<cr><c-u>
       endif
       nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
@@ -593,6 +596,7 @@
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = '~/.vim/.cache/sessions'
       let g:startify_show_sessions = 1
+      nnoremap <F1> :Startify<cr>
     "}}}
     NeoBundle 'scrooloose/syntastic' "{{{
       let g:syntastic_error_symbol = '✗'
