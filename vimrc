@@ -296,9 +296,14 @@
     NeoBundleLazy 'digitaltoad/vim-jade', {'autoload':{'filetypes':['jade']}}
     NeoBundleLazy 'juvenn/mustache.vim', {'autoload':{'filetypes':['mustache']}}
     NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
+    NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
+      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
+    "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'javascript') "{{{
-    NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}}
+    NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}} "{{{
+      autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
+    "}}}
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload':{'filetypes':['javascript']}} "{{{
       nnoremap <leader>fjs :call JsBeautify()<cr>
@@ -307,9 +312,6 @@
     NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
     NeoBundleLazy 'mmalecki/vim-node.js', {'autoload':{'filetypes':['javascript']}}
     NeoBundleLazy 'leshill/vim-json', {'autoload':{'filetypes':['javascript','json']}}
-    NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
-      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache inoremap <tab> <c-g>u<esc>:call zencoding#expandAbbr(0,"")<cr>a
-    "}}}
     NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload':{'filetypes':['javascript','coffee','ls','typescript']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'ruby') "{{{
@@ -406,10 +408,6 @@
         let g:neocomplcache_omni_functions.python   = 'pythoncomplete#Complete'
         let g:neocomplcache_omni_functions.xml      = 'xmlcomplete#CompleteTags'
         let g:neocomplcache_omni_functions.ruby     = 'rubycomplete#Complete'
-
-        " js completion
-        let g:jscomplete_use = [ 'dom' ]
-        let g:neocomplcache_omni_functions.javascript = 'jscomplete#CompleteJS'
       "}}}
     endif "}}}
   endif "}}}
