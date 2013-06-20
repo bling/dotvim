@@ -35,6 +35,7 @@
   call add(s:settings.plugin_groups, 'visual')
   call add(s:settings.plugin_groups, 'indents')
   call add(s:settings.plugin_groups, 'navigation')
+  call add(s:settings.plugin_groups, 'unite')
   call add(s:settings.plugin_groups, 'autocomplete')
   call add(s:settings.plugin_groups, 'misc')
   if s:is_windows
@@ -477,8 +478,28 @@
       nnoremap [ctrlp]o :CtrlPFunky<cr>
       nnoremap [ctrlp]b :CtrlPBuffer<cr>
     "}}}
-    NeoBundleLazy 'tsukkee/unite-tag', {'autoload':{'unite_sources':'tag'}}
-    NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
+    " NeoBundle 'Shougo/vimfiler.vim' "{{{
+    "   let g:vimfiler_as_default_explorer=1
+    "   let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
+    "   nnoremap <F2> :VimFilerExplorer<CR>
+    "   nnoremap <F3> :VimFilerBufferDir --explorer<CR>
+    " "}}}
+    NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','NERDTreeFind']}} "{{{
+      let NERDTreeShowHidden=1
+      let NERDTreeQuitOnOpen=0
+      let NERDTreeShowLineNumbers=1
+      let NERDTreeChDirMode=0
+      let NERDTreeShowBookmarks=1
+      let NERDTreeIgnore=['\.git','\.hg']
+      let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
+      nnoremap <F2> :NERDTreeToggle<CR>
+      nnoremap <F3> :NERDTreeFind<CR>
+    "}}}
+    NeoBundleLazy 'majutsushi/tagbar', {'autoload':{'commands':'TagbarToggle'}} "{{{
+      nnoremap <silent> <F9> :TagbarToggle<CR>
+    "}}}
+  endif "}}}
+  if count(s:settings.plugin_groups, 'unite') "{{{
     NeoBundleLazy 'Shougo/unite.vim', {'autoload':{'commands':'Unite'}} "{{{
       let bundle = neobundle#get('unite.vim')
       function! bundle.hooks.on_source(bundle)
@@ -526,28 +547,17 @@
       nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
       nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-      nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     "}}}
-    " NeoBundle 'Shougo/vimfiler.vim' "{{{
-    "   let g:vimfiler_as_default_explorer=1
-    "   let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
-    "   nnoremap <F2> :VimFilerExplorer<CR>
-    "   nnoremap <F3> :VimFilerBufferDir --explorer<CR>
-    " "}}}
-    NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','NERDTreeFind']}} "{{{
-      let NERDTreeShowHidden=1
-      let NERDTreeQuitOnOpen=0
-      let NERDTreeShowLineNumbers=1
-      let NERDTreeChDirMode=0
-      let NERDTreeShowBookmarks=1
-      let NERDTreeIgnore=['\.git','\.hg']
-      let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
-      nnoremap <F2> :NERDTreeToggle<CR>
-      nnoremap <F3> :NERDTreeFind<CR>
+    NeoBundleLazy 'tsukkee/unite-tag', {'autoload':{'unite_sources':['tag','tag/file']}} "{{{
+      nnoremap <silent> [unite]t :<C-u>Unite -auto-resize -buffer-name=tags tags tags/file<cr>
     "}}}
-    NeoBundleLazy 'majutsushi/tagbar', {'autoload':{'commands':'TagbarToggle'}} "{{{
-      nnoremap <silent> <F9> :TagbarToggle<CR>
+    NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}} "{{{
+      nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
+    "}}}
+    NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen','unite_sources':['junkfile','junkfile/new']}} "{{{
+      let g:junkfile#directory=expand("~/.vim/.cache/junk")
+      nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'visual') "{{{
@@ -555,6 +565,9 @@
       let g:bufferline_echo=0
       let g:bufferline_rotate=1
     "}}}
+    " NeoBundle 'Lokaltog/vim-powerline' "{{{
+    "   let g:Powerline_symbols = 'unicode'
+    " "}}}
     " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
     " NeoBundle 'zhaocai/linepower.vim'
     " NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
