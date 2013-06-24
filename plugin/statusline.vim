@@ -22,7 +22,7 @@ function! StatusLineModePrefix()
   hi User9        guifg=#ff0000 guibg=#1c1c1c ctermfg=160 ctermbg=233
 
   if l:mode ==# "i"
-    hi StatusLine guifg=#ffffff guibg=#000080 ctermfg=15  ctermbg=4
+    hi StatusLine guifg=#ffffff guibg=#000080 ctermfg=15  ctermbg=17
     hi User2      guibg=#00dfff guifg=#00005f ctermfg=17  ctermbg=45 gui=bold term=bold
     hi User3      guibg=#005fff guifg=#00dfff ctermfg=45  ctermbg=27
     hi User4      guibg=#005fff                           ctermbg=27
