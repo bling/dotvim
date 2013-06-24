@@ -14,17 +14,17 @@ function! StatusLineModePrefix()
   " mode
   hi User2 guifg=#005f00 guibg=#dfff00 ctermfg=22  ctermbg=190 gui=bold term=bold
   " mode seperator
-  hi User3 guifg=#dfff00 guibg=#444444 ctermfg=190 ctermbg=238
+  hi User3 guifg=#dfff00 guibg=#444444 ctermfg=190 ctermbg=238 gui=bold term=bold
   " info
   hi User4 guifg=#ffffff guibg=#444444 ctermfg=255 ctermbg=238
   " info seperator
-  hi User5 guifg=#444444 guibg=#202020 ctermfg=238 ctermbg=234
+  hi User5 guifg=#444444 guibg=#202020 ctermfg=238 ctermbg=234 gui=bold term=bold
   " file info
   hi User9 guifg=#ff0000 guibg=#1c1c1c ctermfg=160 ctermbg=233
 
   if l:mode ==# "i"
     hi StatusLine ctermfg=15 ctermbg=18
-    hi User2 guibg=#00dfff guifg=#00005f ctermfg=17  ctermbg=45
+    hi User2 guibg=#00dfff guifg=#00005f ctermfg=17  ctermbg=45 gui=bold term=bold
     hi User3 guibg=#005fff guifg=#00dfff ctermfg=45  ctermbg=27
     hi User4 guibg=#005fff                           ctermbg=27
     hi User5 guifg=#005fff guibg=#ffffff ctermfg=27  ctermbg=18

@@ -221,6 +221,7 @@
   autocmd WinLeave * setlocal nocursorline
   autocmd WinEnter * setlocal cursorline
   let &colorcolumn=s:settings.max_column
+  let &textwidth=s:settings.max_column - 2
   if s:settings.enable_cursorcolumn
     set cursorcolumn
     autocmd WinLeave * setlocal nocursorcolumn
@@ -658,6 +659,10 @@
   nnoremap <up> :bnext<CR>
   nnoremap <left> :tabnext<CR>
   nnoremap <right> :tabprev<CR>
+
+  " smash escape
+  inoremap jk <esc>
+  inoremap kj <esc>
 
   " change cursor position in insert mode
   inoremap <C-h> <left>
