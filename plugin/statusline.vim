@@ -3,35 +3,76 @@ let g:statusline_right_sep="◀"
 let g:statusline_left_sep=">"
 let g:statusline_right_sep="<"
 
-function! StatusLineModePrefix()
+function! s:highlight(colors)
+  let cmd = printf('hi %s', a:colors[0])
+  if a:colors[1] != ""
+    let cmd .= ' guifg=' . a:colors[1]
+  endif
+  if a:colors[2] != ""
+    let cmd .= ' guibg=' . a:colors[2]
+  endif
+  if a:colors[3] != ""
+    let cmd .= ' ctermfg=' . a:colors[3]
+  endif
+  if a:colors[4] != ""
+    let cmd .= ' ctermbg=' . a:colors[4]
+  endif
+  if a:colors[5] != ""
+    let cmd .= ' gui=' . a:colors[5]
+    let cmd .= ' term=' . a:colors[5]
+  endif
+  exec cmd
+endfunction
+
+let g:airline_colors = {
+      \ 'mode':           [ 'User2'        , '#005f00' , '#dfff00' , 22  , 190 , 'bold' ] ,
+      \ 'mode_seperator': [ 'User3'        , '#dfff00' , '#444444' , 190 , 238 , 'bold' ] ,
+      \ 'info':           [ 'User4'        , '#ffffff' , '#444444' , 255 , 238 , ''     ] ,
+      \ 'info_seperator': [ 'User5'        , '#444444' , '#202020' , 238 , 234 , 'bold' ] ,
+      \ 'statusline':     [ 'Statusline'   , '#9cffd3' , '#202020' , 85  , 234 , ''     ] ,
+      \ 'statusline_nc':  [ 'StatusLineNC' , '#000000' , '#202020' , 0   , 234 , ''     ] ,
+      \ 'file':           [ 'User9'        , '#ff0000' , '#1c1c1c' , 160 , 233 , ''     ] ,
+      \ 'inactive':       [ 'User8'        , '#4e4e4e' , '#1c1c1c' , 239 , 234 , ''     ] ,
+      \ }
+
+let g:airline_colors_insert = {
+      \ 'mode':           [ 'User2'        , '#00005f' , '#00dfff' , 17  , 45  , 'bold' ] ,
+      \ 'mode_seperator': [ 'User3'        , '#00dfff' , '#005fff' , 45  , 27  , 'bold' ] ,
+      \ 'info':           [ 'User4'        , '#ffffff' , '#005fff' , 255 , 27  , ''     ] ,
+      \ 'info_seperator': [ 'User5'        , '#005fff' , '#000087' , 27  , 18  , 'bold' ] ,
+      \ 'statusline':     [ 'Statusline'   , '#ffffff' , '#000080' , 15  , 17  , ''     ] ,
+      \ }
+
+let g:airline_colors_visual = {
+      \ 'mode':           [ 'User2'        , '#000000' , '#ffaf00' , 232 , 214 , 'bold' ] ,
+      \ 'mode_seperator': [ 'User3'        , '#ffaf00' , '#ff5f00' , 214 , 202 , ''     ] ,
+      \ 'info':           [ 'User4'        , '#000000' , '#ff5f00' , 232 , 202 , ''     ] ,
+      \ 'info_seperator': [ 'User5'        , '#000000' , '#202020' , 202 , 234 , ''     ] ,
+      \ }
+
+function! AirlineModePrefix()
   let l:mode = mode()
 
-  hi StatusLine   guifg=#9cffd3 guibg=#202020 ctermfg=85  ctermbg=234 gui=NONE term=NONE
-  hi StatusLineNC guifg=#000000 guibg=#202020 ctermfg=0   ctermbg=234 gui=NONE term=NONE
-  hi User8        guifg=#4e4e4e guibg=#1c1c1c ctermfg=239 ctermbg=234
+  call <sid>highlight(g:airline_colors.statusline)
+  call <sid>highlight(g:airline_colors.statusline_nc)
+  call <sid>highlight(g:airline_colors.inactive)
+  call <sid>highlight(g:airline_colors.mode)
+  call <sid>highlight(g:airline_colors.mode_seperator)
+  call <sid>highlight(g:airline_colors.info)
+  call <sid>highlight(g:airline_colors.info_seperator)
+  call <sid>highlight(g:airline_colors.file)
 
-  " mode
-  hi User2        guifg=#005f00 guibg=#dfff00 ctermfg=22  ctermbg=190 gui=bold term=bold
-  " mode seperator
-  hi User3        guifg=#dfff00 guibg=#444444 ctermfg=190 ctermbg=238 gui=bold term=bold
-  " info
-  hi User4        guifg=#ffffff guibg=#444444 ctermfg=255 ctermbg=238
-  " info seperator
-  hi User5        guifg=#444444 guibg=#202020 ctermfg=238 ctermbg=234 gui=bold term=bold
-  " file info
-  hi User9        guifg=#ff0000 guibg=#1c1c1c ctermfg=160 ctermbg=233
-
-  if l:mode ==# "i"
-    hi StatusLine guifg=#ffffff guibg=#000080 ctermfg=15  ctermbg=17
-    hi User2      guibg=#00dfff guifg=#00005f ctermfg=17  ctermbg=45 gui=bold term=bold
-    hi User3      guibg=#005fff guifg=#00dfff ctermfg=45  ctermbg=27
-    hi User4      guibg=#005fff                           ctermbg=27
-    hi User5      guifg=#005fff guibg=#000087 ctermfg=27  ctermbg=18
+  if l:mode ==# "i" || l:mode ==# 'R'
+    call <sid>highlight(g:airline_colors_insert.statusline)
+    call <sid>highlight(g:airline_colors_insert.mode)
+    call <sid>highlight(g:airline_colors_insert.mode_seperator)
+    call <sid>highlight(g:airline_colors_insert.info)
+    call <sid>highlight(g:airline_colors_insert.info_seperator)
   elseif l:mode ==? "v" || l:mode ==# ""
-    hi User2      guibg=#ffaf00 guifg=#000000 ctermfg=0   ctermbg=214
-    hi User3      guifg=#ffaf00 guibg=#ff5f00 ctermfg=214 ctermbg=202
-    hi User4      guibg=#ff5f00 guifg=#000000 ctermfg=0   ctermbg=202
-    hi User5      guifg=#000000               ctermfg=202
+    call <sid>highlight(g:airline_colors_visual.mode)
+    call <sid>highlight(g:airline_colors_visual.mode_seperator)
+    call <sid>highlight(g:airline_colors_visual.info)
+    call <sid>highlight(g:airline_colors_visual.info_seperator)
   endif
 
   if l:mode ==# "n"
@@ -44,6 +85,8 @@ function! StatusLineModePrefix()
     return "  VISUAL "
   elseif l:mode ==# "V"
     return "  V·LINE "
+  elseif l:mode ==# "c"
+    return "  CMD    "
   elseif l:mode ==# ""
     return "  V·BLCK "
   else
@@ -52,7 +95,7 @@ function! StatusLineModePrefix()
 endfunction
 
 " init colors
-call StatusLineModePrefix()
+call AirlineModePrefix()
 
 function! s:update_statusline(active)
   if a:active
@@ -60,7 +103,7 @@ function! s:update_statusline(active)
     let l:mode_sep_color = "%3*"
     let l:info_color = "%4*"
     let l:info_sep_color = "%5*"
-    let l:statusline=l:mode_color."%{StatusLineModePrefix()}".l:mode_sep_color
+    let l:statusline=l:mode_color."%{AirlineModePrefix()}".l:mode_sep_color
   else
     let l:mode_color = "%8*"
     let l:mode_sep_color = "%8*"
@@ -95,4 +138,5 @@ augroup airline
   au!
   autocmd WinLeave * call <sid>update_statusline(0)
   autocmd VimEnter,WinEnter,BufWinEnter * call <sid>update_statusline(1)
+  autocmd ColorScheme * hi clear StatusLine | hi clear StatusLineNC
 augroup END
