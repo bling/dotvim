@@ -234,7 +234,12 @@
   endif
 
   if has('gui_running')
-    set lines=999 columns=999                         "open maximized
+    " open maximized
+    set lines=999 columns=9999
+    if s:is_windows
+      autocmd GUIEnter * simalt ~x
+    endif
+
     set guioptions+=t                                 "tear off menu items
     set guioptions-=T                                 "toolbar icons
 
