@@ -23,6 +23,7 @@ this is my personal vim distribution that i have tweaked over time and evolved f
 let g:dotvim_settings = {}
 let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
+let g:dotvim_settings.colorscheme = 'my_awesome_colorscheme'
 
 " this will overwrite the plugin_groups defined in the distribution
 let g:dotvim_settings.plugin_groups = ['core','web']
@@ -34,7 +35,6 @@ source ~/.vim/vimrc
 
 " anything defined here simply overwrites
 set wildignore+=\*/node_modules/\*
-colorscheme my_awesome_colorscheme
 ```
 
 *  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.

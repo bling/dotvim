@@ -17,6 +17,7 @@
   let s:settings.max_column = 120
   let s:settings.autocomplete_method = 'neocomplcache'
   let s:settings.enable_cursorcolumn = 0
+  let s:settings.colorscheme = 'jellybeans'
   if has('patch885') && has('lua')
     let s:settings.autocomplete_method = 'neocomplete'
   elseif has('patch584') && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
@@ -796,7 +797,7 @@ syntax enable
     let g:kolor_underlined=1
   "}}}
 
-  colorscheme jellybeans
+  exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
 if filereadable(expand("~/.vimrc.local"))
