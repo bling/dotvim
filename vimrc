@@ -224,7 +224,6 @@
 " ui configuration {{{
   set showmatch                                       "automatically highlight matching braces/brackets/etc.
   set matchtime=2                                     "tens of a second to show matching parentheses
-  set laststatus=2
   set number
   set lazyredraw
   set noshowmode
@@ -290,6 +289,7 @@
 " plugin/mapping configuration {{{
   if count(s:settings.plugin_groups, 'core') "{{{
     NeoBundle 'matchit.zip'
+    NeoBundle 'bling/vim-airline'
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
     NeoBundle 'tpope/vim-dispatch'
