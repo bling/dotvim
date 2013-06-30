@@ -24,19 +24,23 @@ source ~/.vim/vimrc
 
 ### versioning
 
-The `g:dotvim_settings.version` is a simple version number which is manually edited.  It used to detect whether significant breaking changes have been introduced so that users of the distribution can be notified accordingly.
+the `g:dotvim_settings.version` is a simple version number which is manually edited.  it is used to detect whether significant breaking changes have been introduced so that users of the distribution can be notified accordingly.
 
 ## customization
 
-*  since the distribution is just one file, customization is straightforward.  simply add settings before or after sourcing the distribution to customize.  for example:
+*  since the distribution is just one file, customization is straightforward.  any customizations can be added to the `g:dotvim_settings` variable, which will be used whilst sourcing the distribution's `vimrc` file.  here is an example:
 
 ```
+" this is the bare minimum
 let g:dotvim_settings = {}
+let g:dotvim_settings.version = 1
+
+" here are some basic customizations, please refer to the top of the vimrc file for all possible options
 let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
 let g:dotvim_settings.colorscheme = 'my_awesome_colorscheme'
 
-" by default, all language specific plugins are not loaded.  you can change this with the following:
+" by default, language specific plugins are not loaded.  this can be changed with the following:
 let g:dotvim_settings.plugin_groups_exclude = ['ruby','python']
 
 " if there are groups you want always loaded, you can use this:
@@ -45,14 +49,13 @@ let g:dotvim_settings.plugin_groups_include = ['go']
 " alternatively, you can set this variable to load exactly what you want
 let g:dotvim_settings.plugin_groups = ['core','web']
 
+" finally, load the distribution
 source ~/.vim/vimrc
 
 " anything defined here are simply overrides
 set wildignore+=\*/node_modules/\*
 set guifont=Wingdings:h10
 ```
-
-*  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.
 
 ## autocomplete
 

@@ -816,9 +816,4 @@ syntax enable
   exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
-if filereadable(expand("~/.vimrc.local"))
-  echom "Sourcing ~/.vimrc.local is deprecated.  Please consult the README on how to create a shim."
-  source ~/.vimrc.local
-endif
-
 NeoBundleCheck
