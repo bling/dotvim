@@ -7,8 +7,14 @@
 "}}}
 
 " dotvim settings {{{
-  if !exists('g:dotvim_settings')
-    let g:dotvim_settings = {}
+  if !exists('g:dotvim_settings') || !exists('g:dotvim_settings.version')
+    echom 'The g:dotvim_settings and g:dotvim_settings.version variables must be defined.  Please consult the README.'
+    finish
+  endif
+
+  if g:dotvim_settings.version != 1
+    echom 'The version number in your shim does not match the distribution version.  Please consult the README changelog section.'
+    finish
   endif
 
   " initialize default settings
@@ -43,15 +49,24 @@
     call add(s:settings.plugin_groups, 'windows')
   endif
 
-  if exists('g:dotvim_settings.plugin_groups_exclude')
-    for group in g:dotvim_settings.plugin_groups_exclude
-      let i = index(s:settings.plugin_groups, group)
-      if i != -1
-        call remove(s:settings.plugin_groups, i)
-      endif
+  " exclude all language-specific plugins by default
+  if !exists('g:dotvim_settings.plugin_groups_exclude')
+    let g:dotvim_settings.plugin_groups_exclude = ['web', 'javascript', 'ruby', 'python', 'go']
+  endif
+  for group in g:dotvim_settings.plugin_groups_exclude
+    let i = index(s:settings.plugin_groups, group)
+    if i != -1
+      call remove(s:settings.plugin_groups, i)
+    endif
+  endfor
+
+  if exists('g:dotvim_settings.plugin_groups_include')
+    for group in g:dotvim_settings.plugin_groups_include
+      call add(s:settings.plugin_groups, group)
     endfor
   endif
 
+  " override defaults with the ones specified in g:dotvim_settings
   for key in keys(s:settings)
     if has_key(g:dotvim_settings, key)
       let s:settings[key] = g:dotvim_settings[key]
@@ -648,7 +663,7 @@
     NeoBundleLazy 'OrangeT/vim-csharp', {'autoload':{'filetypes':['cs']}}
   endif "}}}
 
-  nnoremap <leader>nbu :Unite neobundle/update -no-start-insert<cr>
+  nnoremap <leader>nbu :Unite neobundle/update -vertical -no-start-insert<cr>
 "}}}
 
 " mappings {{{

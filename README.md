@@ -11,9 +11,20 @@ this is my personal vim distribution that i have tweaked over time and evolved f
 1.  clone this repository into your `~/.vim` directory
 1.  `git submodule init && git submodule update`
 1.  `mv ~/.vimrc ~/.vimrc.backup`
-1.  `echo "source ~/.vim/vimrc" > ~/.vimrc`
+1.  create the following shim and save it as `~/.vimrc`:
+
+```
+let g:dotvim_settings = {}
+let g:dotvim_settings.version = 1
+source ~/.vim/vimrc
+```
+
 1.  startup vim and neobundle will detect and ask you install any missing plugins.  you can also manually initiate this with `:NeoBundleInstall`
 1.  done!
+
+### versioning
+
+The `g:dotvim_settings.version` is a simple version number which is manually edited.  It used to detect whether significant breaking changes have been introduced so that users of the distribution can be notified accordingly.
 
 ## customization
 
@@ -25,16 +36,20 @@ let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
 let g:dotvim_settings.colorscheme = 'my_awesome_colorscheme'
 
-" this will overwrite the plugin_groups defined in the distribution
-let g:dotvim_settings.plugin_groups = ['core','web']
-
-" alternatively, you can specify excludes
+" by default, all language specific plugins are not loaded.  you can change this with the following:
 let g:dotvim_settings.plugin_groups_exclude = ['ruby','python']
+
+" if there are groups you want always loaded, you can use this:
+let g:dotvim_settings.plugin_groups_include = ['go']
+
+" alternatively, you can set this variable to load exactly what you want
+let g:dotvim_settings.plugin_groups = ['core','web']
 
 source ~/.vim/vimrc
 
-" anything defined here simply overwrites
+" anything defined here are simply overrides
 set wildignore+=\*/node_modules/\*
+set guifont=Wingdings:h10
 ```
 
 *  the `g:dotvim_settings` is a dictionary that contains overrides for all possible settings.  refer to the top of the `vimrc` file directly to determine what options are available.
@@ -132,6 +147,10 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
 *  `<leader>gr` rm
 *  in addition to all the standard bindings when in the git status window, you can also use `U` to perform a `git checkout --` on the current file
 
+### [gitv](https://github.com/gregsexton/gitv)
+*  nice log history viewer for git
+*  `<leader>gv`
+
 ### [unimpaired](https://github.com/tpope/vim-unimpaired)
 *  many additional bracket `[]` maps
 *  `<C-up>` to move lines up
@@ -227,6 +246,13 @@ i wanted to give special thanks to all of the people who worked on the following
 
 ## license
 [WTFPL](http://sam.zoy.org/wtfpl/)
+
+## changelog
+
+*  v1
+  * requires `g:dotvim_settings.version` to be defined
+  * disable all langauge-specific plugins by default
+  * add support for `g:dotvim_settings.plugin_groups_include`
 
 
 [ycm]: https://github.com/Valloric/YouCompleteMe
