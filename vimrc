@@ -405,6 +405,7 @@
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
         let g:neocomplete#enable_auto_delimiter=1
+        let g:neocomplete#enable_refresh_always=1
       "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplcache' "{{{

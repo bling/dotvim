@@ -1,9 +1,14 @@
-let g:airline_left_sep="▶"
-let g:airline_right_sep="◀"
-let g:airline_left_sep=">"
-let g:airline_right_sep="<"
-let g:airline_left_sep="»"
-let g:airline_right_sep="«"
+if !exists('g:airline_left_sep')
+  let g:airline_left_sep="▶"
+  let g:airline_left_sep=">"
+  let g:airline_left_sep="»"
+endif
+
+if !exists('g:airline_right_sep')
+  let g:airline_right_sep="◀"
+  let g:airline_right_sep="<"
+  let g:airline_right_sep="«"
+endif
 
 function! s:highlight(colors)
   let cmd = printf('hi %s', a:colors[0])
@@ -127,7 +132,7 @@ function! s:update_statusline(active)
   endif
   let l:statusline.="%#warningmsg#"
   let l:statusline.="%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}"
-  let l:statusline.="%*%=%9*%{&ro?'RO':''}%*\ "
+  let l:statusline.="%*%<%=%9*%{&ro?'RO':''}%*\ "
   let l:statusline.="%{strlen(&filetype)>0?&filetype:''}\ "
   let l:statusline.=l:info_sep_color."%{g:airline_right_sep}"
   let l:statusline.=l:info_color."\ "
