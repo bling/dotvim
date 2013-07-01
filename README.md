@@ -49,6 +49,9 @@ let g:dotvim_settings.plugin_groups_include = ['go']
 " alternatively, you can set this variable to load exactly what you want
 let g:dotvim_settings.plugin_groups = ['core','web']
 
+" if there is a particular plugin you don't like, you can define this variable to disable them entirely
+let g:dotvim_settings.disabled_plugins=['vim-foo','vim-bar']
+
 " finally, load the distribution
 source ~/.vim/vimrc
 

@@ -324,16 +324,7 @@
     NeoBundleLazy 'juvenn/mustache.vim', {'autoload':{'filetypes':['mustache']}}
     NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
     NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
-      let g:zencoding_expanding=0
-      let g:zencoding_position=[0,0,0,0]
-      function! s:zen_expand()
-        if !g:zencoding_expanding
-          let g:zencoding_expanding=1
-          return "\<C-y>,"
-        endif
-        return "\<C-y>n"
-      endfunction
-      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><expr><tab> <sid>zen_expand()
+      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'javascript') "{{{
@@ -825,4 +816,9 @@ syntax enable
   exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
+if exists('g:dotvim_settings.disabled_plugins')
+  for plugin in g:dotvim_settings.disabled_plugins
+    exec 'NeoBundleDisable '.plugin
+  endfor
+endif
 NeoBundleCheck
