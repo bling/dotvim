@@ -47,36 +47,56 @@
 </li>
 <li> <code>mv ~/.vimrc ~/.vimrc.backup</code>
 </li>
-<li> <code>echo "source ~/.vim/vimrc" &gt; ~/.vimrc</code>
-</li>
+<li> create the following shim and save it as <code>~/.vimrc</code>:</li>
+</ol><pre><code>let g:dotvim_settings = {}
+let g:dotvim_settings.version = 1
+source ~/.vim/vimrc
+</code></pre>
+
+<ol>
 <li> startup vim and neobundle will detect and ask you install any missing plugins.  you can also manually initiate this with <code>:NeoBundleInstall</code>
 </li>
 <li> done!</li>
-</ol><h2>
+</ol><h3>
+<a name="versioning" class="anchor" href="#versioning"><span class="octicon octicon-link"></span></a>versioning</h3>
+
+<p>the <code>g:dotvim_settings.version</code> is a simple version number which is manually edited.  it is used to detect whether significant breaking changes have been introduced so that users of the distribution can be notified accordingly.</p>
+
+<h2>
 <a name="customization" class="anchor" href="#customization"><span class="octicon octicon-link"></span></a>customization</h2>
 
 <ul>
-<li> since the distribution is just one file, customization is straightforward.  simply add settings before or after sourcing the distribution to customize.  for example:</li>
-</ul><pre><code>let g:dotvim_settings = {}
+<li> since the distribution is just one file, customization is straightforward.  any customizations can be added to the <code>g:dotvim_settings</code> variable, which will be used whilst sourcing the distribution's <code>vimrc</code> file.  here is an example:</li>
+</ul><pre><code>" this is the bare minimum
+let g:dotvim_settings = {}
+let g:dotvim_settings.version = 1
+
+" here are some basic customizations, please refer to the top of the vimrc file for all possible options
 let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
+let g:dotvim_settings.colorscheme = 'my_awesome_colorscheme'
 
-" this will overwrite the plugin_groups defined in the distribution
-let g:dotvim_settings.plugin_groups = ['core','web']
-
-" alternatively, you can specify excludes
+" by default, language specific plugins are not loaded.  this can be changed with the following:
 let g:dotvim_settings.plugin_groups_exclude = ['ruby','python']
 
+" if there are groups you want always loaded, you can use this:
+let g:dotvim_settings.plugin_groups_include = ['go']
+
+" alternatively, you can set this variable to load exactly what you want
+let g:dotvim_settings.plugin_groups = ['core','web']
+
+" if there is a particular plugin you don't like, you can define this variable to disable them entirely
+let g:dotvim_settings.disabled_plugins=['vim-foo','vim-bar']
+
+" finally, load the distribution
 source ~/.vim/vimrc
 
-" anything defined here simply overwrites
+" anything defined here are simply overrides
 set wildignore+=\*/node_modules/\*
-colorscheme my_awesome_colorscheme
+set guifont=Wingdings:h10
 </code></pre>
 
-<ul>
-<li> the <code>g:dotvim_settings</code> is a dictionary that contains overrides for all possible settings.  refer to the top of the <code>vimrc</code> file directly to determine what options are available.</li>
-</ul><h2>
+<h2>
 <a name="autocomplete" class="anchor" href="#autocomplete"><span class="octicon octicon-link"></span></a>autocomplete</h2>
 
 <p>this distribution will pick one of three combinations, in the following priority:</p>
@@ -103,6 +123,7 @@ colorscheme my_awesome_colorscheme
 <ul>
 <li> <code>&lt;C-h&gt;</code> move the cursor left</li>
 <li> <code>&lt;C-l&gt;</code> move the cursor right</li>
+<li> <code>jk</code>, <code>kj</code> remapped for "smash escape"</li>
 </ul><h3>
 <a name="normal-mode" class="anchor" href="#normal-mode"><span class="octicon octicon-link"></span></a>normal mode</h3>
 
@@ -222,6 +243,14 @@ colorscheme my_awesome_colorscheme
 <li> <code>&lt;leader&gt;gw</code> stage</li>
 <li> <code>&lt;leader&gt;gr</code> rm</li>
 <li> in addition to all the standard bindings when in the git status window, you can also use <code>U</code> to perform a <code>git checkout --</code> on the current file</li>
+</ul><h3>
+<a name="gitv" class="anchor" href="#gitv"><span class="octicon octicon-link"></span></a><a href="https://github.com/gregsexton/gitv">gitv</a>
+</h3>
+
+<ul>
+<li> nice log history viewer for git</li>
+<li> <code>&lt;leader&gt;gv</code>
+</li>
 </ul><h3>
 <a name="unimpaired" class="anchor" href="#unimpaired"><span class="octicon octicon-link"></span></a><a href="https://github.com/tpope/vim-unimpaired">unimpaired</a>
 </h3>
@@ -381,6 +410,21 @@ colorscheme my_awesome_colorscheme
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>license</h2>
 
 <p><a href="http://sam.zoy.org/wtfpl/">WTFPL</a></p>
+
+<h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>changelog</h2>
+
+<ul>
+<li> v1
+
+<ul>
+<li>requires <code>g:dotvim_settings.version</code> to be defined</li>
+<li>disable all langauge-specific plugins by default</li>
+<li>add support for <code>g:dotvim_settings.plugin_groups_include</code>
+</li>
+</ul>
+</li>
+</ul>
         </section>
 
         <aside id="sidebar">
@@ -395,7 +439,7 @@ colorscheme my_awesome_colorscheme
 
           <p class="repo-owner"><a href="https://github.com/bling/dotvim"></a> is maintained by <a href="https://github.com/bling">bling</a>.</p>
 
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
       </div>
     </div>
