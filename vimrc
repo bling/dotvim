@@ -324,7 +324,16 @@
     NeoBundleLazy 'juvenn/mustache.vim', {'autoload':{'filetypes':['mustache']}}
     NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
     NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
-      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
+      let g:zencoding_expanding=0
+      let g:zencoding_position=[0,0,0,0]
+      function! s:zen_expand()
+        if !g:zencoding_expanding
+          let g:zencoding_expanding=1
+          return "\<C-y>,"
+        endif
+        return "\<C-y>n"
+      endfunction
+      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><expr><tab> <sid>zen_expand()
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'javascript') "{{{
@@ -595,15 +604,6 @@
     " NeoBundle 'zhaocai/linepower.vim'
     " NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
-    NeoBundleLazy 'zhaocai/GoldenView.Vim', {'autoload':{'mappings':['<Plug>ToggleGoldenViewAutoResize']}} "{{{
-      let g:goldenview__enable_default_mapping=0
-      nmap <F4> <Plug>ToggleGoldenViewAutoResize
-    "}}}
-    " NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
-    "   let g:golden_ratio_autocommand=0
-    "   let g:golden_ratio_wrap_ignored=0
-    "   nnoremap <F4> :GoldenRatioToggle<cr>
-    " "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'indents') "{{{
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
@@ -656,6 +656,15 @@
 
       nnoremap <leader>c :VimShell -split<cr>
     "}}}
+    NeoBundleLazy 'zhaocai/GoldenView.Vim', {'autoload':{'mappings':['<Plug>ToggleGoldenViewAutoResize']}} "{{{
+      let g:goldenview__enable_default_mapping=0
+      nmap <F4> <Plug>ToggleGoldenViewAutoResize
+    "}}}
+    " NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
+    "   let g:golden_ratio_autocommand=0
+    "   let g:golden_ratio_wrap_ignored=0
+    "   nnoremap <F4> :GoldenRatioToggle<cr>
+    " "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'windows') "{{{
     NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}} "{{{
