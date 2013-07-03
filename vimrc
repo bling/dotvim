@@ -143,7 +143,6 @@
   set showcmd
   set tags=tags;/
   set showfulltag
-  set keywordprg=":help"                              "remap K to vim help
   set modeline
   set modelines=5
 
@@ -794,6 +793,7 @@
   autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
   autocmd FileType python setlocal foldmethod=indent
   autocmd FileType markdown setlocal nolist
+  autocmd FileType vim setlocal keywordprg=":help"
 "}}}
 
 " vundle rtp load sequence requires the filetypes to be loaded after all bundles are loaded
