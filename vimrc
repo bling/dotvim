@@ -226,6 +226,7 @@
   set matchtime=2                                     "tens of a second to show matching parentheses
   set number
   set lazyredraw
+  set laststatus=2
   set noshowmode
   set foldenable                                      "enable folds by default
   set foldmethod=syntax                               "fold via syntax of files
@@ -806,6 +807,7 @@ syntax enable
   NeoBundle 'nanotech/jellybeans.vim'
   NeoBundle 'tomasr/molokai'
   NeoBundle 'chriskempson/vim-tomorrow-theme'
+  NeoBundle 'chriskempson/base16-vim'
   NeoBundle 'w0ng/vim-hybrid'
   NeoBundle 'sjl/badwolf'
   NeoBundle 'jelera/vim-gummybears-colorscheme'
