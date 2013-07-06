@@ -52,7 +52,7 @@
 
   " exclude all language-specific plugins by default
   if !exists('g:dotvim_settings.plugin_groups_exclude')
-    let g:dotvim_settings.plugin_groups_exclude = ['web', 'javascript', 'ruby', 'python', 'go']
+    let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala']
   endif
   for group in g:dotvim_settings.plugin_groups_exclude
     let i = index(s:settings.plugin_groups, group)
@@ -359,6 +359,7 @@
   endif "}}}
   if count(s:settings.plugin_groups, 'scala') "{{{
     NeoBundle 'derekwyatt/vim-scala'
+    NeoBundle 'megaannum/vimside'
   endif "}}}
   if count(s:settings.plugin_groups, 'go') "{{{
     NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
