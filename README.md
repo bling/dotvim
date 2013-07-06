@@ -64,8 +64,8 @@ set guifont=Wingdings:h10
 
 this distribution will pick one of three combinations, in the following priority:
 
-1.  [neocomplete][nc] + [neosnippet][ns] if you have `lua` enabled and a new enough version of vim
-2.  [youcompleteme][ycm] + [ultisnips][us] if you have `python` enabled and a new enough version of vim
+1.  [neocomplete][nc] + [neosnippet][ns] if you have `lua` enabled.
+2.  [youcompleteme][ycm] + [ultisnips][us] if you have compiled YCM.
 3.  [neocomplcache][ncl] + [neosnippet][ns] if you only have vimscript available
 
 this can be overridden with `g:dotvim_settings.autocomplete_method`

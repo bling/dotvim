@@ -22,6 +22,7 @@ NeoBundle 'Lokaltog/vim-powerline' "{{{
 NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
 NeoBundle 'zhaocai/linepower.vim'
 NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
+NeoBundle 'sjl/splice.vim'
 
 NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
   let g:golden_ratio_autocommand=0

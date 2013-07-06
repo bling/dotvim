@@ -24,9 +24,9 @@
   let s:settings.autocomplete_method = 'neocomplcache'
   let s:settings.enable_cursorcolumn = 0
   let s:settings.colorscheme = 'jellybeans'
-  if has('patch885') && has('lua')
+  if has('lua')
     let s:settings.autocomplete_method = 'neocomplete'
-  elseif has('patch584') && filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
+  elseif filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
     let s:settings.autocomplete_method = 'ycm'
   endif
 
@@ -365,7 +365,6 @@
     NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
-    " NeoBundle 'sjl/splice.vim'
     NeoBundle 'mhinz/vim-signify' "{{{
       let g:signify_update_on_bufenter=0
     "}}}
