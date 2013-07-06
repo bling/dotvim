@@ -1,0 +1,30 @@
+" vim:ft=vim
+
+" this is just a placeholder for plugins i've encountered, maybe used at some
+" point, but not any longer
+
+finish
+
+
+NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}} "{{{
+  autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
+"}}}
+NeoBundle 'Shougo/vimfiler.vim' "{{{
+  let g:vimfiler_as_default_explorer=1
+  let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
+  nnoremap <F2> :VimFilerExplorer<CR>
+  nnoremap <F3> :VimFilerBufferDir --explorer<CR>
+"}}}
+
+NeoBundle 'Lokaltog/vim-powerline' "{{{
+  let g:Powerline_symbols = 'unicode'
+"}}}
+NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+NeoBundle 'zhaocai/linepower.vim'
+NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
+
+NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
+  let g:golden_ratio_autocommand=0
+  let g:golden_ratio_wrap_ignored=0
+  nnoremap <F4> :GoldenRatioToggle<cr>
+"}}}

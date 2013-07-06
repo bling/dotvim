@@ -326,9 +326,15 @@
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'javascript') "{{{
-    NeoBundleLazy 'teramako/jscomplete-vim', {'autoload':{'filetypes':['javascript']}} "{{{
-      autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
-    "}}}
+    NeoBundleLazy 'marijnh/tern_for_vim', {
+      \ 'autoload': { 'filetypes': ['javascript'] },
+      \ 'build': {
+        \ 'mac': 'npm install',
+        \ 'unix': 'npm install',
+        \ 'cygwin': 'npm install',
+        \ 'windows': 'npm install',
+      \ },
+    \ }
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload':{'filetypes':['javascript']}} "{{{
       nnoremap <leader>fjs :call JsBeautify()<cr>
@@ -464,7 +470,7 @@
       vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     "}}}
     NeoBundle 'Raimondi/delimitMate' "{{{
-      let delimitMate_expand_cr=1
+      let g:delimitMate_expand_cr=1
       autocmd FileType markdown,vim let b:loaded_delimitMate=1
     "}}}
     NeoBundle 'skwp/vim-easymotion' "{{{
@@ -506,12 +512,6 @@
       nnoremap [ctrlp]o :CtrlPFunky<cr>
       nnoremap [ctrlp]b :CtrlPBuffer<cr>
     "}}}
-    " NeoBundle 'Shougo/vimfiler.vim' "{{{
-    "   let g:vimfiler_as_default_explorer=1
-    "   let g:vimfiler_data_directory='~/.vim/.cache/vimfiler'
-    "   nnoremap <F2> :VimFilerExplorer<CR>
-    "   nnoremap <F3> :VimFilerBufferDir --explorer<CR>
-    " "}}}
     NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','NERDTreeFind']}} "{{{
       let NERDTreeShowHidden=1
       let NERDTreeQuitOnOpen=0
@@ -589,12 +589,6 @@
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'visual') "{{{
-    " NeoBundle 'Lokaltog/vim-powerline' "{{{
-    "   let g:Powerline_symbols = 'unicode'
-    " "}}}
-    " NeoBundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
-    " NeoBundle 'zhaocai/linepower.vim'
-    " NeoBundle 'myusuf3/numbers.vim', { 'gui': 1 }
     NeoBundle 'kshenoy/vim-signature'
   endif "}}}
   if count(s:settings.plugin_groups, 'indents') "{{{
@@ -652,11 +646,6 @@
       let g:goldenview__enable_default_mapping=0
       nmap <F4> <Plug>ToggleGoldenViewAutoResize
     "}}}
-    " NeoBundleLazy 'roman/golden-ratio', {'autoload':{'commands':'GoldenRatioToggle'}} "{{{
-    "   let g:golden_ratio_autocommand=0
-    "   let g:golden_ratio_wrap_ignored=0
-    "   nnoremap <F4> :GoldenRatioToggle<cr>
-    " "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'windows') "{{{
     NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}} "{{{
