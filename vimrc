@@ -36,6 +36,7 @@
   call add(s:settings.plugin_groups, 'javascript')
   call add(s:settings.plugin_groups, 'ruby')
   call add(s:settings.plugin_groups, 'python')
+  call add(s:settings.plugin_groups, 'scala')
   call add(s:settings.plugin_groups, 'go')
   call add(s:settings.plugin_groups, 'scm')
   call add(s:settings.plugin_groups, 'editing')
@@ -236,7 +237,6 @@
   autocmd WinLeave * setlocal nocursorline
   autocmd WinEnter * setlocal cursorline
   let &colorcolumn=s:settings.max_column
-  let &textwidth=s:settings.max_column - 2
   if s:settings.enable_cursorcolumn
     set cursorcolumn
     autocmd WinLeave * setlocal nocursorcolumn
@@ -271,8 +271,6 @@
       set gfn=Ubuntu\ Mono\ 11
     endif
   else
-    set t_Co=256
-
     if $TERM_PROGRAM == 'iTerm.app'
       " different cursors for insert vs normal mode
       if exists('$TMUX')
@@ -352,6 +350,9 @@
     NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}} "{{{
       let g:jedi#popup_on_dot=0
     "}}}
+  endif "}}}
+  if count(s:settings.plugin_groups, 'scala') "{{{
+    NeoBundle 'derekwyatt/vim-scala'
   endif "}}}
   if count(s:settings.plugin_groups, 'go') "{{{
     NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
@@ -641,7 +642,7 @@
       else
         let g:vimshell_editor_command='vim'
       endif
-      let g:vimshell_right_prompt='getcwd()'
+      " let g:vimshell_right_prompt='getcwd()'
       let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
       let g:vimshell_vimshrc_path='~/.vim/vimshrc'
 
@@ -768,7 +769,7 @@
 
   " general
   nmap <leader>l :set list! list?<cr>
-  noremap <cr> :set hlsearch! hlsearch?<cr>
+  nnoremap <cr> :set hlsearch! hlsearch?<cr>
 
   map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
         \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
