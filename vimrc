@@ -784,7 +784,7 @@
   autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
   autocmd FileType python setlocal foldmethod=indent
   autocmd FileType markdown setlocal nolist
-  autocmd FileType vim setlocal keywordprg=":help"
+  autocmd FileType vim set keywordprg=":help"
 "}}}
 
 " vundle rtp load sequence requires the filetypes to be loaded after all bundles are loaded
