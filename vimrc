@@ -275,6 +275,9 @@
       set gfn=Ubuntu\ Mono\ 11
     endif
   else
+    if $COLORTERM == 'gnome-terminal'
+      set t_Co=256 "why you no tell me correct colors?!?!
+    endif
     if $TERM_PROGRAM == 'iTerm.app'
       " different cursors for insert vs normal mode
       if exists('$TMUX')
