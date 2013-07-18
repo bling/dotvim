@@ -1,4 +1,4 @@
-" vim: fdm=marker ts=2 sts=2 sw=2
+" vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
 
 " detect OS {{{
   let s:is_windows = has('win32') || has('win64')
@@ -427,33 +427,15 @@
     if s:settings.autocomplete_method == 'neocomplcache' "{{{
       NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
-        let g:neocomplcache_enable_auto_delimiter=0
-        " let g:neocomplcache_force_overwrite_completefunc=1
-        " let g:neocomplcache_auto_completion_start_length=1
-        let g:neocomplcache_max_list=10
         let g:neocomplcache_temporary_dir='~/.vim/.cache/neocomplcache'
-        " let g:neocomplcache_enable_auto_select=1
-        " let g:neocomplcache_enable_cursor_hold_i=1
-        " let g:neocomplcache_cursor_hold_i_time=300
         let g:neocomplcache_enable_fuzzy_completion=1
-
-        " enable general omni completion
-        if !exists('g:neocomplcache_omni_functions')
-          let g:neocomplcache_omni_functions = {}
-        endif
-        let g:neocomplcache_omni_functions.css      = 'csscomplete#CompleteCSS'
-        let g:neocomplcache_omni_functions.html     = 'htmlcomplete#CompleteTags'
-        let g:neocomplcache_omni_functions.markdown = 'htmlcomplete#CompleteTags'
-        let g:neocomplcache_omni_functions.python   = 'pythoncomplete#Complete'
-        let g:neocomplcache_omni_functions.xml      = 'xmlcomplete#CompleteTags'
-        let g:neocomplcache_omni_functions.ruby     = 'rubycomplete#Complete'
       "}}}
     endif "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'editing') "{{{
     NeoBundleLazy 'editorconfig/editorconfig-vim', {'autoload':{'insert':1}}
-    NeoBundle 'tpope/vim-speeddating'
     NeoBundleLazy 'tpope/vim-endwise', {'autoload':{'filetypes':['lua','ruby','sh','zsh','vb','vbnet','aspvbs','vim','c','cpp','xdefaults']}}
+    NeoBundle 'tpope/vim-speeddating'
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'terryma/vim-multiple-cursors'
@@ -791,11 +773,6 @@
   autocmd FileType vim set keywordprg=":help"
 "}}}
 
-" vundle rtp load sequence requires the filetypes to be loaded after all bundles are loaded
-filetype off
-filetype plugin indent on
-syntax enable
-
 " color schemes {{{
   NeoBundle 'altercation/vim-colors-solarized'
   NeoBundle 'nanotech/jellybeans.vim'
@@ -812,9 +789,14 @@ syntax enable
   exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
-if exists('g:dotvim_settings.disabled_plugins')
-  for plugin in g:dotvim_settings.disabled_plugins
-    exec 'NeoBundleDisable '.plugin
-  endfor
-endif
-NeoBundleCheck
+" finish loading {{{
+  if exists('g:dotvim_settings.disabled_plugins')
+    for plugin in g:dotvim_settings.disabled_plugins
+      exec 'NeoBundleDisable '.plugin
+    endfor
+  endif
+
+  filetype plugin indent on
+  syntax enable
+  NeoBundleCheck
+"}}}
