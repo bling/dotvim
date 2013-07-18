@@ -82,7 +82,7 @@
   endif
   set rtp+=~/.vim/bundle/neobundle.vim
   call neobundle#rc(expand('~/.vim/bundle/'))
-  NeoBundleFetch 'Shougo/neobundle.vim'
+  NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
 "}}}
 
 " functions {{{
@@ -415,28 +415,25 @@
       NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
-        let g:neocomplete#enable_auto_delimiter=1
-        let g:neocomplete#enable_refresh_always=1
       "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplcache' "{{{
       NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
-        let g:neocomplcache_enable_auto_delimiter=1
+        let g:neocomplcache_enable_auto_delimiter=0
         " let g:neocomplcache_force_overwrite_completefunc=1
         " let g:neocomplcache_auto_completion_start_length=1
         let g:neocomplcache_max_list=10
-        let g:neocomplcache_temporary_dir='~/.vim/.cache/neocon'
+        let g:neocomplcache_temporary_dir='~/.vim/.cache/neocomplcache'
         " let g:neocomplcache_enable_auto_select=1
         " let g:neocomplcache_enable_cursor_hold_i=1
         " let g:neocomplcache_cursor_hold_i_time=300
         let g:neocomplcache_enable_fuzzy_completion=1
 
+        " enable general omni completion
         if !exists('g:neocomplcache_omni_functions')
           let g:neocomplcache_omni_functions = {}
         endif
-
-        " enable general omni completion
         let g:neocomplcache_omni_functions.css      = 'csscomplete#CompleteCSS'
         let g:neocomplcache_omni_functions.html     = 'htmlcomplete#CompleteTags'
         let g:neocomplcache_omni_functions.markdown = 'htmlcomplete#CompleteTags'
@@ -595,7 +592,7 @@
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
       let g:indent_guides_start_level=1
       let g:indent_guides_guide_size=1
-      let g:indent_guides_enable_on_vim_startup=1
+      let g:indent_guides_enable_on_vim_startup=0
       let g:indent_guides_color_change_percent=3
       if !has('gui_running')
         let g:indent_guides_auto_colors=0
@@ -636,7 +633,7 @@
       else
         let g:vimshell_editor_command='vim'
       endif
-      " let g:vimshell_right_prompt='getcwd()'
+      let g:vimshell_right_prompt='getcwd()'
       let g:vimshell_temporary_directory='~/.vim/.cache/vimshell'
       let g:vimshell_vimshrc_path='~/.vim/vimshrc'
 
