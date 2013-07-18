@@ -30,41 +30,45 @@
     let s:settings.autocomplete_method = 'ycm'
   endif
 
-  let s:settings.plugin_groups = []
-  call add(s:settings.plugin_groups, 'core')
-  call add(s:settings.plugin_groups, 'web')
-  call add(s:settings.plugin_groups, 'javascript')
-  call add(s:settings.plugin_groups, 'ruby')
-  call add(s:settings.plugin_groups, 'python')
-  call add(s:settings.plugin_groups, 'scala')
-  call add(s:settings.plugin_groups, 'go')
-  call add(s:settings.plugin_groups, 'scm')
-  call add(s:settings.plugin_groups, 'editing')
-  call add(s:settings.plugin_groups, 'visual')
-  call add(s:settings.plugin_groups, 'indents')
-  call add(s:settings.plugin_groups, 'navigation')
-  call add(s:settings.plugin_groups, 'unite')
-  call add(s:settings.plugin_groups, 'autocomplete')
-  call add(s:settings.plugin_groups, 'misc')
-  if s:is_windows
-    call add(s:settings.plugin_groups, 'windows')
-  endif
-
-  " exclude all language-specific plugins by default
-  if !exists('g:dotvim_settings.plugin_groups_exclude')
-    let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala']
-  endif
-  for group in g:dotvim_settings.plugin_groups_exclude
-    let i = index(s:settings.plugin_groups, group)
-    if i != -1
-      call remove(s:settings.plugin_groups, i)
+  if exists('g:dotvim_settings.plugin_groups')
+    let s:settings.plugin_groups = g:dotvim_settings.plugin_groups
+  else
+    let s:settings.plugin_groups = []
+    call add(s:settings.plugin_groups, 'core')
+    call add(s:settings.plugin_groups, 'web')
+    call add(s:settings.plugin_groups, 'javascript')
+    call add(s:settings.plugin_groups, 'ruby')
+    call add(s:settings.plugin_groups, 'python')
+    call add(s:settings.plugin_groups, 'scala')
+    call add(s:settings.plugin_groups, 'go')
+    call add(s:settings.plugin_groups, 'scm')
+    call add(s:settings.plugin_groups, 'editing')
+    call add(s:settings.plugin_groups, 'visual')
+    call add(s:settings.plugin_groups, 'indents')
+    call add(s:settings.plugin_groups, 'navigation')
+    call add(s:settings.plugin_groups, 'unite')
+    call add(s:settings.plugin_groups, 'autocomplete')
+    call add(s:settings.plugin_groups, 'misc')
+    if s:is_windows
+      call add(s:settings.plugin_groups, 'windows')
     endif
-  endfor
 
-  if exists('g:dotvim_settings.plugin_groups_include')
-    for group in g:dotvim_settings.plugin_groups_include
-      call add(s:settings.plugin_groups, group)
+    " exclude all language-specific plugins by default
+    if !exists('g:dotvim_settings.plugin_groups_exclude')
+      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala']
+    endif
+    for group in g:dotvim_settings.plugin_groups_exclude
+      let i = index(s:settings.plugin_groups, group)
+      if i != -1
+        call remove(s:settings.plugin_groups, i)
+      endif
     endfor
+
+    if exists('g:dotvim_settings.plugin_groups_include')
+      for group in g:dotvim_settings.plugin_groups_include
+        call add(s:settings.plugin_groups, group)
+      endfor
+    endif
   endif
 
   " override defaults with the ones specified in g:dotvim_settings
