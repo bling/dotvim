@@ -532,7 +532,7 @@
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'unite') "{{{
-    NeoBundleLazy 'Shougo/unite.vim', {'autoload':{'commands':'Unite'}} "{{{
+    NeoBundleLazy 'Shougo/unite.vim', {'autoload':{'commands':'Unite', 'insert': 1}} "{{{
       let bundle = neobundle#get('unite.vim')
       function! bundle.hooks.on_source(bundle)
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
