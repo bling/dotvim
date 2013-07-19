@@ -329,7 +329,15 @@
     NeoBundleLazy 'juvenn/mustache.vim', {'autoload':{'filetypes':['mustache']}}
     NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
     NeoBundleLazy 'mattn/zencoding-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache']}} "{{{
-      autocmd FileType html,xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
+      function! s:zen_html_tab()
+        let line = getline('.')
+        if match(line, '<.*>') < 0
+          return "\<c-y>,"
+        endif
+        return "\<c-y>n"
+      endfunction
+      autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
+      autocmd FileType html imap <buffer><expr><tab> <sid>zen_html_tab()
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'javascript') "{{{
