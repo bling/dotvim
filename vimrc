@@ -782,13 +782,10 @@
 "}}}
 
 " color schemes {{{
-  NeoBundle 'altercation/vim-colors-solarized'
-  NeoBundle 'nanotech/jellybeans.vim'
-  NeoBundle 'tomasr/molokai'
+  NeoBundle 'flazz/vim-colorschemes'
   NeoBundle 'chriskempson/vim-tomorrow-theme'
   NeoBundle 'chriskempson/base16-vim'
   NeoBundle 'w0ng/vim-hybrid'
-  NeoBundle 'sjl/badwolf'
   NeoBundle 'jelera/vim-gummybears-colorscheme'
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
