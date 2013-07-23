@@ -48,6 +48,7 @@
     call add(s:settings.plugin_groups, 'navigation')
     call add(s:settings.plugin_groups, 'unite')
     call add(s:settings.plugin_groups, 'autocomplete')
+    " call add(s:settings.plugin_groups, 'textobj')
     call add(s:settings.plugin_groups, 'misc')
     if s:is_windows
       call add(s:settings.plugin_groups, 'windows')
@@ -603,6 +604,12 @@
         autocmd VimEnter,Colorscheme * call s:indent_set_console_colors()
       endif
     "}}}
+  endif "}}}
+  if count(s:settings.plugin_groups, 'textobj') "{{{
+    NeoBundleDepends 'kana/vim-textobj-user'
+    NeoBundle 'kana/vim-textobj-indent'
+    NeoBundle 'kana/vim-textobj-entire'
+    NeoBundle 'lucapette/vim-textobj-underscore'
   endif "}}}
   if count(s:settings.plugin_groups, 'misc') "{{{
     NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
