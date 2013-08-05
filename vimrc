@@ -523,7 +523,7 @@
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'unite') "{{{
-    NeoBundleLazy 'Shougo/unite.vim', {'autoload':{'commands':'Unite', 'insert': 1}} "{{{
+    NeoBundle 'Shougo/unite.vim' "{{{
       let bundle = neobundle#get('unite.vim')
       function! bundle.hooks.on_source(bundle)
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -540,11 +540,11 @@
 
       if executable('ag')
         let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden'
+        let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
         let g:unite_source_grep_recursive_opt=''
       elseif executable('ack')
         let g:unite_source_grep_command='ack'
-        let g:unite_source_grep_default_opts='--no-heading --no-color -a'
+        let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
         let g:unite_source_grep_recursive_opt=''
       endif
 
@@ -788,7 +788,7 @@
   autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
   autocmd FileType python setlocal foldmethod=indent
   autocmd FileType markdown setlocal nolist
-  autocmd FileType vim set keywordprg=":help"
+  autocmd FileType vim setlocal fdm=indent keywordprg=:help
 "}}}
 
 " color schemes {{{
