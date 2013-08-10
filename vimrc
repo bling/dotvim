@@ -405,7 +405,7 @@
   if count(s:settings.plugin_groups, 'autocomplete') "{{{
     NeoBundle 'honza/vim-snippets'
     if s:settings.autocomplete_method == 'ycm' "{{{
-      NeoBundle 'Valloric/YouCompleteMe' "{{{
+      NeoBundle 'Valloric/YouCompleteMe', {'vim_version':'7.3.584'} "{{{
         let g:ycm_complete_in_comments_and_strings=1
         let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
@@ -429,7 +429,7 @@
       "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplete' "{{{
-      NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}} "{{{
+      NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}, 'vim_version':'7.3.885'} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
       "}}}
