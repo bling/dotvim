@@ -465,10 +465,7 @@
       nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
       vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     "}}}
-    NeoBundle 'Raimondi/delimitMate' "{{{
-      let g:delimitMate_expand_cr=1
-      autocmd FileType markdown,vim let b:loaded_delimitMate=1
-    "}}}
+    NeoBundle 'jiangmiao/auto-pairs'
     NeoBundle 'skwp/vim-easymotion' "{{{
       " NeoBundle 'Lokaltog/vim-easymotion'
       let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
