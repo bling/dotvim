@@ -636,7 +636,7 @@
       let g:gist_post_private=1
       let g:gist_show_privates=1
     "}}}
-    NeoBundleLazy 'Shougo/vimshell.vim', {'autoload':{'commands':'VimShell'}} "{{{
+    NeoBundleLazy 'Shougo/vimshell.vim', {'autoload':{'commands':[ 'VimShell', 'VimShellInteractive' ]}} "{{{
       if s:is_macvim
         let g:vimshell_editor_command='mvim'
       else
@@ -647,6 +647,11 @@
       let g:vimshell_vimshrc_path='~/.vim/vimshrc'
 
       nnoremap <leader>c :VimShell -split<cr>
+      nnoremap <leader>cc :VimShell -split<cr>
+      nnoremap <leader>cn :VimShellInteractive node<cr>
+      nnoremap <leader>cl :VimShellInteractive lua<cr>
+      nnoremap <leader>cr :VimShellInteractive irb<cr>
+      nnoremap <leader>cp :VimShellInteractive python<cr>
     "}}}
     NeoBundleLazy 'zhaocai/GoldenView.Vim', {'autoload':{'mappings':['<Plug>ToggleGoldenViewAutoResize']}} "{{{
       let g:goldenview__enable_default_mapping=0
