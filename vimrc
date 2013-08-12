@@ -446,6 +446,7 @@
     NeoBundleLazy 'editorconfig/editorconfig-vim', {'autoload':{'insert':1}}
     NeoBundle 'tpope/vim-endwise'
     NeoBundle 'tpope/vim-speeddating'
+    NeoBundle 'thinca/vim-visualstar'
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'terryma/vim-multiple-cursors'
