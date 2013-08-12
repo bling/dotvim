@@ -465,7 +465,11 @@
       nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
       vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     "}}}
-    NeoBundle 'jiangmiao/auto-pairs'
+    " NeoBundle 'jiangmiao/auto-pairs'
+    NeoBundle 'Raimondi/delimitMate' "{{{
+      let g:delimitMate_expand_cr=1
+      " autocmd FileType markdown,vim let b:loaded_delimitMate=1
+    "}}}
     NeoBundle 'skwp/vim-easymotion' "{{{
       " NeoBundle 'Lokaltog/vim-easymotion'
       let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
@@ -614,6 +618,7 @@
     NeoBundle 'lucapette/vim-textobj-underscore'
   endif "}}}
   if count(s:settings.plugin_groups, 'misc') "{{{
+    NeoBundleLazy 'tpope/vim-scriptease', {'autoload':{'filetypes':['vim']}}
     NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
     if executable('redcarpet') && executable('instant-markdown-d')
       NeoBundleLazy 'suan/vim-instant-markdown', {'autoload':{'filetypes':['markdown']}}
