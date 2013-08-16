@@ -379,6 +379,7 @@
   endif "}}}
   if count(s:settings.plugin_groups, 'go') "{{{
     NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
+    NeoBundleLazy 'nsf/gocode', {'autoload': {'filetypes':['go']}, 'rtp': 'vim'}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
     NeoBundle 'mhinz/vim-signify' "{{{
