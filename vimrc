@@ -500,6 +500,7 @@
       let g:ctrlp_working_path_mode=0
       let g:ctrlp_max_files=20000
       let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
+      let g:ctrlp_reuse_window='startify'
       let g:ctrlp_extensions=['funky']
 
       nmap \ [ctrlp]
