@@ -469,8 +469,8 @@
       nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
       vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     "}}}
-    " NeoBundle 'jiangmiao/auto-pairs'
-    NeoBundle 'Raimondi/delimitMate' "{{{
+    NeoBundle 'jiangmiao/auto-pairs'
+    " NeoBundle 'Raimondi/delimitMate' "{{{
       let g:delimitMate_expand_cr=1
       " autocmd FileType markdown,vim let b:loaded_delimitMate=1
     "}}}
@@ -714,7 +714,7 @@
     vnoremap / /\v
     nnoremap ? ?\v
     vnoremap ? ?\v
-    cnoremap s/ s/\v
+    nnoremap :s/ :s/\v
   "}}}
 
   " folds {{{
