@@ -627,6 +627,9 @@
     NeoBundle 'lucapette/vim-textobj-underscore'
   endif "}}}
   if count(s:settings.plugin_groups, 'misc') "{{{
+    if exists('$TMUX')
+      NeoBundle 'christoomey/vim-tmux-navigator'
+    endif
     NeoBundleLazy 'tpope/vim-scriptease', {'autoload':{'filetypes':['vim']}}
     NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
     if executable('redcarpet') && executable('instant-markdown-d')
