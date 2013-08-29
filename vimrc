@@ -176,7 +176,8 @@
   set scrolljump=5                                    "minimum number of lines to scroll
   set display+=lastline
   set wildmenu                                        "show list for autocomplete
-  set wildmode=list:longest:full                      "priority for tab completion
+  set wildmode=list:full
+  set wildignorecase
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
 
   set splitbelow
@@ -704,6 +705,8 @@
   " change cursor position in insert mode
   inoremap <C-h> <left>
   inoremap <C-l> <right>
+
+  inoremap <C-u> <C-g>u<C-u>
 
   if mapcheck('<space>/') == ''
     nnoremap <space>/ :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
