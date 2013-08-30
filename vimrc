@@ -160,7 +160,6 @@
   " whitespace
   set backspace=indent,eol,start                      "allow backspacing everything in insert mode
   set autoindent                                      "automatically indent to match adjacent lines
-  set smartindent                                     "smart indenting for additional languages
   set expandtab                                       "spaces instead of tabs
   set smarttab                                        "use shiftwidth to enter tabs
   let &tabstop=s:settings.default_indent              "number of spaces per tab for display
