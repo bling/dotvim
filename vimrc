@@ -505,6 +505,9 @@
       let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
       let g:ctrlp_reuse_window='startify'
       let g:ctrlp_extensions=['funky']
+      if executable('ag')
+        let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+      endif
 
       nmap \ [ctrlp]
       nnoremap [ctrlp] <nop>
@@ -630,6 +633,7 @@
     if exists('$TMUX')
       NeoBundle 'christoomey/vim-tmux-navigator'
     endif
+    NeoBundle 'kana/vim-vspec'
     NeoBundleLazy 'tpope/vim-scriptease', {'autoload':{'filetypes':['vim']}}
     NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
     if executable('redcarpet') && executable('instant-markdown-d')
@@ -641,6 +645,7 @@
     NeoBundle 'bufkill.vim'
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = '~/.vim/.cache/sessions'
+      let g:startify_change_to_vcs_root = 1
       let g:startify_show_sessions = 1
       nnoremap <F1> :Startify<cr>
     "}}}
