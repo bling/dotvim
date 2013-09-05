@@ -703,10 +703,10 @@
   map <F6> :set invpaste<CR>:set paste?<CR>
 
   " remap arrow keys
-  nnoremap <down> :bprev<CR>
-  nnoremap <up> :bnext<CR>
-  nnoremap <left> :tabnext<CR>
-  nnoremap <right> :tabprev<CR>
+  nnoremap <left> :bprev<CR>
+  nnoremap <right> :bnext<CR>
+  nnoremap <up> :tabnext<CR>
+  nnoremap <down> :tabprev<CR>
 
   " smash escape
   inoremap jk <esc>
@@ -814,6 +814,12 @@
     nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
     nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
   "}}}
+"}}}
+
+" commands {{{
+  command! -bang Q q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
 "}}}
 
 " autocmd {{{
