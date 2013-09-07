@@ -295,11 +295,11 @@
 " plugin/mapping configuration {{{
   if count(s:settings.plugin_groups, 'core') "{{{
     NeoBundle 'matchit.zip'
-    NeoBundle 'bling/vim-bufferline' "{{{
-      let g:bufferline_echo=0
-      let g:bufferline_rotate=1
+    NeoBundle 'bling/vim-airline' "{{{
+      let g:airline#extensions#tabline#enabled = 1
+      let g:airline#extensions#tabline#left_sep=''
+      let g:airline#extensions#tabline#left_alt_sep=''
     "}}}
-    NeoBundle 'bling/vim-airline'
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
     NeoBundle 'tpope/vim-dispatch'
