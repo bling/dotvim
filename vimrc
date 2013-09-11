@@ -82,6 +82,7 @@
 
 " setup & neobundle {{{
   set nocompatible
+  set all& "reset everything to their defaults
   if s:is_windows
     set rtp+=~/.vim
   endif
@@ -297,8 +298,8 @@
     NeoBundle 'matchit.zip'
     NeoBundle 'bling/vim-airline' "{{{
       let g:airline#extensions#tabline#enabled = 1
-      let g:airline#extensions#tabline#left_sep=''
-      let g:airline#extensions#tabline#left_alt_sep=''
+      let g:airline#extensions#tabline#left_sep=' '
+      let g:airline#extensions#tabline#left_alt_sep='¦'
     "}}}
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
