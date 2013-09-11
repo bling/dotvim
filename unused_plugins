@@ -33,3 +33,4 @@ NeoBundle 'Raimondi/delimitMate' "{{{
   let g:delimitMate_expand_cr=1
   autocmd FileType markdown,vim let b:loaded_delimitMate=1
 "}}}
+NeoBundle 'kshenoy/vim-signature'

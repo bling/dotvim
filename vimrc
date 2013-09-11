@@ -43,7 +43,6 @@
     call add(s:settings.plugin_groups, 'go')
     call add(s:settings.plugin_groups, 'scm')
     call add(s:settings.plugin_groups, 'editing')
-    call add(s:settings.plugin_groups, 'visual')
     call add(s:settings.plugin_groups, 'indents')
     call add(s:settings.plugin_groups, 'navigation')
     call add(s:settings.plugin_groups, 'unite')
@@ -471,10 +470,6 @@
       vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     "}}}
     NeoBundle 'jiangmiao/auto-pairs'
-    " NeoBundle 'Raimondi/delimitMate' "{{{
-      let g:delimitMate_expand_cr=1
-      " autocmd FileType markdown,vim let b:loaded_delimitMate=1
-    "}}}
     NeoBundle 'skwp/vim-easymotion' "{{{
       " NeoBundle 'Lokaltog/vim-easymotion'
       let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
@@ -602,9 +597,6 @@
       let g:junkfile#directory=expand("~/.vim/.cache/junk")
       nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
     "}}}
-  endif "}}}
-  if count(s:settings.plugin_groups, 'visual') "{{{
-    NeoBundle 'kshenoy/vim-signature'
   endif "}}}
   if count(s:settings.plugin_groups, 'indents') "{{{
     NeoBundle 'Yggdroot/indentLine' "{{{
