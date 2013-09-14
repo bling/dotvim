@@ -4,7 +4,9 @@ A highly tuned vim distribution that will blow your socks off!
 
 ## introduction
 
-this is my personal vim distribution that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.
+this is my ***personal*** vim distribution that i have tweaked over time and evolved from a simple vanilla vimrc configuration to a full-blown distribution that it is today.
+
+while it is very easy to install this and get up and running on a brand new machine (a use case i have), i recommend that you do not install this unless you fully understand everything that's going on inside.  scan it for tips and tricks, or fork and customize it for *your* needs.
 
 ## installation
 
