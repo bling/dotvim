@@ -599,10 +599,6 @@
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'indents') "{{{
-    NeoBundle 'Yggdroot/indentLine' "{{{
-      let g:indentLine_char = '┊'
-      let g:indentLine_color_term=236
-    "}}}
     NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
       let g:indent_guides_start_level=1
       let g:indent_guides_guide_size=1

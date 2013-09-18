@@ -15,7 +15,10 @@ NeoBundle 'Shougo/vimfiler.vim' "{{{
   nnoremap <F2> :VimFilerExplorer<CR>
   nnoremap <F3> :VimFilerBufferDir --explorer<CR>
 "}}}
-
+NeoBundle 'Yggdroot/indentLine' "{{{
+  let g:indentLine_char = '┊'
+  let g:indentLine_color_term=236
+"}}}
 NeoBundle 'Lokaltog/vim-powerline' "{{{
   let g:Powerline_symbols = 'unicode'
 "}}}
