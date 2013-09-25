@@ -479,6 +479,11 @@
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'navigation') "{{{
+    NeoBundle 'mileszs/ack.vim' "{{{
+      if executable('ag')
+        let g:ackprg = "ag --nogroup --column --smart-case --follow"
+      endif
+    "}}}
     NeoBundleLazy 'mbbill/undotree', {'autoload':{'commands':'UndotreeToggle'}} "{{{
       let g:undotree_SplitLocation='botright'
       let g:undotree_SetFocusWhenToggle=1
