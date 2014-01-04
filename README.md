@@ -130,10 +130,8 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
 ### [bufkill.vim](http://www.vim.org/scripts/script.php?script_id=1147)
 *  `<leader>bd` or `:BD` will kill a buffer without changing the window layout
 
-### [easymotion](https://github.com/skwp/vim-easymotion)
-*  easily jumps to any character on the screen
-*  `<leader><leader>w` or `<leader><leader>e` will do the trick, along with any of the other default bindings that plugin has mapped under `<leader><leader>`
-*  this is a forked version of [lokaltog](https://github.com/skwp/vim-easymotion)'s version which uses vimperator style double keystrokes
+### [sneak.vim](https://github.com/justinmk/vim-sneak)
+*  motion on steriods
 
 ### [easygrep](http://www.vim.org/scripts/script.php?script_id=2438)
 *  makes search/replacing in your project a lot easier without relying on `find` and `sed`
@@ -189,14 +187,10 @@ this can be overridden with `g:dotvim_settings.autocomplete_method`
 *  easily aligns code
 *  `<leader>a&`, `<leader>a=`, `<leader>a:`, `<leader>a,`, `<leader>a|`
 
-### [golden-ratio](http://github.com/roman/golden-ratio)
-*  a plugin which automatically resizes all your splits to give the current one the optimal amount of viewing real estate
-*  this plugin will interfere with other plugins which rely on windows, so it is disabled by default and can be toggled on/off with `<F4>`
-
 ### [gist](https://github.com/mattn/gist-vim)
 *  automatically get or push changes for gists with `:Gist`
 
-### [zencoding](https://github.com/mattn/zencoding-vim)
+### [emmet](https://github.com/mattn/emmet-vim)
 *  makes for writing html/css extremely fast
 *  for supported most filetypes, `<tab>` will be mapped to automatically expand the line (you can use `<C-v><Tab>` to insert a tab character if needed)
 *  for other features, default plugin mappings are available, which means `<C-y>` is the prefix, followed by a variety of options (see `:help zencoding`)

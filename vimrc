@@ -470,12 +470,8 @@
       vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     "}}}
     NeoBundle 'jiangmiao/auto-pairs'
-    NeoBundle 'skwp/vim-easymotion' "{{{
-      " NeoBundle 'Lokaltog/vim-easymotion'
-      let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
-
-      autocmd ColorScheme * highlight EasyMotionTarget ctermfg=32 guifg=#0087df
-      autocmd ColorScheme * highlight EasyMotionShade ctermfg=237 guifg=#3a3a3a
+    NeoBundle 'justinmk/vim-sneak' "{{{
+      let g:sneak#streak = 1
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'navigation') "{{{
