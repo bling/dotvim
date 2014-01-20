@@ -421,6 +421,7 @@
         let g:UltiSnipsSnippetsDir='~/.vim/snippets'
       "}}}
     else
+      NeoBundle 'Shougo/neosnippet-snippets'
       NeoBundle 'Shougo/neosnippet.vim' "{{{
         let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
         let g:neosnippet#enable_snipmate_compatibility=1
@@ -688,6 +689,8 @@
   nmap <leader>fef :call Preserve("normal gg=G")<CR>
   nmap <leader>f$ :call StripTrailingWhitespace()<CR>
   vmap <leader>s :sort<cr>
+
+  nnoremap <leader>w :w<cr>
 
   " toggle paste
   map <F6> :set invpaste<CR>:set paste?<CR>
