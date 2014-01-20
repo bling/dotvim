@@ -310,7 +310,7 @@
       vmap <c-up> [egv
       vmap <c-down> ]egv
     "}}}
-    NeoBundleDepends 'Shougo/vimproc.vim', {
+    NeoBundle 'Shougo/vimproc.vim', {
       \ 'build': {
         \ 'mac': 'make -f make_mac.mak',
         \ 'unix': 'make -f make_unix.mak',
@@ -616,7 +616,7 @@
     "}}}
   endif "}}}
   if count(s:settings.plugin_groups, 'textobj') "{{{
-    NeoBundleDepends 'kana/vim-textobj-user'
+    NeoBundle 'kana/vim-textobj-user'
     NeoBundle 'kana/vim-textobj-indent'
     NeoBundle 'kana/vim-textobj-entire'
     NeoBundle 'lucapette/vim-textobj-underscore'
