@@ -455,7 +455,6 @@
     NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'terryma/vim-multiple-cursors'
     NeoBundle 'chrisbra/NrrwRgn'
-    NeoBundle 'dahu/vim-fanfingtastic'
     NeoBundleLazy 'godlygeek/tabular', {'autoload':{'commands':'Tabularize'}} "{{{
       nmap <Leader>a& :Tabularize /&<CR>
       vmap <Leader>a& :Tabularize /&<CR>
