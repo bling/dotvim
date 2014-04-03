@@ -146,7 +146,6 @@
   set autoread                                        "auto reload if file saved externally
   set fileformats+=mac                                "add mac to auto-detection of file format line endings
   set nrformats-=octal                                "always assume decimal numbers
-  set autochdir
   set showcmd
   set tags=tags;/
   set showfulltag
