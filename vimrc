@@ -156,6 +156,11 @@
     " ensure correct shell in gvim
     set shell=c:\windows\system32\cmd.exe
   endif
+  
+  if $SHELL =~ '/fish$'
+    " VIM expects to be run from a POSIX shell.
+    set shell=sh
+  endif
 
   " whitespace
   set backspace=indent,eol,start                      "allow backspacing everything in insert mode
