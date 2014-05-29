@@ -42,6 +42,9 @@ let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
 let g:dotvim_settings.colorscheme = 'my_awesome_colorscheme'
 
+" change the default directory where all miscellaneous persistent files go
+let g:dotvim_settings.cache_dir = "/some/place/else"
+
 " by default, language specific plugins are not loaded.  this can be changed with the following:
 let g:dotvim_settings.plugin_groups_exclude = ['ruby','python']
 

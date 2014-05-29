@@ -12,6 +12,8 @@
     finish
   endif
 
+  let s:cache_dir = get(g:dotvim_settings, 'cache_dir', '~/.vim/.cache')
+
   if g:dotvim_settings.version != 1
     echom 'The version number in your shim does not match the distribution version.  Please consult the README changelog section.'
     finish
@@ -91,6 +93,9 @@
 "}}}
 
 " functions {{{
+  function! s:get_cache_dir(suffix) "{{{
+    return resolve(expand(s:cache_dir . '/' . a:suffix))
+  endfunction "}}}
   function! Preserve(command) "{{{
     " preparation: save last search, and cursor position.
     let _s=@/
@@ -156,7 +161,7 @@
     " ensure correct shell in gvim
     set shell=c:\windows\system32\cmd.exe
   endif
-  
+
   if $SHELL =~ '/fish$'
     " VIM expects to be run from a POSIX shell.
     set shell=sh
@@ -210,18 +215,18 @@
     " persistent undo
     if exists('+undofile')
       set undofile
-      set undodir=~/.vim/.cache/undo
+      let &undodir = s:get_cache_dir('undo')
     endif
 
     " backups
     set backup
-    set backupdir=~/.vim/.cache/backup
+    let &backupdir = s:get_cache_dir('backup')
 
     " swap files
-    set directory=~/.vim/.cache/swap
+    let &directory = s:get_cache_dir('swap')
     set noswapfile
 
-    call EnsureExists('~/.vim/.cache')
+    call EnsureExists(s:cache_dir)
     call EnsureExists(&undodir)
     call EnsureExists(&backupdir)
     call EnsureExists(&directory)
@@ -440,13 +445,13 @@
     if s:settings.autocomplete_method == 'neocomplete' "{{{
       NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}, 'vim_version':'7.3.885'} "{{{
         let g:neocomplete#enable_at_startup=1
-        let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
+        let g:neocomplete#data_directory=s:get_cache_dir('neocomplete')
       "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplcache' "{{{
       NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
-        let g:neocomplcache_temporary_dir='~/.vim/.cache/neocomplcache'
+        let g:neocomplcache_temporary_dir=s:get_cache_dir('neocomplcache')
         let g:neocomplcache_enable_fuzzy_completion=1
       "}}}
     endif "}}}
@@ -502,7 +507,7 @@
       let g:ctrlp_show_hidden=0
       let g:ctrlp_follow_symlinks=1
       let g:ctrlp_max_files=20000
-      let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
+      let g:ctrlp_cache_dir=s:get_cache_dir('ctrlp')
       let g:ctrlp_reuse_window='startify'
       let g:ctrlp_extensions=['funky']
       if executable('ag')
@@ -525,7 +530,7 @@
       let NERDTreeChDirMode=0
       let NERDTreeShowBookmarks=1
       let NERDTreeIgnore=['\.git','\.hg']
-      let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
+      let NERDTreeBookmarksFile=s:get_cache_dir('NERDTreeBookmarks')
       nnoremap <F2> :NERDTreeToggle<CR>
       nnoremap <F3> :NERDTreeFind<CR>
     "}}}
@@ -543,7 +548,7 @@
         call unite#custom#source('line,outline','matchers','matcher_fuzzy')
       endfunction
 
-      let g:unite_data_directory='~/.vim/.cache/unite'
+      let g:unite_data_directory=s:get_cache_dir('unite')
       let g:unite_enable_start_insert=1
       let g:unite_source_history_yank_enable=1
       let g:unite_source_rec_max_cache_files=5000
@@ -601,7 +606,7 @@
       nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
     "}}}
     NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen','unite_sources':['junkfile','junkfile/new']}} "{{{
-      let g:junkfile#directory=expand("~/.vim/.cache/junk")
+      let g:junkfile#directory=s:get_cache_dir('junk')
       nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
     "}}}
   endif "}}}
@@ -642,7 +647,7 @@
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
     NeoBundle 'mhinz/vim-startify' "{{{
-      let g:startify_session_dir = '~/.vim/.cache/sessions'
+      let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
       let g:startify_show_sessions = 1
       nnoremap <F1> :Startify<cr>
@@ -664,7 +669,7 @@
         let g:vimshell_editor_command='vim'
       endif
       let g:vimshell_right_prompt='getcwd()'
-      let g:vimshell_data_directory='~/.vim/.cache/vimshell'
+      let g:vimshell_data_directory=s:get_cache_dir('vimshell')
       let g:vimshell_vimshrc_path='~/.vim/vimshrc'
 
       nnoremap <leader>c :VimShell -split<cr>
