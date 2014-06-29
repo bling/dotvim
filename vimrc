@@ -189,7 +189,6 @@
   set wildmenu                                        "show list for autocomplete
   set wildmode=list:full
   set wildignorecase
-  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
 
   set splitbelow
   set splitright
@@ -511,6 +510,11 @@
       let g:ctrlp_cache_dir=s:get_cache_dir('ctrlp')
       let g:ctrlp_reuse_window='startify'
       let g:ctrlp_extensions=['funky']
+      let g:ctrlp_custom_ignore = {
+            \ 'dir': '\v[\/]\.(git|hg|svn|idea)$',
+            \ 'file': '\v\.DS_Store$'
+            \ }
+
       if executable('ag')
         let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
       endif
