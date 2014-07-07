@@ -421,6 +421,7 @@
       nnoremap <silent> <leader>gV :Gitv!<CR>
     "}}}
   endif "}}}
+    NeoBundle 'int3/vim-extradite'
   if count(s:settings.plugin_groups, 'verilog') "{{{
     NeoBundle 'verilog_systemverilog_fix'
   endif
