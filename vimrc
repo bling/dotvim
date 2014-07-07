@@ -272,8 +272,6 @@
   endif
 
   if has('gui_running')
-    " open maximized
-    set lines=999 columns=9999
     if s:is_windows
       autocmd GUIEnter * simalt ~x
     endif
