@@ -212,6 +212,10 @@
     set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
     set grepformat=%f:%l:%c:%m
   endif
+  if executable('pt')
+    set grepprg=pt\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+    set grepformat=%f:%1:%c:%m
+  endif
 
   " vim file/folder management {{{
     " persistent undo
@@ -562,7 +566,12 @@
       let g:unite_source_rec_max_cache_files=5000
       let g:unite_prompt='» '
 
-      if executable('ag')
+      if executable ('pt')
+        let g:unite_source_grep_command = 'pt'
+        let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+        let g:unite_source_grep_recursive_opt = ''
+        let g:unite_source_grep_encoding = 'utf-8'
+      elseif executable('ag')
         let g:unite_source_grep_command='ag'
         let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
         let g:unite_source_grep_recursive_opt=''
