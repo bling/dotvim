@@ -25,6 +25,7 @@
   let s:settings.max_column = 120
   let s:settings.autocomplete_method = 'neocomplcache'
   let s:settings.enable_cursorcolumn = 0
+  let s:settings.enable_cursorline = 1
   let s:settings.colorscheme = 'jellybeans'
   if has('lua')
     let s:settings.autocomplete_method = 'neocomplete'
@@ -248,9 +249,11 @@
   set foldlevelstart=99                               "open all folds by default
   let g:xml_syntax_folding=1                          "enable xml folding
 
-  set cursorline
-  autocmd WinLeave * setlocal nocursorline
-  autocmd WinEnter * setlocal cursorline
+  if s:settings.enable_cursorline
+    set cursorline
+    autocmd WinLeave * setlocal nocursorline
+    autocmd WinEnter * setlocal cursorline
+  endif
   let &colorcolumn=s:settings.max_column
   if s:settings.enable_cursorcolumn
     set cursorcolumn
