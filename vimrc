@@ -662,7 +662,8 @@
     NeoBundle 'chrisbra/vim_faq'
     NeoBundle 'cbtlsl/vimwiki'
     NeoBundle 'bufkill.vim'
-    NeoBundle "ShowMarks"
+    NeoBundle 'ShowMarks'
+    NeoBundle 'mivok/vimtodo'
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
