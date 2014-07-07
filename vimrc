@@ -665,7 +665,7 @@
     NeoBundle 'ShowMarks'
     NeoBundle 'mivok/vimtodo'
     NeoBundleLazy 'mrtazz/simplenote.vim', {'autoload':{'commands':'Simplenote'}}
-    NeoBundleLazy 'cwoak/nvim', {'autoload':{'commands':'Nvim'}}
+    NeoBundleLazy 'cwoac/nvim', {'autoload':{'commands':'Nvim'}}
     NeoBundle 'increment.vim--Avadhanula'
     NeoBundle 'VimFootnotes'
     NeoBundle 'calendar.vim--Matsumoto', {'autoload':{'commands':'Calendar'}}
