@@ -667,6 +667,7 @@
     NeoBundleLazy 'mrtazz/simplenote.vim', {'autoload':{'commands':'Simplenote'}}
     NeoBundleLazy 'cwoak/nvim', {'autoload':{'commands':'Nvim'}}
     NeoBundle 'increment.vim--Avadhanula'
+    NeoBundle 'VimFootnotes'
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
