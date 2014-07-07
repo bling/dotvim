@@ -669,6 +669,7 @@
     NeoBundle 'increment.vim--Avadhanula'
     NeoBundle 'VimFootnotes'
     NeoBundle 'calendar.vim--Matsumoto', {'autoload':{'commands':'Calendar'}}
+    NeoBundle 'jmcantrell/vim-journal', {'depends':'calendar.vim--Matsumoto', 'autoload':{'commands':'JournalToggle'}}
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
