@@ -868,6 +868,7 @@
   NeoBundle 'w0ng/vim-hybrid'
   NeoBundle 'sjl/badwolf'
   NeoBundle 'rking/vim-detailed'
+  NeoBundle 'tpope/vim-vividchalk'
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
