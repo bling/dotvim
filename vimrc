@@ -52,6 +52,7 @@
     call add(s:settings.plugin_groups, 'autocomplete')
     " call add(s:settings.plugin_groups, 'textobj')
     call add(s:settings.plugin_groups, 'misc')
+    call add(s:settings.plugin_groups, 'verilog')
     if s:is_windows
       call add(s:settings.plugin_groups, 'windows')
     endif
@@ -418,6 +419,10 @@
       nnoremap <silent> <leader>gV :Gitv!<CR>
     "}}}
   endif "}}}
+  if count(s:settings.plugin_groups, 'verilog') "{{{
+    NeoBundle 'verilog_systemverilog_fix'
+  endif
+    "}}}
   if count(s:settings.plugin_groups, 'autocomplete') "{{{
     NeoBundle 'honza/vim-snippets'
     if s:settings.autocomplete_method == 'ycm' "{{{
