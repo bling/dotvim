@@ -877,6 +877,7 @@
   NeoBundle 'sjl/badwolf'
   NeoBundle 'rking/vim-detailed'
   NeoBundle 'tpope/vim-vividchalk'
+  NeoBundle 'automation.vim'
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
