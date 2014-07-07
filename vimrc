@@ -665,6 +665,7 @@
     NeoBundle 'ShowMarks'
     NeoBundle 'mivok/vimtodo'
     NeoBundleLazy 'mrtazz/simplenote.vim'
+    NeoBundleLazy 'cwoak/nvim'
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
