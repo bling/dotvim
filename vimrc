@@ -584,11 +584,10 @@
       function! s:unite_settings()
         nmap <buffer> Q <plug>(unite_exit)
         nmap <buffer> <esc> <plug>(unite_exit)
-        imap <buffer> <esc> <plug>(unite_exit)
       endfunction
       autocmd FileType unite call s:unite_settings()
 
-      nmap <space> [unite]
+      nmap <leader>u [unite]
       nnoremap [unite] <nop>
 
       if s:is_windows
@@ -605,6 +604,7 @@
       nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
       nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+      nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
     "}}}
     NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'file_mru'}}
     NeoBundleLazy 'osyo-manga/unite-airline_themes', {'autoload':{'unite_sources':'airline_themes'}} "{{{
