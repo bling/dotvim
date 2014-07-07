@@ -421,9 +421,9 @@
       nnoremap <silent> <leader>gV :Gitv!<CR>
     "}}}
   endif "}}}
-    NeoBundle 'int3/vim-extradite'
+    NeoBundleLazy 'int3/vim-extradite', {'autoload': {'commands':'Extradite'}}
   if count(s:settings.plugin_groups, 'verilog') "{{{
-    NeoBundle 'verilog_systemverilog_fix'
+    NeoBundleLazy 'verilog_systemverilog_fix', {'autoload': {'filetypes':['verilog_systemverilog']}}
   endif
     "}}}
   if count(s:settings.plugin_groups, 'autocomplete') "{{{
@@ -664,8 +664,8 @@
     NeoBundle 'bufkill.vim'
     NeoBundle 'ShowMarks'
     NeoBundle 'mivok/vimtodo'
-    NeoBundleLazy 'mrtazz/simplenote.vim'
-    NeoBundleLazy 'cwoak/nvim'
+    NeoBundle 'mrtazz/simplenote.vim'
+    NeoBundleLazy 'cwoak/nvim', {'autoload':{'commands':'Nvim'}}
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
