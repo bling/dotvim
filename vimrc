@@ -664,7 +664,7 @@
     NeoBundle 'bufkill.vim'
     NeoBundle 'ShowMarks'
     NeoBundle 'mivok/vimtodo'
-    NeoBundle 'mrtazz/simplenote.vim'
+    NeoBundleLazy 'mrtazz/simplenote.vim', {'autoload':{'commands':'Simplenote'}}
     NeoBundleLazy 'cwoak/nvim', {'autoload':{'commands':'Nvim'}}
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
