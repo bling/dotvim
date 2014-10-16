@@ -88,7 +88,7 @@
     set rtp+=~/.vim
   endif
   set rtp+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim'
 "}}}
 
@@ -880,7 +880,7 @@
       exec 'NeoBundleDisable '.plugin
     endfor
   endif
-
+  call neobundle#end()
   filetype plugin indent on
   syntax enable
   NeoBundleCheck
