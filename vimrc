@@ -871,7 +871,6 @@
     let g:kolor_underlined=1
   "}}}
 
-  exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
 " finish loading {{{
@@ -882,6 +881,7 @@
   endif
   call neobundle#end()
   filetype plugin indent on
+  exec 'colorscheme '.s:settings.colorscheme
   syntax enable
   NeoBundleCheck
 "}}}
