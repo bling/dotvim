@@ -88,7 +88,7 @@
     set rtp+=~/.vim
   endif
   set rtp+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim'
 "}}}
 
@@ -871,7 +871,6 @@
     let g:kolor_underlined=1
   "}}}
 
-  exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
 " finish loading {{{
@@ -880,8 +879,9 @@
       exec 'NeoBundleDisable '.plugin
     endfor
   endif
-
+  call neobundle#end()
   filetype plugin indent on
+  exec 'colorscheme '.s:settings.colorscheme
   syntax enable
   NeoBundleCheck
 "}}}
