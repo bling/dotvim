@@ -870,7 +870,6 @@
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
-
 "}}}
 
 " finish loading {{{
@@ -879,9 +878,11 @@
       exec 'NeoBundleDisable '.plugin
     endfor
   endif
+
   call neobundle#end()
   filetype plugin indent on
-  exec 'colorscheme '.s:settings.colorscheme
   syntax enable
+  exec 'colorscheme '.s:settings.colorscheme
+
   NeoBundleCheck
 "}}}
