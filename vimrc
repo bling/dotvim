@@ -507,7 +507,7 @@
       let g:EasyGrepCommand=1
       nnoremap <leader>vo :GrepOptions<cr>
     "}}}
-    NeoBundle 'kien/ctrlp.vim', { 'depends': 'tacahiroy/ctrlp-funky' } "{{{
+    NeoBundle 'ctrlpvim/ctrlp.vim', { 'depends': 'tacahiroy/ctrlp-funky' } "{{{
       let g:ctrlp_clear_cache_on_exit=1
       let g:ctrlp_max_height=40
       let g:ctrlp_show_hidden=0
