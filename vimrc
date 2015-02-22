@@ -565,10 +565,8 @@
       function! bundle.hooks.on_source(bundle)
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
-        call unite#custom#source('line,outline','matchers','matcher_fuzzy')
         call unite#custom#profile('default', 'context', {
-              \ 'start_insert': 1,
-              \ 'direction': 'botright',
+              \ 'start_insert': 1
               \ })
       endfunction
 
@@ -606,7 +604,7 @@
       nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
       nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
       nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-      nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+      nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer file_mru<cr>
       nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
       nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
