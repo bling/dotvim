@@ -25,6 +25,7 @@
   let s:settings.max_column = 120
   let s:settings.autocomplete_method = 'neocomplcache'
   let s:settings.enable_cursorcolumn = 0
+  let s:settings.enable_cursorline = 1
   let s:settings.colorscheme = 'jellybeans'
   if has('lua')
     let s:settings.autocomplete_method = 'neocomplete'
@@ -51,6 +52,7 @@
     call add(s:settings.plugin_groups, 'autocomplete')
     " call add(s:settings.plugin_groups, 'textobj')
     call add(s:settings.plugin_groups, 'misc')
+    call add(s:settings.plugin_groups, 'verilog')
     if s:is_windows
       call add(s:settings.plugin_groups, 'windows')
     endif
@@ -217,6 +219,10 @@
     set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
     set grepformat=%f:%l:%c:%m
   endif
+  if executable('pt')
+    set grepprg=pt\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+    set grepformat=%f:%1:%c:%m
+  endif
 
   " vim file/folder management {{{
     " persistent undo
@@ -255,9 +261,11 @@
   set foldlevelstart=99                               "open all folds by default
   let g:xml_syntax_folding=1                          "enable xml folding
 
-  set cursorline
-  autocmd WinLeave * setlocal nocursorline
-  autocmd WinEnter * setlocal cursorline
+  if s:settings.enable_cursorline
+    set cursorline
+    autocmd WinLeave * setlocal nocursorline
+    autocmd WinEnter * setlocal cursorline
+  endif
   let &colorcolumn=s:settings.max_column
   if s:settings.enable_cursorcolumn
     set cursorcolumn
@@ -271,8 +279,6 @@
   endif
 
   if has('gui_running')
-    " open maximized
-    set lines=999 columns=9999
     if s:is_windows
       autocmd GUIEnter * simalt ~x
     endif
@@ -431,6 +437,11 @@
       nnoremap <silent> <leader>gV :Gitv!<CR>
     "}}}
   endif "}}}
+    NeoBundleLazy 'int3/vim-extradite', {'autoload': {'commands':'Extradite'}}
+  if count(s:settings.plugin_groups, 'verilog') "{{{
+    NeoBundleLazy 'verilog_systemverilog_fix', {'autoload': {'filetypes':['verilog_systemverilog']}}
+  endif
+    "}}}
   if count(s:settings.plugin_groups, 'autocomplete') "{{{
     NeoBundle 'honza/vim-snippets'
     if s:settings.autocomplete_method == 'ycm' "{{{
@@ -574,7 +585,12 @@
       let g:unite_source_history_yank_enable=1
       let g:unite_source_rec_max_cache_files=5000
 
-      if executable('ag')
+      if executable ('pt')
+        let g:unite_source_grep_command = 'pt'
+        let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+        let g:unite_source_grep_recursive_opt = ''
+        let g:unite_source_grep_encoding = 'utf-8'
+      elseif executable('ag')
         let g:unite_source_grep_command='ag'
         let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
         let g:unite_source_grep_recursive_opt=''
@@ -587,11 +603,10 @@
       function! s:unite_settings()
         nmap <buffer> Q <plug>(unite_exit)
         nmap <buffer> <esc> <plug>(unite_exit)
-        imap <buffer> <esc> <plug>(unite_exit)
       endfunction
       autocmd FileType unite call s:unite_settings()
 
-      nmap <space> [unite]
+      nmap <leader>u [unite]
       nnoremap [unite] <nop>
 
       if s:is_windows
@@ -608,6 +623,7 @@
       nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
       nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
       nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+      nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
     "}}}
     NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'file_mru'}}
     NeoBundleLazy 'osyo-manga/unite-airline_themes', {'autoload':{'unite_sources':'airline_themes'}} "{{{
@@ -659,13 +675,21 @@
     NeoBundle 'kana/vim-vspec'
     NeoBundleLazy 'tpope/vim-scriptease', {'autoload':{'filetypes':['vim']}}
     NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
+    NeoBundleLazy 'chrisbra/csv.vim', {'autoload':{'filetypes':['csv']}}
     if executable('redcarpet') && executable('instant-markdown-d')
       NeoBundleLazy 'suan/vim-instant-markdown', {'autoload':{'filetypes':['markdown']}}
     endif
     NeoBundleLazy 'guns/xterm-color-table.vim', {'autoload':{'commands':'XtermColorTable'}}
     NeoBundle 'chrisbra/vim_faq'
-    NeoBundle 'vimwiki'
+    NeoBundle 'cbtlsl/vimwiki'
     NeoBundle 'bufkill.vim'
+    NeoBundle 'ShowMarks'
+    NeoBundle 'mivok/vimtodo'
+    NeoBundleLazy 'mrtazz/simplenote.vim', {'autoload':{'commands':'Simplenote'}}
+    NeoBundle 'increment.vim--Avadhanula'
+    NeoBundle 'VimFootnotes'
+    NeoBundle 'calendar.vim--Matsumoto', {'autoload':{'commands':'Calendar'}}
+    NeoBundle 'jmcantrell/vim-journal', {'depends':'calendar.vim--Matsumoto', 'autoload':{'commands':'JournalToggle'}}
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
@@ -875,6 +899,9 @@
   NeoBundle 'chriskempson/base16-vim'
   NeoBundle 'w0ng/vim-hybrid'
   NeoBundle 'sjl/badwolf'
+  NeoBundle 'rking/vim-detailed'
+  NeoBundle 'tpope/vim-vividchalk'
+  NeoBundle 'automation.vim'
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
