@@ -26,7 +26,7 @@
   let s:settings.autocomplete_method = 'neocomplcache'
   let s:settings.enable_cursorcolumn = 0
   let s:settings.enable_cursorline = 1
-  let s:settings.colorscheme = 'jellybeans'
+  let s:settings.colorscheme = 'hybrid'
   if has('lua')
     let s:settings.autocomplete_method = 'neocomplete'
   elseif filereadable(expand("~/.vim/bundle/YouCompleteMe/python/ycm_core.*"))
@@ -90,8 +90,9 @@
     set rtp+=~/.vim
   endif
   set rtp+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#end()
 "}}}
 
 " functions {{{
@@ -420,8 +421,8 @@
       nnoremap <silent> <leader>gv :Gitv<CR>
       nnoremap <silent> <leader>gV :Gitv!<CR>
     "}}}
-  endif "}}}
     NeoBundleLazy 'int3/vim-extradite', {'autoload': {'commands':'Extradite'}}
+  endif "}}}
   if count(s:settings.plugin_groups, 'verilog') "{{{
     NeoBundleLazy 'verilog_systemverilog_fix', {'autoload': {'filetypes':['verilog_systemverilog']}}
   endif
@@ -661,15 +662,23 @@
     endif
     NeoBundleLazy 'guns/xterm-color-table.vim', {'autoload':{'commands':'XtermColorTable'}}
     NeoBundle 'chrisbra/vim_faq'
-    NeoBundle 'cbtlsl/vimwiki'
+    NeoBundle 'vimwiki/vimwiki', {'autoload':{'commands':['VimwikiIndex','VimwikiTabIndex','VimwikiUISelec','VimwikiDiaryIndex','VimwikiMakeDiaryNote']}}
     NeoBundle 'bufkill.vim'
     NeoBundle 'ShowMarks'
-    NeoBundle 'mivok/vimtodo'
+    NeoBundleLazy 'mivok/vimtodo', {'autoload':{'filetypes':['todo']}}
     NeoBundleLazy 'mrtazz/simplenote.vim', {'autoload':{'commands':'Simplenote'}}
-    NeoBundle 'increment.vim--Avadhanula'
+    NeoBundleLazy 'increment.vim--Avadhanula', {'autoload':{'commands':'Increment'}}
     NeoBundle 'VimFootnotes'
-    NeoBundle 'calendar.vim--Matsumoto', {'autoload':{'commands':'Calendar'}}
-    NeoBundle 'jmcantrell/vim-journal', {'depends':'calendar.vim--Matsumoto', 'autoload':{'commands':'JournalToggle'}}
+    NeoBundleLazy 'calendar.vim--Matsumoto', {'autoload':{'commands':'Calendar'}}
+    NeoBundleLazy 'jmcantrell/vim-journal', {'depends':'calendar.vim--Matsumoto', 'autoload':{'commands':'JournalToggle'}}
+    NeoBundle 'chrisbra/Recover.vim'
+    NeoBundleLazy 'cwoac/nvim', {'autoload':{'commands':'nvim'}}
+    NeoBundleLazy 'vim-voom/VOoM', {'autoload':{'commands':['Voom','Voomhelp','Voomexec','Voomlog']}}
+    NeoBundleLazy 'vimoutliner/vimoutliner', {'autoload':{'filetypes':['votl']}}
+    NeoBundleLazy 'xolox/vim-notes', {'autoload':{'commands':'Note'}}
+    NeoBundleLazy 'utl.vim', {'autoload':{'commands':'Utl'}}
+    NeoBundleLazy 'dhruvasagar/vim-table-mode', {'autoload':{'commands':['TableModeToggle','TableModeEnable','Tableize']}}
+    NeoBundleLazy 'davidoc/taskpaper.vim', {'autoload':{'filetypes':['taskpaper']}}
     NeoBundle 'mhinz/vim-startify' "{{{
       let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
@@ -865,19 +874,24 @@
 "}}}
 
 " color schemes {{{
+  NeoBundle 'changeColorScheme.vim'
   NeoBundle 'altercation/vim-colors-solarized' "{{{
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
   "}}}
+  NeoBundle 'w0ng/vim-hybrid'
   NeoBundle 'nanotech/jellybeans.vim'
   NeoBundle 'tomasr/molokai'
   NeoBundle 'chriskempson/vim-tomorrow-theme'
   NeoBundle 'chriskempson/base16-vim'
-  NeoBundle 'w0ng/vim-hybrid'
   NeoBundle 'sjl/badwolf'
   NeoBundle 'rking/vim-detailed'
   NeoBundle 'tpope/vim-vividchalk'
   NeoBundle 'automation.vim'
+  NeoBundle 'flazz/vim-colorschemes'
+  NeoBundle 'spf13/vim-colors'
+  NeoBundle 'tejr/sahara'
+  NeoBundle 'gorodinskiy/vim-coloresque'
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
