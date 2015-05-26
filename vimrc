@@ -313,10 +313,19 @@
   if count(s:settings.plugin_groups, 'core') "{{{
     NeoBundle 'matchit.zip'
     NeoBundle 'bling/vim-airline' "{{{
-      let g:airline#extensions#tabline#enabled = 1
-      let g:airline#extensions#tabline#left_sep=' '
-      let g:airline#extensions#tabline#left_alt_sep='¦'
+     let g:airline#extensions#tabline#enabled = 1
+     let g:airline#extensions#tabline#left_sep=' '
+     let g:airline#extensions#tabline#left_alt_sep='¦'
+     let g:airline#extensions#bufferline#enabled = 1
+     let g:airline#extensions#hunks#enabled = 1
+     let g:airline#extensions#branch#enabled = 1
+     let g:airline#extensions#whitespace#enabled = 1
+     let g:airline#extensions#taboo#enabled = 1
+     let g:airline#extensions#ctrlspace#enabled = 1
     "}}}
+    NeoBundle 'bling/vim-bufferline'
+    NeoBundle 'gcmt/taboo.vim'
+    NeoBundle 'szw/vim-ctrlspace'
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'tpope/vim-repeat'
     NeoBundle 'tpope/vim-dispatch'
@@ -399,9 +408,7 @@
     NeoBundleLazy 'nsf/gocode', {'autoload': {'filetypes':['go']}, 'rtp': 'vim'}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
-    NeoBundle 'mhinz/vim-signify' "{{{
-      let g:signify_update_on_bufenter=0
-    "}}}
+     NeoBundle 'airblade/vim-gitgutter'
     if executable('hg')
       NeoBundle 'bitbucket:ludovicchabant/vim-lawrencium'
     endif
@@ -417,6 +424,9 @@
       autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
       autocmd BufReadPost fugitive://* set bufhidden=delete
     "}}}
+    NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+    NeoBundle 'low-ghost/nerdtree-fugitive'
+    NeoBundle 'rhysd/committia.vim'
     NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} "{{{
       nnoremap <silent> <leader>gv :Gitv<CR>
       nnoremap <silent> <leader>gV :Gitv!<CR>
@@ -556,7 +566,6 @@
       function! bundle.hooks.on_source(bundle)
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
-        call unite#set_profile('files', 'smartcase', 1)
         call unite#custom#source('line,outline','matchers','matcher_fuzzy')
       endfunction
 
@@ -654,6 +663,30 @@
       NeoBundle 'christoomey/vim-tmux-navigator'
     endif
     NeoBundle 'kana/vim-vspec'
+    NeoBundle 'luochen1990/rainbow'
+       let g:rainbow_active = 1
+       let g:rainbow_conf = {
+       \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+       \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+       \   'operators': '_,_',
+       \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+       \   'separately': {
+       \       '*': {},
+       \       'tex': {
+       \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+       \       },
+       \       'lisp': {
+       \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+       \       },
+       \       'vim': {
+       \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+       \       },
+       \       'html': {
+       \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+       \       },
+       \       'css': 0,
+       \   }
+       \}
     NeoBundleLazy 'tpope/vim-scriptease', {'autoload':{'filetypes':['vim']}}
     NeoBundleLazy 'tpope/vim-markdown', {'autoload':{'filetypes':['markdown']}}
     NeoBundleLazy 'chrisbra/csv.vim', {'autoload':{'filetypes':['csv']}}
@@ -874,6 +907,7 @@
 "}}}
 
 " color schemes {{{
+  NeoBundle 'CSApprox'
   NeoBundle 'changeColorScheme.vim'
   NeoBundle 'altercation/vim-colors-solarized' "{{{
     let g:solarized_termcolors=256
@@ -893,9 +927,10 @@
   NeoBundle 'tejr/sahara'
   NeoBundle 'gorodinskiy/vim-coloresque'
   NeoBundle 'zeis/vim-kolor' "{{{
+  NeoBundle 'sickill/vim-monokai'
     let g:kolor_underlined=1
   "}}}
-
+  "
   exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
