@@ -552,19 +552,20 @@
       call unite#custom#profile('default', 'context', { 'start_insert': 1 })
     endfunction
     call dein#add('Shougo/unite.vim', {'hook_post_source': function('s:on_unite_source')}) "{{{
-
-      let g:unite_data_directory=s:get_cache_dir('unite')
-      let g:unite_source_history_yank_enable=1
-      let g:unite_source_rec_max_cache_files=5000
-
       if executable('ag')
-        let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
-        let g:unite_source_grep_recursive_opt=''
+        let g:unite_source_grep_command = 'ag'
+        let g:unite_source_grep_default_opts =
+              \ '-i --vimgrep --hidden --ignore ' .
+              \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+        let g:unite_source_grep_recursive_opt = ''
+      elseif executable('pt')
+        let g:unite_source_grep_command = 'pt'
+        let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+        let g:unite_source_grep_recursive_opt = ''
       elseif executable('ack')
-        let g:unite_source_grep_command='ack'
-        let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
-        let g:unite_source_grep_recursive_opt=''
+        let g:unite_source_grep_command = 'ack'
+        let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+        let g:unite_source_grep_recursive_opt = ''
       endif
 
       function! s:unite_settings()
@@ -869,12 +870,13 @@
   endif
 
   call dein#end()
-  filetype plugin indent on
-  syntax enable
-
   if dein#check_install()
     call dein#install()
   endif
 
+  autocmd VimEnter * call dein#call_hook('post_source')
+
+  filetype plugin indent on
+  syntax enable
   exec 'colorscheme '.s:settings.colorscheme
 "}}}
