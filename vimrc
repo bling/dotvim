@@ -265,11 +265,6 @@
     autocmd WinEnter * setlocal cursorcolumn
   endif
 
-  if has('conceal')
-    set conceallevel=1
-    set listchars+=conceal:Δ
-  endif
-
   if has('gui_running')
     " open maximized
     set lines=999 columns=9999
