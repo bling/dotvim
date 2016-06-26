@@ -462,6 +462,10 @@
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory=s:get_cache_dir('neocomplete')
       "}}}
+      NeoBundle 'Konfekt/FastFold' "{{{
+        let g:fastfold_savehook = 1
+        let g:fastfold_fold_command_suffixes = []
+      "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplcache' "{{{
       NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
