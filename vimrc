@@ -14,7 +14,7 @@
 
   let s:cache_dir = get(g:dotvim_settings, 'cache_dir', '~/.vim/.cache')
 
-  if g:dotvim_settings.version != 1
+  if g:dotvim_settings.version != 2
     echom 'The version number in your shim does not match the distribution version.  Please consult the README changelog section.'
     finish
   endif
