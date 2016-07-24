@@ -17,11 +17,11 @@ while it is very easy to install this and get up and running on a brand new mach
 
 ```
 let g:dotvim_settings = {}
-let g:dotvim_settings.version = 1
+let g:dotvim_settings.version = 2
 source ~/.vim/vimrc
 ```
 
-1.  startup vim and neobundle will detect and ask you install any missing plugins.  you can also manually initiate this with `:NeoBundleInstall`
+1.  startup vim and dein will detect and ask you install any missing plugins.  you can also manually initiate this with `:call dein#install()`
 1.  done!
 
 ### versioning
@@ -41,6 +41,9 @@ let g:dotvim_settings.version = 1
 let g:dotvim_settings.default_indent = 3
 let g:dotvim_settings.max_column = 80
 let g:dotvim_settings.colorscheme = 'my_awesome_colorscheme'
+
+" change the default directory where all miscellaneous persistent files go
+let g:dotvim_settings.cache_dir = "/some/place/else"
 
 " by default, language specific plugins are not loaded.  this can be changed with the following:
 let g:dotvim_settings.plugin_groups_exclude = ['ruby','python']
@@ -251,6 +254,8 @@ i wanted to give special thanks to all of the people who worked on the following
 
 ## changelog
 
+*  v2
+  * `NeoBundle` replaced with `dein`
 *  v1
   * requires `g:dotvim_settings.version` to be defined
   * disable all langauge-specific plugins by default
